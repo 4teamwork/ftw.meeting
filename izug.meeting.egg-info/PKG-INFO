@@ -1,0 +1,59 @@
+Metadata-Version: 1.0
+Name: izug.meeting
+Version: 1.0dev
+Summary: Meeting type for iZug
+Home-page: https://svn.4teamwork.ch/repos/zug/izug.meeting
+Author: Christian Schneider, 4teamwork GmbH
+Author-email: christian.schneider@4teamwork.ch
+License: Copyright 2008, 4teamwork GmbH
+Description: .. contents::
+        
+        .. Note!
+        -----
+        Update the following URLs to point to your:
+        
+        - code repository
+        - bug tracker
+        - questions/comments feedback mail
+        (do not set a real mail, to avoid spams)
+        
+        Or remove it if not used.
+        
+        - Code repository: http://svn.somewhere.com/...
+        - Questions and comments to somemailing_list
+        - Report bugs at http://bug.somewhere.com/..
+        
+        
+        Change history
+        **************
+        
+        Changelog
+        =========
+        
+        1.0 (xxxx-xx-xx)
+        ------------------
+        
+        - Created recipe with ZopeSkel [Christian Schneider, 4teamwork GmbH].
+        
+        Detailed Documentation
+        **********************
+        
+        Introduction
+        ============
+        
+        
+        
+        Contributors
+        ************
+        
+        Christian Schneider, 4teamwork GmbH, Author
+        
+        
+        Download
+        ********
+        
+Keywords: plone archetype izug
+Platform: UNKNOWN
+Classifier: Framework :: Plone
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
