@@ -1,0 +1,39 @@
+# izug.meeting
+# Christian Schneider <christian.schneider@4teamwork.ch>, 2008.
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0\n"
+"POT-Creation-Date: 2008-10-31 16:54+0000\n"
+"PO-Revision-Date: 2008-10-31 17:21+0100\n"
+"Last-Translator: Christian Schneider <christian.schneider@4teamwork.ch>\n"
+"Language-Team: Christian Schneider <christian.schneider@4teamwork.ch>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: de\n"
+"Language-Name: Deutsch\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: plone\n"
+"X-Is-Fallback-For: de-de de-at de-ch\n"
+
+#. Default: "A type for meeting items."
+#: ./izug/meeting/profiles/default/types/Meeting_Item.xml
+msgid "A type for meeting items."
+msgstr "Ein Typ für Sitzungspunkte."
+
+#. Default: "A type for meetings."
+#: ./izug/meeting/profiles/default/types/Meeting.xml
+msgid "A type for meetings."
+msgstr "Ein Typ für Sitzungen."
+
+#. Default: "Meeting"
+#: ./izug/meeting/profiles/default/types/Meeting.xml
+msgid "Meeting"
+msgstr "Sitzung"
+
+#. Default: "Meeting Item"
+#: ./izug/meeting/profiles/default/types/Meeting_Item.xml
+msgid "Meeting Item"
+msgstr "Sitzungspunkt"
+

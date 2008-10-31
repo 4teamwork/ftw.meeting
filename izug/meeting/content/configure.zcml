@@ -6,5 +6,31 @@
     <!-- configure your content components here -->
 
     <!-- -*- extra stuff goes here -*- -->
+    <class class=".meetingitem.MeetingItem">
+
+        <require
+            permission="zope2.View"
+            interface="..interfaces.IMeetingItem"
+            />
+
+        <require
+            permission="cmf.ModifyPortalContent"
+            set_schema="..interfaces.IMeetingItem"
+            />
+
+    </class>
+    <class class=".meeting.Meeting">
+
+        <require
+            permission="zope2.View"
+            interface="..interfaces.IMeeting"
+            />
+
+        <require
+            permission="cmf.ModifyPortalContent"
+            set_schema="..interfaces.IMeeting"
+            />
+
+    </class>
 
 </configure>

@@ -1,0 +1,124 @@
+# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
+# SOME DESCRIPTIVE TITLE.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2008-10-31 16:13+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: izug.meeting\n"
+
+#. Default: "Enter the attendees of the meeting."
+#: ./izug/meeting/content/meeting.py:62
+msgid "meeting_help_attendees"
+msgstr ""
+
+#. Default: "Enter the head of the meeting."
+#: ./izug/meeting/content/meeting.py:44
+msgid "meeting_help_head_of_meeting"
+msgstr ""
+
+#. Default: "Enter the location where the event will take place."
+#: ./izug/meeting/content/meeting.py:25
+msgid "meeting_help_location"
+msgstr ""
+
+#. Default: "Enter the recording secretary."
+#: ./izug/meeting/content/meeting.py:52
+msgid "meeting_help_recording_secretary"
+msgstr ""
+
+#. Default: "Enter the starting date and time, or click the calendar icon and select it."
+#: ./izug/meeting/content/meeting.py:36
+msgid "meeting_help_start_date"
+msgstr ""
+
+#. Default: "Attendees"
+#: ./izug/meeting/content/meeting.py:61
+msgid "meeting_label_attendees"
+msgstr ""
+
+#. Default: "Attendee"
+#: ./izug/meeting/content/meeting.py:64
+msgid "meeting_label_attendees_attendee"
+msgstr ""
+
+#. Default: "Excused"
+#: ./izug/meeting/content/meeting.py:68
+msgid "meeting_label_attendees_excused"
+msgstr ""
+
+#. Default: "Present"
+#: ./izug/meeting/content/meeting.py:66
+msgid "meeting_label_attendees_present"
+msgstr ""
+
+#. Default: "Head of Meeting"
+#: ./izug/meeting/content/meeting.py:43
+msgid "meeting_label_head_of_meeting"
+msgstr ""
+
+#. Default: "Event Location"
+#: ./izug/meeting/content/meeting.py:24
+msgid "meeting_label_location"
+msgstr ""
+
+#. Default: "Recording Secretary"
+#: ./izug/meeting/content/meeting.py:51
+msgid "meeting_label_recording_secretary"
+msgstr ""
+
+#. Default: "Event Starts"
+#: ./izug/meeting/content/meeting.py:35
+msgid "meeting_label_start_date"
+msgstr ""
+
+#. Default: "Enter the conclusion drawn for this resolution"
+#: ./izug/meeting/content/meetingitem.py:62
+msgid "meetingitem_help_conclusion"
+msgstr ""
+
+#. Default: "Choose the type of the item."
+#: ./izug/meeting/content/meetingitem.py:48
+msgid "meetingitem_help_item_type"
+msgstr ""
+
+#. Default: "Select the responsible persons."
+#: ./izug/meeting/content/meetingitem.py:19
+msgid "meetingitem_help_responsibility"
+msgstr ""
+
+#. Default: "Enter the text."
+#: ./izug/meeting/content/meetingitem.py:32
+msgid "meetingitem_help_text"
+msgstr ""
+
+#. Default: "Conclusion"
+#: ./izug/meeting/content/meetingitem.py:61
+msgid "meetingitem_label_conclusion"
+msgstr ""
+
+#. Default: "Item type"
+#: ./izug/meeting/content/meetingitem.py:47
+msgid "meetingitem_label_item_type"
+msgstr ""
+
+#. Default: "Responsibility"
+#: ./izug/meeting/content/meetingitem.py:18
+msgid "meetingitem_label_responsibility"
+msgstr ""
+
+#. Default: "Text"
+#: ./izug/meeting/content/meetingitem.py:31
+msgid "meetingitem_label_text"
+msgstr ""
+

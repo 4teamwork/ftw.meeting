@@ -1,0 +1,38 @@
+# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
+# SOME DESCRIPTIVE TITLE.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2008-10-31 15:58+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: plone\n"
+
+#. Default: "A type for meeting items."
+#: ./izug/meeting/profiles/default/types/Meeting_Item.xml
+msgid "A type for meeting items."
+msgstr ""
+
+#. Default: "A type for meetings."
+#: ./izug/meeting/profiles/default/types/Meeting.xml
+msgid "A type for meetings."
+msgstr ""
+
+#. Default: "Meeting"
+#: ./izug/meeting/profiles/default/types/Meeting.xml
+msgid "Meeting"
+msgstr ""
+
+#. Default: "Meeting Item"
+#: ./izug/meeting/profiles/default/types/Meeting_Item.xml
+msgid "Meeting Item"
+msgstr ""
