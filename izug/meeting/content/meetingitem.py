@@ -4,14 +4,14 @@
 from zope.interface import implements, directlyProvides
 
 from Products.Archetypes import atapi
-from Products.ATContentTypes.content import base
+from Products.ATContentTypes.content import folder
 from Products.ATContentTypes.content import schemata
 
 from izug.meeting import meetingMessageFactory as _
 from izug.meeting.interfaces import IMeetingItem
 from izug.meeting.config import PROJECTNAME
 
-MeetingItemSchema = schemata.ATContentTypeSchema.copy() + atapi.Schema((
+MeetingItemSchema = folder.ATFolderSchema.copy() + atapi.Schema((
 
     atapi.StringField('responsibility',
                       storage = atapi.AnnotationStorage(),
@@ -73,7 +73,7 @@ MeetingItemSchema['description'].storage = atapi.AnnotationStorage()
 
 schemata.finalizeATCTSchema(MeetingItemSchema, moveDiscussion=False)
 
-class MeetingItem(base.ATCTContent):
+class MeetingItem(folder.ATFolder):
     """A type for meeting items."""
     implements(IMeetingItem)
 
@@ -84,7 +84,7 @@ class MeetingItem(base.ATCTContent):
     description = atapi.ATFieldProperty('description')
     responsibility = atapi.ATFieldProperty('responsibility')
     text = atapi.ATFieldProperty('text')
-    resolution_type = atapi.ATFieldProperty('resolution_type')
+    meetingitem_type = atapi.ATFieldProperty('meetingitem_type')
     conclusion = atapi.ATFieldProperty('conclusion')
 
 atapi.registerType(MeetingItem, PROJECTNAME)

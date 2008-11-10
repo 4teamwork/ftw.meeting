@@ -1,0 +1,8 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope">
+
+    <include package="Products.DataGridField" />
+    <include package="izug.file" />
+    <include package="izug.task" />
+
+</configure>

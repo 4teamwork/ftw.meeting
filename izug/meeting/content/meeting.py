@@ -90,7 +90,7 @@ class Meeting(folder.ATFolder):
     title = atapi.ATFieldProperty('title')
     description = atapi.ATFieldProperty('description')
     location = atapi.ATFieldProperty('location')
-    startDate = atapi.ATFieldProperty('start_date')
+    start_date = atapi.ATFieldProperty('start_date')
     head_of_meeting = atapi.ATFieldProperty('head_of_meeting')
     recording_secretary = atapi.ATFieldProperty('recording_secretary')
     attendees = atapi.ATFieldProperty('attendees')

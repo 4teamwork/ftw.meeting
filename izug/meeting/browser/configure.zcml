@@ -5,6 +5,25 @@
 
     <include package="plone.app.contentmenu" />
 
-    <!-- -*- extra stuff goes here -*- -->
+    <browser:page
+        for="*"
+        name="export_pdf"
+        permission="zope2.View"
+        class=".exportpdf.ExportPDFView"
+        />
+
+    <browser:view
+        for="..interfaces.IMeetingItem"
+        name="pdflatex_convert_object"
+        class=".meetingitem.MeetingItemLatexConverter"
+        permission="zope.Public"
+    />
+
+    <browser:view
+        for="..interfaces.IMeeting"
+        name="pdflatex_convert_object"
+        class=".meeting.MeetingLatexConverter"
+        permission="zope.Public"
+    />
 
 </configure>
