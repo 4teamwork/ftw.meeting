@@ -16,7 +16,7 @@ MeetingItemSchema = folder.ATFolderSchema.copy() + atapi.Schema((
     atapi.StringField('responsibility',
                       storage = atapi.AnnotationStorage(),
                       widget = atapi.StringWidget(label = _(u"meetingitem_label_responsibility", default=u"Responsibility"),
-                                                  description = _(u"meetingitem_help_responsibility", default=u"Select the responsible persons."),
+                                                  description = _(u"meetingitem_help_responsibility", default=u"Select the responsible person."),
                                                   )
                       ),
 
@@ -24,7 +24,7 @@ MeetingItemSchema = folder.ATFolderSchema.copy() + atapi.Schema((
                     searchable = True,
                     required = False,
                     primary = True,
-                    default_content_type = 'text/html',              
+                    default_content_type = 'text/html',
                     default_output_type = 'text/html',
                     allowable_content_types = ('text/html','text/structured','text/plain',),
                     storage = atapi.AnnotationStorage(),
@@ -48,6 +48,13 @@ MeetingItemSchema = folder.ATFolderSchema.copy() + atapi.Schema((
                                                      description = _(u"meetingitem_help_item_type", default=u"Choose the type of the item."),
                                                      format = 'select',
                                                      ),
+                      ),
+
+    atapi.IntegerField('duration',
+                      storage = atapi.AnnotationStorage(),
+                      widget = atapi.IntegerWidget(label = _(u"meetingitem_label_duration", default=u"Duration"),
+                                                  description = _(u"meetingitem_help_duration", default=u"Duration of this item in minutes."),
+                                                  )
                       ),
 
     atapi.TextField('conclusion',
