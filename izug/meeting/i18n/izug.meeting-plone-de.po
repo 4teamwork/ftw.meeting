@@ -35,5 +35,5 @@ msgstr "Sitzung"
 #. Default: "Meeting Item"
 #: ./izug/meeting/profiles/default/types/Meeting_Item.xml
 msgid "Meeting Item"
-msgstr "Sitzungspunkt"
+msgstr "Traktandum"
 
