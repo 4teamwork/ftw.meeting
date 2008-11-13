@@ -5,9 +5,8 @@
 
     <include package="plone.app.contentmenu" />
 
-<!--
     <browser:page
-        for="*"
+        for="..interfaces.IMeetingLayoutPDF"
         name="export_pdf"
         permission="zope2.View"
         class=".exportpdf.ExportPDFView"
@@ -26,6 +25,5 @@
         class=".meeting.MeetingLatexConverter"
         permission="zope.Public"
     />
--->
 
 </configure>

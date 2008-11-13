@@ -8,8 +8,11 @@ from izug.meeting import meetingMessageFactory as _
 
 # -*- extra stuff goes here -*-
 
-class IMeetingItem(Interface):
+class IMeetingLayoutPDF(Interface):
+    """Marker Interface: Object is exportable with Meeting Layout definition"""
+
+class IMeetingItem(IMeetingLayoutPDF):
     """A type for meeting items."""
 
-class IMeeting(Interface):
+class IMeeting(IMeetingLayoutPDF):
     """A type for meetings."""
