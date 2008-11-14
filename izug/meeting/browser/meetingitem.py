@@ -1,14 +1,8 @@
-import re
-
-from zope.component import getMultiAdapter
-
 from plonegov.pdflatex.browser.converter import LatexCTConverter
-from plonegov.pdflatex.converter import html2latex
 
 class MeetingItemLatexConverter(LatexCTConverter):
 
     def __call__(self, context, view):
-        plone_view = getMultiAdapter((self.context, self.request), name=u'plone')
         self.view = view
         latex = ''
         latex_title = self.view.convert(context.pretty_title_or_id())
