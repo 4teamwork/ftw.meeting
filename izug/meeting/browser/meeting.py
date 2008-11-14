@@ -32,6 +32,7 @@ class MeetingLatexConverter(LatexCTConverter):
         latex += '\n'
         latex += r'\end{footnotesize}'
         latex += '\n'
+        latex += '\n'
         latex += r'\begin{attendeeList}' + '\n'
         for row in self.context.attendees:
             latex += '\t\\attendee{%s}{%s}{%s}\n' % (
