@@ -4,6 +4,7 @@
     i18n_domain="izug.meeting">
 
     <include package="plone.app.contentmenu" />
+    <include package=".latex" />
 
     <browser:page
         for="..interfaces.IMeetingLayoutPDF"
