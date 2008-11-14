@@ -1,0 +1,79 @@
+% --------------------------------------------------------
+% HEAD COMMANDS
+% --------------------------------------------------------
+
+% General layout definitons (fonts, ...)
+\renewcommand{\familydefault}{\sfdefault}
+\pagestyle{scrheadings}
+
+\setkomafont{section}{\normalsize\sffamily}
+\titlespacing{\section}{0pt}{-8mm}{*0}
+\titlespacing{\subsection}{0pt}{*0}{*0}
+\titlespacing{\subsubsection}{0pt}{*0}{*0}\renewcommand\arraystretch{1.5}
+
+\setheadwidth[0.7cm]{18.5cm}
+\setfootwidth[0.7cm]{18.5cm}
+
+
+% checkbox command
+\newcommand{\checkbox}[1]{
+    \tiny
+    \setlength{\tabcolsep}{3pt}
+    \begin{tabular}{|p{5pt}|}
+        \hline
+        \tiny #1 \\
+        \hline
+    \end{tabular}
+    \normalsize
+}
+
+
+% meetingitem command
+\newcommand{\meetingitem}[2]{
+    \rule[1ex]{18.5cm}{1pt}
+    {\bf #1}
+    \marginpar{
+        \vspace{-4mm}
+        \begin{tabular}{|p{5cm}}
+            #2 \\
+        \end{tabular}
+    }
+}
+
+% meetingitemtextblock command
+% XXX DEPRECATED!
+\newcommand{\meetingitemtextblock}[2]{{\list{}{\setlength{\leftmargin}{0cm}\setlength{\rightmargin}{0cm}}\relax}{\endlist}{\bf #1: }#2}
+
+
+% meetingitemheader command
+\newcommand{\meetingitemheader}{
+    \marginpar{
+        \vspace{-4mm}
+        \begin{tabular}{p{5cm}}
+            Verantwortung \\
+        \end{tabular}
+    }
+}
+
+
+% attendeeList command
+\newenvironment{attendeeList}{
+    \begin{tabular}{|l|c|c|}
+    \hline
+    {\bf Teilnemher} & {\bf Anwesend} & {\bf Entschuldigt} \\
+    \hline
+}{
+    \hline
+    \end{tabular}
+}
+
+
+% attendee command
+% \attendee{NAME}{PRESENT}{EXCUSED}
+% e.g. \attendee{Hans Muster}{X}{}
+\newcommand{\attendee}[3]{
+    #1 & \checkbox{#2} & \checkbox{#3} \\
+}
+
+
+% --------------------------------------------------------

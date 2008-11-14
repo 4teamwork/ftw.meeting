@@ -9,6 +9,12 @@ class MeetingLayout(object):
         self.appendAboveBodyCommands()
         self.appendBeneathBodyCommands()
 
+    def getResourceFileData(self, filename):
+        fiveFile = self.context.restrictedTraverse('++resource++izug.meeting.latex.resource/%s' % filename)
+        path = fiveFile.context.path
+        fileData = open(path).read()
+        return fileData
+
     def setDocumentClass(self):
         self.view.setLatexProperty('document_class', 'scrartcl')
         self.view.setLatexProperty('document_config', 'a4paper,10pt,headsepline,parskip=half')
@@ -22,94 +28,13 @@ class MeetingLayout(object):
         self.view.registerPackage('wrapfig')
         self.view.registerPackage('longtable')
         self.view.registerPackage('lastpage')
+        self.view.registerPackage('scrpage2', 'automark')
+        self.view.registerPackage('titlesec', 'compact')
+        self.view.registerPackage('geometry', 'left=1.7cm,top=2.5cm,right=7.5cm')
 
     def appendHeadCommands(self):
-        self.view.appendHeaderCommand(r'\setkomafont{section}{\normalsize\sffamily}')
-        self.view.appendHeaderCommand(r'\usepackage[automark]{scrpage2}')
-        self.view.appendHeaderCommand(r'\renewcommand{\familydefault}{\sfdefault}')        
-        self.view.appendHeaderCommand(r'\usepackage[compact]{titlesec}')
-        self.view.appendHeaderCommand(r'\titlespacing{\section}{0pt}{-8mm}{*0}')
-        self.view.appendHeaderCommand(r'\titlespacing{\subsection}{0pt}{*0}{*0}')
-        self.view.appendHeaderCommand(r'\titlespacing{\subsubsection}{0pt}{*0}{*0}\renewcommand\arraystretch{1.5}')
-        self.view.appendHeaderCommand(r'\pagestyle{scrheadings}')
-        self.view.appendHeaderCommand(r'\setheadwidth[0.7cm]{18.5cm}')
-        self.view.appendHeaderCommand(r'\setfootwidth[0.7cm]{18.5cm}')
-        self.view.appendHeaderCommand(r'\usepackage[left=1.7cm,top=2.5cm,right=7.5cm]{geometry}')
-
-        checkbox_command = r'\newcommand{\checkbox}[1]{\tiny \setlength{\tabcolsep}{3pt} \begin{tabular}{|p{5pt}|}'
-        checkbox_command += '\n'
-        checkbox_command += r'\hline'
-        checkbox_command += '\n'
-        checkbox_command += r'\tiny #1 \\'
-        checkbox_command += '\n'
-        checkbox_command += r'\hline'
-        checkbox_command += '\n'
-        checkbox_command += r'\end{tabular}\normalsize}'
-        checkbox_command += '\n'
-        self.view.appendHeaderCommand(checkbox_command)
-        
-        meetingitem_command = r'\newcommand{\meetingitem}[2]{'
-        meetingitem_command += '\n'
-        meetingitem_command += r'\rule[1ex]{18.5cm}{1pt}' 
-        meetingitem_command += '\n'
-        meetingitem_command += r'{\bf #1}'
-        meetingitem_command += '\n'
-        meetingitem_command += r'\marginpar{'
-        meetingitem_command += '\n'
-        meetingitem_command += r'\vspace{-4mm}'
-        meetingitem_command += '\n'
-        meetingitem_command += r'\begin{tabular}{|p{5cm}}'
-        meetingitem_command += '\n'
-        meetingitem_command += r'#2 \\'
-        meetingitem_command += '\n'
-        meetingitem_command += r'\end{tabular}}'
-        meetingitem_command += '\n'
-        meetingitem_command += r'}'
-        meetingitem_command += '\n'
-        self.view.appendHeaderCommand(meetingitem_command)
-
-        meetingitemtextblock_command = r'\newcommand{\meetingitemtextblock}[2]{'
-        meetingitemtextblock_command += r'{\list{}{'
-        meetingitemtextblock_command += r'\setlength{\leftmargin}{0cm}\setlength{\rightmargin}{0cm}}\relax}{\endlist}'
-        meetingitemtextblock_command += r'{\bf #1: }'
-        meetingitemtextblock_command += r'#2}'
-        meetingitemtextblock_command += '\n'
-        self.view.appendHeaderCommand(meetingitemtextblock_command)
-        
-        meetingitemheader_command = r'\newcommand{\meetingitemheader}{'
-        meetingitemheader_command += '\n'
-        meetingitemheader_command += r'\marginpar{'
-        meetingitemheader_command += '\n'
-        meetingitemheader_command += r'\vspace{-4mm}'
-        meetingitemheader_command += '\n'
-        meetingitemheader_command += r'\begin{tabular}{p{5cm}}'
-        meetingitemheader_command += '\n'
-        meetingitemheader_command += r'Verantwortung \\'
-        meetingitemheader_command += '\n'
-        meetingitemheader_command += r'\end{tabular}'
-        meetingitemheader_command += '\n'
-        meetingitemheader_command += r'}'
-        meetingitemheader_command += '\n'
-        meetingitemheader_command += r'}'
-        meetingitemheader_command += '\n'
-        self.view.appendHeaderCommand(meetingitemheader_command)
-
-        attendeelist_environ = r'\newenvironment{attendeeList}{' + '\n'
-        attendeelist_environ += r'    \begin{tabular}{|l|c|c|}' + '\n'
-        attendeelist_environ += r'    \hline' + '\n'
-        attendeelist_environ += r'    {\bf Teilnemher} & {\bf Anwesend} & {\bf Entschuldigt} \\' + '\n'
-        attendeelist_environ += r'    \hline' + '\n'
-        attendeelist_environ += r'}{' + '\n'
-        attendeelist_environ += r'    \hline' + '\n'
-        attendeelist_environ += r'    \end{tabular}' + '\n'
-        attendeelist_environ += r'}' + '\n'
-        self.view.appendHeaderCommand(attendeelist_environ)
-
-        attendee_command = r'\newcommand{\attendee}[3]{' + '\n'
-        attendee_command += r'    #1 & \checkbox{#2} & \checkbox{#3} \\' + '\n'
-        attendee_command += r'}' + '\n'
-        self.view.appendHeaderCommand(attendee_command)
-
+        head_commands = self.getResourceFileData('head_commands.tex')
+        self.view.appendHeaderCommand(head_commands)
 
     def appendAboveBodyCommands(self):
         pass
