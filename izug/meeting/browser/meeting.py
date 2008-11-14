@@ -32,5 +32,13 @@ class MeetingLatexConverter(LatexCTConverter):
         latex += '\n'
         latex += r'\end{footnotesize}'
         latex += '\n'
+        latex += r'\begin{attendeeList}' + '\n'
+        for row in self.context.attendees:
+            latex += '\t\\attendee{%s}{%s}{%s}\n' % (
+                row['contact'],
+                (row['present'] and 'X' or ''),
+                (row['excused'] and 'X' or ''),
+            )
+        latex += r'\end{attendeeList}' + '\n'
         latex += self.convertChilds(context, self.view)
         return latex

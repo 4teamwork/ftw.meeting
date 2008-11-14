@@ -94,6 +94,23 @@ class MeetingLayout(object):
         meetingitemheader_command += '\n'
         self.view.appendHeaderCommand(meetingitemheader_command)
 
+        attendeelist_environ = r'\newenvironment{attendeeList}{' + '\n'
+        attendeelist_environ += r'    \begin{tabular}{|l|c|c|}' + '\n'
+        attendeelist_environ += r'    \hline' + '\n'
+        attendeelist_environ += r'    {\bf Teilnemher} & {\bf Anwesend} & {\bf Entschuldigt} \\' + '\n'
+        attendeelist_environ += r'    \hline' + '\n'
+        attendeelist_environ += r'}{' + '\n'
+        attendeelist_environ += r'    \hline' + '\n'
+        attendeelist_environ += r'    \end{tabular}' + '\n'
+        attendeelist_environ += r'}' + '\n'
+        self.view.appendHeaderCommand(attendeelist_environ)
+
+        attendee_command = r'\newcommand{\attendee}[3]{' + '\n'
+        attendee_command += r'    #1 & \checkbox{#2} & \checkbox{#3} \\' + '\n'
+        attendee_command += r'}' + '\n'
+        self.view.appendHeaderCommand(attendee_command)
+
+
     def appendAboveBodyCommands(self):
         pass
         #self.view.appendToProperty('latex_above_body', r'')
