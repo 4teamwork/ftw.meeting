@@ -178,4 +178,7 @@ class Meeting(folder.ATFolder):
                 items.add(i,i)
         return items
 
+    def InfosForArchiv(self):
+        return DateTime(self.CreationDate()).strftime('%m/01/%Y')
+
 atapi.registerType(Meeting, PROJECTNAME)

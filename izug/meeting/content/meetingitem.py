@@ -154,5 +154,8 @@ class MeetingItem(folder.ATFolder):
             if i and type(i)==type(''):
                 items.add(i,i)
         return items
-        
+
+    def InfosForArchiv(self):
+        return DateTime(self.CreationDate()).strftime('%m/01/%Y')
+
 atapi.registerType(MeetingItem, PROJECTNAME)
