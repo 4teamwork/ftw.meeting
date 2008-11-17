@@ -4,5 +4,6 @@
     <include package="Products.DataGridField" />
     <include package="izug.file" />
     <include package="izug.task" />
+    <include package="izug.bibliothek" />
 
 </configure>
