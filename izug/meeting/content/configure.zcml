@@ -3,7 +3,36 @@
     xmlns:five="http://namespaces.zope.org/five"
     i18n_domain="izug.meeting">
 
-    <!-- configure your content components here -->
+    <five:implements
+        class=".meeting.Meeting"
+        interface="izug.blog.interfaces.ICategorizable"
+        />
+
+    <five:implements
+        class=".meeting.Meeting"
+        interface="izug.blog.interfaces.IArchivable"
+        />
+
+    <five:implements
+        class=".meeting.Meeting"
+        interface="izug.blog.interfaces.ITaggable"
+        />
+
+    <five:implements
+        class=".meetingitem.MeetingItem"
+        interface="izug.blog.interfaces.ICategorizable"
+        />
+
+    <five:implements
+        class=".meetingitem.MeetingItem"
+        interface="izug.blog.interfaces.IArchivable"
+        />
+
+    <five:implements
+        class=".meetingitem.MeetingItem"
+        interface="izug.blog.interfaces.ITaggable"
+        />
+
 
     <!-- -*- extra stuff goes here -*- -->
     <class class=".meetingitem.MeetingItem">
