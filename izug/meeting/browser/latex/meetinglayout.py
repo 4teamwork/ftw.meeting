@@ -9,17 +9,19 @@ class MeetingLayout(object):
         self.appendAboveBodyCommands()
         self.appendBeneathBodyCommands()
 
-    def getResourceFileData(self, filename):
-        fiveFile = self.context.restrictedTraverse('++resource++izug.meeting.latex.resource/%s' % filename)
+    def getResourceFileData(self, filename, resource='izug.meeting.latex.resource'):
+        fiveFile = self.context.restrictedTraverse('++resource++%s/%s' % (resource, filename))
         path = fiveFile.context.path
         fileData = open(path).read()
         return fileData
 
     def setDocumentClass(self):
-        self.view.setLatexProperty('document_class', 'scrartcl')
-        self.view.setLatexProperty('document_config', 'a4paper,10pt,headsepline,parskip=half')
-        self.view.appendHeaderCommand(r'\sloppy')
-        self.view.appendHeaderCommand(r'\raggedbottom')
+        self.view.setLatexProperty('document_class', 'article')
+        self.view.setLatexProperty('document_config', 'a4paper,10pt,parskip=half')
+        # register logo image
+        image = self.getResourceFileData('logo_sw.pdf',
+                resource='izug.bibliothek.latex.resource')
+        self.view.addImage(uid='logo_sw', image=image)
 
     def registerPackages(self):
         self.view.registerPackage('ucs')
@@ -27,18 +29,25 @@ class MeetingLayout(object):
         self.view.registerPackage('helvet')
         self.view.registerPackage('wrapfig')
         self.view.registerPackage('longtable')
-        self.view.registerPackage('lastpage')
-        self.view.registerPackage('scrpage2', 'automark')
         self.view.registerPackage('titlesec', 'compact')
-        self.view.registerPackage('geometry', 'left=1.7cm,top=2.5cm,right=7.5cm')
+        self.view.registerPackage('geometry', 'left=35mm,right=10mm,top=55mm,bottom=30.5mm')
+        self.view.registerPackage('fancyhdr')
+        self.view.registerPackage('paralist', 'neveradjust')
+        self.view.registerPackage('textpos', 'absolute, overlay')
 
     def appendHeadCommands(self):
+        self.view.appendHeaderCommand(r'\newcommand{\Autor}{%s}' % r'XXX AUTOR XXX\\MEHRZEILIG')
+        self.view.appendHeaderCommand(r'\newcommand{\Titel}{%s}' % self.view.convert(self.context.pretty_title_or_id()))
+        self.view.appendHeaderCommand(r'\newcommand{\Adresse}{%s}' % r'Hier\\Die\\Adresse')
         head_commands = self.getResourceFileData('head_commands.tex')
+        self.view.appendHeaderCommand(head_commands)
+        # embed izug.bibliothek head commands
+        head_commands = self.getResourceFileData('head_commands.tex',
+                resource='izug.bibliothek.latex.resource')
         self.view.appendHeaderCommand(head_commands)
 
     def appendAboveBodyCommands(self):
-        pass
-        #self.view.appendToProperty('latex_above_body', r'')
+        self.view.appendToProperty('latex_above_body', r'\thispagestyle{myheadings}')
 
     def appendBeneathBodyCommands(self):
         pass

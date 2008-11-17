@@ -4,15 +4,10 @@
 
 % General layout definitons (fonts, ...)
 \renewcommand{\familydefault}{\sfdefault}
-\pagestyle{scrheadings}
 
-\setkomafont{section}{\normalsize\sffamily}
 \titlespacing{\section}{0pt}{-8mm}{*0}
 \titlespacing{\subsection}{0pt}{*0}{*0}
 \titlespacing{\subsubsection}{0pt}{*0}{*0}\renewcommand\arraystretch{1.5}
-
-\setheadwidth[0.7cm]{18.5cm}
-\setfootwidth[0.7cm]{18.5cm}
 
 
 % checkbox command
@@ -41,8 +36,9 @@
 }
 
 % meetingitemtextblock command
-% XXX DEPRECATED!
 \newcommand{\meetingitemtextblock}[2]{{\list{}{\setlength{\leftmargin}{0cm}\setlength{\rightmargin}{0cm}}\relax}{\endlist}{\bf #1: }#2}
+% XXX DEPRECATED!
+\renewcommand{\meetingitemtextblock}[2]{{\bf #1:} #2 \\}
 
 
 % meetingitemheader command
