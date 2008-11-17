@@ -89,32 +89,46 @@ MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
                                           )
                   ),
 
-        atapi.ReferenceField('categories',
-                             required = False,
-                             storage = atapi.AnnotationStorage(),
-                             widget=ReferenceBrowserWidget(
-                                                           label=_('Categories'),
-                                                           allow_browse=False,
-                                                           show_results_without_query=True,
-                                                           restrict_browsing_to_startup_directory=True,
-                                                           base_query={"portal_type": "Blog Catgory", "sort_on": "sortable_title"},
-                                                           macro='category_reference_widget',
-                                                           ),
-                             allowed_types=('ClassificationItem',),
-                             multiValued=1,
-                             schemata='default',
-                             relationship='blog_categories'
-                             ),
-    
-        atapi.LinesField('tags',
-                         multiValued=1,
+    atapi.StringField('doodle_url',
+                      required=False,
+                      searchable=False,
+                      #default = "http://",
+                      # either mailto, absolute url or relative url
+                      validators = (),
+                      widget = atapi.StringWidget(
+                                                  label = _(u"meeting_label_doodle_url", default=u'Doodle URL'),
+                                                  description = _(u"meeting_help_doodle_url", default=u"Enter a url to a doodle page (with leading http://)."),
+                                                  ),
+                      ),
+
+    atapi.ReferenceField('categories',
+                         required = False,
                          storage = atapi.AnnotationStorage(),
-                         vocabulary='getAllTags',
-                         schemata='default',
-                         widget=AddRemoveWidget(
-                                                label=_('Tags'),
-                                                ),
-                         ),
+                         widget=ReferenceBrowserWidget(
+                                                       label=_(u"meeting_label_categories", default=u"Categories"),
+                                                       description=_(u"meeting_help_categories", default=u""),
+                                                       allow_browse=False,
+                                                       show_results_without_query=True,
+                                                       restrict_browsing_to_startup_directory=True,
+                                                       base_query={"portal_type": "Blog Catgory", "sort_on": "sortable_title"},
+                                                       macro='category_reference_widget',
+                                                       ),
+                        allowed_types=('ClassificationItem',),
+                        multiValued=1,
+                        schemata='default',
+                        relationship='blog_categories'
+                        ),
+    
+    atapi.LinesField('tags',
+                     multiValued=1,
+                     storage = atapi.AnnotationStorage(),
+                     vocabulary='getAllTags',
+                     schemata='default',
+                     widget=AddRemoveWidget(
+                                            label=_(u"meeting_label_tags", default=u"Tags"),
+                                            description=_(u"meeting_help_tags", default=u"")
+                                            ),
+                     ),
 ))
 
 # Set storage on fields copied from ATFolderSchema, making sure
