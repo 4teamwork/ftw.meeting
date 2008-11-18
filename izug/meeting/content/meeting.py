@@ -94,12 +94,33 @@ MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
                       searchable=False,
                       #default = "http://",
                       # either mailto, absolute url or relative url
+                      storage = atapi.AnnotationStorage(),
                       validators = (),
                       widget = atapi.StringWidget(
                                                   label = _(u"meeting_label_doodle_url", default=u'Doodle URL'),
                                                   description = _(u"meeting_help_doodle_url", default=u"Enter a url to a doodle page (with leading http://)."),
                                                   ),
                       ),
+
+    atapi.ReferenceField('related_items',
+                         relationship = 'relatesTo',
+                         multiValued = True,
+                         isMetadata = True,
+                         languageIndependent = False,
+                         index = 'KeywordIndex',
+                         accessor = 'relatedItems',
+                         storage = atapi.AnnotationStorage(),
+                         schemata = 'default',
+                         widget = ReferenceBrowserWidget(
+                                                         allow_search = True,
+                                                         allow_browse = True,
+                                                         show_indexes = False,
+                                                         force_close_on_insert = True,
+                                                         label = _(u"meeting_label_related_items", default=u"Related Items"),
+                                                         description = _(u"meeting_help_related_items", default=u""),
+                                                         visible = {'edit' : 'visible', 'view' : 'invisible' }
+                                                         ),
+                         ),
 
     atapi.ReferenceField('categories',
                          required = False,
@@ -136,6 +157,7 @@ MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
 
 MeetingSchema['title'].storage = atapi.AnnotationStorage()
 MeetingSchema['description'].storage = atapi.AnnotationStorage()
+MeetingSchema['description'].widget.visible = {'view' : 'invisible', 'edit' : 'invisible'}
 
 schemata.finalizeATCTSchema(MeetingSchema, folderish=True, moveDiscussion=False)
 
@@ -153,6 +175,8 @@ class Meeting(folder.ATFolder):
     head_of_meeting = atapi.ATFieldProperty('head_of_meeting')
     recording_secretary = atapi.ATFieldProperty('recording_secretary')
     attendees = atapi.ATFieldProperty('attendees')
+    doodle_url = atapi.ATFieldProperty('doodle_url')
+    related_items = atapi.ATFieldProperty('related_items')
     categories = atapi.ATFieldProperty('categories')
     tags = atapi.ATFieldProperty('tags')
     
