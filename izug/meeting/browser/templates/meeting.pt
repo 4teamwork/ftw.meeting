@@ -1,0 +1,188 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+	xmlns:tal="http://xml.zope.org/namespaces/tal" xmlns:metal="http://xml.zope.org/namespaces/metal"
+	xmlns:i18n="http://xml.zope.org/namespaces/i18n" lang="en"
+	metal:use-macro="here/main_template/macros/master" i18n:domain="plone">
+	<body>
+
+		<metal:main fill-slot="main">
+			<tal:main-macro metal:define-macro="main"
+				tal:define="kssClassesView context/@@kss_field_decorator_view;
+                       getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
+                       templateId template/getId;">
+
+				<div tal:replace="structure provider:plone.abovecontenttitle" />
+
+				<h1 class="documentFirstHeading">
+					<metal:field use-macro="python:here.widget('title', mode='view')">
+						Title
+                    </metal:field>
+				</h1>
+
+				<div tal:replace="structure provider:plone.belowcontenttitle" />
+
+				<p class="documentDescription">
+					<metal:field use-macro="python:here.widget('description', mode='view')">
+						Description
+                    </metal:field>
+				</p>
+
+				<div tal:replace="structure provider:plone.abovecontentbody" />
+
+				<table class="listing">
+                    <tr>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                    </tr>
+					<tr tal:define="review_state python:container.portal_workflow.getInfoFor(context, 'review_state', '');
+                                    item_wf_state_class python:'state-' + normalizeString(review_state);"
+						tal:condition="review_state">
+						<td i18n:translate="label_state" class="table-label">Status
+						</td>
+						<td>
+							<span tal:content="review_state" i18n:domain="plone"
+							      tal:attributes="class item_wf_state_class"
+								  i18n:translate="">
+								normal                  
+		                    </span>
+						</td>
+					</tr>
+					<tr>
+						<td class="table-label">Location:</td>
+						<td>
+							<tal:block tal:content="context/location" />
+						</td>
+					</tr>
+					<tr>
+						<td class="table-label">Start Date:</td>
+						<td>
+							<tal:block tal:content="python: context.start_date.strftime('%d.%m.%Y')" />
+						</td>
+					</tr>
+                    <tr>
+                        <td class="table-label">Start Time:</td>
+                        <td>
+                            <tal:block tal:content="python: context.start_date.strftime('%H:%M')" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="table-label">End Date:</td>
+                        <td>
+                            <tal:block tal:content="python: context.end_date.strftime('%d.%m.%Y')" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="table-label">End Time:</td>
+                        <td>
+                            <tal:block tal:content="python: context.end_date.strftime('%H:%M')" />
+                        </td>
+                    </tr>
+					<tr tal:condition="context/head_of_meeting">
+						<td class="table-label" i18n:translate="label_head_of_meeting"
+							valign="top">Head of Meeting</td>
+						<td>
+							<span tal:content="context/head_of_meeting" />
+						</td>
+					</tr>
+					<tr tal:condition="context/recording_secretary">
+						<td class="table-label" i18n:translate="label_recording_secretary">Recording Secretary</td>
+						<td>
+							<span tal:content="context/recording_secretary" />
+						</td>
+					</tr>
+                    <tr tal:condition="context/recording_secretary">
+                        <td class="table-label" i18n:translate="label_attendees">Attendees</td>
+                        <td>
+                            <metal:field use-macro="python:here.widget('attendees', mode='view')">
+                               Attendees
+                            </metal:field>
+                        </td>
+                    </tr>
+                </table>
+
+				<table tal:define="meeting_items python:context.getFolderContents({'portal_type':['Meeting Item']}, full_objects=True);"
+				       tal:condition="meeting_items" class="listing" width="100%">
+                    <tr>
+						<th width="15">&nbsp;</th>
+						<th width="*">&nbsp;</th>
+						<th width="20%" i18n:translate="label_responsibility">Responsibility</th>
+						<th width="10%" i18n:translate="labe_duration">Duration</th>
+						<th width="5%" i18n:translate="label_state">State</th>
+                    </tr>
+                    <metal:block tal:repeat="obj meeting_items">
+					    <tr tal:define="state obj/review_state|python: wtool.getInfoFor(obj, 'review_state', '');
+					                    item_wf_state_class python:'state-' + normalizeString(state);"
+					        tal:attributes="class string:odd ${item_wf_state_class}-colorized">
+						    <td tal:define="type python:getattr(obj.aq_explicit, 'meetingitem_type', None)"><span tal:condition="type" tal:content="type" /></td>
+						    <td>
+						        <div>
+						            <a tal:content="obj/title" tal:attributes="href obj/absolute_url">
+						                Title
+						            </a>
+						        </div>
+								<div tal:content="structure obj/getText">
+								    Body text
+								</div>
+					        </td> 
+							<td>
+							    <span tal:content="obj/responsibility">Contact</span>
+							</td>
+                            <td>
+                                <span tal:content="obj/duration">Duration</span>
+                            </td>
+							<td>
+	                            <div i18n:translate="" tal:attributes="class item_wf_state_class" tal:content="state" />
+							</td>
+	                    </tr>
+                        <tr class="even" tal:repeat="task python:obj.getFolderContents({'portal_type':['Task'], 'sort_on' : 'effective', 'sort_order' : 'descending'}, full_objects=True)">
+                            <td>&nbsp;</td>
+                            <td>
+                                <a href="#" tal:attributes="href task/absolute_url" tal:content="task/title_or_id"></a>
+                                <div tal:content="structure task/text">Text</div>
+                            </td>
+                            <td>
+                                <div tal:content="task/responsibility">Responsibility</div>
+                            </td>
+                            <td>&nbsp;</td>
+                            <td tal:define="task_state task/review_state|python: wtool.getInfoFor(task, 'review_state', '');
+                                            task_wf_state_class python:'state-' + normalizeString(task_state);">
+                                <div i18n:translate="" tal:attributes="class task_wf_state_class" tal:content="task_state" />
+                            </td>
+                        </tr>
+					    <tr class="even" tal:repeat="meeting_item_file python:obj.getFolderContents({'portal_type':['File'], 'sort_on' : 'effective', 'sort_order' : 'descending'}, full_objects=True)">
+					        <td>&nbsp;</td>
+					        <td>
+					            <a href="#" tal:attributes="href string:${meeting_item_file/absolute_url}/download" tal:content="meeting_item_file/title_or_id"></a>
+					            <div tal:content="meeting_item_file/Description">Description</div>
+                            <div tal:content="structure meeting_item_file/text">Text</div>
+					            <div tal:content="meeting_item_file/Creator">Creator</div>
+					        </td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+					    </tr>
+	                </metal:block>
+                </table>
+
+                <table class="listing" width="100%">
+                    <tr>
+                        <th width="*">&nbsp;</th>
+                    </tr>
+                    <tr class="odd" tal:repeat="file python:context.getFolderContents({'portal_type':['File'], 'sort_on' : 'effective', 'sort_order' : 'descending'}, full_objects=True)">
+                        <td>
+                            <a href="#" tal:attributes="href string:${file/absolute_url}/download" tal:content="file/title_or_id"></a>
+                            <div tal:content="file/Description">Description</div>
+                            <div tal:content="structure file/text">Text</div>
+                            <div tal:content="file/Creator">Creator</div>
+                        </td>
+                    </tr>
+                </table>
+
+                <div metal:use-macro="here/document_relateditems/macros/relatedItems">
+                    show related items if they exist
+                </div>
+
+                <div tal:replace="structure provider:plone.belowcontentbody" />
+			</tal:main-macro>
+		</metal:main>
+	</body>
+</html>

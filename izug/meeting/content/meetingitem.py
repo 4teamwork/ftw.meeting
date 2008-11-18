@@ -21,17 +21,17 @@ from izug.meeting.config import PROJECTNAME
 MeetingItemSchema = folder.ATFolderSchema.copy() + atapi.Schema((
 
     atapi.IntegerField('duration',
-                      storage = atapi.AnnotationStorage(),
-                      widget = atapi.IntegerWidget(label = _(u"meetingitem_label_duration", default=u"Duration"),
-                                                  description = _(u"meetingitem_help_duration", default=u"Duration of this item in minutes."),
-                                                  )
+                       storage = atapi.AnnotationStorage(),
+                       widget = atapi.IntegerWidget(label = _(u"meetingitem_label_duration", default=u"Duration"),
+                                                    description = _(u"meetingitem_help_duration", default=u"Duration of this item in minutes."),
+                                                    ),
                       ),
 
     atapi.StringField('responsibility',
                       storage = atapi.AnnotationStorage(),
                       widget = atapi.StringWidget(label = _(u"meetingitem_label_responsibility", default=u"Responsibility"),
                                                   description = _(u"meetingitem_help_responsibility", default=u"Select the responsible person."),
-                                                  )
+                                                  ),
                       ),
 
     atapi.TextField('text',
@@ -126,6 +126,7 @@ class MeetingItem(folder.ATFolder):
 
     title = atapi.ATFieldProperty('title')
     description = atapi.ATFieldProperty('description')
+    duration = atapi.ATFieldProperty('duration')
     responsibility = atapi.ATFieldProperty('responsibility')
     text = atapi.ATFieldProperty('text')
     meetingitem_type = atapi.ATFieldProperty('meetingitem_type')

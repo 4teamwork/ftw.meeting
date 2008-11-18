@@ -1,6 +1,10 @@
 from zope.component import getMultiAdapter
 
+from Products.Five.browser import BrowserView
 from plonegov.pdflatex.browser.converter import LatexCTConverter
+
+class MeetingView(BrowserView):
+    pass
 
 class MeetingLatexConverter(LatexCTConverter):
     

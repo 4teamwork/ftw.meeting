@@ -172,6 +172,7 @@ class Meeting(folder.ATFolder):
     description = atapi.ATFieldProperty('description')
     location = atapi.ATFieldProperty('location')
     start_date = atapi.ATFieldProperty('start_date')
+    end_date = atapi.ATFieldProperty('end_date')
     head_of_meeting = atapi.ATFieldProperty('head_of_meeting')
     recording_secretary = atapi.ATFieldProperty('recording_secretary')
     attendees = atapi.ATFieldProperty('attendees')
