@@ -14,14 +14,16 @@ from Products.AddRemoveWidget import AddRemoveWidget
 from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import ReferenceBrowserWidget
 from DateTime import DateTime
 
-from izug.meeting import meetingMessageFactory as _
-from izug.meeting.interfaces import IMeeting
-from izug.meeting.config import PROJECTNAME
-
 from DateTime.DateTime import DateTime
 from Products.DataGridField import DataGridField, DataGridWidget
 from Products.DataGridField.Column import Column
 from Products.DataGridField.CheckboxColumn import CheckboxColumn
+
+from izug.arbeitsraum.content.utilities import finalizeIzugSchema
+
+from izug.meeting import meetingMessageFactory as _
+from izug.meeting.interfaces import IMeeting
+from izug.meeting.config import PROJECTNAME
 
 MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
 
@@ -159,7 +161,7 @@ MeetingSchema['title'].storage = atapi.AnnotationStorage()
 MeetingSchema['description'].storage = atapi.AnnotationStorage()
 MeetingSchema['description'].widget.visible = {'view' : 'invisible', 'edit' : 'invisible'}
 
-schemata.finalizeATCTSchema(MeetingSchema, folderish=True, moveDiscussion=False)
+finalizeIzugSchema(MeetingSchema, folderish=True, moveDiscussion=False)
 
 class Meeting(folder.ATFolder):
     """A type for meetings."""

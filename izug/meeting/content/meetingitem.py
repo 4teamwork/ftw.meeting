@@ -14,6 +14,8 @@ from Products.AddRemoveWidget import AddRemoveWidget
 from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import ReferenceBrowserWidget
 from DateTime import DateTime
 
+from izug.arbeitsraum.content.utilities import finalizeIzugSchema
+
 from izug.meeting import meetingMessageFactory as _
 from izug.meeting.interfaces import IMeetingItem
 from izug.meeting.config import PROJECTNAME
@@ -115,7 +117,7 @@ MeetingItemSchema['title'].storage = atapi.AnnotationStorage()
 MeetingItemSchema['description'].storage = atapi.AnnotationStorage()
 MeetingItemSchema['description'].widget.visible = {'view' : 'invisible', 'edit' : 'invisible'}
 
-schemata.finalizeATCTSchema(MeetingItemSchema, moveDiscussion=False)
+finalizeIzugSchema(MeetingItemSchema, moveDiscussion=False)
 
 class MeetingItem(folder.ATFolder):
     """A type for meeting items."""
