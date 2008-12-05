@@ -27,14 +27,6 @@ from izug.meeting.config import PROJECTNAME
 
 MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
 
-    atapi.StringField('location',
-                      searchable = True,
-                      storage = atapi.AnnotationStorage(),
-                      widget = atapi.StringWidget(label = _(u"meeting_label_location", default=u"Location"),
-                                                  description = _(u"meeting_help_location", default=u"Enter the location where the meeting will take place."),
-                                                  ),
-                      ),
-                          
     atapi.DateTimeField('start_date',
                         required = True,
                         searchable = True,
@@ -56,6 +48,14 @@ MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
                                                       description = _(u"meeting_help_end_date", default=u"Enter the ending date and time, or click the calendar icon and select it."),
                                                       ),
                         ),
+
+    atapi.StringField('location',
+                      searchable = True,
+                      storage = atapi.AnnotationStorage(),
+                      widget = atapi.StringWidget(label = _(u"meeting_label_location", default=u"Location"),
+                                                  description = _(u"meeting_help_location", default=u"Enter the location where the meeting will take place."),
+                                                  ),
+                      ),
 
     atapi.StringField('head_of_meeting',
                       searchable = True,
