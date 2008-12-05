@@ -91,19 +91,6 @@ MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
                                           )
                   ),
 
-    atapi.StringField('doodle_url',
-                      required=False,
-                      searchable=False,
-                      #default = "http://",
-                      # either mailto, absolute url or relative url
-                      storage = atapi.AnnotationStorage(),
-                      validators = (),
-                      widget = atapi.StringWidget(
-                                                  label = _(u"meeting_label_doodle_url", default=u'Doodle URL'),
-                                                  description = _(u"meeting_help_doodle_url", default=u"Enter a url to a doodle page (with leading http://)."),
-                                                  ),
-                      ),
-
     atapi.ReferenceField('related_items',
                          relationship = 'relatesTo',
                          multiValued = True,
@@ -124,34 +111,6 @@ MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
                                                          ),
                          ),
 
-    atapi.ReferenceField('categories',
-                         required = False,
-                         storage = atapi.AnnotationStorage(),
-                         widget=ReferenceBrowserWidget(
-                                                       label=_(u"meeting_label_categories", default=u"Categories"),
-                                                       description=_(u"meeting_help_categories", default=u""),
-                                                       allow_browse=False,
-                                                       show_results_without_query=True,
-                                                       restrict_browsing_to_startup_directory=True,
-                                                       base_query={"portal_type": "Blog Catgory", "sort_on": "sortable_title"},
-                                                       macro='category_reference_widget',
-                                                       ),
-                        allowed_types=('ClassificationItem',),
-                        multiValued=1,
-                        schemata='default',
-                        relationship='blog_categories'
-                        ),
-    
-    atapi.LinesField('tags',
-                     multiValued=1,
-                     storage = atapi.AnnotationStorage(),
-                     vocabulary='getAllTags',
-                     schemata='default',
-                     widget=AddRemoveWidget(
-                                            label=_(u"meeting_label_tags", default=u"Tags"),
-                                            description=_(u"meeting_help_tags", default=u"")
-                                            ),
-                     ),
 ))
 
 # Set storage on fields copied from ATFolderSchema, making sure
@@ -159,7 +118,7 @@ MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
 
 MeetingSchema['title'].storage = atapi.AnnotationStorage()
 MeetingSchema['description'].storage = atapi.AnnotationStorage()
-MeetingSchema['description'].widget.visible = {'view' : 'invisible', 'edit' : 'invisible'}
+MeetingSchema['description'].required = True
 
 finalizeIzugSchema(MeetingSchema, folderish=True, moveDiscussion=False)
 
@@ -178,32 +137,7 @@ class Meeting(folder.ATFolder):
     head_of_meeting = atapi.ATFieldProperty('head_of_meeting')
     recording_secretary = atapi.ATFieldProperty('recording_secretary')
     attendees = atapi.ATFieldProperty('attendees')
-    doodle_url = atapi.ATFieldProperty('doodle_url')
     related_items = atapi.ATFieldProperty('related_items')
-    categories = atapi.ATFieldProperty('categories')
-    tags = atapi.ATFieldProperty('tags')
-    
-    #returns the category uid and the parent category uid
-    def getCategoryUids(self):
-        cats = aq_inner(self).getCategories()
-        uids = [c.UID() for c in cats]
-        parent_uids = []
-        for pc in cats:
-            parent = aq_inner(pc).aq_parent
-            puid = parent.UID()
-            grand_parent = aq_inner(parent).aq_parent
-            if puid not in parent_uids and grand_parent.Type()=='Blog Category':
-                parent_uids.append(puid)
-                DateTime(self.CreationDate()).strftime('%m/%Y')
-        return parent_uids + uids
-    
-    def getAllTags(self):
-        catalog = getToolByName(self, "portal_catalog")
-        items = atapi.DisplayList(())
-        for i in catalog.uniqueValuesFor("getTags"):
-            if i and type(i)==type(''):
-                items.add(i,i)
-        return items
 
     def InfosForArchiv(self):
         return DateTime(self.CreationDate()).strftime('%m/01/%Y')

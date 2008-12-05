@@ -23,6 +23,7 @@ from izug.meeting.config import PROJECTNAME
 MeetingItemSchema = folder.ATFolderSchema.copy() + atapi.Schema((
 
     atapi.IntegerField('duration',
+                       required = True,
                        storage = atapi.AnnotationStorage(),
                        widget = atapi.IntegerWidget(label = _(u"meetingitem_label_duration", default=u"Duration"),
                                                     description = _(u"meetingitem_help_duration", default=u"Duration of this item in minutes."),
@@ -30,6 +31,7 @@ MeetingItemSchema = folder.ATFolderSchema.copy() + atapi.Schema((
                       ),
 
     atapi.StringField('responsibility',
+                      required = True,
                       storage = atapi.AnnotationStorage(),
                       widget = atapi.StringWidget(label = _(u"meetingitem_label_responsibility", default=u"Responsibility"),
                                                   description = _(u"meetingitem_help_responsibility", default=u"Select the responsible person."),
@@ -80,34 +82,25 @@ MeetingItemSchema = folder.ATFolderSchema.copy() + atapi.Schema((
                                               ),
                     ),
 
-    atapi.ReferenceField('categories',
-                         required = False,
+    atapi.ReferenceField('related_items',
+                         relationship = 'relatesTo',
+                         multiValued = True,
+                         isMetadata = True,
+                         languageIndependent = False,
+                         index = 'KeywordIndex',
+                         accessor = 'relatedItems',
                          storage = atapi.AnnotationStorage(),
-                         widget=ReferenceBrowserWidget(
-                                                       label=_(u"meetingitem_label_categories", default=u"Categories"),
-                                                       description=_(u"meetingitem_help_categories", default=u""),
-                                                       allow_browse=False,
-                                                       show_results_without_query=True,
-                                                       restrict_browsing_to_startup_directory=True,
-                                                       base_query={"portal_type": "Blog Catgory", "sort_on": "sortable_title"},
-                                                       macro='category_reference_widget',
-                                                       ),
-                         allowed_types=('ClassificationItem',),
-                         multiValued=1,
-                         schemata='default',
-                         relationship='blog_categories'
+                         schemata = 'default',
+                         widget = ReferenceBrowserWidget(
+                                                         allow_search = True,
+                                                         allow_browse = True,
+                                                         show_indexes = False,
+                                                         force_close_on_insert = True,
+                                                         label = _(u"meetingitem_label_related_items", default=u"Related Items"),
+                                                         description = _(u"meetingitem_help_related_items", default=u""),
+                                                         visible = {'edit' : 'visible', 'view' : 'invisible' }
+                                                         ),
                          ),
-
-    atapi.LinesField('tags',
-                     multiValued=1,
-                     storage = atapi.AnnotationStorage(),
-                     vocabulary='getAllTags',
-                     schemata='default',
-                     widget=AddRemoveWidget(
-                                            label=_(u"meetingitem_label_tags", default=u"Tags"),
-                                            description=_(u"meetingitem_help_tags", default=u"")
-                                            ),
-                     ),
 ))
 
 # Set storage on fields copied from ATContentTypeSchema, making sure
@@ -133,30 +126,7 @@ class MeetingItem(folder.ATFolder):
     text = atapi.ATFieldProperty('text')
     meetingitem_type = atapi.ATFieldProperty('meetingitem_type')
     conclusion = atapi.ATFieldProperty('conclusion')
-    categories = atapi.ATFieldProperty('categories')
-    tags = atapi.ATFieldProperty('tags')
-
-    #returns the category uid and the parent category uid
-    def getCategoryUids(self):
-        cats = aq_inner(self).getCategories()
-        uids = [c.UID() for c in cats]
-        parent_uids = []
-        for pc in cats:
-            parent = aq_inner(pc).aq_parent
-            puid = parent.UID()
-            grand_parent = aq_inner(parent).aq_parent
-            if puid not in parent_uids and grand_parent.Type()=='Blog Category':
-                parent_uids.append(puid)
-                DateTime(self.CreationDate()).strftime('%m/%Y')
-        return parent_uids + uids
-    
-    def getAllTags(self):
-        catalog = getToolByName(self, "portal_catalog")
-        items = atapi.DisplayList(())
-        for i in catalog.uniqueValuesFor("getTags"):
-            if i and type(i)==type(''):
-                items.add(i,i)
-        return items
+    related_items = atapi.ATFieldProperty('related_items')
 
     def InfosForArchiv(self):
         return DateTime(self.CreationDate()).strftime('%m/01/%Y')

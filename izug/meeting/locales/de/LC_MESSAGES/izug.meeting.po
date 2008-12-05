@@ -3,8 +3,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
-"POT-Creation-Date: 2008-11-20 08:24+0000\n"
-"PO-Revision-Date: 2008-11-20 09:32+0100\n"
+"POT-Creation-Date: 2008-12-05 11:07+0000\n"
+"PO-Revision-Date: 2008-12-05 12:08+0100\n"
 "Last-Translator: Christian Schneider <christian.schneider@4teamwork.ch>\n"
 "Language-Team: Christian Schneider <christian.schneider@4teamwork.ch>\n"
 "MIME-Version: 1.0\n"
@@ -18,15 +18,6 @@ msgstr ""
 #: izug/meeting/content/meeting.py:82
 msgid "meeting_help_attendees"
 msgstr "Geben Sie die Teilnehmer ein."
-
-#: izug/meeting/content/meeting.py:132
-msgid "meeting_help_categories"
-msgstr "Wählen Sie die Kategorien dieser Sitzung."
-
-#. Default: "Enter a url to a doodle page (with leading http://)."
-#: izug/meeting/content/meeting.py:103
-msgid "meeting_help_doodle_url"
-msgstr "Geben Sie die URL zu einer Doodle-Seite ein (inklusive http://)."
 
 #. Default: "Enter the ending date and time, or click the calendar icon and select it."
 #: izug/meeting/content/meeting.py:56
@@ -48,7 +39,7 @@ msgstr "Geben Sie den Ort der Sitzung ein."
 msgid "meeting_help_recording_secretary"
 msgstr "Geben Sie die/den Schriftührer/in ein."
 
-#: izug/meeting/content/meeting.py:122
+#: izug/meeting/content/meeting.py:109
 msgid "meeting_help_related_items"
 msgstr "Wählen Sie die Verweise auf verwandte Objekte aus."
 
@@ -56,10 +47,6 @@ msgstr "Wählen Sie die Verweise auf verwandte Objekte aus."
 #: izug/meeting/content/meeting.py:45
 msgid "meeting_help_start_date"
 msgstr "Geben Sie die Anfangszeit der Sitzung ein."
-
-#: izug/meeting/content/meeting.py:152
-msgid "meeting_help_tags"
-msgstr "Wählen Sie die Tags für diese Sitzung."
 
 #. Default: "Attendees"
 #: izug/meeting/content/meeting.py:81
@@ -80,16 +67,6 @@ msgstr "Entschuldigt"
 #: izug/meeting/content/meeting.py:86
 msgid "meeting_label_attendees_present"
 msgstr "Anwesend"
-
-#. Default: "Categories"
-#: izug/meeting/content/meeting.py:131
-msgid "meeting_label_categories"
-msgstr "Kategorien"
-
-#. Default: "Doodle URL"
-#: izug/meeting/content/meeting.py:102
-msgid "meeting_label_doodle_url"
-msgstr "Doodle URL"
 
 #. Default: "End of Meeting"
 #: izug/meeting/content/meeting.py:55
@@ -112,7 +89,7 @@ msgid "meeting_label_recording_secretary"
 msgstr "Schriftführer"
 
 #. Default: "Related Items"
-#: izug/meeting/content/meeting.py:121
+#: izug/meeting/content/meeting.py:108
 msgid "meeting_label_related_items"
 msgstr "Referenzen"
 
@@ -121,76 +98,83 @@ msgstr "Referenzen"
 msgid "meeting_label_start_date"
 msgstr "Anfangszeit"
 
-#. Default: "Tags"
-#: izug/meeting/content/meeting.py:151
-msgid "meeting_label_tags"
-msgstr "Tags"
-
-#: izug/meeting/content/meetingitem.py:88
-msgid "meetingitem_help_categories"
-msgstr "Wählen Sie die Kategorien dieses Traktandums"
-
 #. Default: "Enter the conclusion drawn for this resolution"
-#: izug/meeting/content/meetingitem.py:78
+#: izug/meeting/content/meetingitem.py:80
 msgid "meetingitem_help_conclusion"
 msgstr "Geben Sie das Ergebnis ein."
 
 #. Default: "Duration of this item in minutes."
-#: izug/meeting/content/meetingitem.py:28
+#: izug/meeting/content/meetingitem.py:29
 msgid "meetingitem_help_duration"
 msgstr "Geben Sie die Dauer in Minuten ein."
 
 #. Default: "Choose the type of the item."
-#: izug/meeting/content/meetingitem.py:64
+#: izug/meeting/content/meetingitem.py:66
 msgid "meetingitem_help_item_type"
 msgstr "Geben Sie den Typ ein."
 
+#: izug/meeting/content/meetingitem.py:100
+msgid "meetingitem_help_related_items"
+msgstr "Wählen Sie die Verweise auf verwandte Objekte aus."
+
 #. Default: "Select the responsible person."
-#: izug/meeting/content/meetingitem.py:35
+#: izug/meeting/content/meetingitem.py:37
 msgid "meetingitem_help_responsibility"
 msgstr "Geben Sie den/die Verantwortliche/n ein."
 
-#: izug/meeting/content/meetingitem.py:108
-msgid "meetingitem_help_tags"
-msgstr "Wählen Sie die Tags dieses Traktandums."
-
 #. Default: "Enter the text."
-#: izug/meeting/content/meetingitem.py:48
+#: izug/meeting/content/meetingitem.py:50
 msgid "meetingitem_help_text"
 msgstr "Geben Sie den Text ein."
 
-#. Default: "Categories"
-#: izug/meeting/content/meetingitem.py:87
-msgid "meetingitem_label_categories"
-msgstr "Kategorien"
-
 #. Default: "Conclusion"
-#: izug/meeting/content/meetingitem.py:77
+#: izug/meeting/content/meetingitem.py:79
 msgid "meetingitem_label_conclusion"
 msgstr "Ergebnis"
 
 #. Default: "Duration"
-#: izug/meeting/content/meetingitem.py:27
+#: izug/meeting/content/meetingitem.py:28
 msgid "meetingitem_label_duration"
 msgstr "Dauer"
 
 #. Default: "Item type"
-#: izug/meeting/content/meetingitem.py:63
+#: izug/meeting/content/meetingitem.py:65
 msgid "meetingitem_label_item_type"
 msgstr "Typ"
 
+#. Default: "Related Items"
+#: izug/meeting/content/meetingitem.py:99
+msgid "meetingitem_label_related_items"
+msgstr "Referenzen"
+
 #. Default: "Responsibility"
-#: izug/meeting/content/meetingitem.py:34
+#: izug/meeting/content/meetingitem.py:36
 msgid "meetingitem_label_responsibility"
 msgstr "Verantwortlichkeit"
 
-#. Default: "Tags"
-#: izug/meeting/content/meetingitem.py:107
-msgid "meetingitem_label_tags"
-msgstr "Tags"
-
 #. Default: "Text"
-#: izug/meeting/content/meetingitem.py:47
+#: izug/meeting/content/meetingitem.py:49
 msgid "meetingitem_label_text"
 msgstr "Text"
+
+#~ msgid "meeting_help_doodle_url"
+#~ msgstr "Geben Sie die URL zu einer Doodle-Seite ein (inklusive http://)."
+#~ msgid "meeting_label_categories"
+#~ msgstr "Kategorien"
+#~ msgid "meeting_label_doodle_url"
+#~ msgstr "Doodle URL"
+#~ msgid "meeting_label_tags"
+#~ msgstr "Tags"
+#~ msgid "meetingitem_help_categories"
+#~ msgstr "Wählen Sie die Kategorien dieses Traktandums"
+#~ msgid "meetingitem_help_tags"
+#~ msgstr "Wählen Sie die Tags dieses Traktandums."
+#~ msgid "meeting_help_categories"
+#~ msgstr "Wählen Sie die Kategorien dieser Sitzung."
+#~ msgid "meeting_help_tags"
+#~ msgstr "Wählen Sie die Tags für diese Sitzung."
+#~ msgid "meetingitem_label_categories"
+#~ msgstr "Kategorien"
+#~ msgid "meetingitem_label_tags"
+#~ msgstr "Tags"
 

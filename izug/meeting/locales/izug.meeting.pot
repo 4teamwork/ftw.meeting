@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2008-11-20 08:24+0000\n"
+"POT-Creation-Date: 2008-12-05 11:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,15 +20,6 @@ msgstr ""
 #. Default: "Enter the attendees of the meeting."
 #: ./izug/meeting/content/meeting.py:82
 msgid "meeting_help_attendees"
-msgstr ""
-
-#: ./izug/meeting/content/meeting.py:132
-msgid "meeting_help_categories"
-msgstr ""
-
-#. Default: "Enter a url to a doodle page (with leading http://)."
-#: ./izug/meeting/content/meeting.py:103
-msgid "meeting_help_doodle_url"
 msgstr ""
 
 #. Default: "Enter the ending date and time, or click the calendar icon and select it."
@@ -51,17 +42,13 @@ msgstr ""
 msgid "meeting_help_recording_secretary"
 msgstr ""
 
-#: ./izug/meeting/content/meeting.py:122
+#: ./izug/meeting/content/meeting.py:109
 msgid "meeting_help_related_items"
 msgstr ""
 
 #. Default: "Enter the starting date and time, or click the calendar icon and select it."
 #: ./izug/meeting/content/meeting.py:45
 msgid "meeting_help_start_date"
-msgstr ""
-
-#: ./izug/meeting/content/meeting.py:152
-msgid "meeting_help_tags"
 msgstr ""
 
 #. Default: "Attendees"
@@ -82,16 +69,6 @@ msgstr ""
 #. Default: "Present"
 #: ./izug/meeting/content/meeting.py:86
 msgid "meeting_label_attendees_present"
-msgstr ""
-
-#. Default: "Categories"
-#: ./izug/meeting/content/meeting.py:131
-msgid "meeting_label_categories"
-msgstr ""
-
-#. Default: "Doodle URL"
-#: ./izug/meeting/content/meeting.py:102
-msgid "meeting_label_doodle_url"
 msgstr ""
 
 #. Default: "End of Meeting"
@@ -115,7 +92,7 @@ msgid "meeting_label_recording_secretary"
 msgstr ""
 
 #. Default: "Related Items"
-#: ./izug/meeting/content/meeting.py:121
+#: ./izug/meeting/content/meeting.py:108
 msgid "meeting_label_related_items"
 msgstr ""
 
@@ -124,76 +101,62 @@ msgstr ""
 msgid "meeting_label_start_date"
 msgstr ""
 
-#. Default: "Tags"
-#: ./izug/meeting/content/meeting.py:151
-msgid "meeting_label_tags"
-msgstr ""
-
-#: ./izug/meeting/content/meetingitem.py:88
-msgid "meetingitem_help_categories"
-msgstr ""
-
 #. Default: "Enter the conclusion drawn for this resolution"
-#: ./izug/meeting/content/meetingitem.py:78
+#: ./izug/meeting/content/meetingitem.py:80
 msgid "meetingitem_help_conclusion"
 msgstr ""
 
 #. Default: "Duration of this item in minutes."
-#: ./izug/meeting/content/meetingitem.py:28
+#: ./izug/meeting/content/meetingitem.py:29
 msgid "meetingitem_help_duration"
 msgstr ""
 
 #. Default: "Choose the type of the item."
-#: ./izug/meeting/content/meetingitem.py:64
+#: ./izug/meeting/content/meetingitem.py:66
 msgid "meetingitem_help_item_type"
 msgstr ""
 
+#: ./izug/meeting/content/meetingitem.py:100
+msgid "meetingitem_help_related_items"
+msgstr ""
+
 #. Default: "Select the responsible person."
-#: ./izug/meeting/content/meetingitem.py:35
+#: ./izug/meeting/content/meetingitem.py:37
 msgid "meetingitem_help_responsibility"
 msgstr ""
 
-#: ./izug/meeting/content/meetingitem.py:108
-msgid "meetingitem_help_tags"
-msgstr ""
-
 #. Default: "Enter the text."
-#: ./izug/meeting/content/meetingitem.py:48
+#: ./izug/meeting/content/meetingitem.py:50
 msgid "meetingitem_help_text"
 msgstr ""
 
-#. Default: "Categories"
-#: ./izug/meeting/content/meetingitem.py:87
-msgid "meetingitem_label_categories"
-msgstr ""
-
 #. Default: "Conclusion"
-#: ./izug/meeting/content/meetingitem.py:77
+#: ./izug/meeting/content/meetingitem.py:79
 msgid "meetingitem_label_conclusion"
 msgstr ""
 
 #. Default: "Duration"
-#: ./izug/meeting/content/meetingitem.py:27
+#: ./izug/meeting/content/meetingitem.py:28
 msgid "meetingitem_label_duration"
 msgstr ""
 
 #. Default: "Item type"
-#: ./izug/meeting/content/meetingitem.py:63
+#: ./izug/meeting/content/meetingitem.py:65
 msgid "meetingitem_label_item_type"
 msgstr ""
 
+#. Default: "Related Items"
+#: ./izug/meeting/content/meetingitem.py:99
+msgid "meetingitem_label_related_items"
+msgstr ""
+
 #. Default: "Responsibility"
-#: ./izug/meeting/content/meetingitem.py:34
+#: ./izug/meeting/content/meetingitem.py:36
 msgid "meetingitem_label_responsibility"
 msgstr ""
 
-#. Default: "Tags"
-#: ./izug/meeting/content/meetingitem.py:107
-msgid "meetingitem_label_tags"
-msgstr ""
-
 #. Default: "Text"
-#: ./izug/meeting/content/meetingitem.py:47
+#: ./izug/meeting/content/meetingitem.py:49
 msgid "meetingitem_label_text"
 msgstr ""
 
