@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "POT-Creation-Date: 2008-12-05 11:07+0000\n"
-"PO-Revision-Date: 2008-12-05 12:08+0100\n"
+"PO-Revision-Date: 2008-12-05 15:56+0100\n"
 "Last-Translator: Christian Schneider <christian.schneider@4teamwork.ch>\n"
 "Language-Team: Christian Schneider <christian.schneider@4teamwork.ch>\n"
 "MIME-Version: 1.0\n"
@@ -22,7 +22,7 @@ msgstr "Geben Sie die Teilnehmer ein."
 #. Default: "Enter the ending date and time, or click the calendar icon and select it."
 #: izug/meeting/content/meeting.py:56
 msgid "meeting_help_end_date"
-msgstr "Geben Sie die Endzeit der Sitzung ein."
+msgstr "Geben Sie das Enddatum der Sitzung ein."
 
 #. Default: "Enter the head of the meeting."
 #: izug/meeting/content/meeting.py:64
@@ -46,7 +46,7 @@ msgstr "Wählen Sie die Verweise auf verwandte Objekte aus."
 #. Default: "Enter the starting date and time, or click the calendar icon and select it."
 #: izug/meeting/content/meeting.py:45
 msgid "meeting_help_start_date"
-msgstr "Geben Sie die Anfangszeit der Sitzung ein."
+msgstr "Geben Sie das Anfangsdatum der Sitzung ein."
 
 #. Default: "Attendees"
 #: izug/meeting/content/meeting.py:81
@@ -71,7 +71,7 @@ msgstr "Anwesend"
 #. Default: "End of Meeting"
 #: izug/meeting/content/meeting.py:55
 msgid "meeting_label_end_date"
-msgstr "Endzeit"
+msgstr "Enddatum"
 
 #. Default: "Head of Meeting"
 #: izug/meeting/content/meeting.py:63
@@ -96,7 +96,7 @@ msgstr "Referenzen"
 #. Default: "Start of Meeting"
 #: izug/meeting/content/meeting.py:44
 msgid "meeting_label_start_date"
-msgstr "Anfangszeit"
+msgstr "Anfangsdatum"
 
 #. Default: "Enter the conclusion drawn for this resolution"
 #: izug/meeting/content/meetingitem.py:80
