@@ -18,6 +18,7 @@ from DateTime.DateTime import DateTime
 from Products.DataGridField import DataGridField, DataGridWidget
 from Products.DataGridField.Column import Column
 from Products.DataGridField.CheckboxColumn import CheckboxColumn
+from Products.DataGridField.SelectColumn import SelectColumn
 
 from izug.arbeitsraum.content.utilities import finalizeIzugSchema
 
@@ -57,20 +58,26 @@ MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
                                                   ),
                       ),
 
-    atapi.StringField('head_of_meeting',
+     atapi.LinesField('head_of_meeting',
+                      required = False,
                       searchable = True,
+                      index = 'KeywordIndex:schema',               
+                      vocabulary = 'getAssignableUsers',
                       storage = atapi.AnnotationStorage(),
-                      widget = atapi.StringWidget(label = _(u"meeting_label_head_of_meeting", default=u"Head of Meeting"),
-                                                  description = _(u"meeting_help_head_of_meeting", default=u"Enter the head of the meeting."),
-                                                  ),
+                      widget = atapi.SelectionWidget(label = _(u"meeting_label_head_of_meeting", default=u"Head of Meeting"),
+                                                     description = _(u"meeting_help_head_of_meeting", default=u"Select the head of the meeting."),
+                                                     ),
                       ),
-                                          
-    atapi.StringField('recording_secretary',
+
+     atapi.LinesField('recording_secretary',
+                      required = False,
                       searchable = True,
+                      index = 'KeywordIndex:schema',               
+                      vocabulary = 'getAssignableUsers',
                       storage = atapi.AnnotationStorage(),
-                      widget = atapi.StringWidget(label = _(u"meeting_label_recording_secretary", default=u"Recording Secretary"),
-                                                  description = _(u"meeting_help_recording_secretary", default=u"Enter the recording secretary."),
-                                                  ),
+                      widget = atapi.SelectionWidget(label = _(u"meeting_label_recording_secretary", default=u"Recording Secretary"),
+                                                     description = _(u"meeting_help_recording_secretary", default=u"Select the recording secretary."),
+                                                     ),
                       ),
                                           
     DataGridField('attendees',
@@ -81,8 +88,9 @@ MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
                   widget = DataGridWidget(label = _(u"meeting_label_attendees", default=u"Attendees"),
                                           description = _(u"meeting_help_attendees", default=u"Enter the attendees of the meeting."),
                                           auto_insert = True,
-                                          columns = {'contact' : Column(label = _(u"meeting_label_attendees_attendee", default=u"Attendee"),
-                                                                        ),
+                                          columns = {'contact' : SelectColumn(title = _(u"meeting_label_attendees_attendee", default=u"Attendee"),
+                                                                              vocabulary = 'getAssignableUsers'
+                                                                              ),
                                                      'present' : CheckboxColumn(label = _(u"meeting_label_attendees_present", default=u"Present"),
                                                                                 ),
                                                      'excused' : CheckboxColumn(label = _(u"meeting_label_attendees_excused", default=u"Excused"),
@@ -138,6 +146,25 @@ class Meeting(folder.ATFolder):
     recording_secretary = atapi.ATFieldProperty('recording_secretary')
     attendees = atapi.ATFieldProperty('attendees')
     related_items = atapi.ATFieldProperty('related_items')
+
+    def getAssignableUsers(self):
+        """Collect users with a given role and return them in a list.
+        """
+        role = 'Contributor'
+        results = []
+        pas_tool = getToolByName(self, 'acl_users')
+        utils_tool = getToolByName(self, 'plone_utils')
+
+        for user_id_and_roles in utils_tool.getInheritedLocalRoles(self):
+            user_id = user_id_and_roles[0]
+            # Make sure groups don't get included
+            if not pas_tool.getGroupById(user_id):
+                if role in user_id_and_roles[1]:
+                    user = pas_tool.getUserById(user_id)
+                    if user:
+                        results.append((user.getId(), '%s (%s)' % (user.getProperty('fullname', ''), user.getId())))
+                
+        return (atapi.DisplayList(results))
 
     def InfosForArchiv(self):
         return DateTime(self.CreationDate()).strftime('%m/01/%Y')

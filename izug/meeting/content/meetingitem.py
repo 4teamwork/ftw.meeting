@@ -30,12 +30,17 @@ MeetingItemSchema = folder.ATFolderSchema.copy() + atapi.Schema((
                                                     ),
                       ),
 
-    atapi.StringField('responsibility',
-                      required = True,
+     atapi.LinesField('responsibility',
+                      required = False,
+                      searchable = True,
+                      index = 'KeywordIndex:schema',               
+                      vocabulary = 'getAssignableUsers',
                       storage = atapi.AnnotationStorage(),
-                      widget = atapi.StringWidget(label = _(u"meetingitem_label_responsibility", default=u"Responsibility"),
-                                                  description = _(u"meetingitem_help_responsibility", default=u"Select the responsible person."),
-                                                  ),
+                      widget = atapi.MultiSelectionWidget(size = 4,
+                                                          label = _(u"meetingitem_label_responsibility", default=u"Responsibility"),
+                                                          description = _(u"meetingitem_help_responsibility", default=u"Select the responsible person(s)."),
+                                                          format='checkbox',
+                                                          ),
                       ),
 
     atapi.TextField('text',
@@ -55,9 +60,9 @@ MeetingItemSchema = folder.ATFolderSchema.copy() + atapi.Schema((
     atapi.StringField('meetingitem_type',
                       vocabulary=((
                                    (u"", u""), 
-                                   (u"B", u"resolutions"),
-                                   (u"I", u"informations"),
-                                   (u"M", u"measures"),
+                                   (u"B", _(u"meetingitem_type_resolution", default=u"Resolution")),
+                                   (u"I", _(u"meetingitem_type_information", default=u"Information")),
+                                   (u"M", _(u"meetingitem_type_measure", default=u"Measure")),
                                    )),
                       enforceVocabulary = True,
                       languageIndependent = True,
@@ -127,6 +132,25 @@ class MeetingItem(folder.ATFolder):
     meetingitem_type = atapi.ATFieldProperty('meetingitem_type')
     conclusion = atapi.ATFieldProperty('conclusion')
     related_items = atapi.ATFieldProperty('related_items')
+
+    def getAssignableUsers(self):
+        """Collect users with a given role and return them in a list.
+        """
+        role = 'Contributor'
+        results = []
+        pas_tool = getToolByName(self, 'acl_users')
+        utils_tool = getToolByName(self, 'plone_utils')
+
+        for user_id_and_roles in utils_tool.getInheritedLocalRoles(self):
+            user_id = user_id_and_roles[0]
+            # Make sure groups don't get included
+            if not pas_tool.getGroupById(user_id):
+                if role in user_id_and_roles[1]:
+                    user = pas_tool.getUserById(user_id)
+                    if user:
+                        results.append((user.getId(), '%s (%s)' % (user.getProperty('fullname', ''), user.getId())))
+                
+        return (atapi.DisplayList(results))
 
     def InfosForArchiv(self):
         return DateTime(self.CreationDate()).strftime('%m/01/%Y')

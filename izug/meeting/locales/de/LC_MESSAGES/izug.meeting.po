@@ -3,8 +3,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
-"POT-Creation-Date: 2008-12-05 11:07+0000\n"
-"PO-Revision-Date: 2008-12-05 15:56+0100\n"
+"POT-Creation-Date: 2008-12-05 16:59+0000\n"
+"PO-Revision-Date: 2008-12-05 18:00+0100\n"
 "Last-Translator: Christian Schneider <christian.schneider@4teamwork.ch>\n"
 "Language-Team: Christian Schneider <christian.schneider@4teamwork.ch>\n"
 "MIME-Version: 1.0\n"
@@ -15,91 +15,116 @@ msgstr ""
 "Domain: izug.meeting\n"
 
 #. Default: "Enter the attendees of the meeting."
-#: izug/meeting/content/meeting.py:82
+#: izug/meeting/content/meeting.py:89
 msgid "meeting_help_attendees"
 msgstr "Geben Sie die Teilnehmer ein."
 
 #. Default: "Enter the ending date and time, or click the calendar icon and select it."
-#: izug/meeting/content/meeting.py:56
+#: izug/meeting/content/meeting.py:49
 msgid "meeting_help_end_date"
 msgstr "Geben Sie das Enddatum der Sitzung ein."
 
-#. Default: "Enter the head of the meeting."
-#: izug/meeting/content/meeting.py:64
+#. Default: "Select the head of the meeting."
+#: izug/meeting/content/meeting.py:68
 msgid "meeting_help_head_of_meeting"
 msgstr "Geben Sie die/den Leiter/in der Sitzung ein."
 
 #. Default: "Enter the location where the meeting will take place."
-#: izug/meeting/content/meeting.py:34
+#: izug/meeting/content/meeting.py:57
 msgid "meeting_help_location"
 msgstr "Geben Sie den Ort der Sitzung ein."
 
-#. Default: "Enter the recording secretary."
-#: izug/meeting/content/meeting.py:72
+#. Default: "Select the recording secretary."
+#: izug/meeting/content/meeting.py:79
 msgid "meeting_help_recording_secretary"
 msgstr "Geben Sie die/den Schriftührer/in ein."
 
-#: izug/meeting/content/meeting.py:109
+#: izug/meeting/content/meeting.py:117
 msgid "meeting_help_related_items"
 msgstr "Wählen Sie die Verweise auf verwandte Objekte aus."
 
 #. Default: "Enter the starting date and time, or click the calendar icon and select it."
-#: izug/meeting/content/meeting.py:45
+#: izug/meeting/content/meeting.py:38
 msgid "meeting_help_start_date"
 msgstr "Geben Sie das Anfangsdatum der Sitzung ein."
 
 #. Default: "Attendees"
-#: izug/meeting/content/meeting.py:81
+#: izug/meeting/browser/templates/meeting.pt:95
 msgid "meeting_label_attendees"
 msgstr "Teilnehmer"
 
 #. Default: "Attendee"
-#: izug/meeting/content/meeting.py:84
+#: izug/meeting/content/meeting.py:91
 msgid "meeting_label_attendees_attendee"
 msgstr "Teilnehmer/in"
 
 #. Default: "Excused"
-#: izug/meeting/content/meeting.py:88
+#: izug/meeting/content/meeting.py:96
 msgid "meeting_label_attendees_excused"
 msgstr "Entschuldigt"
 
 #. Default: "Present"
-#: izug/meeting/content/meeting.py:86
+#: izug/meeting/content/meeting.py:94
 msgid "meeting_label_attendees_present"
 msgstr "Anwesend"
 
-#. Default: "End of Meeting"
-#: izug/meeting/content/meeting.py:55
+#. Default: "Duration"
+#: izug/meeting/browser/templates/meeting.pt:110
+msgid "meeting_label_duration"
+msgstr "Dauer"
+
+#. Default: "End Date"
+#: izug/meeting/browser/templates/meeting.pt:67
 msgid "meeting_label_end_date"
 msgstr "Enddatum"
 
+#. Default: "End Time"
+#: izug/meeting/browser/templates/meeting.pt:73
+msgid "meeting_label_end_time"
+msgstr "End-Uhrzeit"
+
 #. Default: "Head of Meeting"
-#: izug/meeting/content/meeting.py:63
+#: izug/meeting/browser/templates/meeting.pt:79
 msgid "meeting_label_head_of_meeting"
 msgstr "Sitzungsleitung"
 
 #. Default: "Location"
-#: izug/meeting/content/meeting.py:33
+#: izug/meeting/browser/templates/meeting.pt:49
 msgid "meeting_label_location"
 msgstr "Ort"
 
 #. Default: "Recording Secretary"
-#: izug/meeting/content/meeting.py:71
+#: izug/meeting/browser/templates/meeting.pt:87
 msgid "meeting_label_recording_secretary"
 msgstr "Schriftführer"
 
 #. Default: "Related Items"
-#: izug/meeting/content/meeting.py:108
+#: izug/meeting/content/meeting.py:116
 msgid "meeting_label_related_items"
 msgstr "Referenzen"
 
-#. Default: "Start of Meeting"
-#: izug/meeting/content/meeting.py:44
+#. Default: "Responsibility"
+#: izug/meeting/browser/templates/meeting.pt:109
+msgid "meeting_label_responsibility"
+msgstr "Verantwortlichkeit"
+
+#. Default: "Start Date"
+#: izug/meeting/browser/templates/meeting.pt:55
 msgid "meeting_label_start_date"
 msgstr "Anfangsdatum"
 
+#. Default: "Start Time"
+#: izug/meeting/browser/templates/meeting.pt:61
+msgid "meeting_label_start_time"
+msgstr "Anfangs-Uhrzeit"
+
+#. Default: "State"
+#: izug/meeting/browser/templates/meeting.pt:39
+msgid "meeting_label_state"
+msgstr "Status"
+
 #. Default: "Enter the conclusion drawn for this resolution"
-#: izug/meeting/content/meetingitem.py:80
+#: izug/meeting/content/meetingitem.py:85
 msgid "meetingitem_help_conclusion"
 msgstr "Geben Sie das Ergebnis ein."
 
@@ -109,26 +134,26 @@ msgid "meetingitem_help_duration"
 msgstr "Geben Sie die Dauer in Minuten ein."
 
 #. Default: "Choose the type of the item."
-#: izug/meeting/content/meetingitem.py:66
+#: izug/meeting/content/meetingitem.py:71
 msgid "meetingitem_help_item_type"
 msgstr "Geben Sie den Typ ein."
 
-#: izug/meeting/content/meetingitem.py:100
+#: izug/meeting/content/meetingitem.py:105
 msgid "meetingitem_help_related_items"
 msgstr "Wählen Sie die Verweise auf verwandte Objekte aus."
 
-#. Default: "Select the responsible person."
-#: izug/meeting/content/meetingitem.py:37
+#. Default: "Select the responsible person(s)."
+#: izug/meeting/content/meetingitem.py:41
 msgid "meetingitem_help_responsibility"
-msgstr "Geben Sie den/die Verantwortliche/n ein."
+msgstr "Wählen Sie die/den Verantwortliche/n für dieses Traktandum."
 
 #. Default: "Enter the text."
-#: izug/meeting/content/meetingitem.py:50
+#: izug/meeting/content/meetingitem.py:55
 msgid "meetingitem_help_text"
 msgstr "Geben Sie den Text ein."
 
 #. Default: "Conclusion"
-#: izug/meeting/content/meetingitem.py:79
+#: izug/meeting/content/meetingitem.py:84
 msgid "meetingitem_label_conclusion"
 msgstr "Ergebnis"
 
@@ -138,25 +163,50 @@ msgid "meetingitem_label_duration"
 msgstr "Dauer"
 
 #. Default: "Item type"
-#: izug/meeting/content/meetingitem.py:65
+#: izug/meeting/content/meetingitem.py:70
 msgid "meetingitem_label_item_type"
 msgstr "Typ"
 
 #. Default: "Related Items"
-#: izug/meeting/content/meetingitem.py:99
+#: izug/meeting/content/meetingitem.py:104
 msgid "meetingitem_label_related_items"
 msgstr "Referenzen"
 
 #. Default: "Responsibility"
-#: izug/meeting/content/meetingitem.py:36
+#: izug/meeting/content/meetingitem.py:40
 msgid "meetingitem_label_responsibility"
 msgstr "Verantwortlichkeit"
 
 #. Default: "Text"
-#: izug/meeting/content/meetingitem.py:49
+#: izug/meeting/content/meetingitem.py:54
 msgid "meetingitem_label_text"
 msgstr "Text"
 
+#. Default: "Information"
+#: izug/meeting/content/meetingitem.py:64
+msgid "meetingitem_type_information"
+msgstr "Information"
+
+#. Default: "Measure"
+#: izug/meeting/content/meetingitem.py:65
+msgid "meetingitem_type_measure"
+msgstr "Massnahme"
+
+#. Default: "Resolution"
+#: izug/meeting/content/meetingitem.py:63
+msgid "meetingitem_type_resolution"
+msgstr "Beschluss"
+
+#~ msgid "label_state"
+#~ msgstr "Status"
+
+#, fuzzy
+#~ msgid "task_help_responsibility"
+#~ msgstr "Geben Sie den/die Verantwortliche/n ein."
+
+#, fuzzy
+#~ msgid "task_label_responsibility"
+#~ msgstr "Verantwortlichkeit"
 #~ msgid "meeting_help_doodle_url"
 #~ msgstr "Geben Sie die URL zu einer Doodle-Seite ein (inklusive http://)."
 #~ msgid "meeting_label_categories"
@@ -167,8 +217,6 @@ msgstr "Text"
 #~ msgstr "Tags"
 #~ msgid "meetingitem_help_categories"
 #~ msgstr "Wählen Sie die Kategorien dieses Traktandums"
-#~ msgid "meetingitem_help_tags"
-#~ msgstr "Wählen Sie die Tags dieses Traktandums."
 #~ msgid "meeting_help_categories"
 #~ msgstr "Wählen Sie die Kategorien dieser Sitzung."
 #~ msgid "meeting_help_tags"

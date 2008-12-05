@@ -1,7 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
 	xmlns:tal="http://xml.zope.org/namespaces/tal" xmlns:metal="http://xml.zope.org/namespaces/metal"
 	xmlns:i18n="http://xml.zope.org/namespaces/i18n" lang="en"
-	metal:use-macro="here/main_template/macros/master" i18n:domain="plone">
+	metal:use-macro="here/main_template/macros/master" i18n:domain="izug.meeting">
 	<body>
 
 		<metal:main fill-slot="main">
@@ -36,8 +36,7 @@
 					<tr tal:define="review_state python:container.portal_workflow.getInfoFor(context, 'review_state', '');
                                     item_wf_state_class python:'state-' + normalizeString(review_state);"
 						tal:condition="review_state">
-						<td i18n:translate="label_state" class="table-label">Status
-						</td>
+						<td i18n:translate="meeting_label_state" class="table-label">State</td>
 						<td>
 							<span tal:content="review_state" i18n:domain="plone"
 							      tal:attributes="class item_wf_state_class"
@@ -46,51 +45,54 @@
 		                    </span>
 						</td>
 					</tr>
-					<tr>
-						<td class="table-label">Location:</td>
+					<tr tal:condition="context/location | nothing">
+						<td class="table-label"><span i18n:translate="meeting_label_location">Location</span>:</td>
 						<td>
 							<tal:block tal:content="context/location" />
 						</td>
 					</tr>
-					<tr>
-						<td class="table-label">Start Date:</td>
+					<tr tal:condition="context/start_date | nothing">
+						<td class="table-label"><span i18n:translate="meeting_label_start_date">Start Date</span>:</td>
 						<td>
 							<tal:block tal:content="python: context.start_date.strftime('%d.%m.%Y')" />
 						</td>
 					</tr>
-                    <tr>
-                        <td class="table-label">Start Time:</td>
+                    <tr tal:condition="context/start_date | nothing">
+                        <td class="table-label"><span i18n:translate="meeting_label_start_time">Start Time</span>:</td>
                         <td>
                             <tal:block tal:content="python: context.start_date.strftime('%H:%M')" />
                         </td>
                     </tr>
-                    <tr>
-                        <td class="table-label">End Date:</td>
+                    <tr tal:condition="context/end_date | nothing">
+                        <td class="table-label"><span i18n:translate="meeting_label_end_date">End Date</span>:</td>
                         <td>
                             <tal:block tal:content="python: context.end_date.strftime('%d.%m.%Y')" />
                         </td>
                     </tr>
-                    <tr>
-                        <td class="table-label">End Time:</td>
+                    <tr tal:condition="context/end_date | nothing">
+                        <td class="table-label"><span i18n:translate="meeting_label_end_time">End Time</span>:</td>
                         <td>
                             <tal:block tal:content="python: context.end_date.strftime('%H:%M')" />
                         </td>
                     </tr>
-					<tr tal:condition="context/head_of_meeting">
-						<td class="table-label" i18n:translate="label_head_of_meeting"
-							valign="top">Head of Meeting</td>
+					<tr tal:condition="context/head_of_meeting | nothing">
+						<td class="table-label"><span i18n:translate="meeting_label_head_of_meeting">Head of Meeting</span>:</td>
 						<td>
-							<span tal:content="context/head_of_meeting" />
+                            <metal:field use-macro="python:here.widget('head_of_meeting', mode='view')">
+                               Head of Meeting
+                            </metal:field>
 						</td>
 					</tr>
-					<tr tal:condition="context/recording_secretary">
-						<td class="table-label" i18n:translate="label_recording_secretary">Recording Secretary</td>
+					<tr tal:condition="context/recording_secretary | nothing">
+						<td class="table-label"><span i18n:translate="meeting_label_recording_secretary">Recording Secretary</span>:</td>
 						<td>
-							<span tal:content="context/recording_secretary" />
+                            <metal:field use-macro="python:here.widget('recording_secretary', mode='view')">
+                               Recording Secretary
+                            </metal:field>
 						</td>
 					</tr>
-                    <tr tal:condition="context/recording_secretary">
-                        <td class="table-label" i18n:translate="label_attendees">Attendees</td>
+                    <tr tal:condition="context/recording_secretary | nothing">
+                        <td class="table-label"><span i18n:translate="meeting_label_attendees">Attendees</span>:</td>
                         <td>
                             <metal:field use-macro="python:here.widget('attendees', mode='view')">
                                Attendees
@@ -104,9 +106,9 @@
                     <tr>
 						<th width="15">&nbsp;</th>
 						<th width="*">&nbsp;</th>
-						<th width="20%" i18n:translate="label_responsibility">Responsibility</th>
-						<th width="10%" i18n:translate="labe_duration">Duration</th>
-						<th width="5%" i18n:translate="label_state">State</th>
+						<th width="20%" i18n:translate="meeting_label_responsibility">Responsibility</th>
+						<th width="10%" i18n:translate="meeting_label_duration">Duration</th>
+						<th width="5%" i18n:translate="meeting_label_state">State</th>
                     </tr>
                     <metal:block tal:repeat="obj meeting_items">
 					    <tr tal:define="state obj/review_state|python: wtool.getInfoFor(obj, 'review_state', '');
