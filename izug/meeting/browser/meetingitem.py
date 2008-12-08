@@ -2,11 +2,18 @@ from plonegov.pdflatex.browser.converter import LatexCTConverter
 
 class MeetingItemLatexConverter(LatexCTConverter):
 
+    def getDisplayListValue(self, object, fieldname):
+        context = object.aq_inner
+        field = context.getField(fieldname)
+        vocab = field.Vocabulary(context)
+        value = field.get(context)
+        return context.displayValue(vocab, value)
+    
     def __call__(self, context, view):
         self.view = view
         latex = ''
         latex_title = self.view.convert(context.pretty_title_or_id())
-        latex_responsibility = self.view.convert(context.responsibility)
+        latex_responsibility = self.getDisplayListValue(context, 'responsibility')
         latex_meetingitem_type = self.view.convert(context.meetingitem_type)
         latex += '\n'
         latex += r'\vspace{0.5cm}'

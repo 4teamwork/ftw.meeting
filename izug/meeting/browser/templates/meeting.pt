@@ -126,7 +126,9 @@
 								</div>
 					        </td> 
 							<td>
-							    <span tal:content="obj/responsibility">Contact</span>
+                                <metal:field use-macro="python:obj.widget('responsibility', mode='view')">
+                                   Attendees
+                                </metal:field>
 							</td>
                             <td>
                                 <span tal:content="obj/duration">Duration</span>

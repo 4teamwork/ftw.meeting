@@ -156,12 +156,14 @@ class Meeting(folder.ATFolder):
         utils_tool = getToolByName(self, 'plone_utils')
 
         for user_id_and_roles in utils_tool.getInheritedLocalRoles(self):
-            user_id = user_id_and_roles[0]
-            # Make sure groups don't get included
-            if not pas_tool.getGroupById(user_id):
+            if user_id_and_roles[2] == 'user':
                 if role in user_id_and_roles[1]:
-                    user = pas_tool.getUserById(user_id)
+                    user = pas_tool.getUserById(user_id_and_roles[0])
                     if user:
+                        results.append((user.getId(), '%s (%s)' % (user.getProperty('fullname', ''), user.getId())))
+            if user_id_and_roles[2] == 'group':
+                if role in user_id_and_roles[1]:
+                    for user in pas_tool.getGroupById(user_id_and_roles[0]).getGroupMembers():
                         results.append((user.getId(), '%s (%s)' % (user.getProperty('fullname', ''), user.getId())))
                 
         return (atapi.DisplayList(results))

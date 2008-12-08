@@ -8,6 +8,22 @@ class MeetingView(BrowserView):
 
 class MeetingLatexConverter(LatexCTConverter):
     
+    def getDisplayListValue(self, object, fieldname):
+        context = object.aq_inner
+        field = context.getField(fieldname)
+        vocab = field.Vocabulary(context)
+        value = field.get(context)
+        return context.displayValue(vocab, value)
+
+    def getDisplayListValueFromDataGridField(self, object, fieldname, row, column_id):
+        context = object.aq_inner
+        field = context.getField(fieldname)
+        widget = field.widget
+        column_definition = widget.getColumnDefinition(field, column_id)
+        vocab = column_definition.getVocabulary(context)
+        cell_value = row.get(column_id)
+        return widget.getUserFriendlySelectionItem(context, cell_value, vocab)                                              
+    
     def __call__(self, context, view):
         self.view = view
         latex = []
@@ -22,17 +38,17 @@ class MeetingLatexConverter(LatexCTConverter):
         w(r'Datum: %s \\' % latex_date)
         w(r'Zeit: %s \\' % latex_time)
         w(r'Ort: %s \\' % self.view.convert(context.location))
-        w(r'Sitzungsleitung: %s \\' % self.view.convert(context.head_of_meeting))
-        w(r'%s \\' % self.view.convert('Protokollf&uuml;hrung: %s' % context.recording_secretary))
+        w(r'Sitzungsleitung: %s \\' % self.view.convert(self.getDisplayListValue(context, 'head_of_meeting')))
+        w(r'%s \\' % self.view.convert('Protokollf&uuml;hrung: %s' % self.getDisplayListValue(context, 'recording_secretary')))
         w(r'\vspace{\baselineskip}')
         w(r'{\bf Teilnehmende} \\')
         # attendees
         w(r'\begin{attendeeList}')
         for row in self.context.attendees:
             w('\t\\attendee{%s}{%s}{%s}' % (
-                row['contact'],
-                (row['present'] and 'X' or ''),
-                (row['excused'] and 'X' or ''),
+                self.view.convert(self.getDisplayListValueFromDataGridField(context, 'attendees', row, 'contact')),
+                self.view.convert((row['present'] and 'X' or '')),
+                self.view.convert((row['excused'] and 'X' or '')),
             ))
         w(r'\end{attendeeList}')
         latex = '\n'.join(latex)
