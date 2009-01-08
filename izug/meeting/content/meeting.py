@@ -50,17 +50,11 @@ MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
                                                       ),
                         ),
 
-    atapi.StringField('location',
-                      searchable = True,
-                      storage = atapi.AnnotationStorage(),
-                      widget = atapi.StringWidget(label = _(u"meeting_label_location", default=u"Location"),
-                                                  description = _(u"meeting_help_location", default=u"Enter the location where the meeting will take place."),
-                                                  ),
-                      ),
 
      atapi.LinesField('head_of_meeting',
                       required = False,
                       searchable = True,
+                      schemata = 'meeting',
                       index = 'KeywordIndex:schema',               
                       vocabulary = 'getAssignableUsers',
                       storage = atapi.AnnotationStorage(),
@@ -72,6 +66,7 @@ MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
      atapi.LinesField('recording_secretary',
                       required = False,
                       searchable = True,
+                      schemata = 'meeting',
                       index = 'KeywordIndex:schema',               
                       vocabulary = 'getAssignableUsers',
                       storage = atapi.AnnotationStorage(),
@@ -82,6 +77,7 @@ MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
                                           
     DataGridField('attendees',
                   searchable = True,
+                  schemata = 'meeting',
                   columns = ('contact', 'present','excused'),
                   allow_empty_rows = False,
                   storage = atapi.AnnotationStorage(),
@@ -129,6 +125,29 @@ MeetingSchema['description'].storage = atapi.AnnotationStorage()
 MeetingSchema['description'].required = True
 
 finalizeIzugSchema(MeetingSchema, folderish=True, moveDiscussion=False)
+
+#we do this after finalizeIzugSchema, oherwise the location field will 
+#be invisible
+#use plone default location field
+MeetingSchema.moveField('location', after='description')
+MeetingSchema['location'].searchable = True
+MeetingSchema['location'].storage = atapi.AnnotationStorage()
+MeetingSchema['location'].schemata = 'default'
+MeetingSchema['location'].widget = atapi.StringWidget(label = _(u"meeting_label_location", default=u"Location"),
+                                                  description = _(u"meeting_help_location", default=u"Enter the location where the meeting will take place."),
+                                                  )
+
+
+#instead of...
+"""
+    atapi.StringField('location',
+                      searchable = True,
+                      storage = atapi.AnnotationStorage(),
+                      widget = atapi.StringWidget(label = _(u"meeting_label_location", default=u"Location"),
+                                                  description = _(u"meeting_help_location", default=u"Enter the location where the meeting will take place."),
+                                                  ),
+                      ),
+"""
 
 class Meeting(folder.ATFolder):
     """A type for meetings."""

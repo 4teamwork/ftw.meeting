@@ -20,17 +20,17 @@ msgstr ""
 #. Default: "A type for meeting items."
 #: ./izug/meeting/profiles/default/types/Meeting_Item.xml
 msgid "A type for meeting items."
-msgstr "Ein Typ für Sitzungspunkte."
+msgstr "Ein Typ für Sitzungen und Termine."
 
 #. Default: "A type for meetings."
 #: ./izug/meeting/profiles/default/types/Meeting.xml
 msgid "A type for meetings."
-msgstr "Ein Typ für Sitzungen."
+msgstr "Ein Typ für Sitzungen und Termine."
 
 #. Default: "Meeting"
 #: ./izug/meeting/profiles/default/types/Meeting.xml
 msgid "Meeting"
-msgstr "Sitzung"
+msgstr "Termin"
 
 #. Default: "Meeting Item"
 #: ./izug/meeting/profiles/default/types/Meeting_Item.xml
