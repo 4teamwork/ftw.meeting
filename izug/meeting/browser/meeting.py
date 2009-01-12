@@ -1,10 +1,48 @@
 from zope.component import getMultiAdapter
+from Products.CMFCore.utils import getToolByName
 
 from Products.Five.browser import BrowserView
 from plonegov.pdflatex.browser.converter import LatexCTConverter
 
+from plone.memoize import ram
+
+def _get_contents_key(method, self):
+    return [b.modified for b in self.context.getFolderContents()]
+
 class MeetingView(BrowserView):
-    pass
+
+    @ram.cache(_get_contents_key)
+    def getFiles(self):
+        context = self.context.aq_inner
+        query = dict(
+                     portal_type = ['File',],
+                     sort_on = 'effective',
+                     sort_order = 'descending',
+        )
+        raw = context.getFolderContents(contentFilter=query)
+        results = []
+        return [dict(title=b.Title,
+                     url = b.getURL(),
+                     Description=b.Description,
+                     Creator=b.Creator,
+                     icon = '%s/%s'%(context.portal_url(),b.getIcon)) 
+                for b in raw]
+                
+                
+    def countVotes(self, data):
+        counter = 0
+        for m in [v for v in data.values()[:-1]]:
+            hasValue = False
+            for d in [b for b in m.values()]:
+                if d is not None:
+                    hasValue = True
+            if hasValue:
+                counter += 1
+        return counter
+            
+        
+        
+
 
 class MeetingLatexConverter(LatexCTConverter):
     

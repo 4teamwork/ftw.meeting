@@ -51,6 +51,12 @@
 							<tal:block tal:content="context/location" />
 						</td>
 					</tr>
+					<tr tal:condition="context/no_date | nothing">
+						<td class="table-label"><span i18n:translate="meeting_label_start_date">Start Date</span>:</td>
+						<td>
+							<tal:block i18n:translate="meeting_no_date_set"/>
+						</td>
+					</tr>
 					<tr tal:condition="context/start_date | nothing">
 						<td class="table-label"><span i18n:translate="meeting_label_start_date">Start Date</span>:</td>
 						<td>
@@ -167,19 +173,47 @@
 	                </metal:block>
                 </table>
 
-                <table class="listing" width="100%">
+                <table tal:define="files view/getFiles" tal:condition="files" class="listing" width="100%">
                     <tr>
-                        <th width="*">&nbsp;</th>
+                        <th width="*" i18n:translate="">Attachments</th>
                     </tr>
-                    <tr class="odd" tal:repeat="file python:context.getFolderContents({'portal_type':['File'], 'sort_on' : 'effective', 'sort_order' : 'descending'}, full_objects=True)">
+                    <tr class="odd" tal:repeat="file files">
                         <td>
-                            <a href="#" tal:attributes="href string:${file/absolute_url}/download" tal:content="file/title_or_id"></a>
+                            <a href="#" tal:attributes="href string:${file/url}/download">
+                                <img tal:attributes="src file/icon" />
+                                <span tal:replace="file/title" /></a>
                             <div tal:content="file/Description">Description</div>
-                            <div tal:content="structure file/text">Text</div>
                             <div tal:content="file/Creator">Creator</div>
                         </td>
                     </tr>
                 </table>
+
+                
+                <table class="listing" width="100%"
+                       tal:define="poodles python:context.getFolderContents({'portal_type':'Poodle',}, full_objects=True)">
+                       
+                    <tr>
+                        <th width="*" i18n:translate="">Surveys</th>
+                    </tr>
+                    
+                    <tr tal:repeat="poodle poodles">
+                        <td tal:define="data poodle/getPoodleData">
+                            <a tal:attributes="href poodle/absolute_url;
+                                               title poodle/Description" 
+                               class="PoodleItem" tal:content="poodle/Title">poodle title</a>
+                               
+                            <span class="PoodleItem" tal:define="votes python:view.countVotes(data)"
+                                  i18n:translate="meeting_poodle_votes">
+                                <span i18n:name="votings" tal:replace="votes">23</span> vote(s)
+                            </span>
+                            
+                        </td>
+                    </tr>
+                       
+                       
+                </table>
+
+
 
                 <div metal:use-macro="here/document_relateditems/macros/relatedItems">
                     show related items if they exist

@@ -40,3 +40,4 @@ msgstr ""
 #: ./izug/meeting/content/meeting.py:73
 msgid "meeting_help_attendees"
 msgstr ""
+

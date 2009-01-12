@@ -6,6 +6,11 @@
     <include package="plone.app.contentmenu" />
     <include package=".latex" />
 
+    <browser:resourceDirectory
+		name='meeting-scripts'
+		directory="scripts" />
+
+
     <browser:page
         for="..interfaces.IMeetingLayoutPDF"
         name="export_pdf"

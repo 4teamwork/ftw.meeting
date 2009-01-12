@@ -28,8 +28,19 @@ from izug.meeting.config import PROJECTNAME
 
 MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
 
+     atapi.BooleanField('no_date',
+                      searchable = False,
+                      schemata = 'default',
+                      default = False,
+                      index = 'KeywordIndex:schema',               
+                      storage = atapi.AnnotationStorage(),
+                      widget = atapi.BooleanWidget(label = _(u"meeting_label_no_date", default=u"Date not yet defined"),
+                                                     description = _(u"meeting_help_no_date", default=u"Tick box if you don't know the date yet. For example if you will create a poodle survey."),
+                                                     helper_js = ['meeting_toggle_date.js',]
+                                                     ),
+                      ),
+
     atapi.DateTimeField('start_date',
-                        required = True,
                         searchable = True,
                         accessor='start',
                         default_method = DateTime,
@@ -39,8 +50,8 @@ MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
                                                       ),
                         ),
 
+
     atapi.DateTimeField('end_date',
-                        required = True,
                         searchable = True,
                         accessor='end',
                         default_method = DateTime,
@@ -49,7 +60,7 @@ MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
                                                       description = _(u"meeting_help_end_date", default=u"Enter the ending date and time, or click the calendar icon and select it."),
                                                       ),
                         ),
-
+                      
 
      atapi.LinesField('head_of_meeting',
                       required = False,
@@ -126,6 +137,9 @@ MeetingSchema['description'].required = True
 
 finalizeIzugSchema(MeetingSchema, folderish=True, moveDiscussion=False)
 
+MeetingSchema.changeSchemataForField('effectiveDate', 'settings')
+MeetingSchema.changeSchemataForField('expirationDate', 'settings')
+
 #we do this after finalizeIzugSchema, oherwise the location field will 
 #be invisible
 #use plone default location field
@@ -159,6 +173,7 @@ class Meeting(folder.ATFolder):
     title = atapi.ATFieldProperty('title')
     description = atapi.ATFieldProperty('description')
     location = atapi.ATFieldProperty('location')
+    no_date = atapi.ATFieldProperty('no_date')
     start_date = atapi.ATFieldProperty('start_date')
     end_date = atapi.ATFieldProperty('end_date')
     head_of_meeting = atapi.ATFieldProperty('head_of_meeting')

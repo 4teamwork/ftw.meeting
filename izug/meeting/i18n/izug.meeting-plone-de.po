@@ -37,3 +37,7 @@ msgstr "Termin"
 msgid "Meeting Item"
 msgstr "Traktandum"
 
+#. Default: "Attachments"
+#: ./izug/meeting/browser/templates.pt:172
+msgid "Attachments"
+msgstr "Beilagen"

@@ -200,6 +200,36 @@ msgstr "Beschluss"
 #~ msgid "label_state"
 #~ msgstr "Status"
 
+#. Default: "Attachments"
+#: ./izug/meeting/browser/templates.pt:172
+msgid "Attachments"
+msgstr "Beilagen"
+
+#. Default: "Date not yet defined"
+#: ./izug/meeting/browser/templates/meeting.pt:38
+msgid "meeting_label_no_date"
+msgstr "Termin/Sitzung noch nicht terminiert"
+
+#. Default: "Tick box if you don't know the date yet. For example if you will create a poodle survey."
+#: ./izug/meeting/browser/templates/meeting.pt:39
+msgid "meeting_help_no_date"
+msgstr "Nur auswählen, falls das Datum noch nicht bekannt. Zum Beispiel, wenn Sie eine Terminumfrage erstellen möchten."
+
+#. Default: "No date defined, maybe there's a survey"
+#: ./izug/meeting/browser/templates/meeting.pt:38
+msgid "meeting_no_date_set"
+msgstr "Es wurde noch kein Datum definiert. Vielleicht wurde eine Terminumfrage gestartet."
+
+#. Default: " - ${votings} vote(s)"
+#: ./izug/meeting/browser/templates/meeting.pt:207
+msgid "meeting_poodle_votes"
+msgstr " - ${votings} Antwort(en)"
+
+#. Default: "Surveys"
+#: ./izug/meeting/browser/templates/meeting.pt:207
+msgid "Umfragen"
+msgstr ""
+
 #, fuzzy
 #~ msgid "task_help_responsibility"
 #~ msgstr "Geben Sie den/die Verantwortliche/n ein."

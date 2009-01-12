@@ -200,3 +200,32 @@ msgstr ""
 msgid "meetingitem_type_resolution"
 msgstr ""
 
+#. Default: "Attachments"
+#: ./izug/meeting/browser/templates.pt:172
+msgid "Attachments"
+msgstr ""
+
+#. Default: "Date not yet defined"
+#: ./izug/meeting/browser/templates/meeting.pt:38
+msgid "meeting_label_no_date"
+msgstr ""
+
+#. Default: "Tick box if you don't know the date yet. For example if you will create a poodle survey."
+#: ./izug/meeting/browser/templates/meeting.pt:39
+msgid "meeting_help_no_date"
+msgstr ""
+
+#. Default: "No date defined, maybe there's a survey"
+#: ./izug/meeting/browser/templates/meeting.pt:57
+msgid "meeting_no_date_set"
+msgstr ""
+
+#. Default: " - ${votings} vote(s)"
+#: ./izug/meeting/browser/templates/meeting.pt:207
+msgid "meeting_poodle_votes"
+msgstr ""
+
+#. Default: "Surveys"
+#: ./izug/meeting/browser/templates/meeting.pt:207
+msgid "Surveys"
+msgstr ""
