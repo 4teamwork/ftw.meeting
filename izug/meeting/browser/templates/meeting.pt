@@ -190,7 +190,8 @@
 
                 
                 <table class="listing" width="100%"
-                       tal:define="poodles python:context.getFolderContents({'portal_type':'Poodle',}, full_objects=True)">
+                       tal:define="poodles python:context.getFolderContents({'portal_type':'Poodle',}, full_objects=True)"
+                       tal:condition="poodles">
                        
                     <tr>
                         <th width="*" i18n:translate="">Surveys</th>
