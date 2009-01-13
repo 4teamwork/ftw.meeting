@@ -208,6 +208,8 @@
                                 <span i18n:name="votings" tal:replace="votes">23</span> vote(s)
                             </span>
                             
+                            <div tal:replace="structure python:view.renderPoodleTable(poodle)"></div>
+                            
                         </td>
                     </tr>
                        

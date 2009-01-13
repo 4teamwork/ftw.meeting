@@ -40,7 +40,9 @@ class MeetingView(BrowserView):
                 counter += 1
         return counter
             
-        
+    def renderPoodleTable(self, poodle):
+        view = getMultiAdapter((poodle, poodle.REQUEST), name=u'izug_poodle_table')
+        return view()
         
 
 
