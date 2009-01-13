@@ -202,11 +202,6 @@
                             <a tal:attributes="href poodle/absolute_url;
                                                title poodle/Description" 
                                class="PoodleItem" tal:content="poodle/Title">poodle title</a>
-                               
-                            <span class="PoodleItem" tal:define="votes python:view.countVotes(data)"
-                                  i18n:translate="meeting_poodle_votes">
-                                <span i18n:name="votings" tal:replace="votes">23</span> vote(s)
-                            </span>
                             
                             <div tal:replace="structure python:view.renderPoodleTable(poodle)"></div>
                             

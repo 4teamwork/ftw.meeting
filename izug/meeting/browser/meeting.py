@@ -28,18 +28,7 @@ class MeetingView(BrowserView):
                      icon = '%s/%s'%(context.portal_url(),b.getIcon)) 
                 for b in raw]
                 
-                
-    def countVotes(self, data):
-        counter = 0
-        for m in [v for v in data.values()[:-1]]:
-            hasValue = False
-            for d in [b for b in m.values()]:
-                if d is not None:
-                    hasValue = True
-            if hasValue:
-                counter += 1
-        return counter
-            
+    
     def renderPoodleTable(self, poodle):
         view = getMultiAdapter((poodle, poodle.REQUEST), name=u'izug_poodle_table')
         return view()
