@@ -7,7 +7,7 @@ jq(function(){jq('input#no_date').bind('click', function(e){
     });
     var control = jq('input#no_date')[0];
     var targets = jq('select[@name^=start_date_], select[@name^=end_date_]');
-        if (control.checked) {
+        if (control && control.checked) {
             for each (var target in targets) {
                 target.disabled = true ;
             }     
