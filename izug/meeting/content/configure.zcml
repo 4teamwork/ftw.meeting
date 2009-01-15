@@ -15,7 +15,7 @@
 
     <five:implements
         class=".meeting.Meeting"
-        interface="izug.blog.interfaces.ITaggable"
+        interface="izug.tagging.interfaces.tagging.ITaggable"
         />
 
     <five:implements
@@ -30,7 +30,7 @@
 
     <five:implements
         class=".meetingitem.MeetingItem"
-        interface="izug.blog.interfaces.ITaggable"
+        interface="izug.tagging.interfaces.tagging.ITaggable"
         />
 
 
