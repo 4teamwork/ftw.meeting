@@ -187,7 +187,6 @@ class Meeting(folder.ATFolder):
     def getAssignableUsers(self):
         """Collect users with a given role and return them in a list.
         """
-        import pdb;pdb.set_trace()
         a_util = queryUtility(IArbeitsraumUtils,name="arbeitsraum-utils")
         if not a_util:
             return (atapi.DisplayList())
