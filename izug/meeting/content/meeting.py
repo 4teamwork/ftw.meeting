@@ -26,6 +26,9 @@ from izug.meeting import meetingMessageFactory as _
 from izug.meeting.interfaces import IMeeting
 from izug.meeting.config import PROJECTNAME
 
+from zope.component import getMultiAdapter, queryMultiAdapter, queryUtility
+from izug.arbeitsraum.interfaces import IArbeitsraumUtils
+
 MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
 
      atapi.BooleanField('no_date',
@@ -184,23 +187,11 @@ class Meeting(folder.ATFolder):
     def getAssignableUsers(self):
         """Collect users with a given role and return them in a list.
         """
-        role = 'Contributor'
-        results = []
-        pas_tool = getToolByName(self, 'acl_users')
-        utils_tool = getToolByName(self, 'plone_utils')
-
-        for user_id_and_roles in utils_tool.getInheritedLocalRoles(self):
-            if user_id_and_roles[2] == 'user':
-                if role in user_id_and_roles[1]:
-                    user = pas_tool.getUserById(user_id_and_roles[0])
-                    if user:
-                        results.append((user.getId(), '%s (%s)' % (user.getProperty('fullname', ''), user.getId())))
-            if user_id_and_roles[2] == 'group':
-                if role in user_id_and_roles[1]:
-                    for user in pas_tool.getGroupById(user_id_and_roles[0]).getGroupMembers():
-                        results.append((user.getId(), '%s (%s)' % (user.getProperty('fullname', ''), user.getId())))
-                
-        return (atapi.DisplayList(results))
+        import pdb;pdb.set_trace()
+        a_util = queryUtility(IArbeitsraumUtils,name="arbeitsraum-utils")
+        if not a_util:
+            return (atapi.DisplayList())
+        return (atapi.DisplayList(a_util.getAssignableUsers(self,'Contributor')))
 
     def InfosForArchiv(self):
         return DateTime(self.CreationDate()).strftime('%m/01/%Y')
