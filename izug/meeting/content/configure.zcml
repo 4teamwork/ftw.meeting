@@ -14,11 +14,6 @@
         />
 
     <five:implements
-        class=".meeting.Meeting"
-        interface="izug.tagging.interfaces.tagging.ITaggable"
-        />
-
-    <five:implements
         class=".meetingitem.MeetingItem"
         interface="izug.blog.interfaces.ICategorizable"
         />
@@ -26,11 +21,6 @@
     <five:implements
         class=".meetingitem.MeetingItem"
         interface="izug.blog.interfaces.IArchivable"
-        />
-
-    <five:implements
-        class=".meetingitem.MeetingItem"
-        interface="izug.tagging.interfaces.tagging.ITaggable"
         />
 
 

@@ -25,6 +25,11 @@
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
 
-    <!-- -*- extra stuff goes here -*- -->
+
+    <adapter
+      provides="izug.poodle.interfaces.IPoodleConfig"
+      for=".interfaces.IMeeting"
+      factory="izug.poodle.poodle_config.PoodleConfig" />
+
 
 </configure>

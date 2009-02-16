@@ -1,20 +1,33 @@
-jq(function(){jq('input#no_date').bind('click', function(e){
-    
-    var targets = jq('select[@name^=start_date_], select[@name^=end_date_]');
-    for each (var target in targets) {
-        target.disabled == true ? target.disabled=false : target.disabled=true;
+   
+function MeetingTypeSelector(){
+        var inpute_meeting_types = jq('input[name=meeting_type]');
+        
+        var available_schematas = []
+        inpute_meeting_types.each(function(i){
+            available_schematas[i] = this.value.split('_')
+            })  
+        
+        jq(available_schematas).each(function(i){
+                jq('#fieldsetlegend-'+this).css('display','none')
+            })
+
+        inpute_meeting_types.each(function(i){
+                jq('#fieldsetlegend-'+this).css('display','none');
+            }) 
+        inpute_meeting_types.bind('click', function(e){
+            
+                var schemata_to_show = this.value.split('_')
+                
+                //hide all schematas - like a reset
+                jq(available_schematas).each(function(i){
+                        jq('#fieldset-'+this).addClass('hidden')
+                    })
+                //show the given schematas
+                jq(schemata_to_show).each(function(i){
+                        jq('#fieldset-'+this).toggleClass('hidden')
+                    })
+                
+            })
     }
-    });
-    var control = jq('input#no_date')[0];
-    var targets = jq('select[@name^=start_date_], select[@name^=end_date_]');
-        if (control && control.checked) {
-            for each (var target in targets) {
-                target.disabled = true ;
-            }     
-        }else{
-            for each (var target in targets) {
-                target.disabled = false;            
-            }
-        }
-    
-    })
+
+jq(MeetingTypeSelector);

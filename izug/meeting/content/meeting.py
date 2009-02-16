@@ -29,23 +29,29 @@ from izug.meeting.config import PROJECTNAME
 from zope.component import getMultiAdapter, queryMultiAdapter, queryUtility
 from izug.arbeitsraum.interfaces import IArbeitsraumUtils
 
+from izug.poodle.content.poodle import Poodle,PoodleSchema
+from izug.poodle.interfaces import IPoodle
+
+
 MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
 
-     atapi.BooleanField('no_date',
+     atapi.LinesField('meeting_type',
                       searchable = False,
                       schemata = 'default',
-                      default = False,
-                      index = 'KeywordIndex:schema',               
+                      required = True,
+                      vocabulary = 'getMeetingTypes',
                       storage = atapi.AnnotationStorage(),
-                      widget = atapi.BooleanWidget(label = _(u"meeting_label_no_date", default=u"Date not yet defined"),
-                                                     description = _(u"meeting_help_no_date", default=u"Tick box if you don't know the date yet. For example if you will create a poodle survey."),
-                                                     helper_js = ['meeting_toggle_date.js',]
+                      widget = atapi.SelectionWidget(label = _(u"meeting_label_type", default=u"Event type"),
+                                                     description = _(u"meeting_help_type", default=u"Choose yout event type."),
+                                                     helper_js = ['meeting_toggle_date.js',],
+                                                     format='radio',
                                                      ),
                       ),
 
     atapi.DateTimeField('start_date',
                         searchable = True,
                         accessor='start',
+                        schemata = 'dates',
                         default_method = DateTime,
                         storage = atapi.AnnotationStorage(),
                         widget = atapi.CalendarWidget(label = _(u"meeting_label_start_date", default=u"Start of Meeting"),
@@ -57,6 +63,7 @@ MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
     atapi.DateTimeField('end_date',
                         searchable = True,
                         accessor='end',
+                        schemata = 'dates',
                         default_method = DateTime,
                         storage = atapi.AnnotationStorage(),
                         widget = atapi.CalendarWidget(label = _(u"meeting_label_end_date", default=u"End of Meeting"),
@@ -113,11 +120,11 @@ MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
                          relationship = 'relatesTo',
                          multiValued = True,
                          isMetadata = True,
+                         schemata = 'additional',
                          languageIndependent = False,
                          index = 'KeywordIndex',
                          accessor = 'relatedItems',
                          storage = atapi.AnnotationStorage(),
-                         schemata = 'default',
                          widget = ReferenceBrowserWidget(
                                                          allow_search = True,
                                                          allow_browse = True,
@@ -129,7 +136,7 @@ MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
                                                          ),
                          ),
 
-))
+)) + PoodleSchema.copy()
 
 # Set storage on fields copied from ATFolderSchema, making sure
 # they work well with the python bridge properties.
@@ -137,6 +144,12 @@ MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
 MeetingSchema['title'].storage = atapi.AnnotationStorage()
 MeetingSchema['description'].storage = atapi.AnnotationStorage()
 MeetingSchema['description'].required = True
+
+#Poodle "real" integration
+MeetingSchema.changeSchemataForField('users','poodle')
+MeetingSchema['users'].required = False
+MeetingSchema.changeSchemataForField('dates','poodle')
+
 
 finalizeIzugSchema(MeetingSchema, folderish=True, moveDiscussion=False)
 
@@ -159,16 +172,17 @@ MeetingSchema['location'].widget = atapi.StringWidget(label = _(u"meeting_label_
 """
     atapi.StringField('location',
                       searchable = True,
-                      storage = atapi.AnnotationStorage(),
+                      storage = atapi.AnationStorage(),
                       widget = atapi.StringWidget(label = _(u"meeting_label_location", default=u"Location"),
                                                   description = _(u"meeting_help_location", default=u"Enter the location where the meeting will take place."),
                                                   ),
                       ),
 """
 
-class Meeting(folder.ATFolder):
+
+class Meeting(folder.ATFolder, Poodle):
     """A type for meetings."""
-    implements(IMeeting)
+    implements(IMeeting, IPoodle)
 
     portal_type = "Meeting"
     schema = MeetingSchema
@@ -194,5 +208,12 @@ class Meeting(folder.ATFolder):
 
     def InfosForArchiv(self):
         return DateTime(self.CreationDate()).strftime('%m/01/%Y')
+
+    def getMeetingTypes(self):
+        return atapi.DisplayList((
+                                 ('dates',_(u'meeting_type_event')),
+                                 ('poodle',_(u'meeting_type_survey')),
+                                 ('meeting_dates',_(u'meeting_type_meeting')),
+                                ))
 
 atapi.registerType(Meeting, PROJECTNAME)
