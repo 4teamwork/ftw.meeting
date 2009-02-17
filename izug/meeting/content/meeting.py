@@ -39,6 +39,7 @@ MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
                       searchable = False,
                       schemata = 'default',
                       required = True,
+                      default="dates_additional",
                       vocabulary = 'getMeetingTypes',
                       storage = atapi.AnnotationStorage(),
                       widget = atapi.SelectionWidget(label = _(u"meeting_label_type", default=u"Event type"),
@@ -204,7 +205,11 @@ class Meeting(folder.ATFolder, Poodle):
         a_util = queryUtility(IArbeitsraumUtils,name="arbeitsraum-utils")
         if not a_util:
             return (atapi.DisplayList())
-        return (atapi.DisplayList(a_util.getAssignableUsers(self,'Contributor')))
+        import pdb;pdb.set_trace()
+        results = atapi.DisplayList()
+        results.add('',_(u'Choose a person'))
+        return (results + atapi.DisplayList(a_util.getAssignableUsers(self,'Contributor')))
+        
 
     def InfosForArchiv(self):
         return DateTime(self.CreationDate()).strftime('%m/01/%Y')

@@ -193,7 +193,7 @@
                        tal:define="poodles python:context.getFolderContents({'portal_type':'Poodle',}, full_objects=True);
                                    context_poodle python:(context.getUsers() and context.getDates()) and [context] or [];
                                    poodles python:context_poodle+poodles"
-                       tal:condition="python: poodles and context.getMeeting_type()[0]=='poodle'">
+                       tal:condition="python: poodles and 'poodle' in context.getMeeting_type()[0]">
                        
                     <tr>
                         <th width="*" i18n:translate="">Surveys</th>
