@@ -211,9 +211,9 @@ class Meeting(folder.ATFolder, Poodle):
 
     def getMeetingTypes(self):
         return atapi.DisplayList((
-                                 ('dates',_(u'meeting_type_event')),
-                                 ('poodle',_(u'meeting_type_survey')),
-                                 ('meeting_dates',_(u'meeting_type_meeting')),
+                                 ('dates_additional',_(u'meeting_type_event')),
+                                 ('poodle_additional',_(u'meeting_type_survey')),
+                                 ('meeting_dates_additional',_(u'meeting_type_meeting')),
                                 ))
 
 atapi.registerType(Meeting, PROJECTNAME)
