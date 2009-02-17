@@ -7,6 +7,8 @@ function MeetingTypeSelector(){
             available_schematas[i] = this.value.split('_');
             })  
         
+        available_schematas = jq.map(available_schematas, function(n){return n})
+        
         jq(available_schematas).each(function(i){
                 jq('#fieldsetlegend-'+this).css('display','none');
             })
