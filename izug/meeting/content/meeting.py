@@ -205,7 +205,6 @@ class Meeting(folder.ATFolder, Poodle):
         a_util = queryUtility(IArbeitsraumUtils,name="arbeitsraum-utils")
         if not a_util:
             return (atapi.DisplayList())
-        import pdb;pdb.set_trace()
         results = atapi.DisplayList()
         results.add('',_(u'Choose a person'))
         return (results + atapi.DisplayList(a_util.getAssignableUsers(self,'Contributor')))
