@@ -56,11 +56,11 @@ function MeetingItemToggler(){
                 
                 if (meetingBody.css('display') != 'none'){
                         jq('#'+parentItem.attr('id') + ' .MeetingItemBody').hide('blind');   
-                        toggleItem.attr('src',portal_url+'/++resource++meeting-styles/arrow_right.png');
+                        jq('#'+parentItem.attr('id') + ' .MeetingItemHead .toggleImage').attr('src',portal_url+'/++resource++meeting-styles/arrow_right.png');
                     }
                 else {
                         jq('#'+parentItem.attr('id') + ' .MeetingItemBody').show('slow'); 
-                        toggleItem.attr('src',portal_url+'/++resource++meeting-styles/arrow_down.png');
+                        jq('#'+parentItem.attr('id') + ' .MeetingItemHead .toggleImage').attr('src',portal_url+'/++resource++meeting-styles/arrow_down.png');
                     }
                 
                 
