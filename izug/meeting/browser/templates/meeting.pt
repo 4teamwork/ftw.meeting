@@ -6,7 +6,8 @@
 
 		<metal:main fill-slot="main">
 			<tal:main-macro metal:define-macro="main"
-				tal:define="templateId template/getId;">
+				tal:define="templateId template/getId;
+                            meeting_type python:context.getMeeting_type()[0]">
 
 				<div tal:replace="structure provider:plone.abovecontenttitle" />
 
@@ -27,19 +28,14 @@
 							<tal:block tal:content="context/location" />
 						</td>
 					</tr>
-					<tr tal:condition="context/no_date | nothing">
-						<td class="table-label"><span i18n:translate="meeting_label_start_date">Start Date</span></td>
-						<td>
-							<tal:block i18n:translate="meeting_no_date_set"/>
-						</td>
-					</tr>
                     
-                    
-                    <tal:dates define="start_date python:context.start_date.strftime('%d.%m.%Y');
-                                       start_time python:context.start_date.strftime('%H:%M');
-                                       end_date python:context.end_date.strftime('%d.%m.%Y');
-                                       end_time python:context.end_date.strftime('%H:%M')">
-                        <tal:day tal:condition="python:start_date == end_date">
+                    <tal:dates define="start_field context/start;
+                                       end_field context/end;
+                                       start_date python:start_field and start_field.strftime('%d.%m.%Y') or '';
+                                       start_time python:start_field and start_field.strftime('%H:%M') or '';
+                                       end_date python:end_field and end_field.strftime('%d.%m.%Y') or '';
+                                       end_time python:end_field and end_field.strftime('%H:%M') or ''">
+                        <tal:day tal:condition="python: (start_date == end_date) and 'dates' in meeting_type">
                         <tr>
                             <td class="table-label"><span i18n:translate="meeting_label_date">Date</span></td>
                             <td>
@@ -275,29 +271,24 @@
                 </table>
 
                 
-                <table class="listing" width="100%"
+                <div class="poodleListing" width="100%"
                        tal:define="poodles python:context.getFolderContents({'portal_type':'Poodle',}, full_objects=True);
                                    context_poodle python:(context.getUsers() and context.getDates()) and [context] or [];
                                    poodles python:context_poodle+poodles"
-                       tal:condition="python: poodles and 'poodle' in context.getMeeting_type()[0]">
+                       tal:condition="python: poodles and 'poodle' in meeting_type">
                        
-                    <tr>
-                        <th width="*" i18n:translate="">Surveys</th>
-                    </tr>
-                    
-                    <tr tal:repeat="poodle poodles">
-                        <td tal:define="data poodle/getPoodleData">
-                            <a tal:attributes="href poodle/absolute_url;
+                    <div class="poodleItems" tal:repeat="poodle poodles">
+                        <tal:poodle define="data poodle/getPoodleData">
+                            <a tal:condition="python: context != poodle"
+                               tal:attributes="href poodle/absolute_url;
                                                title poodle/Description" 
-                               class="PoodleItem" tal:content="poodle/Title">poodle title</a>
+                               class="PoodleItemTitle" tal:content="poodle/Title">poodle title</a>
                             
                             <div tal:replace="structure python:view.renderPoodleTable(poodle)"></div>
-                            
-                        </td>
-                    </tr>
+                        </tal:poodle>
+                    </div>
                        
-                       
-                </table>
+                </div>
 
 
 
