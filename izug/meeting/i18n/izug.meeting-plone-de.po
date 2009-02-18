@@ -41,3 +41,4 @@ msgstr "Traktandum"
 #: ./izug/meeting/browser/templates.pt:172
 msgid "Attachments"
 msgstr "Beilagen"
+

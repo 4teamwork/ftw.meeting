@@ -270,7 +270,6 @@
                     </tr>
                 </table>
 
-                
                 <div class="poodleListing" width="100%"
                        tal:define="poodles python:context.getFolderContents({'portal_type':'Poodle',}, full_objects=True);
                                    context_poodle python:(context.getUsers() and context.getDates()) and [context] or [];
@@ -289,7 +288,7 @@
                     </div>
                        
                 </div>
-
+                
 
 
                 <div tal:replace="structure provider:plone.belowcontentbody" />

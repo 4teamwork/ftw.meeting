@@ -228,7 +228,7 @@ msgstr " - ${votings} Antwort(en)"
 #. Default: "Surveys"
 #: ./izug/meeting/browser/templates/meeting.pt:207
 msgid "Umfragen"
-msgstr ""
+msgstr "Umfragen"
 
 #, fuzzy
 #~ msgid "task_help_responsibility"
