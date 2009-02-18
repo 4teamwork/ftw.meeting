@@ -1,0 +1,32 @@
+.MeetingListing {
+
+}
+
+.MeetingListing .table-label {
+    font-weight:bold;
+    width:20%;
+}
+
+ul.AttendeesListing li {
+    padding-bottom:0.5em;
+}
+
+
+.MeetingItemWrapper .MeetingItemBody{
+    margin-left:2em;
+}
+.MeetingItemWrapper .MeetingItemBody table {
+    border:none;
+}
+
+.MeetingItemWrapper .MeetingItemHead {
+    background-color:#F4F4FF;
+    padding:1em 0.5em 0.5em;
+    border-top:1px solid silver;
+    margin-top:0.5em;
+}
+
+.MeetingItemWrapper .MeetingItemHead a {
+    font-size:1.2em;
+    font-weight:bold;
+}

@@ -109,10 +109,6 @@ MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
                                           columns = {'contact' : SelectColumn(title = _(u"meeting_label_attendees_attendee", default=u"Attendee"),
                                                                               vocabulary = 'getAssignableUsers'
                                                                               ),
-                                                     'present' : CheckboxColumn(label = _(u"meeting_label_attendees_present", default=u"Present"),
-                                                                                ),
-                                                     'excused' : CheckboxColumn(label = _(u"meeting_label_attendees_excused", default=u"Excused"),
-                                                                                ),
                                                      }
                                           )
                   ),

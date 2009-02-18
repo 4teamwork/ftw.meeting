@@ -6,9 +6,7 @@
 
 		<metal:main fill-slot="main">
 			<tal:main-macro metal:define-macro="main"
-				tal:define="kssClassesView context/@@kss_field_decorator_view;
-                       getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
-                       templateId template/getId;">
+				tal:define="templateId template/getId;">
 
 				<div tal:replace="structure provider:plone.abovecontenttitle" />
 
@@ -20,67 +18,101 @@
 
 				<div tal:replace="structure provider:plone.belowcontenttitle" />
 
-				<p class="documentDescription">
-					<metal:field use-macro="python:here.widget('description', mode='view')">
-						Description
-                    </metal:field>
-				</p>
-
 				<div tal:replace="structure provider:plone.abovecontentbody" />
 
-				<table class="listing">
-                    <tr>
-                        <th>&nbsp;</th>
-                        <th>&nbsp;</th>
-                    </tr>
-					<tr tal:define="review_state python:container.portal_workflow.getInfoFor(context, 'review_state', '');
-                                    item_wf_state_class python:'state-' + normalizeString(review_state);"
-						tal:condition="review_state">
-						<td i18n:translate="meeting_label_state" class="table-label">State</td>
-						<td>
-							<span tal:content="review_state" i18n:domain="plone"
-							      tal:attributes="class item_wf_state_class"
-								  i18n:translate="">
-								normal                  
-		                    </span>
-						</td>
-					</tr>
+				<table class="MeetingListing">
 					<tr tal:condition="context/location | nothing">
-						<td class="table-label"><span i18n:translate="meeting_label_location">Location</span>:</td>
+						<td class="table-label"><span i18n:translate="meeting_label_location">Location</span></td>
 						<td>
 							<tal:block tal:content="context/location" />
 						</td>
 					</tr>
 					<tr tal:condition="context/no_date | nothing">
-						<td class="table-label"><span i18n:translate="meeting_label_start_date">Start Date</span>:</td>
+						<td class="table-label"><span i18n:translate="meeting_label_start_date">Start Date</span></td>
 						<td>
 							<tal:block i18n:translate="meeting_no_date_set"/>
 						</td>
 					</tr>
-					<tr tal:condition="context/start_date | nothing">
-						<td class="table-label"><span i18n:translate="meeting_label_start_date">Start Date</span>:</td>
-						<td>
-							<tal:block tal:content="python: context.start_date.strftime('%d.%m.%Y')" />
-						</td>
-					</tr>
-                    <tr tal:condition="context/start_date | nothing">
-                        <td class="table-label"><span i18n:translate="meeting_label_start_time">Start Time</span>:</td>
+                    
+                    
+                    <tal:dates define="start_date python:context.start_date.strftime('%d.%m.%Y');
+                                       start_time python:context.start_date.strftime('%H:%M');
+                                       end_date python:context.end_date.strftime('%d.%m.%Y');
+                                       end_time python:context.end_date.strftime('%H:%M')">
+                        <tal:day tal:condition="python:start_date == end_date">
+                        <tr>
+                            <td class="table-label"><span i18n:translate="meeting_label_date">Date</span></td>
+                            <td>
+                                <tal:block replace="start_date" />    
+                            </td>
+                        
+                        </tr>
+                        <tr>
+                            <td class="table-label"><span i18n:translate="meeting_label_duration">Duration</span></td>
+                            <td>
+                                <tal:block tal:content="string:${start_time} - ${end_time}" />
+                            </td>
+                        </tr>
+                        </tal:day>
+                        <tal:mutli condition="python:start_date != end_date">
+                            <tr tal:condition="context/start_date | nothing">
+                                <td class="table-label"><span i18n:translate="meeting_label_start_date">Start Date</span></td>
+                                <td>
+                                    <tal:block tal:content="python: context.start_date.strftime('%d.%m.%Y')" />
+                                </td>
+                            </tr>
+                            <tr tal:condition="context/start_date | nothing">
+                                <td class="table-label"><span i18n:translate="meeting_label_start_time">Start Time</span></td>
+                                <td>
+                                    <tal:block tal:content="python: context.start_date.strftime('%H:%M')" />
+                                </td>
+                            </tr>
+                            <tr tal:condition="context/end_date | nothing">
+                                <td class="table-label"><span i18n:translate="meeting_label_end_date">End Date</span></td>
+                                <td>
+                                    <tal:block tal:content="python: context.end_date.strftime('%d.%m.%Y')" />
+                                </td>
+                            </tr>
+                            <tr tal:condition="context/end_date | nothing">
+                                <td class="table-label"><span i18n:translate="meeting_label_end_time">End Time</span></td>
+                                <td>
+                                    <tal:block tal:content="python: context.end_date.strftime('%H:%M')" />
+                                </td>
+                            </tr>
+                        </tal:mutli>
+                    </tal:dates>
+                    
+                    <tr tal:define="related python:here.computeRelatedItems()" tal:condition="related">
+                        <td class="table-label"><span i18n:translate="meeting_label_relations">Relations</span></td>
                         <td>
-                            <tal:block tal:content="python: context.start_date.strftime('%H:%M')" />
+                            <tal:block tal:condition="python:related">
+                                <ul>
+                                <tal:related tal:repeat="item related"
+                                             tal:define="use_view_action site_properties/typesUseViewActionInListings|python:();">
+                                    <li tal:define="
+                                            desc                item/Description;
+                                            item_type           item/portal_type;
+                                            item_icon           python:plone_view.getIcon(item);
+                                            item_type           item/portal_type;
+                                            item_type_class     python:'contenttype-' + normalizeString(item_type);
+                                            item_url            item/absolute_url;
+                                            item_url            python:(item_type in use_view_action) and item_url+'/view' or item_url">
+                                        <span tal:attributes="class item_type_class">
+                                            <img tal:replace="structure item_icon/html_tag" />
+                                            <a href="" class=""
+                                               tal:attributes="href  item_url;
+                                                               title item/Description;"
+                                               tal:content="item/pretty_title_or_id">
+                                                Related Item
+                                            </a>
+                                        </span>
+                                    </li>
+                                </tal:related>
+                                </ul>
+                            </tal:block>
                         </td>
                     </tr>
-                    <tr tal:condition="context/end_date | nothing">
-                        <td class="table-label"><span i18n:translate="meeting_label_end_date">End Date</span>:</td>
-                        <td>
-                            <tal:block tal:content="python: context.end_date.strftime('%d.%m.%Y')" />
-                        </td>
-                    </tr>
-                    <tr tal:condition="context/end_date | nothing">
-                        <td class="table-label"><span i18n:translate="meeting_label_end_time">End Time</span>:</td>
-                        <td>
-                            <tal:block tal:content="python: context.end_date.strftime('%H:%M')" />
-                        </td>
-                    </tr>
+                    
 					<tr tal:condition="context/head_of_meeting | nothing">
 						<td class="table-label"><span i18n:translate="meeting_label_head_of_meeting">Head of Meeting</span>:</td>
 						<td>
@@ -100,64 +132,118 @@
                     <tr tal:condition="context/recording_secretary | nothing">
                         <td class="table-label"><span i18n:translate="meeting_label_attendees">Attendees</span>:</td>
                         <td>
-                            <metal:field use-macro="python:here.widget('attendees', mode='view')">
-                               Attendees
-                            </metal:field>
+                            <ul class="AttendeesListing" tal:define="userids python:[u['contact'] for u in here.getAttendees()]">
+                                <li tal:repeat="userid userids">
+                                    <a tal:define="user python:context.acl_users.getUserById(userid)"
+                                       tal:attributes="href string:${here/portal_url}/author/${userid}"
+                                       tal:content="python:user.getProperty('fullname','')">
+                                    </a>
+                                </li>
+                            
+                            </ul>
+                        
+                        </td>
+                    </tr>
+                    <tr tal:condition="context/Description | nothing">
+                        <td class="table-label"><span i18n:translate="meeting_label_description">Description</span></td>
+                        <td>
+                            <tal:block tal:content="here/Description" />
                         </td>
                     </tr>
                 </table>
 
-				<table tal:define="meeting_items python:context.getFolderContents({'portal_type':['Meeting Item']}, full_objects=True);"
-				       tal:condition="meeting_items" class="listing" width="100%">
-                    <tr>
-						<th width="15">&nbsp;</th>
-						<th width="*">&nbsp;</th>
-						<th width="20%" i18n:translate="meeting_label_responsibility">Responsibility</th>
-						<th width="10%" i18n:translate="meeting_label_duration">Duration</th>
-						<th width="5%" i18n:translate="meeting_label_state">State</th>
-                    </tr>
-                    <metal:block tal:repeat="obj meeting_items">
-					    <tr tal:define="state obj/review_state|python: wtool.getInfoFor(obj, 'review_state', '');
-					                    item_wf_state_class python:'state-' + normalizeString(state);"
-					        tal:attributes="class string:odd ${item_wf_state_class}-colorized">
-						    <td tal:define="type python:getattr(obj.aq_explicit, 'meetingitem_type', None)"><span tal:condition="type" tal:content="type" /></td>
-						    <td>
-						        <div>
-						            <a tal:content="obj/title" tal:attributes="href obj/absolute_url">
-						                Title
-						            </a>
-						        </div>
-								<div tal:content="structure obj/getText">
-								    Body text
-								</div>
-					        </td> 
-							<td>
-                                <metal:field use-macro="python:obj.widget('responsibility', mode='view')">
-                                   Attendees
-                                </metal:field>
-							</td>
-                            <td>
-                                <span tal:content="obj/duration">Duration</span>
-                            </td>
-							<td>
-	                            <div i18n:translate="" tal:attributes="class item_wf_state_class" tal:content="state" />
-							</td>
-	                    </tr>
-                        <tr class="even" tal:repeat="task python:obj.getFolderContents({'portal_type':['Task'], 'sort_on' : 'effective', 'sort_order' : 'descending'}, full_objects=True)">
-                            <td>&nbsp;</td>
-                            <td>
-                                <a href="#" tal:attributes="href task/absolute_url" tal:content="task/title_or_id"></a>
-                                <div tal:content="structure task/text">Text</div>
-                            </td>
-                            <td>
-                                <div tal:content="task/responsibility">Responsibility</div>
-                            </td>
-                            <td>&nbsp;</td>
-                            <td tal:define="task_state task/review_state|python: wtool.getInfoFor(task, 'review_state', '');
-                                            task_wf_state_class python:'state-' + normalizeString(task_state);">
-                                <div i18n:translate="" tal:attributes="class task_wf_state_class" tal:content="task_state" />
-                            </td>
-                        </tr>
+				<tal:items tal:define="meeting_items python:context.getFolderContents({'portal_type':['Meeting Item']}, full_objects=True);"
+				       tal:condition="meeting_items">
+
+                    <tal:block tal:repeat="obj meeting_items">
+                        <div tal:attributes="id string:${obj/UID}" class="MeetingItemWrapper">
+                            <div class="MeetingItemHead">
+                                <img tal:attributes="src string:${here/portal_url}/++resource++meeting-styles/arrow_right.png"
+                                     class="toggleImage"
+                                     alt="Arrwo Down" width="16px" />
+                                <a tal:content="obj/title" tal:attributes="href obj/absolute_url">
+                                    Title
+                                </a>
+                            </div>
+                            <div class="MeetingItemBody" style="display:none">
+                                <table>
+                                    <tr>
+                                        <th><span i18n:translate="meeting_label_responsibility">Responsibility</span></th>
+                                        <td>
+                                            <metal:field use-macro="python:obj.widget('responsibility', mode='view')">
+                                               Attendees
+                                            </metal:field>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th><span i18n:translate="meeting_label_text">Text</span></th>
+                                        <td>
+                                            <span tal:replace="structure obj/getText">BodyText</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th><span i18n:translate="meeting_label_conclusion">Conclusion</span></th>
+                                        <td>
+                                            <span tal:replace="structure obj/getConclusion">Conclusion</span>
+                                        </td>
+                                    </tr>
+                                    <tr tal:define="tasks python:obj.getFolderContents({'portal_type':['Task'], 'sort_on' : 'effective', 'sort_order' : 'descending'}, full_objects=True)"
+                                        tal:condition="tasks">
+                                        <th><span i18n:translate="meeting_label_tasks">Tasks</span></th>
+                                        <td>
+                                            <table class="MeetginItemTasks">
+                                                <tr class="even" tal:repeat="task tasks">
+                                                    <td>&nbsp;</td>
+                                                    <td>
+                                                        <a href="#" tal:attributes="href task/absolute_url" tal:content="task/title_or_id"></a>
+                                                        <div tal:content="structure task/text">Text</div>
+                                                    </td>
+                                                    <td>
+                                                        <div tal:content="python:context.acl_users.getUserById(task.responsibility[0]).getProperty('fullname','')">Responsibility</div>
+                                                    </td>
+                                                    <td>&nbsp;</td>
+                                                    <td tal:define="task_state task/review_state|python: wtool.getInfoFor(task, 'review_state', '');
+                                                                    task_wf_state_class python:'state-' + normalizeString(task_state);">
+                                                        <div i18n:translate="" tal:attributes="class task_wf_state_class" tal:content="task_state" />
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <tr tal:define="related python:obj.computeRelatedItems()" tal:condition="related">
+                                        <td class="table-label"><span i18n:translate="meeting_label_relations">Relations</span></td>
+                                        <td>
+                                            <tal:block tal:condition="python:related">
+                                                <ul>
+                                                <tal:related tal:repeat="item related"
+                                                             tal:define="use_view_action site_properties/typesUseViewActionInListings|python:();">
+                                                    <li tal:define="
+                                                            desc                item/Description;
+                                                            item_type           item/portal_type;
+                                                            item_icon           python:plone_view.getIcon(item);
+                                                            item_type           item/portal_type;
+                                                            item_type_class     python:'contenttype-' + normalizeString(item_type);
+                                                            item_url            item/absolute_url;
+                                                            item_url            python:(item_type in use_view_action) and item_url+'/view' or item_url">
+                                                        <span tal:attributes="class item_type_class">
+                                                            <img tal:replace="structure item_icon/html_tag" />
+                                                            <a href="" class=""
+                                                               tal:attributes="href  item_url;
+                                                                               title item/Description;"
+                                                               tal:content="item/pretty_title_or_id">
+                                                                Related Item
+                                                            </a>
+                                                        </span>
+                                                    </li>
+                                                </tal:related>
+                                                </ul>
+                                            </tal:block>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        
 					    <tr class="even" tal:repeat="meeting_item_file python:obj.getFolderContents({'portal_type':['File'], 'sort_on' : 'effective', 'sort_order' : 'descending'}, full_objects=True)">
 					        <td>&nbsp;</td>
 					        <td>
@@ -170,8 +256,8 @@
                             <td>&nbsp;</td>
                             <td>&nbsp;</td>
 					    </tr>
-	                </metal:block>
-                </table>
+	                </tal:block>
+                </tal:items>
 
                 <table tal:define="files view/getFiles" tal:condition="files" class="listing" width="100%">
                     <tr>
@@ -214,10 +300,6 @@
                 </table>
 
 
-
-                <div metal:use-macro="here/document_relateditems/macros/relatedItems">
-                    show related items if they exist
-                </div>
 
                 <div tal:replace="structure provider:plone.belowcontentbody" />
 			</tal:main-macro>

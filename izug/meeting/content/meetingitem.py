@@ -22,14 +22,6 @@ from izug.meeting.config import PROJECTNAME
 
 MeetingItemSchema = folder.ATFolderSchema.copy() + atapi.Schema((
 
-    atapi.IntegerField('duration',
-                       required = True,
-                       storage = atapi.AnnotationStorage(),
-                       widget = atapi.IntegerWidget(label = _(u"meetingitem_label_duration", default=u"Duration"),
-                                                    description = _(u"meetingitem_help_duration", default=u"Duration of this item in minutes."),
-                                                    ),
-                      ),
-
      atapi.LinesField('responsibility',
                       required = False,
                       searchable = True,
@@ -57,21 +49,6 @@ MeetingItemSchema = folder.ATFolderSchema.copy() + atapi.Schema((
                                               ),
                     ),
 
-    atapi.StringField('meetingitem_type',
-                      vocabulary=((
-                                   (u"", u""), 
-                                   (u"B", _(u"meetingitem_type_resolution", default=u"Resolution")),
-                                   (u"I", _(u"meetingitem_type_information", default=u"Information")),
-                                   (u"M", _(u"meetingitem_type_measure", default=u"Measure")),
-                                   )),
-                      enforceVocabulary = True,
-                      languageIndependent = True,
-                      storage = atapi.AnnotationStorage(),
-                      widget = atapi.SelectionWidget(label = _(u"meetingitem_label_item_type", default=u"Item type"),
-                                                     description = _(u"meetingitem_help_item_type", default=u"Choose the type of the item."),
-                                                     format = 'select',
-                                                     ),
-                      ),
 
     atapi.TextField('conclusion',
                     searchable = True,
@@ -114,6 +91,9 @@ MeetingItemSchema = folder.ATFolderSchema.copy() + atapi.Schema((
 MeetingItemSchema['title'].storage = atapi.AnnotationStorage()
 MeetingItemSchema['description'].storage = atapi.AnnotationStorage()
 MeetingItemSchema['description'].widget.visible = {'view' : 'invisible', 'edit' : 'invisible'}
+MeetingItemSchema.changeSchemataForField('effectiveDate','settings')
+MeetingItemSchema.changeSchemataForField('expirationDate','settings')
+
 
 finalizeIzugSchema(MeetingItemSchema, moveDiscussion=False)
 

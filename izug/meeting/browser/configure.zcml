@@ -10,6 +10,9 @@
 		name='meeting-scripts'
 		directory="scripts" />
 
+    <browser:resourceDirectory
+		name='meeting-styles'
+		directory="styles" />
 
     <browser:page
         for="..interfaces.IMeetingLayoutPDF"
