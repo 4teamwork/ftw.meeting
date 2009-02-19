@@ -175,6 +175,11 @@ MeetingSchema['location'].widget = atapi.StringWidget(label = _(u"meeting_label_
 """
 
 
+MeetingSchema.changeSchemataForField('effectiveDate','settings')
+MeetingSchema.changeSchemataForField('expirationDate','settings')
+MeetingSchema['effectiveDate'].widget.visible = {'view' : 'invisible', 'edit' : 'invisible'}
+MeetingSchema['expirationDate'].widget.visible = {'view' : 'invisible', 'edit' : 'invisible'}
+
 class Meeting(folder.ATFolder, Poodle):
     """A type for meetings."""
     implements(IMeeting, IPoodle)

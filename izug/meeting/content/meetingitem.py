@@ -41,11 +41,10 @@ MeetingItemSchema = folder.ATFolderSchema.copy() + atapi.Schema((
                     primary = True,
                     default_content_type = 'text/html',
                     default_output_type = 'text/html',
-                    allowable_content_types = ('text/html','text/structured','text/plain',),
                     storage = atapi.AnnotationStorage(),
                     widget = atapi.RichWidget(label=_(u"meetingitem_label_text", default=u"Text"),
                                               description=_(u"meetingitem_help_text", default=u"Enter the text."),
-                                              rows=20,
+                                              rows=10,
                                               ),
                     ),
 
@@ -60,7 +59,7 @@ MeetingItemSchema = folder.ATFolderSchema.copy() + atapi.Schema((
                     storage = atapi.AnnotationStorage(),
                     widget = atapi.RichWidget(label = _(u"meetingitem_label_conclusion", default=u"Conclusion"),
                                               description = _(u"meetingitem_help_conclusion", default=u"Enter the conclusion drawn for this resolution"),
-                                              rows=20,
+                                              rows=10,
                                               ),
                     ),
 
@@ -91,11 +90,14 @@ MeetingItemSchema = folder.ATFolderSchema.copy() + atapi.Schema((
 MeetingItemSchema['title'].storage = atapi.AnnotationStorage()
 MeetingItemSchema['description'].storage = atapi.AnnotationStorage()
 MeetingItemSchema['description'].widget.visible = {'view' : 'invisible', 'edit' : 'invisible'}
-MeetingItemSchema.changeSchemataForField('effectiveDate','settings')
-MeetingItemSchema.changeSchemataForField('expirationDate','settings')
 
 
 finalizeIzugSchema(MeetingItemSchema, moveDiscussion=False)
+
+MeetingItemSchema.changeSchemataForField('effectiveDate','settings')
+MeetingItemSchema.changeSchemataForField('expirationDate','settings')
+MeetingItemSchema['effectiveDate'].widget.visible = {'view' : 'invisible', 'edit' : 'invisible'}
+MeetingItemSchema['expirationDate'].widget.visible = {'view' : 'invisible', 'edit' : 'invisible'}
 
 class MeetingItem(folder.ATFolder):
     """A type for meeting items."""
@@ -116,7 +118,7 @@ class MeetingItem(folder.ATFolder):
     def getAssignableUsers(self):
         """Collect users with a given role and return them in a list.
         """
-        role = 'Contributor'
+        role = 'Reader'
         results = []
         pas_tool = getToolByName(self, 'acl_users')
         utils_tool = getToolByName(self, 'plone_utils')
