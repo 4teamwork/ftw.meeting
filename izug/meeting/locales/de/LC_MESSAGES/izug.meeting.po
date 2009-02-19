@@ -37,7 +37,7 @@ msgstr "Geben Sie den Ort der Sitzung ein."
 #. Default: "Select the recording secretary."
 #: izug/meeting/content/meeting.py:79
 msgid "meeting_help_recording_secretary"
-msgstr "Geben Sie die/den Schriftührer/in ein."
+msgstr "Geben Sie die/den Schriftführer/in ein."
 
 #: izug/meeting/content/meeting.py:117
 msgid "meeting_help_related_items"
