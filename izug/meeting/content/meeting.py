@@ -201,7 +201,7 @@ class Meeting(folder.ATFolder, Poodle):
             return (atapi.DisplayList())
         results = atapi.DisplayList()
         results.add('',_(u'Choose a person'))
-        return (results + atapi.DisplayList(a_util.getAssignableUsers(self,'Contributor')))
+        return (results + atapi.DisplayList(a_util.getAssignableUsers(self,'Reader')))
         
 
     def InfosForArchiv(self):
