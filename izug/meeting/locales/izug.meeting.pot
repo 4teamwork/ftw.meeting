@@ -270,3 +270,8 @@ msgstr ""
 msgid "meeting_help_type"
 msgstr ""
 
+#. Default: "Date"
+#: izug/meeting/browser/templates/meeting.pt
+msgid "meeting_label_date"
+msgstr ""
+

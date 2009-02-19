@@ -270,6 +270,11 @@ msgstr "Event Typ"
 msgid "meeting_help_type"
 msgstr "Wählen Sie einen Event Typ aus."
 
+#. Default: "Date"
+#: izug/meeting/browser/templates/meeting.pt
+msgid "meeting_label_date"
+msgstr "Datum"
+
 
 #, fuzzy
 #~ msgid "task_help_responsibility"
