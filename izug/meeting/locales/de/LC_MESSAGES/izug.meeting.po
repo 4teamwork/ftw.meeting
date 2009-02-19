@@ -230,6 +230,19 @@ msgstr " - ${votings} Antwort(en)"
 msgid "Umfragen"
 msgstr "Umfragen"
 
+#. Default: "Desctiption"
+#: izug/meeting/browser/templates/meeting.pt:110
+msgid "meeting_label_description"
+msgstr "Beschreibung"
+
+#. Default: "Realtions"
+#: izug/meeting/browser/templates/meeting.pt:110
+msgid "meeting_label_relations"
+msgstr "Verweise"
+
+
+
+
 #, fuzzy
 #~ msgid "task_help_responsibility"
 #~ msgstr "Geben Sie den/die Verantwortliche/n ein."

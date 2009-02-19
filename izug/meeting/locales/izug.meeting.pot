@@ -229,3 +229,14 @@ msgstr ""
 #: ./izug/meeting/browser/templates/meeting.pt:207
 msgid "Surveys"
 msgstr ""
+
+#. Default: "Desctiption"
+#: izug/meeting/browser/templates/meeting.pt:110
+msgid "meeting_label_description"
+msgstr ""
+
+#. Default: "Realtions"
+#: izug/meeting/browser/templates/meeting.pt:110
+msgid "meeting_label_relations"
+msgstr ""
+
