@@ -43,7 +43,7 @@ MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
                       vocabulary = 'getMeetingTypes',
                       storage = atapi.AnnotationStorage(),
                       widget = atapi.SelectionWidget(label = _(u"meeting_label_type", default=u"Event type"),
-                                                     description = _(u"meeting_help_type", default=u"Choose yout event type."),
+                                                     description = _(u"meeting_help_type", default=u"Choose your event type."),
                                                      helper_js = ['meeting_toggle_date.js',],
                                                      format='radio',
                                                      ),

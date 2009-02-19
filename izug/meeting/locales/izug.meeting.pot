@@ -259,3 +259,14 @@ msgstr ""
 #: izug/meeting/content/meeting.py
 msgid "meeting_type_meeting"
 msgstr ""
+
+#. Default: "Event type"
+#: izug/meeting/content/meeting.py
+msgid "meeting_label_type"
+msgstr ""
+
+#. Default: "Choos event type"
+#: izug/meeting/content/meeting.py
+msgid "meeting_help_type"
+msgstr ""
+

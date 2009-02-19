@@ -260,6 +260,17 @@ msgstr "Umfrage"
 msgid "meeting_type_meeting"
 msgstr "Sitzung"
 
+#. Default: "Event type"
+#: izug/meeting/content/meeting.py
+msgid "meeting_label_type"
+msgstr "Event Typ"
+
+#. Default: "Choos event type"
+#: izug/meeting/content/meeting.py
+msgid "meeting_help_type"
+msgstr "Wählen Sie einen Event Typ aus."
+
+
 #, fuzzy
 #~ msgid "task_help_responsibility"
 #~ msgstr "Geben Sie den/die Verantwortliche/n ein."
