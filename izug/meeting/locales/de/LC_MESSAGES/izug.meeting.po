@@ -240,8 +240,25 @@ msgstr "Beschreibung"
 msgid "meeting_label_relations"
 msgstr "Verweise"
 
+#. Default: "Choose a Person"
+#: izug/meeting/content/meeting.py
+msgid "Choose a person"
+msgstr "keine Person ausgewählt"
 
+#. Default: "Event"
+#: izug/meeting/content/meeting.py
+msgid "meeting_type_event"
+msgstr "Termin"
 
+#. Default: "Survey"
+#: izug/meeting/content/meeting.py
+msgid "meeting_type_survey"
+msgstr "Umfrage"
+
+#. Default: "Meeting"
+#: izug/meeting/content/meeting.py
+msgid "meeting_type_meeting"
+msgstr "Sitzung"
 
 #, fuzzy
 #~ msgid "task_help_responsibility"

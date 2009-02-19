@@ -240,3 +240,22 @@ msgstr ""
 msgid "meeting_label_relations"
 msgstr ""
 
+#. Default: "Choose a Person"
+#: izug/meeting/content/meeting.py
+msgid "Choose a person"
+msgstr ""
+
+#. Default: "Event"
+#: izug/meeting/content/meeting.py
+msgid "meeting_type_event"
+msgstr ""
+
+#. Default: "Survey"
+#: izug/meeting/content/meeting.py
+msgid "meeting_type_survey"
+msgstr ""
+
+#. Default: "Meeting"
+#: izug/meeting/content/meeting.py
+msgid "meeting_type_meeting"
+msgstr ""
