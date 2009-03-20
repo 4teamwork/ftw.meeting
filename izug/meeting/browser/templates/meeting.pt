@@ -9,15 +9,7 @@
 				tal:define="templateId template/getId;
                             meeting_type python:context.getMeeting_type()[0]">
 
-				<div tal:replace="structure provider:plone.abovecontenttitle" />
-
-				<h1 class="documentFirstHeading">
-					<metal:field use-macro="python:here.widget('title', mode='view')">
-						Title
-                    </metal:field>
-				</h1>
-
-				<div tal:replace="structure provider:plone.belowcontenttitle" />
+				<metal:block metal:use-macro="here/@@custom_header/macros/header | here/base/macros/header" />
 
 				<div tal:replace="structure provider:plone.abovecontentbody" />
 

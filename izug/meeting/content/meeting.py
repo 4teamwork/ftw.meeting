@@ -19,6 +19,7 @@ from Products.DataGridField import DataGridField, DataGridWidget
 from Products.DataGridField.Column import Column
 from Products.DataGridField.CheckboxColumn import CheckboxColumn
 from Products.DataGridField.SelectColumn import SelectColumn
+from Products.ATContentTypes.lib.calendarsupport import CalendarSupportMixin
 
 from izug.arbeitsraum.content.utilities import finalizeIzugSchema
 
@@ -218,5 +219,6 @@ class Meeting(folder.ATFolder, Poodle):
                                  ('poodle_additional',_(u'meeting_type_survey')),
                                  ('meeting_dates_additional',_(u'meeting_type_meeting')),
                                 ))
+
 
 atapi.registerType(Meeting, PROJECTNAME)
