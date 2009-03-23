@@ -138,7 +138,7 @@
                             <tal:block tal:content="here/Description" />
                         </td>
                     </tr>
-                    <tr tal:condition="context/start">
+                    <tr tal:condition="python: context.start() and context.end()">
                         <td class="table-label"><span i18n:translate="meeting_label_export">Export</span></td>
                         <td>
                             <img height="16" width="16" title="vCal export" alt="" tal:attributes="src string:${here/portal_url}/icon_export_vcal.png"/>
