@@ -55,7 +55,7 @@ MeetingItemSchema = folder.ATFolderSchema.copy() + atapi.Schema((
                     primary = False,
                     default_content_type = 'text/html',              
                     default_output_type = 'text/html',
-                    allowable_content_types = ('text/html','text/structured','text/plain',),
+                    allowable_content_types = ('text/html'),
                     storage = atapi.AnnotationStorage(),
                     widget = atapi.RichWidget(label = _(u"meetingitem_label_conclusion", default=u"Conclusion"),
                                               description = _(u"meetingitem_help_conclusion", default=u"Enter the conclusion drawn for this resolution"),
