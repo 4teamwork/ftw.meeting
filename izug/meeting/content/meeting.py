@@ -100,7 +100,7 @@ MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
     DataGridField('attendees',
                   searchable = True,
                   schemata = 'meeting',
-                  columns = ('contact', 'present','excused'),
+                  columns = ('contact',),
                   allow_empty_rows = False,
                   storage = atapi.AnnotationStorage(),
                   widget = DataGridWidget(label = _(u"meeting_label_attendees", default=u"Attendees"),
