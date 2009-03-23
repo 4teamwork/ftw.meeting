@@ -75,7 +75,6 @@ MeetingItemSchema = folder.ATFolderSchema.copy() + atapi.Schema((
                                                          allow_search = True,
                                                          allow_browse = True,
                                                          show_indexes = False,
-                                                         force_close_on_insert = True,
                                                          label = _(u"meetingitem_label_related_items", default=u"Related Items"),
                                                          description = _(u"meetingitem_help_related_items", default=u""),
                                                          visible = {'edit' : 'visible', 'view' : 'invisible' }

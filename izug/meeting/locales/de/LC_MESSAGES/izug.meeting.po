@@ -275,6 +275,10 @@ msgstr "Wählen Sie einen Event Typ aus."
 msgid "meeting_label_date"
 msgstr "Datum"
 
+msgid "meeting_label_export"
+msgstr "Exportieren"
+
+
 
 #, fuzzy
 #~ msgid "task_help_responsibility"

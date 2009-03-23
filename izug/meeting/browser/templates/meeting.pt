@@ -138,6 +138,21 @@
                             <tal:block tal:content="here/Description" />
                         </td>
                     </tr>
+                    <tr>
+                        <td class="table-label"><span i18n:translate="meeting_label_export">Export</span></td>
+                        <td>
+                            <img height="16" width="16" title="vCal export" alt="" tal:attributes="src string:${here/portal_url}/icon_export_vcal.png"/>
+                            <a href="./vcs_view" title="vCal" i18n:translate="">
+                                vCal
+                            </a>
+                            <br />  
+                            <img height="16" width="16" title="vCal export" alt="" tal:attributes="src string:${here/portal_url}/icon_export_ical.png"/>
+                            <a href="./ics_view" title="vCal" i18n:translate="">
+                                iCal
+                            </a>
+                        </td>
+                    </tr>
+
                 </table>
 
 				<tal:items tal:define="meeting_items python:context.getFolderContents({'portal_type':['Meeting Item']}, full_objects=True);"
