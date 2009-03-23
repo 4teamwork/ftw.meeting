@@ -33,6 +33,7 @@ from izug.arbeitsraum.interfaces import IArbeitsraumUtils
 from izug.poodle.content.poodle import Poodle,PoodleSchema
 from izug.poodle.interfaces import IPoodle
 
+from Products.ATContentTypes.lib.calendarsupport import CalendarSupportMixin
 
 MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
 
@@ -120,12 +121,13 @@ MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
                          languageIndependent = False,
                          index = 'KeywordIndex',
                          accessor = 'relatedItems',
+                         allowed_types = ('File','Document','Meeting','Task'),
                          storage = atapi.AnnotationStorage(),
                          widget = ReferenceBrowserWidget(
                                                          allow_search = True,
                                                          allow_browse = True,
                                                          show_indexes = False,
-                                                         force_close_on_insert = True,
+                                                         force_close_on_insert = False,
                                                          label = _(u"meeting_label_related_items", default=u"Related Items"),
                                                          description = _(u"meeting_help_related_items", default=u""),
                                                          visible = {'edit' : 'visible', 'view' : 'invisible' }
@@ -181,7 +183,7 @@ MeetingSchema.changeSchemataForField('expirationDate','settings')
 MeetingSchema['effectiveDate'].widget.visible = {'view' : 'invisible', 'edit' : 'invisible'}
 MeetingSchema['expirationDate'].widget.visible = {'view' : 'invisible', 'edit' : 'invisible'}
 
-class Meeting(folder.ATFolder, Poodle):
+class Meeting(folder.ATFolder, Poodle, CalendarSupportMixin):
     """A type for meetings."""
     implements(IMeeting, IPoodle)
 
@@ -219,6 +221,18 @@ class Meeting(folder.ATFolder, Poodle):
                                  ('poodle_additional',_(u'meeting_type_survey')),
                                  ('meeting_dates_additional',_(u'meeting_type_meeting')),
                                 ))
+
+    #makes ical export work
+    def getEventType(self):
+        return False
+    def contact_name(self):
+        return self.getHead_of_meeting()
+    def contact_phone(self):
+        return ""
+    def contact_email(self):
+        return ""
+    def event_url(self):
+        return self.absolute_url()
 
 
 atapi.registerType(Meeting, PROJECTNAME)
