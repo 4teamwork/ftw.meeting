@@ -37,7 +37,7 @@ from Products.ATContentTypes.lib.calendarsupport import CalendarSupportMixin
 
 MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
 
-     atapi.LinesField('meeting_type',
+     atapi.StringField('meeting_type',
                       searchable = False,
                       schemata = 'default',
                       required = True,

@@ -7,7 +7,7 @@
 		<metal:main fill-slot="main">
 			<tal:main-macro metal:define-macro="main"
 				tal:define="templateId template/getId;
-                            meeting_type python:context.getMeeting_type()[0]">
+                            meeting_type python:context.getMeeting_type()">
 
 				<metal:block metal:use-macro="here/@@custom_header/macros/header | here/base/macros/header" />
 
