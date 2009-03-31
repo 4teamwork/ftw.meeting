@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<object name="portal_actions" meta_type="Plone Actions Tool"
+   xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+ <object name="object_buttons" meta_type="CMF Action Category">
+  <property name="title"></property>
+  <object name="export_pdf" meta_type="CMF Action" i18n:domain="izug.policy">
+   <property name="title" i18n:translate="">Print PDF</property>
+   <property name="description"
+      i18n:translate="">Prints a PDF</property>
+   <property name="url_expr">string:$object_url/pdf_wizard</property>
+   <property name="icon_expr">string:${portal_url}/pdf_icon.gif</property>
+   <property name="available_expr">python: object.Type() in ['Buch', 'Kapitel']</property>
+   <property name="permissions">
+    <element value="Request review"/>
+   </property>
+   <property name="visible">True</property>
+  </object>
+ </object>
+</object>
+

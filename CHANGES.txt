@@ -1,6 +1,8 @@
 Changelog
 =========
 
+    - Issue #301 PDF-Export bei Meetings
+
 1.0 (xxxx-xx-xx)
 ------------------
 

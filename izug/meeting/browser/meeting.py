@@ -56,11 +56,19 @@ class MeetingLatexConverter(LatexCTConverter):
     def __call__(self, context, view):
         self.view = view
         latex = []
-        w = lambda line:latex.append(line)
+        w = lambda *lines:[latex.append(line) for line in lines]
         plone_view = getMultiAdapter((self.context, self.request), name=u'plone')
         latex_date = self.view.convert(plone_view.toLocalizedTime(context.start_date, long_format=False))
-        latex_time = self.view.convert(context.start_date.strftime('%H:%M'))
+        try:
+            latex_time = self.view.convert(context.start_date.strftime('%H:%M'))
+        except:
+            latex_time = self.view.convert('HH:ii')
         latex_title = self.view.convert(context.pretty_title_or_id())
+        w(r'T direkt 041 XXX\\')
+        w(r'E-Mail Adresse\\')
+        w(r'Zug, 30. Juni 2008\\')
+        w()
+        w(r'\vspace{3\baselineskip}')
         w(r'{\bf Protokoll} \\')
         w(r'{\bf %s} \\' % latex_title)
         w(r'\vspace{\baselineskip}')
@@ -69,17 +77,20 @@ class MeetingLatexConverter(LatexCTConverter):
         w(r'Ort: %s \\' % self.view.convert(context.location))
         w(r'Sitzungsleitung: %s \\' % self.view.convert(self.getDisplayListValue(context, 'head_of_meeting')))
         w(r'%s \\' % self.view.convert('Protokollf&uuml;hrung: %s' % self.getDisplayListValue(context, 'recording_secretary')))
+        w()
         w(r'\vspace{\baselineskip}')
         w(r'{\bf Teilnehmende} \\')
         # attendees
         w(r'\begin{attendeeList}')
         for row in self.context.attendees:
-            w('\t\\attendee{%s}{%s}{%s}' % (
+            w(r'%s\\' % (
                 self.view.convert(self.getDisplayListValueFromDataGridField(context, 'attendees', row, 'contact')),
-                self.view.convert((row['present'] and 'X' or '')),
-                self.view.convert((row['excused'] and 'X' or '')),
             ))
-        w(r'\end{attendeeList}')
+        w()
+        w(r'\vspace{\baselineskip}')
+        w(r'{\bf Traktanden}\\')
+        w(r'\vspace{0.5cm}')
+        w()
         latex = '\n'.join(latex)
         latex += self.convertChilds(context, self.view)
         return latex
