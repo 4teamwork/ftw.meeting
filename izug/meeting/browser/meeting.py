@@ -64,9 +64,9 @@ class MeetingLatexConverter(LatexCTConverter):
         except:
             latex_time = self.view.convert('HH:ii')
         latex_title = self.view.convert(context.pretty_title_or_id())
-        w(r'T direkt 041 XXX\\')
-        w(r'E-Mail Adresse\\')
-        w(r'Zug, 30. Juni 2008\\')
+        #w(r'T direkt 041 XXX\\')
+        #w(r'E-Mail Adresse\\')
+        w(r'Zug, \today\\')
         w()
         w(r'\vspace{3\baselineskip}')
         w(r'{\bf Protokoll} \\')

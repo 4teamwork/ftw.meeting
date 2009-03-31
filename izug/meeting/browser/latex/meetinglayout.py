@@ -36,9 +36,9 @@ class MeetingLayout(object):
         self.view.registerPackage('textpos', 'absolute, overlay')
 
     def appendHeadCommands(self):
-        self.view.appendHeaderCommand(r'\newcommand{\Autor}{%s}' % r'XXX AUTOR XXX\\MEHRZEILIG')
+        self.view.appendHeaderCommand(r'\newcommand{\Autor}{%s}' % r'')
         self.view.appendHeaderCommand(r'\newcommand{\Titel}{%s}' % self.view.convert(self.context.pretty_title_or_id()))
-        self.view.appendHeaderCommand(r'\newcommand{\Adresse}{%s}' % r'Hier\\Die\\Adresse')
+        self.view.appendHeaderCommand(r'\newcommand{\Adresse}{%s}' % r'')
         head_commands = self.getResourceFileData('head_commands.tex')
         self.view.appendHeaderCommand(head_commands)
         # embed izug.bibliothek head commands
