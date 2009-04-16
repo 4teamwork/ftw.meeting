@@ -117,7 +117,7 @@
                             </metal:field>
 						</td>
 					</tr>
-                    <tr tal:condition="context/recording_secretary | nothing">
+                    <tr tal:condition="context/getAttendees | nothing">
                         <td class="table-label"><span i18n:translate="meeting_label_attendees">Attendees</span>:</td>
                         <td>
                             <ul class="AttendeesListing" tal:define="userids python:[u['contact'] for u in here.getAttendees()]">
