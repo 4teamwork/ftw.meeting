@@ -263,7 +263,7 @@ msgstr "Sitzung"
 #. Default: "Event type"
 #: izug/meeting/content/meeting.py
 msgid "meeting_label_type"
-msgstr "Termin Typ"
+msgstr "Termintyp"
 
 #. Default: "Choos event type"
 #: izug/meeting/content/meeting.py
