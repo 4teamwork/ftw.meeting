@@ -268,7 +268,7 @@ msgstr "Termintyp"
 #. Default: "Choos event type"
 #: izug/meeting/content/meeting.py
 msgid "meeting_help_type"
-msgstr "Wählen Sie einen Event Typ aus."
+msgstr "Wählen Sie einen Termintyp aus."
 
 #. Default: "Date"
 #: izug/meeting/browser/templates/meeting.pt
