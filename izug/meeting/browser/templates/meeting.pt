@@ -122,10 +122,13 @@
                         <td>
                             <ul class="AttendeesListing" tal:define="userids python:[u['contact'] for u in here.getAttendees()]">
                                 <li tal:repeat="userid userids">
-                                    <a tal:define="user python:context.acl_users.getUserById(userid)"
-                                       tal:attributes="href string:${here/portal_url}/author/${userid}"
-                                       tal:content="python:user.getProperty('fullname','')">
-                                    </a>
+                                    <tal:user tal:define="user python:context.acl_users.getUserById(userid)"
+                                            tal:condition="user">
+                                        <a tal:define="user python:context.acl_users.getUserById(userid)"
+                                           tal:attributes="href string:${here/portal_url}/author/${userid}"
+                                           tal:content="python:user.getProperty('fullname','')">
+                                        </a>
+                                    </tal:user>
                                 </li>
                             
                             </ul>
