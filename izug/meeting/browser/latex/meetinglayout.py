@@ -24,7 +24,6 @@ class MeetingLayout(object):
         self.view.addImage(uid='logo_sw', image=image)
 
     def registerPackages(self):
-        self.view.registerPackage('ucs')
         self.view.registerPackage('graphicx')
         self.view.registerPackage('helvet')
         self.view.registerPackage('wrapfig')
