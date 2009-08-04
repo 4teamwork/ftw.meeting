@@ -42,3 +42,7 @@ msgstr "Traktandum"
 msgid "Attachments"
 msgstr "Beilagen"
 
+#. Default: "Add new row"
+msgid "Add new row"
+msgstr "Neue Zeile hinzufügen"
+
