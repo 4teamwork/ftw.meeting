@@ -103,18 +103,20 @@
                     
 					<tr tal:condition="context/head_of_meeting | nothing">
 						<td class="table-label"><span i18n:translate="meeting_label_head_of_meeting">Head of Meeting</span>:</td>
-						<td>
-                            <metal:field use-macro="python:here.widget('head_of_meeting', mode='view')">
-                               Head of Meeting
-                            </metal:field>
+						<td tal:define="userids python:here.getHead_of_meeting()" tal:repeat="userid userids">
+                            <a tal:define="user python:context.acl_users.getUserById(userid)"
+                                tal:attributes="href string:${here/portal_url}/author/${userid}"
+                                tal:content="python:user.getProperty('fullname')">
+                            </a>    
 						</td>
 					</tr>
 					<tr tal:condition="context/recording_secretary | nothing">
 						<td class="table-label"><span i18n:translate="meeting_label_recording_secretary">Recording Secretary</span>:</td>
-						<td>
-                            <metal:field use-macro="python:here.widget('recording_secretary', mode='view')">
-                               Recording Secretary
-                            </metal:field>
+						<td tal:define="userids python:here.getRecording_secretary()" tal:repeat="userid userids">
+                            <a tal:define="user python:context.acl_users.getUserById(userid)"
+                                tal:attributes="href string:${here/portal_url}/author/${userid}"
+                                tal:content="python:user.getProperty('fullname')">
+                            </a>    
 						</td>
 					</tr>
                     <tr tal:condition="context/getAttendees | nothing">
