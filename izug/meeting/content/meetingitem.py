@@ -20,6 +20,8 @@ from izug.meeting import meetingMessageFactory as _
 from izug.meeting.interfaces import IMeetingItem
 from izug.meeting.config import PROJECTNAME
 
+from izug.utils.users import getAssignableUsers
+
 MeetingItemSchema = folder.ATFolderSchema.copy() + atapi.Schema((
 
      atapi.LinesField('responsibility',
@@ -114,25 +116,7 @@ class MeetingItem(folder.ATFolder):
     related_items = atapi.ATFieldProperty('related_items')
 
     def getAssignableUsers(self):
-        """Collect users with a given role and return them in a list.
-        """
-        role = 'Reader'
-        results = []
-        pas_tool = getToolByName(self, 'acl_users')
-        utils_tool = getToolByName(self, 'plone_utils')
-
-        for user_id_and_roles in utils_tool.getInheritedLocalRoles(self):
-            if user_id_and_roles[2] == 'user':
-                if role in user_id_and_roles[1]:
-                    user = pas_tool.getUserById(user_id_and_roles[0])
-                    if user:
-                        results.append((user.getId(), '%s (%s)' % (user.getProperty('fullname', ''), user.getId())))
-            if user_id_and_roles[2] == 'group':
-                if role in user_id_and_roles[1]:
-                    for user in pas_tool.getGroupById(user_id_and_roles[0]).getGroupMembers():
-                        results.append((user.getId(), '%s (%s)' % (user.getProperty('fullname', ''), user.getId())))
-                
-        return (atapi.DisplayList(results))
+        return getAssignableUsers(self,'Reader')
 
     def InfosForArchiv(self):
         return DateTime(self.CreationDate()).strftime('%m/01/%Y')

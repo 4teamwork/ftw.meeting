@@ -35,6 +35,8 @@ from izug.poodle.interfaces import IPoodle
 
 from Products.ATContentTypes.lib.calendarsupport import CalendarSupportMixin
 
+from izug.utils.users import getAssignableUsers
+
 MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
 
      atapi.StringField('meeting_type',
@@ -204,12 +206,9 @@ class Meeting(folder.ATFolder, Poodle, CalendarSupportMixin):
     def getAssignableUsers(self):
         """Collect users with a given role and return them in a list.
         """
-        a_util = queryUtility(IArbeitsraumUtils,name="arbeitsraum-utils")
-        if not a_util:
-            return (atapi.DisplayList())
         results = atapi.DisplayList()
         results.add('',_(u'Choose a person'))
-        return (results + atapi.DisplayList(a_util.getAssignableUsers(self,'Reader')))
+        return (results + atapi.DisplayList(getAssignableUsers(self,'Reader')))
         
 
     def InfosForArchiv(self):
