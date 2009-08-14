@@ -106,7 +106,7 @@
 						<td tal:define="userids python:here.getHead_of_meeting()" tal:repeat="userid userids">
                             <a tal:define="user python:context.acl_users.getUserById(userid)"
                                 tal:attributes="href string:${here/portal_url}/author/${userid}"
-                                tal:content="python:user.getProperty('fullname')">
+                                tal:content="python:user.getProperty('fullname', userid)">
                             </a>    
 						</td>
 					</tr>
@@ -115,7 +115,7 @@
 						<td tal:define="userids python:here.getRecording_secretary()" tal:repeat="userid userids">
                             <a tal:define="user python:context.acl_users.getUserById(userid)"
                                 tal:attributes="href string:${here/portal_url}/author/${userid}"
-                                tal:content="python:user.getProperty('fullname')">
+                                tal:content="python:user.getProperty('fullname', userid)">
                             </a>    
 						</td>
 					</tr>
@@ -211,7 +211,7 @@
                                                         <div tal:content="structure task/text">Text</div>
                                                     </td>
                                                     <td>
-                                                        <div tal:content="python:context.acl_users.getUserById(task.responsibility[0]).getProperty('fullname','')">Responsibility</div>
+                                                        <div tal:content="python:context.acl_users.getUserById(task.responsibility[0]).getProperty('fullname',task.responsibility[0])">Responsibility</div>
                                                     </td>
                                                     <td>&nbsp;</td>
                                                     <td tal:define="task_state task/review_state|python: wtool.getInfoFor(task, 'review_state', '');
