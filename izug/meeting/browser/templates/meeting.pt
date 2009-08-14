@@ -210,8 +210,9 @@
                                                         <a href="#" tal:attributes="href task/absolute_url" tal:content="task/title_or_id"></a>
                                                         <div tal:content="structure task/text">Text</div>
                                                     </td>
-                                                    <td tal:define="userid task.responsibility[0];
-                                                                    user context.acl_users.getUserById(userid)">
+                                                    <td tal:condition="task/responsibility"
+                                                        tal:define="userid python:task.responsibility[0];
+                                                                    user python:context.acl_users.getUserById(userid)">
                                                         <div tal:content="python:user and user.getProperty('fullname',userid) or userid">Responsibility</div>
                                                     </td>
                                                     <td>&nbsp;</td>
