@@ -106,7 +106,7 @@
 						<td tal:define="userids python:here.getHead_of_meeting()" tal:repeat="userid userids">
                             <a tal:define="user python:context.acl_users.getUserById(userid)"
                                 tal:attributes="href string:${here/portal_url}/author/${userid}"
-                                tal:content="python:user.getProperty('fullname', userid)">
+                                tal:content="python:user and user.getProperty('fullname', userid) or userid">
                             </a>    
 						</td>
 					</tr>
@@ -115,7 +115,7 @@
 						<td tal:define="userids python:here.getRecording_secretary()" tal:repeat="userid userids">
                             <a tal:define="user python:context.acl_users.getUserById(userid)"
                                 tal:attributes="href string:${here/portal_url}/author/${userid}"
-                                tal:content="python:user.getProperty('fullname', userid)">
+                                tal:content="python:user and user.getProperty('fullname', userid) or userid">
                             </a>    
 						</td>
 					</tr>
@@ -128,7 +128,7 @@
                                         <tal:user_existing tal:condition="user">
                                             <a tal:define="user python:context.acl_users.getUserById(userid)"
                                                tal:attributes="href string:${here/portal_url}/author/${userid}"
-                                               tal:content="python:user.getProperty('fullname',userid)">
+                                               tal:content="python:user and user.getProperty('fullname',userid) or userid">
                                             </a>
                                         </tal:user_existing>
                                         <tal:user_missing tal:condition="not:user">
@@ -210,8 +210,9 @@
                                                         <a href="#" tal:attributes="href task/absolute_url" tal:content="task/title_or_id"></a>
                                                         <div tal:content="structure task/text">Text</div>
                                                     </td>
-                                                    <td>
-                                                        <div tal:content="python:context.acl_users.getUserById(task.responsibility[0]).getProperty('fullname',task.responsibility[0])">Responsibility</div>
+                                                    <td tal:define="userid task.responsibility[0];
+                                                                    user context.acl_users.getUserById(userid)">
+                                                        <div tal:content="python:user and user.getProperty('fullname',userid) or userid">Responsibility</div>
                                                     </td>
                                                     <td>&nbsp;</td>
                                                     <td tal:define="task_state task/review_state|python: wtool.getInfoFor(task, 'review_state', '');
