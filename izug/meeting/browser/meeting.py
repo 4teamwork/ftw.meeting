@@ -51,7 +51,8 @@ class MeetingLatexConverter(LatexCTConverter):
         column_definition = widget.getColumnDefinition(field, column_id)
         vocab = column_definition.getVocabulary(context)
         cell_value = row.get(column_id)
-        return widget.getUserFriendlySelectionItem(context, cell_value, vocab)                                              
+        value = vocab.getValue(cell_value)
+        return value and value or cell_value
     
     def __call__(self, context, view):
         self.view = view

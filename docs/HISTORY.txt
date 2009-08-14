@@ -4,6 +4,8 @@ Changelog
 0.2
 ---
 * [10.08.2009] Issue #583 auf Funktion in izug.utils verwiesen [jin]
+* [14.08.2009] Issue #597 iZug: PDF-Export Meeting defekt [jba]
+  * Gelöschte User lösen keine Fehler mehr aus
 
 0.1
 ---
