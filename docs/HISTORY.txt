@@ -1,6 +1,10 @@
 Changelog
 =========
 
+
+0.3
+---
+
 0.2
 ---
 * [10.08.2009] Issue #583 auf Funktion in izug.utils verwiesen [jin]
