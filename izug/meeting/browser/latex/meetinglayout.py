@@ -33,6 +33,7 @@ class MeetingLayout(object):
         self.view.registerPackage('fancyhdr')
         self.view.registerPackage('paralist', 'neveradjust')
         self.view.registerPackage('textpos', 'absolute, overlay')
+        self.view.registerPackage('ifthen')
 
     def appendHeadCommands(self):
         self.view.appendHeaderCommand(r'\newcommand{\Autor}{%s}' % r'')

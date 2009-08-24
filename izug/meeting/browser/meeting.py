@@ -60,10 +60,10 @@ class MeetingLatexConverter(LatexCTConverter):
         w = lambda *lines:[latex.append(line) for line in lines]
         plone_view = getMultiAdapter((self.context, self.request), name=u'plone')
         latex_date = self.view.convert(plone_view.toLocalizedTime(context.start_date, long_format=False))
-        try:
-            latex_time = self.view.convert(context.start_date.strftime('%H:%M'))
-        except:
-            latex_time = self.view.convert('HH:ii')
+        duration = '%s - %s' % (
+                context.start_date.strftime('%H:%M'),
+                context.end_date.strftime('%H:%M'),
+        )
         latex_title = self.view.convert(context.pretty_title_or_id())
         #w(r'T direkt 041 XXX\\')
         #w(r'E-Mail Adresse\\')
@@ -74,15 +74,14 @@ class MeetingLatexConverter(LatexCTConverter):
         w(r'{\bf %s} \\' % latex_title)
         w(r'\vspace{\baselineskip}')
         w(r'Datum: %s \\' % latex_date)
-        w(r'Zeit: %s \\' % latex_time)
+        w(r'Dauer: %s \\' % self.view.convert(duration))
         w(r'Ort: %s \\' % self.view.convert(context.location))
         w(r'Sitzungsleitung: %s \\' % self.view.convert(self.getDisplayListValue(context, 'head_of_meeting')))
-        w(r'%s \\' % self.view.convert('Protokollf&uuml;hrung: %s' % self.getDisplayListValue(context, 'recording_secretary')))
+        w(r'%s \\' % self.view.convert('Protokollf&uuml;hrung: %s' % self.getDisplayListValue(context, 'recording_secretary')))
         w()
         w(r'\vspace{\baselineskip}')
-        w(r'{\bf Teilnehmende} \\')
+        w(r'{\bf Teilnehmende} \\')
         # attendees
-        w(r'\begin{attendeeList}')
         for row in self.context.attendees:
             w(r'%s\\' % (
                 self.view.convert(self.getDisplayListValueFromDataGridField(context, 'attendees', row, 'contact')),

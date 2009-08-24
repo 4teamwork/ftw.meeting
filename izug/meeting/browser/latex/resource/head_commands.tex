@@ -2,6 +2,9 @@
 % HEAD COMMANDS
 % --------------------------------------------------------
 
+\newboolean{logo}
+\setboolean{logo}{true}
+
 % General layout definitons (fonts, ...)
 \renewcommand{\familydefault}{\sfdefault}
 
@@ -14,20 +17,29 @@
 \setcounter{meetingCounter}{0}
 \newcommand{\meeting}[4]{
     \addtocounter{meetingCounter}{1}
-    \paragraph{\arabic{meetingCounter}. #1}
-    #2
+    {\bf \arabic{meetingCounter}. #1}\\
+    \vspace{0.5\baselineskip}
+    \hspace{2.9mm}
+    \begin{minipage}{160mm}
+        #2
+    \end{minipage}
     \def\third{#3}%
     \def\nothing{}%
     \ifx\third\nothing
-        \newline
     \else
-        \\{\bf Ergebnis:}
-        #3\newline
+        \par
+        \hspace{2.9mm}
+        \begin{minipage}{160mm}
+            {\bf Ergebnis:}\\
+            #3
+        \end{minipage}
     \fi
-    \begin{tabular}{p{.99\textwidth}}
-        \raggedleft
-        {\small\em #4}
-    \end{tabular}
+    \par
+    \hspace{2.9mm}
+    \begin{minipage}{160mm}
+        {\bf Verantwortlich:}\\
+        #4
+    \end{minipage}
 }
 
 % --------------------------------------------------------

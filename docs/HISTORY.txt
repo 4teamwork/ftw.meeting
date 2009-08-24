@@ -5,6 +5,9 @@ Changelog
 0.3
 ---
 
+* [24.08.2009] Issue #613 Arbeitsraum - Sitzungsprotokoll Layout PDF anpassen [jba]
+
+
 0.2
 ---
 * [10.08.2009] Issue #583 auf Funktion in izug.utils verwiesen [jin]
