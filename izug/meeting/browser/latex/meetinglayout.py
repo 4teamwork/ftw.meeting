@@ -37,7 +37,7 @@ class MeetingLayout(object):
 
     def appendHeadCommands(self):
         self.view.appendHeaderCommand(r'\newcommand{\Autor}{%s}' % r'')
-        self.view.appendHeaderCommand(r'\newcommand{\Titel}{%s}' % self.view.convert(self.context.pretty_title_or_id()))
+        self.view.appendHeaderCommand(r'\newcommand{\Titel}{%s}' % self.context.pretty_title_or_id())
         self.view.appendHeaderCommand(r'\newcommand{\Adresse}{%s}' % r'')
         head_commands = self.getResourceFileData('head_commands.tex')
         self.view.appendHeaderCommand(head_commands)
