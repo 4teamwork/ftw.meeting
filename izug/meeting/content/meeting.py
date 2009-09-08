@@ -14,13 +14,14 @@ from Products.AddRemoveWidget import AddRemoveWidget
 from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import ReferenceBrowserWidget
 from DateTime import DateTime
 
+
 from DateTime.DateTime import DateTime
 from Products.DataGridField import DataGridField, DataGridWidget
 from Products.DataGridField.Column import Column
 from Products.DataGridField.CheckboxColumn import CheckboxColumn
 from Products.DataGridField.SelectColumn import SelectColumn
 from Products.ATContentTypes.lib.calendarsupport import CalendarSupportMixin
-
+from Products.CMFCore import permissions
 from izug.arbeitsraum.content.utilities import finalizeIzugSchema
 
 from izug.meeting import meetingMessageFactory as _
@@ -166,6 +167,8 @@ MeetingSchema['location'].schemata = 'default'
 MeetingSchema['location'].widget = atapi.StringWidget(label = _(u"meeting_label_location", default=u"Location"),
                                                   description = _(u"meeting_help_location", default=u"Enter the location where the meeting will take place."),
                                                   )
+                                                  
+MeetingSchema['location'].write_permission = permissions.ModifyPortalContent
 
 
 #instead of...
