@@ -5,6 +5,8 @@ Changelog
 0.4
 ---
 
+* [08.09.2009] Issue #625: Arbeitsraum - Termin / Sitzung / Umfrage Ort fehlt [pgr]
+
 
 0.3
 ---
