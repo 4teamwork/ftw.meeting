@@ -24,6 +24,7 @@
         #2
     \end{minipage}
     \def\third{#3}%
+    \def\fourth{#4}%
     \def\nothing{}%
     \ifx\third\nothing
     \else
@@ -34,12 +35,15 @@
             #3
         \end{minipage}
     \fi
-    \par
-    \hspace{2.9mm}
-    \begin{minipage}{160mm}
-        {\bf Verantwortlich:}\\
-        #4
-    \end{minipage}
+    \ifx\fourth\nothing
+    \else
+        \par
+        \hspace{2.9mm}
+        \begin{minipage}{160mm}
+            {\bf Verantwortlich:}\\
+            #4
+        \end{minipage}
+    \fi
 }
 
 % --------------------------------------------------------
