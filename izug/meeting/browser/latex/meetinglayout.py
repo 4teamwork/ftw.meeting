@@ -36,14 +36,19 @@ class MeetingLayout(object):
         self.view.registerPackage('ifthen')
 
     def appendHeadCommands(self):
+        member = self.getOwnerMember()
         self.view.appendHeaderCommand(r'\newcommand{\Autor}{%s}' % r'')
         self.view.appendHeaderCommand(r'\newcommand{\Titel}{%s}' % self.context.pretty_title_or_id())
-        self.view.appendHeaderCommand(r'\newcommand{\Adresse}{%s}' % r'')
-        head_commands = self.getResourceFileData('head_commands.tex')
-        self.view.appendHeaderCommand(head_commands)
+        self.view.appendHeaderCommand(r'\newcommand{\CreatorDirektion}{%s}' %
+                        self.view.convert(member.getProperty('direktion', '')))
+        self.view.appendHeaderCommand(r'\newcommand{\CreatorAmt}{%s}' %
+                        self.view.convert(member.getProperty('amt', '')))
         # embed izug.bibliothek head commands
         head_commands = self.getResourceFileData('head_commands.tex',
                 resource='izug.bibliothek.latex.resource')
+        self.view.appendHeaderCommand(head_commands)
+        # and embed local head_commands.tex (overwrites the bibliothek-one partially)
+        head_commands = self.getResourceFileData('head_commands.tex')
         self.view.appendHeaderCommand(head_commands)
 
     def appendAboveBodyCommands(self):
@@ -52,4 +57,7 @@ class MeetingLayout(object):
     def appendBeneathBodyCommands(self):
         pass
         #self.view.appendToProperty('latex_beneath_body', r'')
-        
+
+    def getOwnerMember(self):
+        creator_id = self.context.Creator()
+        return self.context.portal_membership.getMemberById(creator_id)

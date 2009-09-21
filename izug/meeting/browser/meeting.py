@@ -53,17 +53,26 @@ class MeetingLatexConverter(LatexCTConverter):
         cell_value = row.get(column_id)
         value = vocab.getValue(cell_value)
         return value and value or cell_value
-    
+
+    def getOwnerMember(self):
+        creator_id = self.context.Creator()
+        return self.context.portal_membership.getMemberById(creator_id)
+
     def __call__(self, context, view):
         self.view = view
+        member = self.getOwnerMember()
         latex = []
         w = lambda *lines:[latex.append(line) for line in lines]
         plone_view = getMultiAdapter((self.context, self.request), name=u'plone')
         latex_date = self.view.convert(plone_view.toLocalizedTime(context.start_date, long_format=False))
         latex_title = self.view.convert(context.pretty_title_or_id())
-        #w(r'T direkt 041 XXX\\')
-        #w(r'E-Mail Adresse\\')
+        w(r'{')
+        w(r'\fontsize{8}{9} \selectfont')
+        w(r'T direkt %s \\' % member.getProperty('phone_number', ''))
+        # Mail des Erstellers
+        w(r'%s \\' % member.getProperty('email', ''))
         w(r'Zug, \today\\')
+        w(r'}')
         w()
         w(r'\vspace{3\baselineskip}')
         w(r'{\bf Protokoll} \\')

@@ -7,6 +7,8 @@
 
 % General layout definitons (fonts, ...)
 \renewcommand{\familydefault}{\sfdefault}
+% Zeilenabstand um 35% vergrössert
+\linespread{1.35}
 
 \titlespacing{\section}{0pt}{-8mm}{*0}
 \titlespacing{\subsection}{0pt}{*0}{*0}
@@ -44,6 +46,23 @@
             #4
         \end{minipage}
     \fi
+    \par
+}
+
+% OVERWRITE
+% pagestyle "myheadings" contains zug logo
+\fancypagestyle{myheadings}{
+    \fancyhf{}
+    \iflogo
+        \begin{textblock}{100mm\TPHorizModule}(5mm\TPHorizModule, 0mm\TPVertModule)
+            \includegraphics{logo_sw}
+        \end{textblock}
+    \fi
+    \begin{textblock}{100mm\TPHorizModule}(136mm\TPHorizModule, 10mm\TPVertModule)
+        \fontsize{8}{9}\selectfont
+         \CreatorDirektion \\
+         \CreatorAmt
+    \end{textblock}
 }
 
 % --------------------------------------------------------
