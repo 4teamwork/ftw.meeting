@@ -5,7 +5,7 @@
   <property name="title" i18n:translate="">Meeting Item</property>
   <property name="description"
     i18n:translate="">A type for meeting items.</property>
-  <property name="content_meta_type">Meeting Item</property>
+  <property name="content_meta_type">MeetingItem</property>
   <property name="content_icon">document_icon.gif</property>
   <property name="product">izug.meeting</property>
   <property name="factory">addMeetingItem</property>
