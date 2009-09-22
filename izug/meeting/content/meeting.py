@@ -236,5 +236,13 @@ class Meeting(folder.ATFolder, Poodle, CalendarSupportMixin):
     def event_url(self):
         return self.absolute_url()
 
+    @property
+    def sortAttribute(self):
+        return 'getObjPositionInParent'
+        
+    @property
+    def sortOrder(self):
+        return 'ascending'
+
 
 atapi.registerType(Meeting, PROJECTNAME)
