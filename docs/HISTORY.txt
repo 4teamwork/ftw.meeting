@@ -11,6 +11,8 @@ Changelog
   * Neue Informationen im Sitzungsprotokoll: Abteilung, Direktion, Tel. & E-Mail des Erstellers
   * Zeilenabstand erhöht
   * Abstand nach Aufzählung korrigiert
+* [22.09.2009] Issue #595: Arbeitsraum - PDF Layout Protokoll [jba]
+  * Schrift wieder auf Arial geändert
 
 
 0.3
