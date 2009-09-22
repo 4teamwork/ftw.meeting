@@ -13,6 +13,7 @@ Changelog
   * Abstand nach Aufzählung korrigiert
 * [22.09.2009] Issue #595: Arbeitsraum - PDF Layout Protokoll [jba]
   * Schrift wieder auf Arial geändert
+  * Problem mit gelöschtem Ersteller behoben
 
 
 0.3

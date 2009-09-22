@@ -68,9 +68,9 @@ class MeetingLatexConverter(LatexCTConverter):
         latex_title = self.view.convert(context.pretty_title_or_id())
         w(r'{')
         w(r'\fontsize{8}{9} \selectfont')
-        w(r'T direkt %s \\' % member.getProperty('phone_number', ''))
+        w(member and r'T direkt %s \\' % member.getProperty('phone_number', '') or '')
         # Mail des Erstellers
-        w(r'%s \\' % member.getProperty('email', ''))
+        w(member and r'%s \\' % member.getProperty('email', '') or '')
         w(r'Zug, \today\\')
         w(r'}')
         w()

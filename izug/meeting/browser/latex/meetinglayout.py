@@ -40,9 +40,9 @@ class MeetingLayout(object):
         self.view.appendHeaderCommand(r'\newcommand{\Autor}{%s}' % r'')
         self.view.appendHeaderCommand(r'\newcommand{\Titel}{%s}' % self.context.pretty_title_or_id())
         self.view.appendHeaderCommand(r'\newcommand{\CreatorDirektion}{%s}' %
-                        self.view.convert(member.getProperty('direktion', '')))
+                        self.view.convert(member and member.getProperty('direktion', '-') or '-'))
         self.view.appendHeaderCommand(r'\newcommand{\CreatorAmt}{%s}' %
-                        self.view.convert(member.getProperty('amt', '')))
+                        self.view.convert(member and member.getProperty('amt', '-') or '-'))
         # embed izug.bibliothek head commands
         head_commands = self.getResourceFileData('head_commands.tex',
                 resource='izug.bibliothek.latex.resource')
