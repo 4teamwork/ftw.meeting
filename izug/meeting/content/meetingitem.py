@@ -104,6 +104,7 @@ class MeetingItem(folder.ATFolder):
     implements(IMeetingItem)
 
     portal_type = "Meeting Item"
+
     schema = MeetingItemSchema
 
     title = atapi.ATFieldProperty('title')
