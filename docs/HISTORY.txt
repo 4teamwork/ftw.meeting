@@ -2,6 +2,10 @@ Changelog
 =========
 
 
+0.6
+---
+
+
 0.5
 ---
 * [22.09.2009] Issue #616: Unter Inhalte kann die Reihenfolge angepasst werden [mle]
