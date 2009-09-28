@@ -9,6 +9,14 @@ from plone.memoize import ram
 def _get_contents_key(method, self):
     return [b.modified for b in self.context.getFolderContents()]
 
+class MeetingUpdate(BrowserView):
+    def __call__(self):
+        meetings = map(lambda x: x.getObject(), self.context.portal_catalog(Type='Meeting'))
+        for meeting in meetings:
+            poodledata = meeting.getPoodleData()
+            if not poodledata.has_key('ids'):
+                meeting.updatePoodleData()
+
 class MeetingView(BrowserView):
 
     @ram.cache(_get_contents_key)
@@ -58,7 +66,7 @@ class MeetingLatexConverter(LatexCTConverter):
         creator_id = self.context.Creator()
         return self.context.portal_membership.getMemberById(creator_id)
 
-    def __call__(self, context, view):
+    def __call____(self, context, view):
         self.view = view
         member = self.getOwnerMember()
         latex = []

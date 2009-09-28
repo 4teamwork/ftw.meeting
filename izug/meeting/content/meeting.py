@@ -228,7 +228,7 @@ class Meeting(folder.ATFolder, Poodle, CalendarSupportMixin):
     def getEventType(self):
         return False
     def contact_name(self):
-        return self.getHead_of_meeting()
+        return ','.join(self.getHead_of_meeting())
     def contact_phone(self):
         return ""
     def contact_email(self):

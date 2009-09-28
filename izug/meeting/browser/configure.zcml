@@ -22,6 +22,13 @@
         />
 
     <browser:view
+        for="*"
+        name="update_meeting"
+        permission="zope2.View"
+        class=".meeting.MeetingUpdate"
+        />
+
+    <browser:view
         for="..interfaces.IMeetingItem"
         name="pdflatex_convert_object"
         class=".meetingitem.MeetingItemLatexConverter"
