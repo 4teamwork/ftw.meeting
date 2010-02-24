@@ -66,7 +66,7 @@ class MeetingLatexConverter(LatexCTConverter):
         creator_id = self.context.Creator()
         return self.context.portal_membership.getMemberById(creator_id)
 
-    def __call____(self, context, view):
+    def __call__(self, context, view):
         self.view = view
         member = self.getOwnerMember()
         latex = []

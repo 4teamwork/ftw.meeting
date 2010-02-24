@@ -5,6 +5,10 @@ Changelog
 0.6
 ---
 
+* Issue #833 Sitzung: PDF-Export funktioniert nicht
+  https://extranet.4teamwork.ch/support/zug/maintlog/833
+  [24.02.2010, jbaumann]
+  
 * Issue #655 - Arbeitsraum - Terminexport Fehler bei iCal
   [25.09.2009, vba]
 
