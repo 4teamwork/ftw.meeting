@@ -53,6 +53,9 @@ class MeetingLayout(object):
 
     def appendAboveBodyCommands(self):
         self.view.appendToProperty('latex_above_body', r'\thispagestyle{myheadings}')
+        above_body_commands = self.getResourceFileData('above_body_commands.tex',
+                                                       resource='izug.bibliothek.latex.resource')
+        self.view.appendToProperty('latex_above_body', above_body_commands)
 
     def appendBeneathBodyCommands(self):
         pass
