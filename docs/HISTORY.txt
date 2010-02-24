@@ -4,8 +4,12 @@ Changelog
 
 0.6
 ---
-* [25.09.2009] Issue #655 - Arbeitsraum - Terminexport Fehler bei iCal [vba]
-* [24.09.2009] Issue #661 — Arbeitsraum - Terminumfrage fehlerhaft bei gleichem Datum [vba]
+
+* Issue #655 - Arbeitsraum - Terminexport Fehler bei iCal
+  [25.09.2009, vba]
+
+* Issue #661 — Arbeitsraum - Terminumfrage fehlerhaft bei gleichem Datum
+  [24.09.2009, vba]
 
 
 0.5
