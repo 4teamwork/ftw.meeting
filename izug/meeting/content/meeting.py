@@ -217,6 +217,15 @@ class Meeting(folder.ATFolder, Poodle, CalendarSupportMixin):
     def InfosForArchiv(self):
         return DateTime(self.CreationDate()).strftime('%m/01/%Y')
 
+    def getAttendeesOrUsers(self):
+        if self.getMeeting_type() == 'poodle_additional':
+            return self.getUsers()
+        elif self.getMeeting_type() == 'meeting_dates_additional':
+            return [a.get('contact', '') for a in self.getAttendees()]
+        else:
+            return
+
+
     def getMeetingTypes(self):
         return atapi.DisplayList((
                                  ('dates_additional',_(u'meeting_type_event')),

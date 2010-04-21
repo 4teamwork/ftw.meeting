@@ -5,6 +5,11 @@ Changelog
 0.7
 ---
 
+* Issue #792 Arbeitsraum - Benachrichtung bei Ablauf von Terminen und Aufgaben
+  https://extranet.4teamwork.ch/support/zug/maintlog/792/
+  added new index getAttendeesOrUsers
+  [21.04.2010, phgross]
+
 * Issue #667 Arbeitsraum - Protokoll Bezeichnung Organisation
   https://extranet.4teamwork.ch/support/zug/maintlog/667/
   [21.04.2010, jbaumann]

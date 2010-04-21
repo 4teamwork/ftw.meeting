@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<import-steps>
+  <import-step id="izug.meeting.catalog"
+               version="20100421-01"
+               handler="izug.meeting.setuphandlers.add_indexes"
+               title="iZug Meeting: index import ">
+    Various import steps that are not handled by GS import/export
+    handlers.
+  </import-step>
+</import-steps>
