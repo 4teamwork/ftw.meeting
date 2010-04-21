@@ -14,6 +14,10 @@ Changelog
   https://extranet.4teamwork.ch/support/zug/maintlog/667/
   [21.04.2010, jbaumann]
 
+UPGRADE STEPS:
+
+* portal_catalog: update new index/metadata getAttendeesOrUsers
+
 
 0.6
 ---
