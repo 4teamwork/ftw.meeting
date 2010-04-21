@@ -38,6 +38,21 @@ MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
                                                      format='radio',
                                                      ),
                       ),
+     DataGridField('responsibility',
+                   searchable = False,
+                   schemata = 'default',
+                   columns = ('contact', ),
+                   allow_empty_rows = False,
+                   storage = atapi.AnnotationStorage(),
+                   widget = DataGridWidget(label = _(u"meeting_label_responsibility", default=u"responsibility"),
+                                           description = _(u"meeting_help_responsibility", default=u"Enter the responsible of the meeting."),
+                                           auto_insert = True,
+                                           columns = {'contact': SelectColumn(title = _(u"meeting_label_responsibility", default="Enter the responsible of the meeting."),
+                                                                               vocabulary = 'getAssignableUsers'
+                                                                               ),
+                                                      }
+                                           )
+                   ),
 
     atapi.DateTimeField('start_date',
                         searchable = True,
@@ -59,21 +74,6 @@ MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
                                                       description = _(u"meeting_help_end_date", default=u"Enter the ending date and time, or click the calendar icon and select it."),
                                                       ),
                         ),
-    DataGridField('responsibility',
-                  searchable = False,
-                  schemata = 'meeting',
-                  columns = ('contact', ),
-                  allow_empty_rows = False,
-                  storage = atapi.AnnotationStorage(),
-                  widget = DataGridWidget(label = _(u"meeting_label_responsibility", default=u"responsibility"),
-                                          description = _(u"meeting_help_responsibility", default=u"Enter the responsible of the meeting."),
-                                          auto_insert = True,
-                                          columns = {'contact': SelectColumn(title = _(u"meeting_label_responsibility", default="Enter the responsible of the meeting."),
-                                                                              vocabulary = 'getAssignableUsers'
-                                                                              ),
-                                                     }
-                                          )
-                  ),
 
      atapi.LinesField('head_of_meeting',
                       required = False,
