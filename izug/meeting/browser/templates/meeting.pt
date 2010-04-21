@@ -12,7 +12,7 @@
 				<metal:block metal:use-macro="here/@@custom_header/macros/header | here/base/macros/header" />
 
 				<div tal:replace="structure provider:plone.abovecontentbody" />
-
+                
 				<table class="MeetingListing">
 					<tr tal:condition="context/location | nothing">
 						<td class="table-label"><span i18n:translate="meeting_label_location">Location</span></td>
@@ -101,6 +101,21 @@
                         </td>
                     </tr>
                     
+                    <tr tal:condition="context/getResponsibility | nothing">
+                        <td class="table-label"><span i18n:translate="meeting_label_responsibility">Responsibility</span>:</td>
+                        <td>
+                            <ul class="AttendeesListing" tal:define="userids python:[u['contact'] for u in here.getResponsibility()]">
+                                <li tal:repeat="userid python:context.getResponsibilityInfos(userids)">
+                                    <tal:exists condition="python:len(userid['url'])>0">
+                                        <a tal:attributes="href python:userid['url']" tal:content="python:userid['name']" />
+                                    </tal:exists>
+                                    <span tal:condition="python:len(userid['url'])==0" tal:content="python:userid['name']" />
+                                </li>
+                            
+                            </ul>
+                        
+                        </td>
+                    </tr>                    
 					<tr tal:condition="context/head_of_meeting | nothing">
 						<td class="table-label"><span i18n:translate="meeting_label_head_of_meeting">Head of Meeting</span>:</td>
 						<td tal:define="userids python:here.getHead_of_meeting()" tal:repeat="userid userids">

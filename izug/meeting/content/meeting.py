@@ -1,42 +1,27 @@
 """Definition of the Meeting content type
 """
 
-from zope.interface import implements, directlyProvides
-from Acquisition import aq_inner, aq_parent
+from DateTime import DateTime
 
-from Products.CMFCore.utils import getToolByName
+from izug.arbeitsraum.content.utilities import finalizeIzugSchema
+from izug.meeting import meetingMessageFactory as _
+from izug.meeting.config import PROJECTNAME
+from izug.meeting.interfaces import IMeeting
+from izug.poodle.content.poodle import Poodle, PoodleSchema
+from izug.poodle.interfaces import IPoodle
+from izug.utils.users import getAssignableUsers
+from izug.utils.users import getResponsibilityInfosFor
 
 from Products.Archetypes import atapi
 from Products.ATContentTypes.content import folder
-from Products.ATContentTypes.content import schemata
-
-from Products.AddRemoveWidget import AddRemoveWidget
+from Products.ATContentTypes.lib.calendarsupport import CalendarSupportMixin
 from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import ReferenceBrowserWidget
-from DateTime import DateTime
-
-
-from DateTime.DateTime import DateTime
-from Products.DataGridField import DataGridField, DataGridWidget
-from Products.DataGridField.Column import Column
-from Products.DataGridField.CheckboxColumn import CheckboxColumn
-from Products.DataGridField.SelectColumn import SelectColumn
-from Products.ATContentTypes.lib.calendarsupport import CalendarSupportMixin
 from Products.CMFCore import permissions
-from izug.arbeitsraum.content.utilities import finalizeIzugSchema
+from Products.DataGridField import DataGridField, DataGridWidget
+from Products.DataGridField.SelectColumn import SelectColumn
 
-from izug.meeting import meetingMessageFactory as _
-from izug.meeting.interfaces import IMeeting
-from izug.meeting.config import PROJECTNAME
+from zope.interface import implements
 
-from zope.component import getMultiAdapter, queryMultiAdapter, queryUtility
-from izug.arbeitsraum.interfaces import IArbeitsraumUtils
-
-from izug.poodle.content.poodle import Poodle,PoodleSchema
-from izug.poodle.interfaces import IPoodle
-
-from Products.ATContentTypes.lib.calendarsupport import CalendarSupportMixin
-
-from izug.utils.users import getAssignableUsers
 
 MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
 
@@ -49,7 +34,7 @@ MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
                       storage = atapi.AnnotationStorage(),
                       widget = atapi.SelectionWidget(label = _(u"meeting_label_type", default=u"Event type"),
                                                      description = _(u"meeting_help_type", default=u"Choose your event type."),
-                                                     helper_js = ['meeting_toggle_date.js',],
+                                                     helper_js = ['meeting_toggle_date.js', ],
                                                      format='radio',
                                                      ),
                       ),
@@ -74,13 +59,27 @@ MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
                                                       description = _(u"meeting_help_end_date", default=u"Enter the ending date and time, or click the calendar icon and select it."),
                                                       ),
                         ),
-                      
+    DataGridField('responsibility',
+                  searchable = False,
+                  schemata = 'meeting',
+                  columns = ('contact', ),
+                  allow_empty_rows = False,
+                  storage = atapi.AnnotationStorage(),
+                  widget = DataGridWidget(label = _(u"meeting_label_responsibility", default=u"responsibility"),
+                                          description = _(u"meeting_help_responsibility", default=u"Enter the responsible of the meeting."),
+                                          auto_insert = True,
+                                          columns = {'contact': SelectColumn(title = _(u"meeting_label_responsibility", default="Enter the responsible of the meeting."),
+                                                                              vocabulary = 'getAssignableUsers'
+                                                                              ),
+                                                     }
+                                          )
+                  ),
 
      atapi.LinesField('head_of_meeting',
                       required = False,
                       searchable = True,
                       schemata = 'meeting',
-                      index = 'KeywordIndex:schema',               
+                      index = 'KeywordIndex:schema',
                       vocabulary = 'getAssignableUsers',
                       storage = atapi.AnnotationStorage(),
                       widget = atapi.SelectionWidget(label = _(u"meeting_label_head_of_meeting", default=u"Head of Meeting"),
@@ -92,24 +91,24 @@ MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
                       required = False,
                       searchable = True,
                       schemata = 'meeting',
-                      index = 'KeywordIndex:schema',               
+                      index = 'KeywordIndex:schema',
                       vocabulary = 'getAssignableUsers',
                       storage = atapi.AnnotationStorage(),
                       widget = atapi.SelectionWidget(label = _(u"meeting_label_recording_secretary", default=u"Recording Secretary"),
                                                      description = _(u"meeting_help_recording_secretary", default=u"Select the recording secretary."),
                                                      ),
                       ),
-                                          
+
     DataGridField('attendees',
                   searchable = True,
                   schemata = 'meeting',
-                  columns = ('contact',),
+                  columns = ('contact', ),
                   allow_empty_rows = False,
                   storage = atapi.AnnotationStorage(),
                   widget = DataGridWidget(label = _(u"meeting_label_attendees", default=u"Attendees"),
                                           description = _(u"meeting_help_attendees", default=u"Enter the attendees of the meeting."),
                                           auto_insert = True,
-                                          columns = {'contact' : SelectColumn(title = _(u"meeting_label_attendees_attendee", default=u"Attendee"),
+                                          columns = {'contact': SelectColumn(title = _(u"meeting_label_attendees_attendee", default=u"Attendee"),
                                                                               vocabulary = 'getAssignableUsers'
                                                                               ),
                                                      }
@@ -124,7 +123,7 @@ MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
                          languageIndependent = False,
                          index = 'KeywordIndex',
                          accessor = 'relatedItems',
-                         allowed_types = ('File','Document','Meeting','Task'),
+                         allowed_types = ('File', 'Document', 'Meeting', 'Task'),
                          storage = atapi.AnnotationStorage(),
                          widget = ReferenceBrowserWidget(
                                                          allow_search = True,
@@ -133,7 +132,7 @@ MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
                                                          force_close_on_insert = False,
                                                          label = _(u"meeting_label_related_items", default=u"Related Items"),
                                                          description = _(u"meeting_help_related_items", default=u""),
-                                                         visible = {'edit' : 'visible', 'view' : 'invisible' }
+                                                         visible = {'edit': 'visible', 'view': 'invisible' }
                                                          ),
                          ),
 
@@ -147,9 +146,9 @@ MeetingSchema['description'].storage = atapi.AnnotationStorage()
 MeetingSchema['description'].required = True
 
 #Poodle "real" integration
-MeetingSchema.changeSchemataForField('users','poodle')
+MeetingSchema.changeSchemataForField('users', 'poodle')
 MeetingSchema['users'].required = False
-MeetingSchema.changeSchemataForField('dates','poodle')
+MeetingSchema.changeSchemataForField('dates', 'poodle')
 
 
 finalizeIzugSchema(MeetingSchema, folderish=True, moveDiscussion=False)
@@ -157,7 +156,7 @@ finalizeIzugSchema(MeetingSchema, folderish=True, moveDiscussion=False)
 MeetingSchema.changeSchemataForField('effectiveDate', 'settings')
 MeetingSchema.changeSchemataForField('expirationDate', 'settings')
 
-#we do this after finalizeIzugSchema, oherwise the location field will 
+#we do this after finalizeIzugSchema, oherwise the location field will
 #be invisible
 #use plone default location field
 MeetingSchema.moveField('location', after='description')
@@ -167,7 +166,7 @@ MeetingSchema['location'].schemata = 'default'
 MeetingSchema['location'].widget = atapi.StringWidget(label = _(u"meeting_label_location", default=u"Location"),
                                                   description = _(u"meeting_help_location", default=u"Enter the location where the meeting will take place."),
                                                   )
-                                                  
+
 MeetingSchema['location'].write_permission = permissions.ModifyPortalContent
 
 
@@ -183,10 +182,11 @@ MeetingSchema['location'].write_permission = permissions.ModifyPortalContent
 """
 
 
-MeetingSchema.changeSchemataForField('effectiveDate','settings')
-MeetingSchema.changeSchemataForField('expirationDate','settings')
-MeetingSchema['effectiveDate'].widget.visible = {'view' : 'invisible', 'edit' : 'invisible'}
-MeetingSchema['expirationDate'].widget.visible = {'view' : 'invisible', 'edit' : 'invisible'}
+MeetingSchema.changeSchemataForField('effectiveDate', 'settings')
+MeetingSchema.changeSchemataForField('expirationDate', 'settings')
+MeetingSchema['effectiveDate'].widget.visible = {'view': 'invisible', 'edit': 'invisible'}
+MeetingSchema['expirationDate'].widget.visible = {'view': 'invisible', 'edit': 'invisible'}
+
 
 class Meeting(folder.ATFolder, Poodle, CalendarSupportMixin):
     """A type for meetings."""
@@ -203,16 +203,27 @@ class Meeting(folder.ATFolder, Poodle, CalendarSupportMixin):
     end_date = atapi.ATFieldProperty('end_date')
     head_of_meeting = atapi.ATFieldProperty('head_of_meeting')
     recording_secretary = atapi.ATFieldProperty('recording_secretary')
+    responsibility = atapi.ATFieldProperty('responsibility')
     attendees = atapi.ATFieldProperty('attendees')
     related_items = atapi.ATFieldProperty('related_items')
+
+    def getResponsibilityInfos(self, userids):
+        result = []
+        if not userids:
+            return
+        elif isinstance(userids, list) or isinstance(userids, tuple):
+            for userid in userids:
+                result.append(getResponsibilityInfosFor(self, userid))
+        else:
+            result.append(getResponsibilityInfosFor(self, userids))
+        return result
 
     def getAssignableUsers(self):
         """Collect users with a given role and return them in a list.
         """
         results = atapi.DisplayList()
-        results.add('',_(u'Choose a person'))
-        return (results + atapi.DisplayList(getAssignableUsers(self,'Reader')))
-        
+        results.add('', _(u'Choose a person'))
+        return (results + atapi.DisplayList(getAssignableUsers(self, 'Reader')))
 
     def InfosForArchiv(self):
         return DateTime(self.CreationDate()).strftime('%m/01/%Y')
@@ -228,27 +239,31 @@ class Meeting(folder.ATFolder, Poodle, CalendarSupportMixin):
 
     def getMeetingTypes(self):
         return atapi.DisplayList((
-                                 ('dates_additional',_(u'meeting_type_event')),
-                                 ('poodle_additional',_(u'meeting_type_survey')),
-                                 ('meeting_dates_additional',_(u'meeting_type_meeting')),
+                                 ('dates_additional', _(u'meeting_type_event')),
+                                 ('poodle_additional', _(u'meeting_type_survey')),
+                                 ('meeting_dates_additional', _(u'meeting_type_meeting')),
                                 ))
 
     #makes ical export work
     def getEventType(self):
         return False
+
     def contact_name(self):
         return ','.join(self.getHead_of_meeting())
+
     def contact_phone(self):
         return ""
+
     def contact_email(self):
         return ""
+
     def event_url(self):
         return self.absolute_url()
 
     @property
     def sortAttribute(self):
         return 'getObjPositionInParent'
-        
+
     @property
     def sortOrder(self):
         return 'ascending'
