@@ -75,6 +75,18 @@ MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
                                                       ),
                         ),
 
+    atapi.StringField('meeting_form',
+                     required = False,
+                     searchable = True,
+                     schemata = 'meeting',
+                     vocabulary = 'getMeetingForms',
+                     storage = atapi.AnnotationStorage(),
+                     widget = atapi.SelectionWidget(label = _(u"meeting_label_meeting_form", default=u"Meeting Form"),
+                                                    description = _(u"meeting_help_meeting_form", default=u"Choose your Meeting form."),
+                                                    format='radio',
+                                                    ),
+                     ),
+
      atapi.LinesField('head_of_meeting',
                       required = False,
                       searchable = True,
@@ -243,6 +255,13 @@ class Meeting(folder.ATFolder, Poodle, CalendarSupportMixin):
                                  ('poodle_additional', _(u'meeting_type_survey')),
                                  ('meeting_dates_additional', _(u'meeting_type_meeting')),
                                 ))
+
+    def getMeetingForms(self):
+        values = atapi.DisplayList()
+        if self.portal_properties.get('izug_meeting_properties'):
+            for item in getattr(self.portal_properties.get('izug_meeting_properties'), 'meeting_form'):
+                values.add(item, item)
+        return values
 
     #makes ical export work
     def getEventType(self):

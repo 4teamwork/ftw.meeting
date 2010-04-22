@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2010-04-21 07:59+0000\n"
+"POT-Creation-Date: 2010-04-22 14:34+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,70 +17,75 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: izug.meeting\n"
 
-#: izug.meeting/izug/meeting/browser/templates/meeting.pt:278
+#: izug.meeting/izug/meeting/browser/templates/meeting.pt:293
 msgid "Attachments"
 msgstr ""
 
-#: izug.meeting/izug/meeting/content/meeting.py:212
+#: izug.meeting/izug/meeting/content/meeting.py:237
 msgid "Choose a person"
 msgstr ""
 
-#: izug.meeting/izug/meeting/browser/templates/meeting.pt:159
+#: izug.meeting/izug/meeting/browser/templates/meeting.pt:174
 msgid "iCal"
 msgstr ""
 
 #. Default: "Enter the attendees of the meeting."
-#: izug.meeting/izug/meeting/content/meeting.py:108
+#: izug.meeting/izug/meeting/content/meeting.py:121
 msgid "meeting_help_attendees"
 msgstr ""
 
 #. Default: "Enter the ending date and time, or click the calendar icon and select it."
-#: izug.meeting/izug/meeting/content/meeting.py:58
+#: izug.meeting/izug/meeting/content/meeting.py:74
 msgid "meeting_help_end_date"
 msgstr ""
 
 #. Default: "Select the head of the meeting."
-#: izug.meeting/izug/meeting/content/meeting.py:85
+#: izug.meeting/izug/meeting/content/meeting.py:98
 msgid "meeting_help_head_of_meeting"
 msgstr ""
 
 #. Default: "Enter the location where the meeting will take place."
-#: izug.meeting/izug/meeting/content/meeting.py:166
+#: izug.meeting/izug/meeting/content/meeting.py:179
 msgid "meeting_help_location"
 msgstr ""
 
+#. Default: "Choose your Meeting form."
+#: izug.meeting/izug/meeting/content/meeting.py:85
+msgid "meeting_help_meeting_form"
+msgstr ""
+
 #. Default: "Select the recording secretary."
-#: izug.meeting/izug/meeting/content/meeting.py:97
+#: izug.meeting/izug/meeting/content/meeting.py:110
 msgid "meeting_help_recording_secretary"
 msgstr ""
 
-#: izug.meeting/izug/meeting/content/meeting.py:133
+#: izug.meeting/izug/meeting/content/meeting.py:146
 msgid "meeting_help_related_items"
 msgstr ""
 
 #. Default: "Enter the responsible of the meeting."
-#: izug.meeting/izug/meeting/content/meeting.py:68
-msgid "meeting_help_responsible"
+#: izug.meeting/izug/meeting/content/meeting.py:48
+msgid "meeting_help_responsibility"
 msgstr ""
 
 #. Default: "Enter the starting date and time, or click the calendar icon and select it."
-#: izug.meeting/izug/meeting/content/meeting.py:47
+#: izug.meeting/izug/meeting/content/meeting.py:63
 msgid "meeting_help_start_date"
 msgstr ""
 
 #. Default: "Choose your event type."
-#: izug.meeting/izug/meeting/content/meeting.py:35
+#: izug.meeting/izug/meeting/content/meeting.py:36
 msgid "meeting_help_type"
 msgstr ""
 
 #. Default: "Attendees"
-#: izug.meeting/izug/meeting/browser/templates/meeting.pt:123
-#: izug.meeting/izug/meeting/content/meeting.py:107
+#: izug.meeting/izug/meeting/browser/templates/meeting.pt:138
+#: izug.meeting/izug/meeting/content/meeting.py:120
 msgid "meeting_label_attendees"
 msgstr ""
 
 #. Default: "Attendee"
-#: izug.meeting/izug/meeting/content/meeting.py:110
+#: izug.meeting/izug/meeting/content/meeting.py:123
 msgid "meeting_label_attendees_attendee"
 msgstr ""
 
@@ -90,7 +95,7 @@ msgid "meeting_label_date"
 msgstr ""
 
 #. Default: "Description"
-#: izug.meeting/izug/meeting/browser/templates/meeting.pt:145
+#: izug.meeting/izug/meeting/browser/templates/meeting.pt:160
 msgid "meeting_label_description"
 msgstr ""
 
@@ -101,7 +106,7 @@ msgstr ""
 
 #. Default: "End Date"
 #: izug.meeting/izug/meeting/browser/templates/meeting.pt:59
-#: izug.meeting/izug/meeting/content/meeting.py:57
+#: izug.meeting/izug/meeting/content/meeting.py:73
 msgid "meeting_label_end_date"
 msgstr ""
 
@@ -111,30 +116,35 @@ msgid "meeting_label_end_time"
 msgstr ""
 
 #. Default: "Export"
-#: izug.meeting/izug/meeting/browser/templates/meeting.pt:151
+#: izug.meeting/izug/meeting/browser/templates/meeting.pt:166
 msgid "meeting_label_export"
 msgstr ""
 
 #. Default: "Head of Meeting"
-#: izug.meeting/izug/meeting/browser/templates/meeting.pt:105
-#: izug.meeting/izug/meeting/content/meeting.py:84
+#: izug.meeting/izug/meeting/browser/templates/meeting.pt:120
+#: izug.meeting/izug/meeting/content/meeting.py:97
 msgid "meeting_label_head_of_meeting"
 msgstr ""
 
 #. Default: "Location"
 #: izug.meeting/izug/meeting/browser/templates/meeting.pt:18
-#: izug.meeting/izug/meeting/content/meeting.py:165
+#: izug.meeting/izug/meeting/content/meeting.py:178
 msgid "meeting_label_location"
 msgstr ""
 
+#. Default: "Meeting Form"
+#: izug.meeting/izug/meeting/content/meeting.py:84
+msgid "meeting_label_meeting_form"
+msgstr ""
+
 #. Default: "Recording Secretary"
-#: izug.meeting/izug/meeting/browser/templates/meeting.pt:114
-#: izug.meeting/izug/meeting/content/meeting.py:96
+#: izug.meeting/izug/meeting/browser/templates/meeting.pt:129
+#: izug.meeting/izug/meeting/content/meeting.py:109
 msgid "meeting_label_recording_secretary"
 msgstr ""
 
 #. Default: "Related Items"
-#: izug.meeting/izug/meeting/content/meeting.py:132
+#: izug.meeting/izug/meeting/content/meeting.py:145
 msgid "meeting_label_related_items"
 msgstr ""
 
@@ -144,18 +154,14 @@ msgid "meeting_label_relations"
 msgstr ""
 
 #. Default: "Responsibility"
-#: izug.meeting/izug/meeting/browser/templates/meeting.pt:183
+#: izug.meeting/izug/meeting/browser/templates/meeting.pt:105
+#: izug.meeting/izug/meeting/content/meeting.py:47
 msgid "meeting_label_responsibility"
-msgstr ""
-
-#. Default: "Responsible"
-#: izug.meeting/izug/meeting/content/meeting.py:67
-msgid "meeting_label_responsible"
 msgstr ""
 
 #. Default: "Start Date"
 #: izug.meeting/izug/meeting/browser/templates/meeting.pt:47
-#: izug.meeting/izug/meeting/content/meeting.py:46
+#: izug.meeting/izug/meeting/content/meeting.py:62
 msgid "meeting_label_start_date"
 msgstr ""
 
@@ -165,29 +171,29 @@ msgid "meeting_label_start_time"
 msgstr ""
 
 #. Default: "Tasks"
-#: izug.meeting/izug/meeting/browser/templates/meeting.pt:204
+#: izug.meeting/izug/meeting/browser/templates/meeting.pt:219
 msgid "meeting_label_tasks"
 msgstr ""
 
 #. Default: "Text"
-#: izug.meeting/izug/meeting/browser/templates/meeting.pt:191
+#: izug.meeting/izug/meeting/browser/templates/meeting.pt:206
 msgid "meeting_label_text"
 msgstr ""
 
 #. Default: "Event type"
-#: izug.meeting/izug/meeting/content/meeting.py:34
+#: izug.meeting/izug/meeting/content/meeting.py:35
 msgid "meeting_label_type"
 msgstr ""
 
-#: izug.meeting/izug/meeting/content/meeting.py:220
+#: izug.meeting/izug/meeting/content/meeting.py:254
 msgid "meeting_type_event"
 msgstr ""
 
-#: izug.meeting/izug/meeting/content/meeting.py:222
+#: izug.meeting/izug/meeting/content/meeting.py:256
 msgid "meeting_type_meeting"
 msgstr ""
 
-#: izug.meeting/izug/meeting/content/meeting.py:221
+#: izug.meeting/izug/meeting/content/meeting.py:255
 msgid "meeting_type_survey"
 msgstr ""
 
@@ -211,7 +217,7 @@ msgid "meetingitem_help_text"
 msgstr ""
 
 #. Default: "Conclusion"
-#: izug.meeting/izug/meeting/browser/templates/meeting.pt:197
+#: izug.meeting/izug/meeting/browser/templates/meeting.pt:212
 #: izug.meeting/izug/meeting/content/meetingitem.py:61
 msgid "meetingitem_label_conclusion"
 msgstr ""
@@ -231,7 +237,7 @@ msgstr ""
 msgid "meetingitem_label_text"
 msgstr ""
 
-#: izug.meeting/izug/meeting/browser/templates/meeting.pt:154
+#: izug.meeting/izug/meeting/browser/templates/meeting.pt:169
 msgid "vCal"
 msgstr ""
 

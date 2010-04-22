@@ -55,22 +55,9 @@ setup(name='izug.meeting',
       include_package_data=True,
       zip_safe=False,
       install_requires=['setuptools',
-#                        'Products.DataGridField',
-#                        'plonegov.pdflatex',
-#                        'izug.file',
-#                        'izug.task',
-#                        'izug.bibliothek',
                         ],
       tests_require=tests_require,
       extras_require=dict(tests=tests_require),
       test_suite = 'izug.meeting.tests.test_docs.test_suite',
-      entry_points="""
-      # -*- entry_points -*- 
-      [distutils.setup_keywords]
-      paster_plugins = setuptools.dist:assert_string_list
-
-      [egg_info.writers]
-      paster_plugins.txt = setuptools.command.egg_info:write_arg
-      """,
-      paster_plugins = ["ZopeSkel"],
+      entry_points="""""",
       )

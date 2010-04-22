@@ -5,6 +5,10 @@ Changelog
 0.7
 ---
 
+* Issue #904 Arbeitsraum - Typ Sitzung selber bestimmen
+  https://extranet.4teamwork.ch/support/zug/maintlog/904/
+  [22.04.2010, phgross]
+
 * Issue #835 Arbeitsraum - 1 oder mehrere Verantwortliche pro Termin definieren
   https://extranet.4teamwork.ch/support/zug/maintlog/835/
   [21.04.2010, jinfanger]
