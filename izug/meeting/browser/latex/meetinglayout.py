@@ -1,5 +1,11 @@
 class MeetingLayout(object):
-    
+
+    def __init__(self, show_logo=True, show_organisation=True,
+                 show_contact=True):
+        self.show_logo = show_logo
+        self.show_contact = show_contact
+        self.show_organisation = show_organisation
+
     def __call__(self, view, context):
         self.view = view
         self.context = context
@@ -9,58 +15,92 @@ class MeetingLayout(object):
         self.appendAboveBodyCommands()
         self.appendBeneathBodyCommands()
 
-    def getResourceFileData(self, filename, resource='izug.meeting.latex.resource'):
-        fiveFile = self.context.restrictedTraverse('++resource++%s/%s' % (resource, filename))
+    def getResourceFileData(self, filename,
+                            resource='izug.meeting.latex.resource'):
+        """ Returns a resource-file
+        """
+        fiveFile = self.context.restrictedTraverse('++resource++%s/%s' %
+                                                   (resource, filename))
         path = fiveFile.context.path
         fileData = open(path).read()
         return fileData
 
     def setDocumentClass(self):
+        """ Sets the document class and adds the logo-image
+        """
         self.view.setLatexProperty('document_class', 'article')
-        self.view.setLatexProperty('document_config', 'a4paper,10pt,parskip=half')
+        self.view.setLatexProperty('document_config', 'a4paper,10pt')
         # register logo image
-        image = self.getResourceFileData('logo_sw.pdf',
-                resource='izug.bibliothek.latex.resource')
+        image = self.getResourceFileData(
+            'logo_sw.pdf', resource='izug.bibliothek.latex.resource')
         self.view.addImage(uid='logo_sw', image=image)
 
     def registerPackages(self):
-        self.view.registerPackage('graphicx')
-        self.view.registerPackage('helvet')
-        self.view.registerPackage('wrapfig')
-        self.view.registerPackage('longtable')
-        self.view.registerPackage('titlesec', 'compact')
-        self.view.registerPackage('geometry', 'left=35mm,right=10mm,top=55mm,bottom=30.5mm')
+        """ Registers the packages used for this layout.
+        Content-specific packages may be added by the content-converter or
+        a HTML-subconverter
+        """
+        self.view.registerPackage('ae,aecompl')
+        self.view.registerPackage('babel', 'ngerman')
         self.view.registerPackage('fancyhdr')
-        self.view.registerPackage('paralist', 'neveradjust')
-        self.view.registerPackage('textpos', 'absolute, overlay')
+        self.view.registerPackage(
+            'geometry', 'left=35mm,right=10mm,top=55mm,bottom=30.5mm')
+        self.view.registerPackage('graphicx')
         self.view.registerPackage('ifthen')
+        self.view.registerPackage('lastpage')
+        self.view.registerPackage('paralist', 'neveradjust')
+        self.view.registerPackage('textcomp')
+        self.view.registerPackage('textpos', 'absolute, overlay')
+        self.view.registerPackage('titlesec', 'compact')
+        self.view.registerPackage('wrapfig')
 
     def appendHeadCommands(self):
+        """ Appends static head commands from meeting_head_commands.tex
+        and dynamic head commands such as renewcommand for Title
+        """
+        # static head commands from meeting_head_commands.tex
+        self.view.appendHeaderCommand(
+            self.getResourceFileData('meeting_head_commands.tex'))
+        # print dynamic header commands
+        self.view.appendHeaderCommand('%% %s' % ('-' * 65))
+        self.view.appendHeaderCommand('% DYNAMIC HEADER COMMANDS')
+        self.view.appendHeaderCommand('%% %s' % ('-' * 65))
+        # renewcommands:
+        vars = {
+            'Titel': self.context.Title() or '',
+            }
         member = self.getOwnerMember()
-        self.view.appendHeaderCommand(r'\newcommand{\Autor}{%s}' % r'')
-        self.view.appendHeaderCommand(r'\newcommand{\Titel}{%s}' % self.context.pretty_title_or_id())
-        self.view.appendHeaderCommand(r'\newcommand{\CreatorDirektion}{%s}' %
-                        self.view.convert(member and member.getProperty('direktion', '-') or '-'))
-        self.view.appendHeaderCommand(r'\newcommand{\CreatorAmt}{%s}' %
-                        self.view.convert(member and member.getProperty('amt', '-') or '-'))
-        # embed izug.bibliothek head commands
-        head_commands = self.getResourceFileData('head_commands.tex',
-                resource='izug.bibliothek.latex.resource')
-        self.view.appendHeaderCommand(head_commands)
-        # and embed local head_commands.tex (overwrites the bibliothek-one partially)
-        head_commands = self.getResourceFileData('head_commands.tex')
-        self.view.appendHeaderCommand(head_commands)
+        if member and member.getProperty('direktion', False):
+            vars['CreatorDirektion'] = member.getProperty('direktion')
+        if member and member.getProperty('amt', False):
+            vars['CreatorAmt'] = member.getProperty('amt')
+        for key, value in vars.items():
+            self.view.appendHeaderCommand(r'\renewcommand{\%s}{%s}' % (
+                    key, self.view.convert(value)))
+        # booleans
+        bools = {
+            'logo': self.show_logo,
+            'organisation': self.show_organisation,
+            'contact': self.show_contact,
+            }
+        for key, value in bools.items():
+            self.view.appendHeaderCommand(r'\setboolean{%s}{%s}' % (
+                    key, value and 'true' or 'false'))
 
     def appendAboveBodyCommands(self):
-        self.view.appendToProperty('latex_above_body', r'\thispagestyle{myheadings}')
-        above_body_commands = self.getResourceFileData('above_body_commands.tex',
-                                                       resource='izug.bibliothek.latex.resource')
-        self.view.appendToProperty('latex_above_body', above_body_commands)
+        """ Appends above body commands from meeting_above_body_commands.tex
+        """
+        self.view.appendToProperty(
+            'latex_above_body',
+            self.getResourceFileData('meeting_above_body_commands.tex'))
 
     def appendBeneathBodyCommands(self):
+        """ Appends beneath body commands
+        """
         pass
-        #self.view.appendToProperty('latex_beneath_body', r'')
 
     def getOwnerMember(self):
+        """ Returns the member-object of the creator of the context-object
+        """
         creator_id = self.context.Creator()
         return self.context.portal_membership.getMemberById(creator_id)

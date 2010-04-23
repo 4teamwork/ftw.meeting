@@ -28,20 +28,6 @@
         class=".meeting.MeetingUpdate"
         />
 
-    <browser:view
-        for="..interfaces.IMeetingItem"
-        name="pdflatex_convert_object"
-        class=".meetingitem.MeetingItemLatexConverter"
-        permission="zope.Public"
-    />
-
-    <browser:view
-        for="..interfaces.IMeeting"
-        name="pdflatex_convert_object"
-        class=".meeting.MeetingLatexConverter"
-        permission="zope.Public"
-    />
-
     <browser:page
         for="..interfaces.IMeeting"
         name="meeting_view"

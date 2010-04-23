@@ -5,6 +5,10 @@ Changelog
 0.7
 ---
 
+* Issue #842 Sitzung PDF: Fehlerhafte Darstellung
+  https://extranet.4teamwork.ch/support/zug/maintlog/842
+  [23.04.2010, jbaumann]
+
 * Issue #904 Arbeitsraum - Typ Sitzung selber bestimmen
   https://extranet.4teamwork.ch/support/zug/maintlog/904/
   [22.04.2010, phgross]

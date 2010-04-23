@@ -1,6 +1,4 @@
 from Products.Five.browser import BrowserView
-
-from plonegov.pdflatex.converter import html2latex
 from izug.meeting.browser.latex.meetinglayout import MeetingLayout
 
 class ExportPDFView(BrowserView):

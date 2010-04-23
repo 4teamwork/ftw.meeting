@@ -3,10 +3,24 @@
     xmlns:browser="http://namespaces.zope.org/browser"
     i18n_domain="izug.meeting">
 
-    <!-- Resource directory -->
-    <browser:resourceDirectory
-        name="izug.meeting.latex.resource"
-        directory="resource"
-        /> 
+  <!-- Resource directory -->
+  <browser:resourceDirectory
+      name="izug.meeting.latex.resource"
+      directory="resource"
+      />
+
+  <browser:view
+      for="izug.meeting.interfaces.IMeeting"
+      name="pdflatex_convert_object"
+      class=".views.MeetingAsLaTeX"
+      permission="zope.Public"
+      />
+
+  <browser:view
+      for="izug.meeting.interfaces.IMeetingItem"
+      name="pdflatex_convert_object"
+      class=".views.MeetingItemAsLaTeX"
+      permission="zope.Public"
+      />
 
 </configure>
