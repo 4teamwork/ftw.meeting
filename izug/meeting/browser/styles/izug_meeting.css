@@ -12,12 +12,17 @@ ul.AttendeesListing li {
 }
 
 
-.MeetingItemWrapper .MeetingItemBody{
+.MeetingItemWrapper .MeetingItemBody {
     margin-left:0em;
 }
 .MeetingItemWrapper .MeetingItemBody table {
     border:none;
 }
+.MeetingItemWrapper .MeetingItemBody table td p,
+.MeetingItemWrapper .MeetingItemBody table th p {
+    font-size: 1em;
+}
+
 
 .MeetingItemWrapper .MeetingItemHead {
     background-color:#F4F4FF;
