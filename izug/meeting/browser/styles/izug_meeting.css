@@ -13,7 +13,7 @@ ul.AttendeesListing li {
 
 
 .MeetingItemWrapper .MeetingItemBody{
-    margin-left:2em;
+    margin-left:0em;
 }
 .MeetingItemWrapper .MeetingItemBody table {
     border:none;
@@ -21,9 +21,14 @@ ul.AttendeesListing li {
 
 .MeetingItemWrapper .MeetingItemHead {
     background-color:#F4F4FF;
-    padding:1em 0.5em 0.5em;
+    padding:0.5em;
     border-top:1px solid silver;
     margin-top:0.5em;
+}
+.MeetingItemWrapper .MeetingItemHead img {
+    display: block;
+    float: left;
+    padding-right:0.5em;
 }
 
 .MeetingItemWrapper .MeetingItemHead a {

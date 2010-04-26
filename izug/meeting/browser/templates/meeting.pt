@@ -194,6 +194,10 @@
                             </div>
                             <div class="MeetingItemBody" style="display:none">
                                 <table>
+                                    <colgroup>
+                                        <col width="20%"/>
+                                        <col width="*">
+                                    </colgroup>
                                     <tr>
                                         <th><span i18n:translate="meeting_label_responsibility">Responsibility</span></th>
                                         <td>
