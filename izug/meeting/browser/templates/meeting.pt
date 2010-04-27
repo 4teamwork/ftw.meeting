@@ -201,9 +201,9 @@
                                     <tr>
                                         <th><span i18n:translate="meeting_label_responsibility">Responsibility</span></th>
                                         <td>
-                                            <span tal:replace="python:obj.getResponsibilityString()">
+                                            <metal:field use-macro="python:obj.widget('responsibility', mode='view')">
                                                Attendees
-                                            </span>
+                                            </metal:field>
                                         </td>
                                     </tr>
                                     <tr>

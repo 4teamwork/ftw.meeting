@@ -1,11 +1,16 @@
 """Definition of the Meeting Item content type
 """
 
-from zope.interface import implements
+from zope.interface import implements, directlyProvides
+from Acquisition import aq_inner, aq_parent
 
 from Products.Archetypes import atapi
 from Products.ATContentTypes.content import folder
+from Products.ATContentTypes.content import schemata
 
+from Products.CMFCore.utils import getToolByName
+
+from Products.AddRemoveWidget import AddRemoveWidget
 from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import ReferenceBrowserWidget
 from DateTime import DateTime
 
@@ -15,7 +20,7 @@ from izug.meeting import meetingMessageFactory as _
 from izug.meeting.interfaces import IMeetingItem
 from izug.meeting.config import PROJECTNAME
 
-from izug.utils.users import getAssignableUsers, getResponsibilityInfosFor
+from izug.utils.users import getAssignableUsers
 
 MeetingItemSchema = folder.ATFolderSchema.copy() + atapi.Schema((
 
@@ -31,16 +36,6 @@ MeetingItemSchema = folder.ATFolderSchema.copy() + atapi.Schema((
                                                           format='checkbox',
                                                           ),
                       ),
-
-      atapi.TextField('responsibilityString',
-                      required = False,
-                      storage = atapi.AnnotationStorage(),
-                      widget = atapi.TextAreaWidget(label=_(u"meeting label cached"),
-                                                visible = -1,
-                                                ),
-                      ),
-
-
 
     atapi.TextField('text',
                     searchable = True,
@@ -116,7 +111,6 @@ class MeetingItem(folder.ATFolder):
     description = atapi.ATFieldProperty('description')
     duration = atapi.ATFieldProperty('duration')
     responsibility = atapi.ATFieldProperty('responsibility')
-    responsibilityString = atapi.ATFieldProperty('responsibilityString')
     text = atapi.ATFieldProperty('text')
     meetingitem_type = atapi.ATFieldProperty('meetingitem_type')
     conclusion = atapi.ATFieldProperty('conclusion')
@@ -127,21 +121,5 @@ class MeetingItem(folder.ATFolder):
 
     def InfosForArchiv(self):
         return DateTime(self.CreationDate()).strftime('%m/01/%Y')
-
-
-    def setResponsibilityString(self,value):
-        """
-        setter
-        """
-        data = list(self.responsibility)
-        if data:
-            humanreadable = ""
-            _l = len(data)
-            for userid in data:
-                humanreadable += "%s (%s)" % (getResponsibilityInfosFor(self, userid)['name'], userid)
-                if (_l - 1) != data.index(userid): humanreadable += ', '
-                
-            self.responsibilityString = str(humanreadable)
-
 
 atapi.registerType(MeetingItem, PROJECTNAME)
