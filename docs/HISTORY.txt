@@ -5,6 +5,9 @@ Changelog
 0.7
 ---
 
+* Merged "improove-task-listing-speed" branch into trunk
+  [27.04.2010, mle]
+
 * Issue #647 Arbeitsraum - Anzeige Umfrage
   https://extranet.4teamwork.ch/support/zug/maintlog/647
   [27.04.2010, Victor Baumann]
