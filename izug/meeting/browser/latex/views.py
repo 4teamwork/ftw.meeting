@@ -25,7 +25,9 @@ class MeetingAsLaTeX(LatexCTConverter):
               seperator, '')
         # add headings.. we use \bf, its easyier
         # XXX: to be replaced (see #904):
-        write(r'{\bf %s}\\' % self.context.getMeeting_form())
+        meeting_type = self.context.getMeeting_form().strip()
+        meeting_type = meeting_type and meeting_type or 'Protokoll'
+        write(r'{\bf %s}\\' % meeting_type)
         write(r'{\bf \Titel}\\')
         write(r'\vspace{\baselineskip}', '')
         # add some informations (dates, times, locations)
