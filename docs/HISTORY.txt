@@ -5,6 +5,10 @@ Changelog
 0.7
 ---
 
+* Issue #647 Arbeitsraum - Anzeige Umfrage
+  https://extranet.4teamwork.ch/support/zug/maintlog/647
+  [27.04.2010, Victor Baumann]
+
 * Issue #909 Arbeitsraum - Layout Traktanden überarbeiten
   https://extranet.4teamwork.ch/support/zug/maintlog/909
   [26.04.2010, fsprenger]

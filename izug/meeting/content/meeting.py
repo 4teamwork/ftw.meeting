@@ -114,7 +114,6 @@ MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
     DataGridField('attendees',
                   searchable = True,
                   schemata = 'meeting',
-                  columns = ('contact', ),
                   allow_empty_rows = False,
                   storage = atapi.AnnotationStorage(),
                   widget = DataGridWidget(label = _(u"meeting_label_attendees", default=u"Attendees"),
@@ -219,6 +218,13 @@ class Meeting(folder.ATFolder, Poodle, CalendarSupportMixin):
     attendees = atapi.ATFieldProperty('attendees')
     related_items = atapi.ATFieldProperty('related_items')
 
+    def at_post_create_script(self):
+        #set start and enddate for surveys after creation
+        if self.getMeeting_type() == 'poodle_additional':
+            self.start_date = DateTime()
+            self.end_date = DateTime()+10000
+            self.reindexObject()
+
     def getResponsibilityInfos(self, userids):
         result = []
         if not userids:
@@ -229,6 +235,7 @@ class Meeting(folder.ATFolder, Poodle, CalendarSupportMixin):
         else:
             result.append(getResponsibilityInfosFor(self, userids))
         return result
+
 
     def getAssignableUsers(self):
         """Collect users with a given role and return them in a list.

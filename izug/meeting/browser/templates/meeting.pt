@@ -49,13 +49,13 @@
                                     <tal:block tal:content="python: context.start_date.strftime('%d.%m.%Y')" />
                                 </td>
                             </tr>
-                            <tr tal:condition="context/start_date | nothing">
+                            <tr tal:condition="python: context.start() and context.getMeeting_type() != 'poodle_additional' or None">
                                 <td class="table-label"><span i18n:translate="meeting_label_start_time">Start Time</span></td>
                                 <td>
                                     <tal:block tal:content="python: context.start_date.strftime('%H:%M')" />
                                 </td>
                             </tr>
-                            <tr tal:condition="context/end_date | nothing">
+                            <tr tal:condition="python: context.end() and context.getMeeting_type() != 'poodle_additional' or None">
                                 <td class="table-label"><span i18n:translate="meeting_label_end_date">End Date</span></td>
                                 <td>
                                     <tal:block tal:content="python: context.end_date.strftime('%d.%m.%Y')" />
