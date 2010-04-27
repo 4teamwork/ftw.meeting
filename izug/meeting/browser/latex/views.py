@@ -1,5 +1,6 @@
 from plonegov.pdflatex.browser.converter import LatexCTConverter
 
+
 class MeetingAsLaTeX(LatexCTConverter):
     """ LaTeX representation of content type Meeting
     """
@@ -13,6 +14,7 @@ class MeetingAsLaTeX(LatexCTConverter):
         conv = self.controller.convert
         # define a method for easy writing
         latex = []
+
         def write(*lines):
             latex.extend(lines)
         # add a information comment which indicates
@@ -23,7 +25,7 @@ class MeetingAsLaTeX(LatexCTConverter):
               seperator, '')
         # add headings.. we use \bf, its easyier
         # XXX: to be replaced (see #904):
-        write(r'{\bf Protokoll}\\')
+        write(r'{\bf %s}\\' % self.context.getMeeting_form())
         write(r'{\bf \Titel}\\')
         write(r'\vspace{\baselineskip}', '')
         # add some informations (dates, times, locations)
@@ -51,12 +53,14 @@ class MeetingAsLaTeX(LatexCTConverter):
         write(r'% define meeting item counter')
         write(r'\newcounter{meetingitem}', '', '')
         write(self.convertChilds(self.context, self.controller))
+
         return '\n'.join(latex)
 
     def _get_dates_latex(self):
         conv = self.controller.convert
         # define a method for easy writing
         latex = []
+
         def write(*lines):
             latex.extend(lines)
         if self.context.start_date and self.context.end_date:
@@ -89,7 +93,7 @@ class MeetingAsLaTeX(LatexCTConverter):
         value = field.get(context)
         return context.displayValue(vocab, value)
 
-    def _get_display_list_value_from_dataGridField(self,object, fieldname, row, column_id):
+    def _get_display_list_value_from_dataGridField(self, object, fieldname, row, column_id):
         context = object.aq_inner
         field = context.getField(fieldname)
         widget = field.widget
@@ -106,11 +110,11 @@ class MeetingAsLaTeX(LatexCTConverter):
         """
         context = context or self.context
         query = {
-            'path' : {
-                'query' : '/'.join(context.getPhysicalPath()),
-                'depth' : 1,
+            'path': {
+                'query': '/'.join(context.getPhysicalPath()),
+                'depth': 1,
                 },
-            'sort_on' : 'getObjPositionInParent',
+            'sort_on': 'getObjPositionInParent',
             }
         return context.portal_catalog(query)
 
@@ -128,6 +132,7 @@ class MeetingItemAsLaTeX(LatexCTConverter):
         conv = self.controller.convert
         # define a method for easy writing
         latex = []
+
         def write(*lines):
             latex.extend(lines)
         # add a information comment which indicates
