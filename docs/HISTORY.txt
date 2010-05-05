@@ -5,6 +5,9 @@ Changelog
 0.7
 ---
 
+* Improved meeting view (added some missing conditions)
+  [05.05.2010, jbaumann]
+
 * Merged "improove-task-listing-speed" branch into trunk
   [27.04.2010, mle]
 
