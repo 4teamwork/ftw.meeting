@@ -162,8 +162,8 @@
                             <tal:block tal:content="here/Description" />
                         </td>
                     </tr>
-                    <tr tal:condition="python: context.start() and context.end()">
-                        <td class="table-label"><span i18n:translate="meeting_label_export">Export</span></td>
+                    <tr tal:condition="python: context.getMeeting_type() != 'poodle_additional' and context.start() and context.end()">
+                        <td class="table-label"><span i18n:translate="meeting_label_description">Export</span></td>
                         <td>
                             <img height="16" width="16" title="vCal export" alt="" tal:attributes="src string:${here/portal_url}/icon_export_vcal.png"/>
                             <a href="./vcs_view" title="vCal" i18n:translate="">
