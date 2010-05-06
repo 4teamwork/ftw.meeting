@@ -22,6 +22,7 @@ from Products.DataGridField.SelectColumn import SelectColumn
 
 from zope.interface import implements
 
+from widget import DataGridWidgetExtended
 
 MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
 
@@ -44,15 +45,17 @@ MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
                    columns = ('contact', ),
                    allow_empty_rows = False,
                    storage = atapi.AnnotationStorage(),
-                   widget = DataGridWidget(label = _(u"meeting_label_responsibility", default=u"responsibility"),
+                   widget = DataGridWidgetExtended(label = _(u"meeting_label_responsibility", default=u"responsibility"),
                                            description = _(u"meeting_help_responsibility", default=u"Enter the responsible of the meeting."),
                                            auto_insert = True,
+                                           select_all_column = 'contact',
                                            columns = {'contact': SelectColumn(title = _(u"meeting_label_responsibility", default="Enter the responsible of the meeting."),
                                                                                vocabulary = 'getAssignableUsers'
                                                                                ),
                                                       }
                                            )
                    ),
+
 
     atapi.DateTimeField('start_date',
                         searchable = True,
@@ -114,11 +117,13 @@ MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
     DataGridField('attendees',
                   searchable = True,
                   schemata = 'meeting',
+                  columns = ('contact',),
                   allow_empty_rows = False,
                   storage = atapi.AnnotationStorage(),
-                  widget = DataGridWidget(label = _(u"meeting_label_attendees", default=u"Attendees"),
+                  widget = DataGridWidgetExtended(label = _(u"meeting_label_attendees", default=u"Attendees"),
                                           description = _(u"meeting_help_attendees", default=u"Enter the attendees of the meeting."),
                                           auto_insert = True,
+                                          select_all_column = 'contact',
                                           columns = {'contact': SelectColumn(title = _(u"meeting_label_attendees_attendee", default=u"Attendee"),
                                                                               vocabulary = 'getAssignableUsers'
                                                                               ),

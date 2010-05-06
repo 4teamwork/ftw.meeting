@@ -41,3 +41,6 @@ msgstr ""
 msgid "meeting_help_attendees"
 msgstr ""
 
+msgid "select all"
+msgstr ""
+

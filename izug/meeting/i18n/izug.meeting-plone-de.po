@@ -46,3 +46,5 @@ msgstr "Beilagen"
 msgid "Add new row"
 msgstr "Neue Zeile hinzufügen"
 
+msgid "select all"
+msgstr "Alle auswählen"

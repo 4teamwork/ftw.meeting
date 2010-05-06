@@ -5,6 +5,13 @@ Changelog
 0.7
 ---
 
+* #810 Arbeitsraum - alle Benutzer für eine Sitzung anwählen
+  https://extranet.4teamwork.ch/support/zug/maintlog/810
+  [29.04.2010, mle]
+
+* revert Julian's random line deletion :-)
+  [29.04.2010, mle]
+
 * Improved meeting view (added some missing conditions)
   [05.05.2010, jbaumann]
 
