@@ -5,6 +5,10 @@ Changelog
 0.7
 ---
 
+* Issue #904 Arbeitsraum - Typ Sitzung selber bestimmen
+  https://extranet.4teamwork.ch/support/zug/maintlog/904/
+  [10.05.2010, jinfanger]
+
 * #810 Arbeitsraum - alle Benutzer für eine Sitzung anwählen
   https://extranet.4teamwork.ch/support/zug/maintlog/810
   [29.04.2010, mle]
