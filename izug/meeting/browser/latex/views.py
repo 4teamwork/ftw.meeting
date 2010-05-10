@@ -1,4 +1,5 @@
 from plonegov.pdflatex.browser.converter import LatexCTConverter
+from izug.utils.users import getResponsibilityInfosFor
 
 
 class MeetingAsLaTeX(LatexCTConverter):
@@ -56,6 +57,57 @@ class MeetingAsLaTeX(LatexCTConverter):
         write(r'\newcounter{meetingitem}', '', '')
         write(self.convertChilds(self.context, self.controller))
 
+
+        related_tasks = [r for r in self.context.relatedItems()
+                         if r.portal_type=='Task']
+        if len(related_tasks) > 0:
+            table = '<table class="table_border">'
+            table += '<colgroup>'
+            table += '<col width="1%" />'
+            table += '<col width="47%" />'
+            table += '<col width="1%" />'
+            table += '<col width="25%" />'
+            table += '<col width="1%" />'
+            table += '<col width="12%" />'
+            table += '<col width="1%" />'
+            table += '<col width="17%" />'
+            table += '</colgroup>'
+            table += '<thead>'
+            table += '<tr>'
+            table += '<td class="underline left">&nbsp;</td>'
+            table += '<td class="underline rahmen_r left">Beschluss / Auftrag</td>'
+            table += '<td class="underline left">&nbsp;</td>'
+            table += '<td class="underline rahmen_r left">Wer</td>'
+            table += '<td class="underline left">&nbsp;</td>'
+            table += '<td class="underline rahmen_r left">Termin</td>'
+            table += '<td class="underline left">&nbsp;</td>'
+            table += '<td class="underline rahmen_r left">Status</td>'
+            table += '</tr>'
+            table += '</thead>'
+            table += '<tbody>'
+            for task in related_tasks:
+                res = [getResponsibilityInfosFor(self.context, responsibility)
+                       for responsibility in task.getResponsibility()]
+                res = [a['name'] for a in res]
+                state = self.context.portal_catalog({'UID': task.UID()})[0].review_state
+                table += '<tr><td class="underline">&nbsp;</td>'
+                table += '<td class="underline rahmen_r"><b>%s</b><p>&nbsp;</p>%s</td>'\
+                         % (task.Title(), task.text)
+                table += '<td class="underline">&nbsp;</td>'
+                table += '<td class="underline rahmen_r">%s</td>' % '<p>&nbsp;</p>'.join(res)
+                table += '<td class="underline">&nbsp;</td>'
+                table += '<td class="underline rahmen_r">%s</td>'\
+                          % str(self.context.toLocalizedTime(task.end()))
+                table += '<td class="underline">&nbsp;</td>'
+                table += '<td class="underline rahmen_r">%s</td></tr>' % str(self.context.translate(state))
+
+            table += '</tbody>'
+            table += '</table>'
+            table = conv(table).strip()
+
+            write(r'\clearpage')
+            write(r'\textbf{Pendenzenliste}')
+            write(table)
         return '\n'.join(latex)
 
     def _get_dates_latex(self):
@@ -158,6 +210,7 @@ class MeetingItemAsLaTeX(LatexCTConverter):
             write(r'{\bf Verantwortlich:}\\')
             write(responsible)
         write('', '')
+
         return '\n'.join(latex)
 
     def _get_display_list_value(self, object, fieldname):

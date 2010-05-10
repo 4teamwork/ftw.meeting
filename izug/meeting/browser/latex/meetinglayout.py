@@ -1,4 +1,9 @@
+from izug.bibliothek.latex.layouts import baselayout
+
+
 class MeetingLayout(object):
+
+    customconverters = baselayout.BaseLayout.customConverters
 
     def __init__(self, show_logo=True, show_organisation=True,
                  show_contact=True):
@@ -14,6 +19,7 @@ class MeetingLayout(object):
         self.appendHeadCommands()
         self.appendAboveBodyCommands()
         self.appendBeneathBodyCommands()
+        self.configureconverter()
 
     def getResourceFileData(self, filename,
                             resource='izug.meeting.latex.resource'):
@@ -104,3 +110,8 @@ class MeetingLayout(object):
         """
         creator_id = self.context.Creator()
         return self.context.portal_membership.getMemberById(creator_id)
+
+    def configureconverter(self):
+        converter = self.view.html2latex_converter
+        for cc in self.customconverters:
+            converter._insertCustomPattern(**converter._getMappingByConverter(cc))
