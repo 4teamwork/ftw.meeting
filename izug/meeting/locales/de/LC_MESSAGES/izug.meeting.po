@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
-"POT-Creation-Date: 2010-05-06 06:25+0000\n"
+"POT-Creation-Date: 2010-05-10 13:47+0000\n"
 "PO-Revision-Date: 2008-12-05 18:00+0100\n"
 "Last-Translator: Christian Schneider <christian.schneider@4teamwork.ch>\n"
 "Language-Team: Christian Schneider <christian.schneider@4teamwork.ch>\n"
@@ -22,7 +22,7 @@ msgid "Attachments"
 msgstr "Beilagen"
 
 #. Default: "Choose a Person"
-#: izug.meeting/izug/meeting/content/meeting.py:244
+#: izug.meeting/izug/meeting/content/meeting.py:249
 msgid "Choose a person"
 msgstr "keine Person ausgewählt"
 
@@ -35,62 +35,62 @@ msgid "meeting label cached"
 msgstr ""
 
 #. Default: "Enter the attendees of the meeting."
-#: izug.meeting/izug/meeting/content/meeting.py:120
+#: izug.meeting/izug/meeting/content/meeting.py:124
 msgid "meeting_help_attendees"
 msgstr "Geben Sie die Teilnehmer ein."
 
 #. Default: "Enter the ending date and time, or click the calendar icon and select it."
-#: izug.meeting/izug/meeting/content/meeting.py:74
+#: izug.meeting/izug/meeting/content/meeting.py:77
 msgid "meeting_help_end_date"
 msgstr "Geben Sie das Enddatum der Sitzung ein."
 
 #. Default: "Select the head of the meeting."
-#: izug.meeting/izug/meeting/content/meeting.py:98
+#: izug.meeting/izug/meeting/content/meeting.py:101
 msgid "meeting_help_head_of_meeting"
 msgstr "Geben Sie die/den Leiter/in der Sitzung ein."
 
 #. Default: "Enter the location where the meeting will take place."
-#: izug.meeting/izug/meeting/content/meeting.py:178
+#: izug.meeting/izug/meeting/content/meeting.py:183
 msgid "meeting_help_location"
 msgstr "Geben Sie den Ort der Sitzung ein."
 
 #. Default: "Choose your Meeting form."
-#: izug.meeting/izug/meeting/content/meeting.py:85
+#: izug.meeting/izug/meeting/content/meeting.py:88
 msgid "meeting_help_meeting_form"
 msgstr "Wählen sie den Sitzungstyp aus"
 
 #. Default: "Select the recording secretary."
-#: izug.meeting/izug/meeting/content/meeting.py:110
+#: izug.meeting/izug/meeting/content/meeting.py:113
 msgid "meeting_help_recording_secretary"
 msgstr "Geben Sie die/den Schriftführer/in ein."
 
-#: izug.meeting/izug/meeting/content/meeting.py:145
+#: izug.meeting/izug/meeting/content/meeting.py:150
 msgid "meeting_help_related_items"
 msgstr "Wählen Sie die Verweise auf verwandte Objekte aus."
 
 #. Default: "Enter the responsible of the meeting."
-#: izug.meeting/izug/meeting/content/meeting.py:48
+#: izug.meeting/izug/meeting/content/meeting.py:49
 msgid "meeting_help_responsibility"
 msgstr "Geben Sie den Verantwortlichen der Sitzung an."
 
 #. Default: "Enter the starting date and time, or click the calendar icon and select it."
-#: izug.meeting/izug/meeting/content/meeting.py:63
+#: izug.meeting/izug/meeting/content/meeting.py:66
 msgid "meeting_help_start_date"
 msgstr "Geben Sie das Anfangsdatum der Sitzung ein."
 
 #. Default: "Choose your event type."
-#: izug.meeting/izug/meeting/content/meeting.py:36
+#: izug.meeting/izug/meeting/content/meeting.py:37
 msgid "meeting_help_type"
 msgstr "Wählen Sie einen Termintyp aus."
 
 #. Default: "Attendees"
 #: izug.meeting/izug/meeting/browser/templates/meeting.pt:138
-#: izug.meeting/izug/meeting/content/meeting.py:119
+#: izug.meeting/izug/meeting/content/meeting.py:123
 msgid "meeting_label_attendees"
 msgstr "Teilnehmer"
 
 #. Default: "Attendee"
-#: izug.meeting/izug/meeting/content/meeting.py:122
+#: izug.meeting/izug/meeting/content/meeting.py:127
 msgid "meeting_label_attendees_attendee"
 msgstr "Teilnehmer/in"
 
@@ -101,7 +101,6 @@ msgstr "Datum"
 
 #. Default: "Description"
 #: izug.meeting/izug/meeting/browser/templates/meeting.pt:160
-#, fuzzy
 msgid "meeting_label_description"
 msgstr "Beschreibung"
 
@@ -112,7 +111,7 @@ msgstr "Dauer"
 
 #. Default: "End Date"
 #: izug.meeting/izug/meeting/browser/templates/meeting.pt:59
-#: izug.meeting/izug/meeting/content/meeting.py:73
+#: izug.meeting/izug/meeting/content/meeting.py:76
 msgid "meeting_label_end_date"
 msgstr "Enddatum"
 
@@ -128,47 +127,46 @@ msgstr "Exportieren"
 
 #. Default: "Head of Meeting"
 #: izug.meeting/izug/meeting/browser/templates/meeting.pt:120
-#: izug.meeting/izug/meeting/content/meeting.py:97
+#: izug.meeting/izug/meeting/content/meeting.py:100
 msgid "meeting_label_head_of_meeting"
 msgstr "Sitzungsleitung"
 
 #. Default: "Location"
 #: izug.meeting/izug/meeting/browser/templates/meeting.pt:18
-#: izug.meeting/izug/meeting/content/meeting.py:177
+#: izug.meeting/izug/meeting/content/meeting.py:182
 msgid "meeting_label_location"
 msgstr "Ort"
 
 #. Default: "Meeting Form"
-#: izug.meeting/izug/meeting/content/meeting.py:84
+#: izug.meeting/izug/meeting/content/meeting.py:87
 msgid "meeting_label_meeting_form"
 msgstr "Sitzungstyp"
 
 #. Default: "Recording Secretary"
 #: izug.meeting/izug/meeting/browser/templates/meeting.pt:129
-#: izug.meeting/izug/meeting/content/meeting.py:109
+#: izug.meeting/izug/meeting/content/meeting.py:112
 msgid "meeting_label_recording_secretary"
 msgstr "Schriftführer"
 
 #. Default: "Related Items"
-#: izug.meeting/izug/meeting/content/meeting.py:144
+#: izug.meeting/izug/meeting/content/meeting.py:149
 msgid "meeting_label_related_items"
 msgstr "Referenzen"
 
 #. Default: "Relations"
 #: izug.meeting/izug/meeting/browser/templates/meeting.pt:74
-#, fuzzy
 msgid "meeting_label_relations"
 msgstr "Verweise"
 
 #. Default: "Responsibility"
 #: izug.meeting/izug/meeting/browser/templates/meeting.pt:105
-#: izug.meeting/izug/meeting/content/meeting.py:47
+#: izug.meeting/izug/meeting/content/meeting.py:48
 msgid "meeting_label_responsibility"
 msgstr "Verantwortlichkeit"
 
 #. Default: "Start Date"
 #: izug.meeting/izug/meeting/browser/templates/meeting.pt:47
-#: izug.meeting/izug/meeting/content/meeting.py:62
+#: izug.meeting/izug/meeting/content/meeting.py:65
 msgid "meeting_label_start_date"
 msgstr "Anfangsdatum"
 
@@ -188,22 +186,22 @@ msgid "meeting_label_text"
 msgstr ""
 
 #. Default: "Event type"
-#: izug.meeting/izug/meeting/content/meeting.py:35
+#: izug.meeting/izug/meeting/content/meeting.py:36
 msgid "meeting_label_type"
 msgstr "Termintyp"
 
 #. Default: "Event"
-#: izug.meeting/izug/meeting/content/meeting.py:261
+#: izug.meeting/izug/meeting/content/meeting.py:266
 msgid "meeting_type_event"
 msgstr "Termin"
 
 #. Default: "Meeting"
-#: izug.meeting/izug/meeting/content/meeting.py:263
+#: izug.meeting/izug/meeting/content/meeting.py:268
 msgid "meeting_type_meeting"
 msgstr "Sitzung"
 
 #. Default: "Survey"
-#: izug.meeting/izug/meeting/content/meeting.py:262
+#: izug.meeting/izug/meeting/content/meeting.py:267
 msgid "meeting_type_survey"
 msgstr "Umfrage"
 
@@ -250,5 +248,4 @@ msgstr "Text"
 #: izug.meeting/izug/meeting/browser/templates/meeting.pt:169
 msgid "vCal"
 msgstr ""
-
 
