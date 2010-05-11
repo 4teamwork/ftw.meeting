@@ -118,38 +118,31 @@
                     </tr>                    
 					<tr tal:condition="context/head_of_meeting | nothing">
 						<td class="table-label"><span i18n:translate="meeting_label_head_of_meeting">Head of Meeting</span>:</td>
-						<td tal:define="userids python:here.getHead_of_meeting()" tal:repeat="userid userids">
-                            <a tal:define="user python:context.acl_users.getUserById(userid)"
-                                tal:attributes="href string:${here/portal_url}/author/${userid}"
-                                tal:content="python:user and user.getProperty('fullname', userid) or userid">
-                            </a>    
+						<td tal:define="userids python:here.getHead_of_meeting()" tal:repeat="userid python:context.getResponsibilityInfos(userids)">
+                            <tal:exists condition="python:len(userid['url'])>0">
+                                <a tal:attributes="href python:userid['url']" tal:content="python:userid['name']" />
+                            </tal:exists>
+                            <span tal:condition="python:len(userid['url'])==0" tal:content="python:userid['name']" />
 						</td>
 					</tr>
 					<tr tal:condition="context/recording_secretary | nothing">
 						<td class="table-label"><span i18n:translate="meeting_label_recording_secretary">Recording Secretary</span>:</td>
-						<td tal:define="userids python:here.getRecording_secretary()" tal:repeat="userid userids">
-                            <a tal:define="user python:context.acl_users.getUserById(userid)"
-                                tal:attributes="href string:${here/portal_url}/author/${userid}"
-                                tal:content="python:user and user.getProperty('fullname', userid) or userid">
-                            </a>    
+						<td tal:define="userids python:here.getRecording_secretary()" tal:repeat="userid python:context.getResponsibilityInfos(userids)">
+                            <tal:exists condition="python:len(userid['url'])>0">
+                                <a tal:attributes="href python:userid['url']" tal:content="python:userid['name']" />
+                            </tal:exists>
+                            <span tal:condition="python:len(userid['url'])==0" tal:content="python:userid['name']" />
 						</td>
 					</tr>
                     <tr tal:condition="context/getAttendees | nothing">
                         <td class="table-label"><span i18n:translate="meeting_label_attendees">Attendees</span>:</td>
                         <td>
                             <ul class="AttendeesListing" tal:define="userids python:[u['contact'] for u in here.getAttendees()]">
-                                <li tal:repeat="userid userids">
-                                    <tal:user tal:define="user python:context.acl_users.getUserById(userid)">
-                                        <tal:user_existing tal:condition="user">
-                                            <a tal:define="user python:context.acl_users.getUserById(userid)"
-                                               tal:attributes="href string:${here/portal_url}/author/${userid}"
-                                               tal:content="python:user and user.getProperty('fullname',userid) or userid">
-                                            </a>
-                                        </tal:user_existing>
-                                        <tal:user_missing tal:condition="not:user">
-                                            <span tal:content="userid" />
-                                        </tal:user_missing>
-                                    </tal:user>
+                                <li tal:repeat="userid python:context.getResponsibilityInfos(userids)">
+                                    <tal:exists condition="python:len(userid['url'])>0">
+                                        <a tal:attributes="href python:userid['url']" tal:content="python:userid['name']" />
+                                    </tal:exists>
+                                    <span tal:condition="python:len(userid['url'])==0" tal:content="python:userid['name']" />
                                 </li>
                             
                             </ul>
