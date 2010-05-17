@@ -273,7 +273,7 @@ class Meeting(folder.ATFolder, Poodle, CalendarSupportMixin):
         if self.portal_properties.get('izug_meeting_properties'):
             for item in getattr(self.portal_properties.get('izug_meeting_properties'), 'meeting_form'):
                 values.add(item, item)
-        return values
+        return values.sortedByValue()
 
     #makes ical export work
     def getEventType(self):
