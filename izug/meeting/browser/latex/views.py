@@ -64,7 +64,7 @@ class MeetingAsLaTeX(LatexCTConverter):
             table = '<table class="table_border">'
             table += '<colgroup>'
             table += '<col width="1%" />'
-            table += '<col width="47%" />'
+            table += '<col width="42%" />'
             table += '<col width="1%" />'
             table += '<col width="25%" />'
             table += '<col width="1%" />'

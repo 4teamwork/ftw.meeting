@@ -5,6 +5,10 @@ Changelog
 0.7
 ---
 
+* Issue #906 Arbeitsraum - Verknüpfte Aufgaben als Pendenzenliste im PDF-Output
+  https://extranet.4teamwork.ch/support/zug/maintlog/906
+  [17.05.2010, jinfanger]
+
 * Issue #605 Arbeitsraum - Druckübersicht Termine und Aufgaben
   https://extranet.4teamwork.ch/support/zug/maintlog/605
   [17.05.2010, jinfanger]
