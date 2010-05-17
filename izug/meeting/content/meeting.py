@@ -17,7 +17,7 @@ from Products.ATContentTypes.content import folder
 from Products.ATContentTypes.lib.calendarsupport import CalendarSupportMixin
 from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import ReferenceBrowserWidget
 from Products.CMFCore import permissions
-from Products.DataGridField import DataGridField, DataGridWidget
+from Products.DataGridField import DataGridField
 from Products.DataGridField.SelectColumn import SelectColumn
 
 from zope.interface import implements
@@ -254,11 +254,13 @@ class Meeting(folder.ATFolder, Poodle, CalendarSupportMixin):
 
     def getAttendeesOrUsers(self):
         if self.getMeeting_type() == 'poodle_additional':
-            return self.getUsers()
+            users = list(set(self.getUsers() + [a.get('contact', '') for a in self.getResponsibility()]))
+            return users
         elif self.getMeeting_type() == 'meeting_dates_additional':
-            return [a.get('contact', '') for a in self.getAttendees()]
+            users = list(set([a.get('contact', '') for a in self.getAttendees()] + [a.get('contact', '') for a in self.getResponsibility()]))
+            return users
         else:
-            return
+            return [a.get('contact', '') for a in self.getResponsibility()]
 
 
     def getMeetingTypes(self):
