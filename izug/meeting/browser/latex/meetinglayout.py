@@ -80,6 +80,11 @@ class MeetingLayout(object):
             vars['CreatorDirektion'] = member.getProperty('direktion')
         if member and member.getProperty('amt', False):
             vars['CreatorAmt'] = member.getProperty('amt')
+        if member and member.getProperty('email', False):
+            vars['CreatorEmail'] = member.getProperty('email')
+        if member and member.getProperty('phone_number', '&nbsp;'):
+            vars['CreatorPhone'] = self.view.convert(member.getProperty('phone_number'))
+
         for key, value in vars.items():
             self.view.appendHeaderCommand(r'\renewcommand{\%s}{%s}' % (
                     key, self.view.convert(value)))

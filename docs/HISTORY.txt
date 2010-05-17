@@ -5,11 +5,14 @@ Changelog
 0.7
 ---
 
+* Issue #605 Arbeitsraum - Druckübersicht Termine und Aufgaben
+  https://extranet.4teamwork.ch/support/zug/maintlog/605
+  [17.05.2010, jinfanger]
 
 * Issue #904 Arbeitsraum - Typ Sitzung selber bestimmen
   https://extranet.4teamwork.ch/support/zug/maintlog/904
   sorted meeting_forms
-  [16.05.2010, jinfanger]
+  [17.05.2010, jinfanger]
 
 * Issue #904 Arbeitsraum - Typ Sitzung selber bestimmen
   https://extranet.4teamwork.ch/support/zug/maintlog/904/
