@@ -13,7 +13,6 @@ Changelog
 * #859 Frage - Arbeitsraum Funktion Sitzung
   https://extranet.4teamwork.ch/support/zug/maintlog/859
   Migration script erstellt. 
-  TODO: migrate_meetingItems_responsibilityString auf plone root aufrufen. 
   [18.05.2010, mle]
 
 * Issue #906 Arbeitsraum - Verknüpfte Aufgaben als Pendenzenliste im PDF-Output
@@ -78,6 +77,7 @@ Changelog
 UPGRADE STEPS:
 
 * portal_catalog: update new index/metadata getAttendeesOrUsers
+* TODO: migrate_meetingItems_responsibilityString auf plone root aufrufen. 
 
 
 0.6
