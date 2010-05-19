@@ -4,6 +4,12 @@ Changelog
 
 0.7
 ---
+
+* Issue #906 Arbeitsraum - Verknüpfte Aufgaben als Pendenzenliste im PDF-Output
+  https://extranet.4teamwork.ch/support/zug/maintlog/906
+  Tasklist: Added added related tasks of Meeting Items too
+  [19.05.2010, jbaumann]
+
 * #859 Frage - Arbeitsraum Funktion Sitzung
   https://extranet.4teamwork.ch/support/zug/maintlog/859
   Migration script erstellt. 

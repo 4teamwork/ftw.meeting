@@ -60,6 +60,11 @@ class MeetingAsLaTeX(LatexCTConverter):
 
         related_tasks = [r for r in self.context.relatedItems()
                          if r.portal_type=='Task']
+        for obj in self.listFolderContents(portal_type='Meeting Item',
+                                           full_objects=True):
+            for rel in obj.relatedItems():
+                if rel.portal_type=='Task':
+                    related_tasks.append(rel)
         if len(related_tasks) > 0:
             table = '<table class="table_border">'
             table += '<colgroup>'
