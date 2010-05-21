@@ -5,8 +5,8 @@ Changelog
 0.7
 ---
 
-* Issue #902 Arbeitsraum - Vorauswahl bei der Benachrichtigung anhand Sitzungsteilnehmende
-  https://extranet.4teamwork.ch/support/zug/maintlog/902
+* Issue #903 Arbeitsraum - Sitzung ergänzen mit abwesend, entschuldigt
+  https://extranet.4teamwork.ch/support/zug/maintlog/903
   Auswahl Teilnehmende erweitert
   [21.05.2010, vbaumann]
 
