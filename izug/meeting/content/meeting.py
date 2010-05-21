@@ -117,7 +117,7 @@ MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
     DataGridField('attendees',
                   searchable = True,
                   schemata = 'meeting',
-                  columns = ('contact',),
+                  columns = ('contact','present'),
                   allow_empty_rows = False,
                   storage = atapi.AnnotationStorage(),
                   widget = DataGridWidgetExtended(label = _(u"meeting_label_attendees", default=u"Attendees"),
@@ -127,6 +127,9 @@ MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
                                           columns = {'contact': SelectColumn(title = _(u"meeting_label_attendees_attendee", default=u"Attendee"),
                                                                               vocabulary = 'getAssignableUsers'
                                                                               ),
+                                                     'present': SelectColumn(title = _(u"meeting_label_attendees_present", default=u"Present"),
+                                                                                            vocabulary = 'getPresentOptions',
+                                                                                            ),
                                                      }
                                           )
                   ),
@@ -248,6 +251,16 @@ class Meeting(folder.ATFolder, Poodle, CalendarSupportMixin):
         results = atapi.DisplayList()
         results.add('', _(u'Choose a person'))
         return (results + atapi.DisplayList(getAssignableUsers(self, 'Reader')))
+
+    def getPresentOptions(self):
+        """Collect users with a given role and return them in a list.
+        """
+        return atapi.DisplayList(
+            (
+            ('present', _(u'present')),
+            ('absent', _(u'absent')),
+            ('excused', _(u'excused'))
+            ))
 
     def InfosForArchiv(self):
         return DateTime(self.CreationDate()).strftime('%m/01/%Y')

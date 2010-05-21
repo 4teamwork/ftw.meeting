@@ -249,3 +249,15 @@ msgstr "Text"
 msgid "vCal"
 msgstr ""
 
+msgid "present"
+msgstr "anwesend"
+
+msgid "absent"
+msgstr "abwesend"
+
+msgid "excused"
+msgstr "entschuldigt"
+
+msgid "meeting_label_attendees_present"
+msgstr "Anwesend"
+
