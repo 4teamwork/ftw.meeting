@@ -5,6 +5,11 @@ Changelog
 0.7
 ---
 
+* Issue #912 Arbeitsraum - AR-Übersicht mit Ordner selber gruppieren
+  https://extranet.4teamwork.ch/support/zug/maintlog/912
+  sortable_responsibility Index hinzugefügt
+  [27.05.2010, vbaumann]
+
 * Issue #903 Arbeitsraum - Sitzung ergänzen mit abwesend, entschuldigt
   https://extranet.4teamwork.ch/support/zug/maintlog/903
   Auswahl Teilnehmende erweitert

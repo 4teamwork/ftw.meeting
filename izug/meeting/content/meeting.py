@@ -314,5 +314,8 @@ class Meeting(folder.ATFolder, Poodle, CalendarSupportMixin):
     def sortOrder(self):
         return 'ascending'
 
+    def sortable_responsibility(self):
+        if self.getResponsibility():
+            return [r['contact'] for r in self.getResponsibility()]
 
 atapi.registerType(Meeting, PROJECTNAME)
