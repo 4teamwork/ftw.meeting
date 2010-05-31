@@ -43,13 +43,14 @@ class MeetingAsLaTeX(LatexCTConverter):
         # teilnehmende
         write(r'{\bf Teilnehmende} \\')
         for row in self.context.attendees:
-            write(r'%s, %s\\' %
+            present = conv({'present':'anwesend',
+                        'absent':'abwesend',
+                        'excused':'entschuldigt'}.get(row.get('present',''), ''))
+            present = len(present) and (", %s" % present) or present 
+            write(r'%s%s\\' %
                   (conv(self._get_display_list_value_from_dataGridField(
                         self.context, 'attendees', row, 'contact')),
-                  conv({'present':'anwesend', 
-                        'absent':'abwesend', 
-                        'excused':'entschuldigt'}.get(row['present'], 'anwesend'))
-                  
+                        present
                         )
                         )
         write(r'{\vspace{\baselineskip}}', '')
