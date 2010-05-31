@@ -143,7 +143,7 @@
                                         <a tal:attributes="href python:userid['url']" tal:content="python:userid['name']" />
                                     </tal:exists>
                                     <span tal:condition="python:len(userid['url'])==0" tal:content="python:userid['name']" />
-                                    <span>(<tal:b define="status python: [u['present'] for u in context.getAttendees() if u['contact'] == userids[repeat['userid'].index]]" repeat="st status"><tal:s tal:content="st" i18n:translate=""/><tal:sep condition="not: repeat/st/end">, </tal:sep></tal:b>)</span>
+                                    <span tal:define="status python: [u.get('present') for u in context.getAttendees() if u['contact'] == userids[repeat['userid'].index]]" tal:condition="python: sum(map(lambda x: int(bool(x)), status)) ">(<tal:b  repeat="st status"><tal:s tal:content="st" i18n:translate=""/><tal:sep condition="not: repeat/st/end">, </tal:sep></tal:b>)</span>
                                 </li>
                             
                             </ul>

@@ -5,6 +5,11 @@ Changelog
 0.7
 ---
 
+* Issue #68 Darstellung von Termin fehlerhaft
+  https://extranet.4teamwork.ch/projects/integration-zug.ch-izug/tracker-integration-zug.ch-izug/68
+  Condition ins View-Template eingefügt. 
+  [31.05.2010, vbaumann]
+
 * Issue #912 Arbeitsraum - AR-Übersicht mit Ordner selber gruppieren
   https://extranet.4teamwork.ch/support/zug/maintlog/912
   sortable_responsibility Index hinzugefügt
