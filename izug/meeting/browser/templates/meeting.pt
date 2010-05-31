@@ -106,10 +106,11 @@
                         <td>
                             <ul class="AttendeesListing" tal:define="userids python:[u['contact'] for u in here.getResponsibility()]">
                                 <li tal:repeat="userid python:context.getResponsibilityInfos(userids)">
-                                    <tal:exists condition="python:len(userid['url'])>0">
+                                    <tal:exists condition="python:userid and len(userid.get('url',''))>0">
                                         <a tal:attributes="href python:userid['url']" tal:content="python:userid['name']" />
-                                    </tal:exists>
-                                    <span tal:condition="python:len(userid['url'])==0" tal:content="python:userid['name']" />
+                                       <span tal:condition="python:userid and len(userid.get('url',''))==0" tal:content="python:userid['name']" />
+ 
+                                   </tal:exists>
                                 </li>
                             
                             </ul>
@@ -119,19 +120,21 @@
 					<tr tal:condition="context/head_of_meeting | nothing">
 						<td class="table-label"><span i18n:translate="meeting_label_head_of_meeting">Head of Meeting</span>:</td>
 						<td tal:define="userids python:here.getHead_of_meeting()" tal:repeat="userid python:context.getResponsibilityInfos(userids)">
-                            <tal:exists condition="python:len(userid['url'])>0">
+                            <tal:exists condition="python:userid and len(userid.get('url',''))>0">
                                 <a tal:attributes="href python:userid['url']" tal:content="python:userid['name']" />
                             </tal:exists>
-                            <span tal:condition="python:len(userid['url'])==0" tal:content="python:userid['name']" />
+                            <span tal:condition="python:userid and len(userid.get('url',''))==0" tal:content="python:userid['name']" />
 						</td>
 					</tr>
 					<tr tal:condition="context/recording_secretary | nothing">
 						<td class="table-label"><span i18n:translate="meeting_label_recording_secretary">Recording Secretary</span>:</td>
 						<td tal:define="userids python:here.getRecording_secretary()" tal:repeat="userid python:context.getResponsibilityInfos(userids)">
-                            <tal:exists condition="python:len(userid['url'])>0">
+                            <tal:exists condition="python:userid and len(userid.get('url',''))>0">
                                 <a tal:attributes="href python:userid['url']" tal:content="python:userid['name']" />
-                            </tal:exists>
-                            <span tal:condition="python:len(userid['url'])==0" tal:content="python:userid['name']" />
+                        <span tal:condition="python:userid and len(userid.get('url',''))==0" tal:content="python:userid['name']" />
+ 
+
+                           </tal:exists>
 						</td>
 					</tr>
                     <tr tal:condition="context/getAttendees | nothing">
@@ -139,10 +142,12 @@
                         <td>
                             <ul class="AttendeesListing" tal:define="userids python:[u['contact'] for u in here.getAttendees()]">
                                 <li tal:repeat="userid python:context.getResponsibilityInfos(userids)">
-                                    <tal:exists condition="python:len(userid['url'])>0">
+                                    <tal:exists condition="python:userid and len(userid.get('url',''))>0">
                                         <a tal:attributes="href python:userid['url']" tal:content="python:userid['name']" />
+                                    <span tal:condition="python:userid and len(userid.get('url',''))==0" tal:content="python:userid['name']" />
+
                                     </tal:exists>
-                                    <span tal:condition="python:len(userid['url'])==0" tal:content="python:userid['name']" />
+
                                     <span tal:define="status python: [u.get('present') for u in context.getAttendees() if u['contact'] == userids[repeat['userid'].index]]" tal:condition="python: sum(map(lambda x: int(bool(x)), status)) ">(<tal:b  repeat="st status"><tal:s tal:content="st" i18n:translate=""/><tal:sep condition="not: repeat/st/end">, </tal:sep></tal:b>)</span>
                                 </li>
                             
