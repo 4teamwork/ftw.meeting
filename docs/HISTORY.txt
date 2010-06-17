@@ -5,6 +5,10 @@ Changelog
 0.7
 ---
 
+* Issue #996 Arbeitsraum - Traktanden löschen fehlerhaft
+  https://extranet.4teamwork.ch/support/zug/maintlog/996
+  [07.06.2010, phgross]
+
 * Issue #68 Darstellung von Termin fehlerhaft
   https://extranet.4teamwork.ch/projects/integration-zug.ch-izug/tracker-integration-zug.ch-izug/68
   Condition ins View-Template eingefügt. 
