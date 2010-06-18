@@ -17,17 +17,12 @@ long_description = (
     'Change history\n'
     '**************\n'
     + '\n' +
-    read('CHANGES.txt')
+    read('docs', 'HISTORY.txt')
     + '\n' +
     'Detailed Documentation\n'
     '**********************\n'
     + '\n' +
     read('izug', 'meeting', 'README.txt')
-    + '\n' +
-    'Contributors\n'
-    '************\n'
-    + '\n' +
-    read('CONTRIBUTORS.txt')
     + '\n' +
     'Download\n'
     '********\n'

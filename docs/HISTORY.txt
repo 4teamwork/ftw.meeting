@@ -5,6 +5,9 @@ Changelog
 1.0c2
 -----
 
+* Using docs/HISTORY.txt in setup.py ; removed CONTRIBUTORS.txt
+  [18.06.2010, jbaumann]
+
 
 1.0
 ---
