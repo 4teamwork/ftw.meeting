@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-0.7
+1.0
 ---
 
 * Issue #996 Arbeitsraum - Traktanden löschen fehlerhaft
