@@ -2,11 +2,10 @@
 """
 This module contains the tool of izug.meeting
 """
-import os
 from setuptools import setup, find_packages
 
 def read(*rnames):
-    return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
+    return open('/'.join(rnames)).read()
 
 version = open('izug/meeting/version.txt').read().strip()
 maintainer = 'Mathias Leimgruber'
