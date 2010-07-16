@@ -1,5 +1,5 @@
 # created by: svn propset svn:ignore -F ./IGNORE.TXT .
 
-izug.meeting.egg-info
+ftw.meeting.egg-info
 build
 dist

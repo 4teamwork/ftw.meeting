@@ -1,9 +1,0 @@
-Changelog
-=========
-
-    - Issue #301 PDF-Export bei Meetings
-
-1.0 (xxxx-xx-xx)
-------------------
-
- - Created recipe with ZopeSkel [Christian Schneider, 4teamwork GmbH].

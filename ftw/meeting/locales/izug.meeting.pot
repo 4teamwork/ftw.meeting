@@ -1,0 +1,247 @@
+ftw# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
+# SOME DESCRIPTIVE TITLE.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2010-05-10 13:47+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: ftw.meeting\n"
+
+#: ftw.meeting/ftw/meeting/browser/templates/meeting.pt:297
+msgid "Attachments"
+msgstr ""
+
+#: ftw.meeting/ftw/meeting/content/meeting.py:249
+msgid "Choose a person"
+msgstr ""
+
+#: ftw.meeting/ftw/meeting/browser/templates/meeting.pt:174
+msgid "iCal"
+msgstr ""
+
+#: ftw.meeting/ftw/meeting/content/meetingitem.py:38
+msgid "meeting label cached"
+msgstr ""
+
+#. Default: "Enter the attendees of the meeting."
+#: ftw.meeting/ftw/meeting/content/meeting.py:124
+msgid "meeting_help_attendees"
+msgstr ""
+
+#. Default: "Enter the ending date and time, or click the calendar icon and select it."
+#: ftw.meeting/ftw/meeting/content/meeting.py:77
+msgid "meeting_help_end_date"
+msgstr ""
+
+#. Default: "Select the head of the meeting."
+#: ftw.meeting/ftw/meeting/content/meeting.py:101
+msgid "meeting_help_head_of_meeting"
+msgstr ""
+
+#. Default: "Enter the location where the meeting will take place."
+#: ftw.meeting/ftw/meeting/content/meeting.py:183
+msgid "meeting_help_location"
+msgstr ""
+
+#. Default: "Choose your Meeting form."
+#: ftw.meeting/ftw/meeting/content/meeting.py:88
+msgid "meeting_help_meeting_form"
+msgstr ""
+
+#. Default: "Select the recording secretary."
+#: ftw.meeting/ftw/meeting/content/meeting.py:113
+msgid "meeting_help_recording_secretary"
+msgstr ""
+
+#: ftw.meeting/ftw/meeting/content/meeting.py:150
+msgid "meeting_help_related_items"
+msgstr ""
+
+#. Default: "Enter the responsible of the meeting."
+#: ftw.meeting/ftw/meeting/content/meeting.py:49
+msgid "meeting_help_responsibility"
+msgstr ""
+
+#. Default: "Enter the starting date and time, or click the calendar icon and select it."
+#: ftw.meeting/ftw/meeting/content/meeting.py:66
+msgid "meeting_help_start_date"
+msgstr ""
+
+#. Default: "Choose your event type."
+#: ftw.meeting/ftw/meeting/content/meeting.py:37
+msgid "meeting_help_type"
+msgstr ""
+
+#. Default: "Attendees"
+#: ftw.meeting/ftw/meeting/browser/templates/meeting.pt:138
+#: ftw.meeting/ftw/meeting/content/meeting.py:123
+msgid "meeting_label_attendees"
+msgstr ""
+
+#. Default: "Attendee"
+#: ftw.meeting/ftw/meeting/content/meeting.py:127
+msgid "meeting_label_attendees_attendee"
+msgstr ""
+
+#. Default: "Date"
+#: ftw.meeting/ftw/meeting/browser/templates/meeting.pt:32
+msgid "meeting_label_date"
+msgstr ""
+
+#. Default: "Description"
+#: ftw.meeting/ftw/meeting/browser/templates/meeting.pt:160
+msgid "meeting_label_description"
+msgstr ""
+
+#. Default: "Duration"
+#: ftw.meeting/ftw/meeting/browser/templates/meeting.pt:39
+msgid "meeting_label_duration"
+msgstr ""
+
+#. Default: "End Date"
+#: ftw.meeting/ftw/meeting/browser/templates/meeting.pt:59
+#: ftw.meeting/ftw/meeting/content/meeting.py:76
+msgid "meeting_label_end_date"
+msgstr ""
+
+#. Default: "End Time"
+#: ftw.meeting/ftw/meeting/browser/templates/meeting.pt:65
+msgid "meeting_label_end_time"
+msgstr ""
+
+#. Default: "Export"
+#: ftw.meeting/ftw/meeting/browser/templates/meeting.pt:166
+msgid "meeting_label_export"
+msgstr ""
+
+#. Default: "Head of Meeting"
+#: ftw.meeting/ftw/meeting/browser/templates/meeting.pt:120
+#: ftw.meeting/ftw/meeting/content/meeting.py:100
+msgid "meeting_label_head_of_meeting"
+msgstr ""
+
+#. Default: "Location"
+#: ftw.meeting/ftw/meeting/browser/templates/meeting.pt:18
+#: ftw.meeting/ftw/meeting/content/meeting.py:182
+msgid "meeting_label_location"
+msgstr ""
+
+#. Default: "Meeting Form"
+#: ftw.meeting/ftw/meeting/content/meeting.py:87
+msgid "meeting_label_meeting_form"
+msgstr ""
+
+#. Default: "Recording Secretary"
+#: ftw.meeting/ftw/meeting/browser/templates/meeting.pt:129
+#: ftw.meeting/ftw/meeting/content/meeting.py:112
+msgid "meeting_label_recording_secretary"
+msgstr ""
+
+#. Default: "Related Items"
+#: ftw.meeting/ftw/meeting/content/meeting.py:149
+msgid "meeting_label_related_items"
+msgstr ""
+
+#. Default: "Relations"
+#: ftw.meeting/ftw/meeting/browser/templates/meeting.pt:74
+msgid "meeting_label_relations"
+msgstr ""
+
+#. Default: "Responsibility"
+#: ftw.meeting/ftw/meeting/browser/templates/meeting.pt:105
+#: ftw.meeting/ftw/meeting/content/meeting.py:48
+msgid "meeting_label_responsibility"
+msgstr ""
+
+#. Default: "Start Date"
+#: ftw.meeting/ftw/meeting/browser/templates/meeting.pt:47
+#: ftw.meeting/ftw/meeting/content/meeting.py:65
+msgid "meeting_label_start_date"
+msgstr ""
+
+#. Default: "Start Time"
+#: ftw.meeting/ftw/meeting/browser/templates/meeting.pt:53
+msgid "meeting_label_start_time"
+msgstr ""
+
+#. Default: "Tasks"
+#: ftw.meeting/ftw/meeting/browser/templates/meeting.pt:223
+msgid "meeting_label_tasks"
+msgstr ""
+
+#. Default: "Text"
+#: ftw.meeting/ftw/meeting/browser/templates/meeting.pt:210
+msgid "meeting_label_text"
+msgstr ""
+
+#. Default: "Event type"
+#: ftw.meeting/ftw/meeting/content/meeting.py:36
+msgid "meeting_label_type"
+msgstr ""
+
+#: ftw.meeting/ftw/meeting/content/meeting.py:266
+msgid "meeting_type_event"
+msgstr ""
+
+#: ftw.meeting/ftw/meeting/content/meeting.py:268
+msgid "meeting_type_meeting"
+msgstr ""
+
+#: ftw.meeting/ftw/meeting/content/meeting.py:267
+msgid "meeting_type_survey"
+msgstr ""
+
+#. Default: "Enter the conclusion drawn for this resolution"
+#: ftw.meeting/ftw/meeting/content/meetingitem.py:67
+msgid "meetingitem_help_conclusion"
+msgstr ""
+
+#: ftw.meeting/ftw/meeting/content/meetingitem.py:86
+msgid "meetingitem_help_related_items"
+msgstr ""
+
+#. Default: "Select the responsible person(s)."
+#: ftw.meeting/ftw/meeting/content/meetingitem.py:30
+msgid "meetingitem_help_responsibility"
+msgstr ""
+
+#. Default: "Enter the text."
+#: ftw.meeting/ftw/meeting/content/meetingitem.py:53
+msgid "meetingitem_help_text"
+msgstr ""
+
+#. Default: "Conclusion"
+#: ftw.meeting/ftw/meeting/browser/templates/meeting.pt:216
+#: ftw.meeting/ftw/meeting/content/meetingitem.py:66
+msgid "meetingitem_label_conclusion"
+msgstr ""
+
+#. Default: "Related Items"
+#: ftw.meeting/ftw/meeting/content/meetingitem.py:85
+msgid "meetingitem_label_related_items"
+msgstr ""
+
+#. Default: "Responsibility"
+#: ftw.meeting/ftw/meeting/content/meetingitem.py:29
+msgid "meetingitem_label_responsibility"
+msgstr ""
+
+#. Default: "Text"
+#: ftw.meeting/ftw/meeting/content/meetingitem.py:52
+msgid "meetingitem_label_text"
+msgstr ""
+
+#: ftw.meeting/ftw/meeting/browser/templates/meeting.pt:169
+msgid "vCal"
+msgstr ""
+

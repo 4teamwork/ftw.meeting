@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<object name="portal_skins"
+        meta_type="Plone Skins Tool"
+        allow_any="False"
+        cookie_persistence="False"
+        request_varname="plone_skin">
+
+ <object name="ftw_meeting_templates"
+    meta_type="Filesystem Directory View"
+    directory="ftw.meeting:skins/ftw_meeting_templates"/>
+  
+  <skin-path name="*">
+  <layer name="ftw_meeting_templates"
+     insert-after="custom"/> 
+ </skin-path>
+
+</object>

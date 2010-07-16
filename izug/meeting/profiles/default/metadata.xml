@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<metadata>
-  <version>1.0</version>
-  <dependencies>
-    <dependency>profile-Products.DataGridField:default</dependency>
-    <dependency>profile-izug.file:default</dependency>
-    <dependency>profile-izug.task:default</dependency>
-  </dependencies>
-</metadata>
