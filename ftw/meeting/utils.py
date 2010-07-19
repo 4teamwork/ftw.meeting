@@ -3,14 +3,16 @@ from interfaces import IResponsibilityInfoGetter
 from zope.app.component.hooks import getSite
 from Products.CMFCore.utils import getToolByName
 
-class ResponsibilitInfos(object):
+class ResponsibilityInfos(object):
+    """Utiliy which returns a list of dicts
+    format: [{'name':'Full Name', 'url':'authors-url'}]
+    
     """
-    """
+    implements(IResponsibilityInfoGetter)
     
     def __call__(self, context, userids=None):
         """
         """
-        implements(IResponsibilityInfoGetter)
         # we need userids
         if not userids:
             return []
@@ -25,6 +27,7 @@ class ResponsibilitInfos(object):
             if userid:
                 user = mt.getMemberById(userid)
                 users.append({'name': user.getProperty('fullname', ''),
-                              'url': '%s/author/%s' % (context.portal_url(), user.id), })
+                              'url': '%s/author/%s' % (context.portal_url(), 
+                                                       user.id), })
         return users
         

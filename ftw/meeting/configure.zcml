@@ -45,7 +45,8 @@
 
      <!-- register utility  ftw.meeting.responsibility.infos -->
      <utility 
-       component=".utils." 
+       provides=".interfaces.IResponsibilityInfoGetter"
+       component=".utils.ResponsibilityInfos" 
        name="ftw.meeting.responsibility.infos"
        />
        
