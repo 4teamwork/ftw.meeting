@@ -4,14 +4,11 @@
 	metal:use-macro="here/main_template/macros/master" i18n:domain="ftw.meeting">
 	<body>
 
-		<metal:main fill-slot="main">
-			<tal:main-macro metal:define-macro="main"
+		<metal:main fill-slot="content-core">
+			<tal:main-macro metal:define-macro="content-core"
 				tal:define="templateId template/getId;
                             meeting_type python:context.getMeeting_type()">
 
-				<metal:block metal:use-macro="here/@@custom_header/macros/header | here/base/macros/header" />
-
-				<div tal:replace="structure provider:plone.abovecontentbody" />
                 
 				<table class="MeetingListing">
 					<tr tal:condition="context/location | nothing">
@@ -82,10 +79,9 @@
                                             item_type           item/portal_type;
                                             item_icon           python:plone_view.getIcon(item);
                                             item_type           item/portal_type;
-                                            item_type_class     python:'contenttype-' + normalizeString(item_type);
                                             item_url            item/absolute_url;
                                             item_url            python:(item_type in use_view_action) and item_url+'/view' or item_url">
-                                        <span tal:attributes="class item_type_class">
+                                        <span>
                                             <img tal:replace="structure item_icon/html_tag" />
                                             <a href="" class=""
                                                tal:attributes="href  item_url;
@@ -202,7 +198,7 @@
                                         <td>
                                             <span tal:repeat="userid obj/getResponsibility()">
                                                <tal:user define="user python:context.acl_users.getUserById(userid)"
-                                                         replace="python:user and user.getProperty('fullname',userid)">
+                                                         replace="python:user and user.getProperty('fullname',userid)" />
                                             </span>
                                         </td>
                                     </tr>
@@ -307,28 +303,6 @@
                     </tr>
                 </table>
 
-                <div class="poodleListing" width="100%"
-                       tal:define="poodles python:context.getFolderContents({'portal_type':'Poodle',}, full_objects=True);
-                                   context_poodle python:(context.getUsers() and context.getDates()) and [context] or [];
-                                   poodles python:context_poodle+poodles"
-                       tal:condition="python: poodles and 'poodle' in meeting_type">
-                       
-                    <div class="poodleItems" tal:repeat="poodle poodles">
-                        <tal:poodle define="data poodle/getPoodleData">
-                            <a tal:condition="python: context != poodle"
-                               tal:attributes="href poodle/absolute_url;
-                                               title poodle/Description" 
-                               class="PoodleItemTitle" tal:content="poodle/Title">poodle title</a>
-                            
-                            <div tal:replace="structure python:view.renderPoodleTable(poodle)"></div>
-                        </tal:poodle>
-                    </div>
-                       
-                </div>
-                
-
-
-                <div tal:replace="structure provider:plone.belowcontentbody" />
 			</tal:main-macro>
 		</metal:main>
 	</body>

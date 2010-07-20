@@ -4,6 +4,8 @@ from ftw.meeting.interfaces import IMeeting, IResponsibilityInfoGetter
 from Products.Archetypes import atapi
 from Products.ATContentTypes.content import folder
 from Products.ATContentTypes.lib.calendarsupport import CalendarSupportMixin
+from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget \
+    import ReferenceBrowserWidget
 from Products.CMFCore import permissions
 from Products.DataGridField import DataGridField
 from Products.DataGridField.SelectColumn import SelectColumn
@@ -174,6 +176,28 @@ MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
         )
     ),
 
+    atapi.ReferenceField('related_items',
+        relationship = 'relatesTo',
+        multiValued = True,
+        isMetadata = True,
+        schemata = 'additional',
+        languageIndependent = False,
+        storage = atapi.AnnotationStorage(),
+        widget = ReferenceBrowserWidget(
+            allow_search = True,
+            allow_browse = True,
+            show_indexes = False,
+            force_close_on_insert = False,
+            label = _(
+                u"meeting_label_related_items",
+                default=u"Related Items"),
+            description = _(
+                u"meeting_help_related_items",
+                default=u""),
+            visible = {'edit': 'visible', 'view': 'invisible'}
+        ),
+    ),
+
 ))
 
 # Set storage on fields copied from ATFolderSchema, making sure
@@ -198,20 +222,6 @@ MeetingSchema['location'].widget = atapi.StringWidget(
         default=u"Enter the location where the meeting will take place."),
 )
 MeetingSchema['location'].write_permission = permissions.ModifyPortalContent
-
-# customize relateditems for meeting (ex. diffrent title)
-MeetingSchema['relatedItems'].schemata = 'additional',
-MeetingSchema['relatedItems'].storage = atapi.AnnotationStorage()
-MeetingSchema['relatedItems'].widget.allow_search = True
-MeetingSchema['relatedItems'].widget.allow_browse = True
-MeetingSchema['relatedItems'].widget.show_indexes = False
-MeetingSchema['relatedItems'].widget.force_close_on_insert = False
-MeetingSchema['relatedItems'].widget.label = _(
-    u"meeting_label_related_items",
-    default=u"Related Items"),
-MeetingSchema['relatedItems'].widget.visible = {'edit': 'visible',
-                                                'view': 'invisible'}
-
 
 MeetingSchema.changeSchemataForField('effectiveDate', 'settings')
 MeetingSchema.changeSchemataForField('expirationDate', 'settings')
@@ -265,7 +275,7 @@ class Meeting(folder.ATFolder, CalendarSupportMixin):
         factory = component.getUtility(
             IResponsibilityInfoGetter,
             name="ftw.meeting.responsibility.infos")
-        return factory(self, userids=userids)
+        return factory(self).get_infos(userids=userids)
 
     def getPresentOptions(self):
         """returns present options
@@ -278,9 +288,9 @@ class Meeting(folder.ATFolder, CalendarSupportMixin):
             ('excused', _(u'excused'))))
 
     def getAttendeesOrUsers(self):
+        resp = [a.get('contact', '') for a in self.getResponsibility()]
         if self.getMeeting_type() == 'meeting_dates_additional':
             attendees = [a.get('contact', '') for a in self.getAttendees()]
-            resp = [a.get('contact', '') for a in self.getResponsibility()]
             return attendees + resp
         else:
             return resp

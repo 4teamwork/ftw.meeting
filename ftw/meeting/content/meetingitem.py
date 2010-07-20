@@ -3,7 +3,10 @@ from ftw.meeting.config import PROJECTNAME
 from ftw.meeting.interfaces import IMeetingItem
 from Products.Archetypes import atapi
 from Products.ATContentTypes.content import folder
+from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget \
+    import ReferenceBrowserWidget
 from zope.interface import implements
+
 
 MeetingItemSchema = folder.ATFolderSchema.copy() + atapi.Schema((
 
@@ -58,6 +61,29 @@ MeetingItemSchema = folder.ATFolderSchema.copy() + atapi.Schema((
             rows=10,
         ),
     ),
+
+    atapi.ReferenceField('related_items',
+        relationship = 'relatesTo',
+        multiValued = True,
+        isMetadata = True,
+        schemata = 'additional',
+        languageIndependent = False,
+        storage = atapi.AnnotationStorage(),
+        widget = ReferenceBrowserWidget(
+            allow_search = True,
+            allow_browse = True,
+            show_indexes = False,
+            force_close_on_insert = False,
+            label = _(
+                u"meeting_label_related_items",
+                default=u"Related Items"),
+            description = _(
+                u"meeting_help_related_items",
+                default=u""),
+            visible = {'edit': 'visible', 'view': 'invisible'}
+        ),
+    ),
+
 ))
 
 # Set storage on fields copied from ATContentTypeSchema, making sure
@@ -73,23 +99,6 @@ MeetingItemSchema['effectiveDate'].widget.visible = {'view': 'invisible',
                                                      'edit': 'invisible'}
 MeetingItemSchema['expirationDate'].widget.visible = {'view': 'invisible',
                                                       'edit': 'invisible'}
-
-
-# customize relateditems for meeting (ex. diffrent title)
-MeetingItemSchema['relatedItems'].schemata = 'additional',
-MeetingItemSchema['relatedItems'].storage = atapi.AnnotationStorage()
-MeetingItemSchema['relatedItems'].widget.allow_search = True
-MeetingItemSchema['relatedItems'].widget.allow_browse = True
-MeetingItemSchema['relatedItems'].widget.show_indexes = False
-MeetingItemSchema['relatedItems'].widget.force_close_on_insert = False
-MeetingItemSchema['relatedItems'].widget.label = _(
-    u"meeting_label_related_items",
-    default=u"Related Items"),
-MeetingItemSchema['relatedItems'].widget.description = _(
-    u"meeting_help_related_items",
-    default=u""),
-MeetingItemSchema['relatedItems'].widget.visible = {'edit': 'visible',
-                                                    'view': 'invisible'}
 
 
 class MeetingItem(folder.ATFolder):

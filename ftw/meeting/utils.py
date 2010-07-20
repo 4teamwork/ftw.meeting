@@ -10,24 +10,30 @@ class ResponsibilityInfos(object):
     """
     implements(IResponsibilityInfoGetter)
     
-    def __call__(self, context, userids=None):
+    def __init__(self, context=None):
+        """
+
+        """
+        if context is None:
+            context = getSite()
+        self.context = context
+        
+    
+    def get_infos(self, userids=None):
         """
         """
         # we need userids
         if not userids:
             return []
-        
-        if context is None:
-            context = getSite()
 
-        mt = getToolByName(context, 'portal_membership')
+        mt = getToolByName(self.context, 'portal_membership')
         
         users = []
         for userid in userids:
             if userid:
                 user = mt.getMemberById(userid)
                 users.append({'name': user.getProperty('fullname', ''),
-                              'url': '%s/author/%s' % (context.portal_url(), 
+                              'url': '%s/author/%s' % (self.context.portal_url(), 
                                                        user.id), })
         return users
         
