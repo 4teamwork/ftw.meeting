@@ -26,13 +26,6 @@
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
 
-
-<!--     <adapter
-      provides="ftw.poodle.interfaces.IPoodleConfig"
-      for=".interfaces.IMeeting"
-      factory="ftw.poodle.poodle_config.PoodleConfig" /> -->
-
-
     <!-- register skin layer -->
     <cmf:registerDirectory
        name="ftw_meeting_templates"/>

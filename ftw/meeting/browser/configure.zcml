@@ -6,15 +6,18 @@
     <include package="plone.app.contentmenu" />
 
     <browser:resourceDirectory
+        layer="ftw.meeting.interfaces.IMeetingLayer"
         name='meeting-scripts'
         directory="scripts" />
 
     <browser:resourceDirectory
+        layer="ftw.meeting.interfaces.IMeetingLayer"
         name='meeting-styles'
         directory="styles" />
 
 
     <browser:view
+        layer="ftw.meeting.interfaces.IMeetingLayer"
         for="*"
         name="update_meeting"
         permission="zope2.View"
@@ -22,6 +25,7 @@
         />
 
     <browser:page
+        layer="ftw.meeting.interfaces.IMeetingLayer"
         for="..interfaces.IMeeting"
         name="meeting_view"
         class=".meeting.MeetingView"
