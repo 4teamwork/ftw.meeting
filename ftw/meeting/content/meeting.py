@@ -162,7 +162,7 @@ MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
                     title = _(
                         u"meeting_label_attendees_attendee",
                         default=u"Attendee"),
-                    vocabulary = 'getAttendees'
+                    vocabulary = 'getAttendeesVocabulary'
                 ),
                 'present': SelectColumn(
                     title = _(
@@ -250,11 +250,12 @@ class Meeting(folder.ATFolder, CalendarSupportMixin):
             name='ftw.meeting.users',
             context=self)
 
-        # converts the list ofsimpleterms into a displaylist 
-        # and resturns the result
-        # directly
-        return atapi.DisplayList([(u.value, u.title or u.token) \
-            for u in factory(self)])
+        # converts the list of simpleterms into a displaylist
+        # and resturns the result directly
+        display_list = atapi.DisplayList()
+        for term in factory(self):
+            display_list.add(term.value, term.title or term.token)
+        return display_list
 
     def getResponsibilityInfos(self, userids):
         """calls an utility, which returns a list of users
@@ -287,8 +288,8 @@ class Meeting(folder.ATFolder, CalendarSupportMixin):
     def getMeetingTypes(self):
         """Returns a DisplayList of meeting types
            The ids are schemata names concatenated by _
-           
-           
+
+
         """
         return atapi.DisplayList((
             ('dates_additional', _(u'meeting_type_event')),

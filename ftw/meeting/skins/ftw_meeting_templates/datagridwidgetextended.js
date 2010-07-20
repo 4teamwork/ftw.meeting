@@ -377,8 +377,7 @@ dataGridFieldFunctionsExtended.selectAll = function(id, column) {
     var lastRow = rows[rows.length-1];
     var oldRows = rows.length;
     var select_row = id+'.'+column;
-    var allPossible = jq('#datagridwidget-empty-row [name*='+id+'] option');
-
+    var allPossible = jq('.datagridwidget-empty-row [name*='+select_row+'] option');
     allPossible.each(function(i,o){
         var $o = jq(o);
         var val = $o.attr('value');
