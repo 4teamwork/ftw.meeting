@@ -9,21 +9,22 @@ function MeetingTypeSelector(){
         
         available_schematas = jq.map(available_schematas, function(n){return n})
         
+        // hide legends
         jq(available_schematas).each(function(i){
-                jq('#fieldsetlegend-'+this).css('display','none');
+                jq('#fieldsetlegend-'+this).hide();
             })
 
+        // hide fieldsets
         inpute_meeting_types.each(function(i){
-                jq('#fieldset-'+this).css('display','none');
+                jq('#fieldset-'+this).hide();
             }) 
             
-            
         //show enabled schematas
-        jq('input[name=meeting_type]').each(function(i){
+        inpute_meeting_types.each(function(i){
                 if (this.checked){
                     var schemata_to_show = this.value.split('_');   
                         jq(schemata_to_show).each(function(i){
-                            jq('#fieldset-'+this).toggleClass('hidden');
+                            jq('#fieldset-'+this).show()
                         })                    
                     }
             })
@@ -34,11 +35,11 @@ function MeetingTypeSelector(){
                 
                 //hide all schematas - like a reset
                 jq(available_schematas).each(function(i){
-                        jq('#fieldset-'+this).addClass('hidden');
+                        jq('#fieldset-'+this).hide();
                     })
                 //show the given schematas
                 jq(schemata_to_show).each(function(i){
-                        jq('#fieldset-'+this).toggleClass('hidden');
+                        jq('#fieldset-'+this).show();
                     })
                 
             })

@@ -130,7 +130,7 @@ MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
         searchable = True,
         schemata = 'meeting',
         index = 'KeywordIndex:schema',
-        vocabulary = 'ftw.meeting.users',
+        vocabulary_factory = 'ftw.meeting.users',
         storage = atapi.AnnotationStorage(),
         widget = atapi.SelectionWidget(
             label = _(
@@ -249,7 +249,9 @@ class Meeting(folder.ATFolder, CalendarSupportMixin):
             schema.interfaces.IVocabularyFactory,
             name='ftw.meeting.users',
             context=self)
-        # converts the simpleterms into a displaylist and resturns the result
+
+        # converts the list ofsimpleterms into a displaylist 
+        # and resturns the result
         # directly
         return atapi.DisplayList([(u.value, u.title or u.token) \
             for u in factory(self)])
@@ -284,7 +286,9 @@ class Meeting(folder.ATFolder, CalendarSupportMixin):
 
     def getMeetingTypes(self):
         """Returns a DisplayList of meeting types
-
+           The ids are schemata names concatenated by _
+           
+           
         """
         return atapi.DisplayList((
             ('dates_additional', _(u'meeting_type_event')),
