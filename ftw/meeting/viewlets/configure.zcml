@@ -1,0 +1,17 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
+    i18n_domain="ftw.meeting">
+
+    <configure zcml:condition="installed ftw.poodle">
+        <browser:viewlet 
+            name="ftw.meeting.generatemeeting" 
+            manager="ftw.poodle.interfaces.IPoodletableBottom"
+            class=".generate_meeting.GenerateMeetingViewlet"
+            for="ftw.poodle.interfaces.IPoodle"
+            permission="zope2.View"
+            />
+    </configure>
+
+</configure>

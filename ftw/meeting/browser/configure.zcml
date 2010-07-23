@@ -1,6 +1,7 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
     xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
     i18n_domain="ftw.meeting">
 
     <include package="plone.app.contentmenu" />
@@ -15,15 +16,6 @@
         name='meeting-styles'
         directory="styles" />
 
-
-    <browser:view
-        layer="ftw.meeting.interfaces.IMeetingLayer"
-        for="*"
-        name="update_meeting"
-        permission="zope2.View"
-        class=".meeting.MeetingUpdate"
-        />
-
     <browser:page
         layer="ftw.meeting.interfaces.IMeetingLayer"
         for="..interfaces.IMeeting"
@@ -33,4 +25,13 @@
         permission="zope2.View"
     />
 
+    <configure zcml:condition="installed ftw.poodle">
+        <browser:page
+            layer="ftw.meeting.interfaces.IMeetingLayer"
+            for="ftw.poodle.interfaces.IPoodle"
+            name="create_meeting_from_poodle"
+            class=".create_meeting.CreateMeeting"
+            permission="zope2.View"
+        />
+    </configure>
 </configure>

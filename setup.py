@@ -50,6 +50,7 @@ setup(name='ftw.meeting',
       zip_safe=False,
       install_requires=[
         'setuptools',
+        'ftw.calendarwidget'
         ],
       tests_require=tests_require,
       extras_require=dict(tests=tests_require),

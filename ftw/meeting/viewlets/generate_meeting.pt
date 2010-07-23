@@ -1,0 +1,37 @@
+<div id="meeting-generator" i18n:domain="ftw.meeting">
+    <p class="documentDescription" i18n:translate="generate_meeting_descritpion">
+        Please select an entry and push the generate button
+    </p>
+    
+    <form name="generate_meeting" action="">
+        <select name="date_hash">
+            <tal:loop repeat="opt view/options">
+                <option tal:attributes="value opt/hash"
+                        tal:content="string:${opt/date} ${opt/duration} (${opt/counter})" />
+            </tal:loop>
+        </select>
+        <input type="submit" name="start_generate" i18n:attributes="value" value="label_meeting_generate" />
+    </form>
+</div>
+
+<div tal:content="view/poodle_result" />
+
+    <div tal:content="view/context/getDates" />
+
+<script>
+    jq(function(){
+        jq('[name=start_generate]').bind('click', function(e){
+            e.stopPropagation();
+            e.preventDefault();
+            var form_data = jq('[name=generate_meeting]').serializeArray();
+            console.log(form_data);
+            var base_href = jq('base')[0].href;
+            jq.post(base_href + '/create_meeting_from_poodle', form_data, function(callback){
+                jq('#kssPortalMessage').show();
+                jq('#kssPortalMessage dd').html(callback);    
+            });
+
+            console.log('blubb');            
+        });
+    });
+</script>
