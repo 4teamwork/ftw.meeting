@@ -1,6 +1,7 @@
 from Products.Five.browser import BrowserView
 from zope.i18n import translate
 from DateTime import DateTime
+from DateTime.interfaces import SyntaxError as DateTimeSyntaxError
 from plone.i18n.normalizer import idnormalizer
 from zExceptions import BadRequest
 
@@ -35,19 +36,28 @@ class CreateMeeting(BrowserView):
                 attendees.append(dict(contact=userid))
 
         # create meeting as sibling of poodle
-        errors = {}
+        errors = []
         m_title = u"%s %s" % (
-            translate('label_create_from_poodle', 'ftw.meeting'),
+            translate(
+                'label_create_from_poodle',
+                'ftw.meeting',
+                context=self.request),
             self.context.Title().decode('utf-8'))
         m_id = idnormalizer.normalize(m_title)
         try:
             parent.invokeFactory('Meeting', m_id)
         except BadRequest:
             # catches duplication error
-            return translate('duplication_error_text', 'ftw_meeting')
+            return translate(
+                'duplication_error_text',
+                'ftw_meeting',
+                context=self.request)
         except ValueError:
             # catches "disallowed subobject type"
-            return translate('dissalowed_error_text', 'ftw_meeting')
+            return translate(
+                'disallowed_error_text',
+                'ftw_meeting',
+                context=self.request)
         m_created = getattr(parent, m_id, None)
 
         #set title and attendees
@@ -66,13 +76,13 @@ class CreateMeeting(BrowserView):
             start = DateTime("%s %s" % (
                 date_duration['date'], start_time))
             m_created.setStart_date(start)
-        except SyntaxError:
+        except DateTimeSyntaxError:
             errors.append('cannot_set_startdate')
         try:
             end = DateTime("%s %s" % (
                 date_duration['date'], end_time))
             m_created.setEnd_date(end)
-        except SyntaxError:
+        except DateTimeSyntaxError:
             errors.append('cannot_set_enddate')
 
         # set correct meeting type
@@ -84,14 +94,16 @@ class CreateMeeting(BrowserView):
             return translate(
                 'meeting_created_text',
                 'ftw.meeting',
-                mapping={'url': m_created.absolute_url(), 'title': m_title})
+                mapping={'url': m_created.absolute_url(), 'title': m_title}, 
+                context=self.request)
 
         else:
             # there were porblems during creation precess
+            # TODO: Implement a better error message from error list
             return translate(
                 'meeting_created_text_with_errors',
                 'ftw.meeting',
                 mapping={
                     'url': m_created.absolute_url(),
-                    'title': m_title,
-                    'errors' : [e+", " for e in errors]})
+                    'title': m_title},
+                context=self.request)
