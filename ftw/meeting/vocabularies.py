@@ -17,7 +17,13 @@ class AvailableUsersVocabulary(object):
         """ 
         if context is None:
             context = getSite()
-        factory = component.getUtility(schema.interfaces.IVocabularyFactory, name='plone.principalsource.Users', context=context)
+        
+        factory = component.getUtility(
+            schema.interfaces.IVocabularyFactory,
+            name='assignable_users')
+        
+        if factory is None:
+            factory = component.getUtility(schema.interfaces.IVocabularyFactory, name='plone.principalsource.Users', context=context)
         items = factory(context)
         return items
 

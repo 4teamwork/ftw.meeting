@@ -12,7 +12,7 @@ from Products.DataGridField.SelectColumn import SelectColumn
 from widget import DataGridWidgetExtended
 from zope import component, schema
 from zope.interface import implements
-
+from ftw.calendarwidget.browser.widgets import FtwCalendarWidget
 
 MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
 
@@ -65,7 +65,7 @@ MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
         accessor='start',
         schemata = 'dates',
         storage = atapi.AnnotationStorage(),
-        widget = atapi.CalendarWidget(
+        widget = FtwCalendarWidget(
             label = _(
                 u"meeting_label_start_date",
                 default=u"Start of Meeting"),
@@ -82,7 +82,7 @@ MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
         accessor='end',
         schemata = 'dates',
         storage = atapi.AnnotationStorage(),
-        widget = atapi.CalendarWidget(
+        widget = FtwCalendarWidget(
             label = _(
                 u"meeting_label_end_date",
                 default=u"End of Meeting"),
