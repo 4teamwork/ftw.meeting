@@ -18,7 +18,7 @@ class AvailableUsersVocabulary(object):
         if context is None:
             context = getSite()
         
-        factory = component.getUtility(
+        factory = component.queryUtility(
             schema.interfaces.IVocabularyFactory,
             name='assignable_users')
         

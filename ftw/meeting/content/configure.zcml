@@ -3,6 +3,7 @@
     xmlns:five="http://namespaces.zope.org/five"
     i18n_domain="izug.meeting">
 
+    <include package="ftw.calendarwidget" />
 
     <class class=".meetingitem.MeetingItem">
 

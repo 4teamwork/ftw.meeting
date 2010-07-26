@@ -3,5 +3,6 @@
   <version>1.0</version>
   <dependencies>
      <dependency>profile-Products.DataGridField:default</dependency>
+     <dependency>profile-ftw.calendarwidget:default</dependency>
   </dependencies>
 </metadata>
