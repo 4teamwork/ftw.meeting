@@ -1,5 +1,7 @@
 from plone.app.layout.viewlets import ViewletBase
+from Products.CMFCore.utils import getToolByName
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+
 
 class GenerateMeetingViewlet(ViewletBase):
     """Shows a "generate meeting from poodle" button
@@ -33,3 +35,14 @@ class GenerateMeetingViewlet(ViewletBase):
                     counter=self.poodle_result['result'][i]))
 
         self.options = options_list
+
+
+    def show_generate(self):
+        """Decides if the viewlet will be shown or not"""
+        
+        mtool = getToolByName(self.context, "portal_membership")
+        member = mtool.getAuthenticatedMember()
+        if not member:
+            return False
+        return member.id in self.context.Creators()
+        

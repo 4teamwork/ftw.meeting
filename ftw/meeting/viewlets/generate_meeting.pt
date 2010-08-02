@@ -1,3 +1,4 @@
+<tal:if condition="view/show_generate">
 <div id="meeting-generator" i18n:domain="ftw.meeting">
     <label for="date_hash" i18n:translate="generate_meeting_label">Create new event from meeting poll</label>
     <div class="formHelp" i18n:translate="generate_meeting_descritpion">
@@ -29,3 +30,5 @@
         });
     });
 </script>
+
+</tal:if>
