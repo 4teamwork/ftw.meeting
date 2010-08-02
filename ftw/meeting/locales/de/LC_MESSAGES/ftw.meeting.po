@@ -26,7 +26,7 @@ msgstr ""
 
 #. Default: "Meeting allready exists"
 msgid "duplication_error_text"
-msgstr ""
+msgstr "Sitzung wurde bereits erstellt."
 
 #: ./ftw/meeting/content/meeting.py:288
 msgid "excused"
@@ -47,7 +47,6 @@ msgid "iCal"
 msgstr "iCal"
 
 #. Default: "Meeting created from: "
-#, fuzzy
 msgid "label_create_from_poodle"
 msgstr "Sitzung erstellt aus: "
 

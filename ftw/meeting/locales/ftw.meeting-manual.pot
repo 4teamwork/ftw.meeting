@@ -19,15 +19,15 @@ msgstr ""
 
 #. Default: "Meeting created from: "
 msgid "label_create_from_poodle"
-msgstr "Sitzung wurde erstellt: "
+msgstr ""
 
 #. Default: "Meeting allready exists"
 msgid "duplication_error_text"
-msgstr "Sitzung existiert bereits!"
+msgstr ""
 
 #. Default: "adding subobject type not allowed"
 msgid "disallowed_error_text"
-msgstr "Es ist nicht erlaubt eine Sitzung in diesem Bereich zu erstellen!"
+msgstr ""
 
 #. Default: "Meeting created --> <a href='${url}'>${title}</a>"
 msgid "meeting_created_text"

@@ -6,6 +6,14 @@ from plone.i18n.normalizer import idnormalizer
 from zExceptions import BadRequest
 
 
+# do it like kss, generat our own status message template
+status_message_template = lambda msg, mtype: \
+    "<dl class='portalMessage %(mtype)s'><dt>%(mtype)s</dt><dd>%(msg)s</dd>" \
+    "</dl>" \
+    % (dict(mtype=mtype,
+          msg=msg))
+
+
 class CreateMeeting(BrowserView):
     """creates a meeting from poodle informations(data)
 
@@ -48,16 +56,18 @@ class CreateMeeting(BrowserView):
             parent.invokeFactory('Meeting', m_id)
         except BadRequest:
             # catches duplication error
-            return translate(
+            return status_message_template(translate(
                 'duplication_error_text',
-                'ftw_meeting',
-                context=self.request)
+                'ftw.meeting',
+                context=self.request), 
+                'error')
         except ValueError:
             # catches "disallowed subobject type"
-            return translate(
+            return status_message_template(translate(
                 'disallowed_error_text',
                 'ftw_meeting',
-                context=self.request)
+                context=self.request), 
+                'error')
         m_created = getattr(parent, m_id, None)
 
         #set title and attendees
@@ -70,6 +80,7 @@ class CreateMeeting(BrowserView):
         # perhaps we should check other time formats
         else:
             #make a reset
+            errors.append('wrong_time_format')
             start_time = end_time = '00:00'
 
         try:
@@ -91,19 +102,21 @@ class CreateMeeting(BrowserView):
         #finalize
         m_created.processForm()
         if not errors:
-            return translate(
+            return status_message_template(translate(
                 'meeting_created_text',
                 'ftw.meeting',
-                mapping={'url': m_created.absolute_url(), 'title': m_title}, 
-                context=self.request)
+                mapping={'url': m_created.absolute_url(), 'title': m_title},
+                context=self.request), 
+                'info')
 
         else:
             # there were porblems during creation precess
             # TODO: Implement a better error message from error list
-            return translate(
+            return status_message_template(translate(
                 'meeting_created_text_with_errors',
                 'ftw.meeting',
                 mapping={
                     'url': m_created.absolute_url(),
                     'title': m_title},
-                context=self.request)
+                context=self.request),
+                'error')
