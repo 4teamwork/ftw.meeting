@@ -1,7 +1,8 @@
 <div id="meeting-generator" i18n:domain="ftw.meeting">
-    <p class="documentDescription" i18n:translate="generate_meeting_descritpion">
+    <label for="date_hash" i18n:translate="generate_meeting_label">Create new event from meeting poll</label>
+    <div class="formHelp" i18n:translate="generate_meeting_descritpion">
         Please select an entry and push the generate button
-    </p>
+    </div>
     
     <form name="generate_meeting" action="">
         <select name="date_hash">
