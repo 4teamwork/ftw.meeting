@@ -205,7 +205,6 @@ MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
 
 MeetingSchema['title'].storage = atapi.AnnotationStorage()
 MeetingSchema['description'].storage = atapi.AnnotationStorage()
-MeetingSchema['description'].required = True
 MeetingSchema.changeSchemataForField('effectiveDate', 'settings')
 MeetingSchema.changeSchemataForField('expirationDate', 'settings')
 

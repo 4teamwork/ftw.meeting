@@ -19,7 +19,7 @@ msgstr ""
 
 #. Default: "Meeting created from: "
 msgid "label_create_from_poodle"
-msgstr ""
+msgstr "Sitzung wurde erstellt: "
 
 #. Default: "Meeting allready exists"
 msgid "duplication_error_text"
