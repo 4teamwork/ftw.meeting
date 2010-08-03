@@ -1,5 +1,5 @@
 from plone.app.layout.viewlets import ViewletBase
-from Products.CMFCore.utils import getToolByName
+from zope.component import getMultiAdapter
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 
@@ -36,16 +36,19 @@ class GenerateMeetingViewlet(ViewletBase):
 
         self.options = options_list
 
+        portal_state = getMultiAdapter(
+            (self.context, self.request),
+            name=u'plone_portal_state')
+        self.member = portal_state.member()
+        
 
     def show_generate(self):
         """Decides if the viewlet will be shown or not"""
         
-        mtool = getToolByName(self.context, "portal_membership")
-        member = mtool.getAuthenticatedMember()
-        if not member:
+        if not self.member:
             return False
         
-        return member.id in self.context.Creators() and not \
+        return self.member.id in self.context.Creators() and not \
             self.get_related_meeting()
 
         
@@ -57,5 +60,7 @@ class GenerateMeetingViewlet(ViewletBase):
 
         for obj in self.context.getRelatedItems():
             if obj.portal_type == 'Meeting':
-                return obj
+                # check for View permission
+                if self.member.has_permission('View', obj):
+                    return obj
         return None
