@@ -1,34 +1,42 @@
-<tal:if condition="view/show_generate">
-<div id="meeting-generator" i18n:domain="ftw.meeting">
-    <label for="date_hash" i18n:translate="generate_meeting_label">Create new event from meeting poll</label>
-    <div class="formHelp" i18n:translate="generate_meeting_descritpion">
-        Please select an entry and push the generate button
-    </div>
+<div id="meeting-generator-viewlet" i18n:domain="ftw.meeting">
+    <tal:if condition="view/show_generate">
+    <div id="meeting-generator">
+        <label for="date_hash" i18n:translate="generate_meeting_label">Create new event from meeting poll</label>
+        <div class="formHelp" i18n:translate="generate_meeting_descritpion">
+            Please select an entry and push the generate button
+        </div>
     
-    <form name="generate_meeting" action="">
-        <select name="date_hash">
-            <tal:loop repeat="opt view/options">
-                <option tal:attributes="value opt/hash"
-                        tal:content="string:${opt/date} ${opt/duration} (${opt/counter})" />
-            </tal:loop>
-        </select>
-        <input type="submit" name="start_generate" i18n:attributes="value" value="label_meeting_generate" />
-    </form>
-</div>
+        <form name="generate_meeting" action="">
+            <select name="date_hash">
+                <tal:loop repeat="opt view/options">
+                    <option tal:attributes="value opt/hash"
+                            tal:content="string:${opt/date} ${opt/duration} (${opt/counter})" />
+                </tal:loop>
+            </select>
+            <input type="submit" name="start_generate" i18n:attributes="value" value="label_meeting_generate" />
+        </form>
+    </div>
 
-<script>
-    jq(function(){
-        jq('[name=start_generate]').bind('click', function(e){
-            e.stopPropagation();
-            e.preventDefault();
-            var form_data = jq('[name=generate_meeting]').serializeArray();
-            var base_href = jq('base')[0].href;
-            jq.post(base_href + '/create_meeting_from_poodle', form_data, function(callback){
-                jq('.portalMessage').replaceWith(callback);
-
+    <script>
+        jq(function(){
+            jq('[name=start_generate]').bind('click', function(e){
+                e.stopPropagation();
+                e.preventDefault();
+                var form_data = jq('[name=generate_meeting]').serializeArray();
+                var base_href = jq('base')[0].href;
+                jq.post(base_href + '/create_meeting_from_poodle', form_data, function(callback){
+                    jq('.portalMessage').replaceWith(callback);
+                });
             });
         });
-    });
-</script>
+    </script>
+    </tal:if>
 
-</tal:if>
+    <tal:if define="meeting view/get_related_meeting"
+            condition="meeting">
+        <p i18n:translate="generated_meeting_text">Meeting</p>
+        <p><a tal:attributes="href meeting/absolute_url;
+                              title meeting/Title"
+              tal:content="meeting/Title">Title</a></p>
+    </tal:if>
+</div>

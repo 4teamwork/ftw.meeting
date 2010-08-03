@@ -76,6 +76,7 @@ class CreateMeeting(BrowserView):
         # try to convert date and duration into DateTime objects
         duration = date_duration['duration'].strip()
         if '-' in duration:
+            # expected format HH:MM-HH:MM
             start_time, end_time = duration.split('-')
         # perhaps we should check other time formats
         else:
@@ -98,6 +99,9 @@ class CreateMeeting(BrowserView):
 
         # set correct meeting type
         m_created.setMeeting_type('meeting_dates_additional')
+
+        # set relation between meeting and poodle
+        self.context.setRelatedItems((m_created.UID(), ))
 
         #finalize
         m_created.processForm()

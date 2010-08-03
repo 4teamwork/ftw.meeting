@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2010-08-02 12:32+0000\n"
+"POT-Creation-Date: 2010-08-03 07:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,7 +16,7 @@ msgstr ""
 msgid "Attachments"
 msgstr "Anhang"
 
-#: ./ftw/meeting/content/meeting.py:287
+#: ./ftw/meeting/content/meeting.py:286
 msgid "absent"
 msgstr "abwesend"
 
@@ -28,19 +28,24 @@ msgstr ""
 msgid "duplication_error_text"
 msgstr "Sitzung wurde bereits erstellt."
 
-#: ./ftw/meeting/content/meeting.py:288
+#: ./ftw/meeting/content/meeting.py:287
 msgid "excused"
 msgstr "entschuldigt"
 
 #. Default: "Please select an entry and push the generate button"
-#: ./ftw/meeting/viewlets/generate_meeting.pt:3
+#: ./ftw/meeting/viewlets/generate_meeting.pt:5
 msgid "generate_meeting_descritpion"
 msgstr "Sie können aus der aktuellen Terminumfrage einen Terminvorschlag auswählen, aus dem dann ein entsprechender Termin erstellt wird. Diesen Termin können Sie dann weiter bearbeiten."
 
 #. Default: "Create new event from meeting poll"
-#: ./ftw/meeting/viewlets/generate_meeting.pt:2
+#: ./ftw/meeting/viewlets/generate_meeting.pt:4
 msgid "generate_meeting_label"
 msgstr "Neuer Termin aus Terminumfrage erstellen"
+
+#. Default: "Meeting"
+#: ./ftw/meeting/viewlets/generate_meeting.pt:38
+msgid "generated_meeting_text"
+msgstr "Es wurde bereits eine Sitzung aus dieser Umfrage erstellt. Durch klichen auf den folgenden Link gelangen Sie zu dieser Sitzung"
 
 #: ./ftw/meeting/browser/templates/meeting.pt:169
 msgid "iCal"
@@ -50,7 +55,7 @@ msgstr "iCal"
 msgid "label_create_from_poodle"
 msgstr "Sitzung erstellt aus: "
 
-#: ./ftw/meeting/viewlets/generate_meeting.pt:14
+#: ./ftw/meeting/viewlets/generate_meeting.pt:16
 msgid "label_meeting_generate"
 msgstr "Neuen Termin erstellen"
 
@@ -78,7 +83,7 @@ msgid "meeting_help_head_of_meeting"
 msgstr ""
 
 #. Default: "Enter the location where the meeting will take place."
-#: ./ftw/meeting/content/meeting.py:220
+#: ./ftw/meeting/content/meeting.py:219
 msgid "meeting_help_location"
 msgstr "Adresse / Sitzungszimmer etc."
 
@@ -167,7 +172,7 @@ msgstr "Leitung"
 
 #. Default: "Location"
 #: ./ftw/meeting/browser/templates/meeting.pt:15
-#: ./ftw/meeting/content/meeting.py:219
+#: ./ftw/meeting/content/meeting.py:218
 msgid "meeting_label_location"
 msgstr "Ort"
 
@@ -225,11 +230,11 @@ msgstr "Text"
 msgid "meeting_label_type"
 msgstr "Typ"
 
-#: ./ftw/meeting/content/meeting.py:305
+#: ./ftw/meeting/content/meeting.py:304
 msgid "meeting_type_event"
 msgstr "Termin"
 
-#: ./ftw/meeting/content/meeting.py:306
+#: ./ftw/meeting/content/meeting.py:305
 msgid "meeting_type_meeting"
 msgstr "Sitzung"
 
@@ -264,7 +269,7 @@ msgstr "Verantwortung"
 msgid "meetingitem_label_text"
 msgstr "Text"
 
-#: ./ftw/meeting/content/meeting.py:286
+#: ./ftw/meeting/content/meeting.py:285
 msgid "present"
 msgstr "anwesend"
 

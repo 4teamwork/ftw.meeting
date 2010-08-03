@@ -44,5 +44,18 @@ class GenerateMeetingViewlet(ViewletBase):
         member = mtool.getAuthenticatedMember()
         if not member:
             return False
-        return member.id in self.context.Creators()
         
+        return member.id in self.context.Creators() and not \
+            self.get_related_meeting()
+
+        
+    def get_related_meeting(self):
+        """Returns the first meeting found in related_items, if there's is 
+        none, return none.
+
+        """
+
+        for obj in self.context.getRelatedItems():
+            if obj.portal_type == 'Meeting':
+                return obj
+        return None
