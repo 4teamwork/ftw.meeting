@@ -1,9 +1,10 @@
-from Products.Five.browser import BrowserView
-from zope.i18n import translate
 from DateTime import DateTime
 from DateTime.interfaces import SyntaxError as DateTimeSyntaxError
 from plone.i18n.normalizer import idnormalizer
+from Products.Five.browser import BrowserView
 from zExceptions import BadRequest
+from zope.component import getMultiAdapter
+from zope.i18n import translate
 
 
 # do it like kss, generat our own status message template
@@ -59,14 +60,14 @@ class CreateMeeting(BrowserView):
             return status_message_template(translate(
                 'duplication_error_text',
                 'ftw.meeting',
-                context=self.request), 
+                context=self.request),
                 'error')
         except ValueError:
             # catches "disallowed subobject type"
             return status_message_template(translate(
                 'disallowed_error_text',
                 'ftw_meeting',
-                context=self.request), 
+                context=self.request),
                 'error')
         m_created = getattr(parent, m_id, None)
 
@@ -105,12 +106,27 @@ class CreateMeeting(BrowserView):
 
         #finalize
         m_created.processForm()
+
+        # change workflow state from poodle to to close
+        context_state = getMultiAdapter(
+            (self.context, self.request),
+            name=u'plone_context_state')
+        if context_state.workflow_state() != 'close':
+            tools = getMultiAdapter(
+                (self.context, self.request),
+                name=u'plone_tools')
+            workflow = tools.workflow()
+            workflow.doActionFor(
+                self.context,
+                action='close_poodle',
+                wf_id='poodle_workflow')
+
         if not errors:
             return status_message_template(translate(
                 'meeting_created_text',
                 'ftw.meeting',
                 mapping={'url': m_created.absolute_url(), 'title': m_title},
-                context=self.request), 
+                context=self.request),
                 'info')
 
         else:
