@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2010-08-03 07:48+0000\n"
+"POT-Creation-Date: 2010-08-10 06:58+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,7 +22,7 @@ msgstr "abwesend"
 
 #. Default: "adding subobject type not allowed"
 msgid "disallowed_error_text"
-msgstr ""
+msgstr "Das Hinzufügen dieses Objekttyps ist nicht erlaubt"
 
 #. Default: "Meeting allready exists"
 msgid "duplication_error_text"
@@ -43,9 +43,9 @@ msgid "generate_meeting_label"
 msgstr "Neuer Termin aus Terminumfrage erstellen"
 
 #. Default: "Meeting"
-#: ./ftw/meeting/viewlets/generate_meeting.pt:38
+#: ./ftw/meeting/viewlets/generate_meeting.pt:37
 msgid "generated_meeting_text"
-msgstr "Es wurde bereits eine Sitzung aus dieser Umfrage erstellt. Durch klichen auf den folgenden Link gelangen Sie zu dieser Sitzung"
+msgstr "Es wurde bereits eine Sitzung aus dieser Umfrage erstellt. Durch klicken auf den folgenden Link gelangen Sie zu dieser Sitzung"
 
 #: ./ftw/meeting/browser/templates/meeting.pt:169
 msgid "iCal"
@@ -80,12 +80,12 @@ msgstr "Wählen Sie ein End-Datum und Zeit aus, oder klicken Sie auf das Kalende
 #. Default: "Select the head of the meeting."
 #: ./ftw/meeting/content/meeting.py:124
 msgid "meeting_help_head_of_meeting"
-msgstr ""
+msgstr "Bitte wählen Sie den Sitzungsleiter aus"
 
 #. Default: "Enter the location where the meeting will take place."
 #: ./ftw/meeting/content/meeting.py:219
 msgid "meeting_help_location"
-msgstr "Adresse / Sitzungszimmer etc."
+msgstr "Wählen sie Einen Ort wo die Sitzung statt finden soll"
 
 #. Default: "Choose your Meeting form."
 #: ./ftw/meeting/content/meeting.py:106
@@ -100,7 +100,7 @@ msgstr "Wählen Sie den/die Schriftführer/in aus."
 #: ./ftw/meeting/content/meeting.py:194
 #: ./ftw/meeting/content/meetingitem.py:80
 msgid "meeting_help_related_items"
-msgstr ""
+msgstr "Verwandte Inhalte dienen dazu um Sitzungen um ein ähnliches oder das selbe Thema zu kennzeichnen"
 
 #. Default: "Enter the responsible of the meeting."
 #: ./ftw/meeting/content/meeting.py:45
@@ -157,7 +157,7 @@ msgstr "End-Datum"
 #. Default: "End Time"
 #: ./ftw/meeting/browser/templates/meeting.pt:62
 msgid "meeting_label_end_time"
-msgstr ""
+msgstr "End-Zeit"
 
 #. Default: "Export"
 #: ./ftw/meeting/browser/templates/meeting.pt:161
@@ -213,12 +213,12 @@ msgstr "Start-Datum"
 #. Default: "Start Time"
 #: ./ftw/meeting/browser/templates/meeting.pt:50
 msgid "meeting_label_start_time"
-msgstr ""
+msgstr "Start-Zeit"
 
 #. Default: "Tasks"
 #: ./ftw/meeting/browser/templates/meeting.pt:220
 msgid "meeting_label_tasks"
-msgstr ""
+msgstr "Aufgaben"
 
 #. Default: "Text"
 #: ./ftw/meeting/browser/templates/meeting.pt:207
@@ -241,17 +241,17 @@ msgstr "Sitzung"
 #. Default: "Enter the conclusion drawn for this resolution"
 #: ./ftw/meeting/content/meetingitem.py:58
 msgid "meetingitem_help_conclusion"
-msgstr ""
+msgstr "Geben sie die Ergebnisse dieses Traktandum ein"
 
 #. Default: "Select the responsible person(s)."
 #: ./ftw/meeting/content/meetingitem.py:25
 msgid "meetingitem_help_responsibility"
-msgstr ""
+msgstr "Wählen sie die verantwortlichen Personen aus"
 
 #. Default: "Enter the text."
 #: ./ftw/meeting/content/meetingitem.py:42
 msgid "meetingitem_help_text"
-msgstr ""
+msgstr "Geben sie einen Text ein"
 
 #. Default: "Conclusion"
 #: ./ftw/meeting/browser/templates/meeting.pt:213

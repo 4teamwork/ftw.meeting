@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2010-08-03 07:48+0000\n"
+"POT-Creation-Date: 2010-08-10 06:58+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -48,7 +48,7 @@ msgid "generate_meeting_label"
 msgstr ""
 
 #. Default: "Meeting"
-#: ./ftw/meeting/viewlets/generate_meeting.pt:38
+#: ./ftw/meeting/viewlets/generate_meeting.pt:37
 msgid "generated_meeting_text"
 msgstr ""
 
