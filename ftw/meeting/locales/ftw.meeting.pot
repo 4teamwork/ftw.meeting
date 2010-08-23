@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2010-08-03 07:48+0000\n"
+"POT-Creation-Date: 2010-08-11 12:49+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,8 +17,28 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: ftw.meeting\n"
 
+#: ./ftw/meeting/profiles/default/types/Meeting_Item.xml
+msgid "A type for meeting items."
+msgstr ""
+
+#: ./ftw/meeting/profiles/default/types/Meeting.xml
+msgid "A type for meetings."
+msgstr ""
+
+#: ./ftw/meeting/skins/ftw_meeting_templates/datagridwidgetextended.pt:76
+msgid "Add new row"
+msgstr ""
+
 #: ./ftw/meeting/browser/templates/meeting.pt:294
 msgid "Attachments"
+msgstr ""
+
+#: ./ftw/meeting/profiles/default/types/Meeting.xml
+msgid "Meeting"
+msgstr ""
+
+#: ./ftw/meeting/profiles/default/types/Meeting_Item.xml
+msgid "Meeting Item"
 msgstr ""
 
 #: ./ftw/meeting/content/meeting.py:286
@@ -48,7 +68,7 @@ msgid "generate_meeting_label"
 msgstr ""
 
 #. Default: "Meeting"
-#: ./ftw/meeting/viewlets/generate_meeting.pt:38
+#: ./ftw/meeting/viewlets/generate_meeting.pt:37
 msgid "generated_meeting_text"
 msgstr ""
 
@@ -276,6 +296,10 @@ msgstr ""
 
 #: ./ftw/meeting/content/meeting.py:285
 msgid "present"
+msgstr ""
+
+#: ./ftw/meeting/skins/ftw_meeting_templates/datagridwidgetextended.pt:81
+msgid "select all"
 msgstr ""
 
 #: ./ftw/meeting/browser/templates/meeting.pt:164
