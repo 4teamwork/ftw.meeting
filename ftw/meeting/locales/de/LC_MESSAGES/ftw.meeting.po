@@ -188,7 +188,7 @@ msgstr "Exportieren"
 #: ./ftw/meeting/browser/templates/meeting.pt:117
 #: ./ftw/meeting/content/meeting.py:121
 msgid "meeting_label_head_of_meeting"
-msgstr "Leitung"
+msgstr "Sitzungsleitung"
 
 #. Default: "Location"
 #: ./ftw/meeting/browser/templates/meeting.pt:15
@@ -205,7 +205,7 @@ msgstr "Art der Sitzung"
 #: ./ftw/meeting/browser/templates/meeting.pt:126
 #: ./ftw/meeting/content/meeting.py:138
 msgid "meeting_label_recording_secretary"
-msgstr "Schriftführe/in"
+msgstr "Schriftführer"
 
 #. Default: "Related Items"
 #: ./ftw/meeting/content/meeting.py:191
@@ -222,7 +222,7 @@ msgstr "Verwandte Inhalte"
 #: ./ftw/meeting/browser/templates/meeting.pt:101
 #: ./ftw/meeting/content/meeting.py:42
 msgid "meeting_label_responsibility"
-msgstr "Verantwortung"
+msgstr "Verantwortlicher"
 
 #. Default: "Start Date"
 #: ./ftw/meeting/browser/templates/meeting.pt:44
@@ -282,7 +282,7 @@ msgstr "Ergebnis"
 #. Default: "Responsibility"
 #: ./ftw/meeting/content/meetingitem.py:22
 msgid "meetingitem_label_responsibility"
-msgstr "Verantwortung"
+msgstr "Verantwortlicher    "
 
 #. Default: "Text"
 #: ./ftw/meeting/content/meetingitem.py:41
