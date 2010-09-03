@@ -99,7 +99,7 @@ class CreateMeeting(BrowserView):
             errors.append('cannot_set_enddate')
 
         # set correct meeting type
-        m_created.setMeeting_type('meeting_dates_additional')
+        m_created.setMeeting_type('meeting')
 
         # set relation between meeting and poodle
         self.context.setRelatedItems((m_created.UID(), ))
