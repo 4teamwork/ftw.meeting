@@ -10,8 +10,6 @@ function MeetingTypeSelector(){
 
   available_schematas = jq.map(available_schematas, function(n){return n;});
 
-  console.info(available_schematas);
-
   // hide legends
   jq(available_schematas).each(function(i){
                                  jq('#fieldsetlegend-'+this).parents('.formTab').hide();
