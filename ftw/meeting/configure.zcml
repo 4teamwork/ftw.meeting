@@ -20,28 +20,38 @@
 
     <!-- Register the installation GenericSetup extension profile -->
     <genericsetup:registerProfile
-      name="default"
-      title="ftw.meeting"
-      directory="profiles/default"
-      description="Meeting type for ftw"
-      provides="Products.GenericSetup.interfaces.EXTENSION"
-      />
+        name="default"
+        title="ftw.meeting"
+        directory="profiles/default"
+        description="Meeting type for ftw"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+
+    <!-- Register the import step -->
+    <genericsetup:importStep
+        name="ftw.meeting"
+        title="ftw.meeting special import handlers"
+        description=""
+        handler="ftw.meeting.setuphandlers.import_various" />
 
     <!-- register skin layer -->
     <cmf:registerDirectory
-       name="ftw_meeting_templates"/>
+        name="ftw_meeting_templates"/>
 
-   <!-- register user vocabulary-->
-   <utility 
-     component=".vocabularies.AvailableUsersVocabularyFactory" 
-     name="ftw.meeting.users"
-     />
+    <!-- register vocabularies -->
+    <utility component=".vocabularies.AvailableUsersVocabularyFactory"
+             name="ftw.meeting.users"
+             />
 
-     <!-- register utility  ftw.meeting.responsibility.infos -->
-     <utility 
-       provides=".interfaces.IResponsibilityInfoGetter"
-       component=".utils.ResponsibilityInfos" 
-       name="ftw.meeting.responsibility.infos"
-       />
-       
+    <utility component=".vocabularies.MeetingTypesVocabularyFactory"
+             name="ftw.meeting.types"
+             />
+
+    <!-- register utility  ftw.meeting.responsibility.infos -->
+    <utility
+        provides=".interfaces.IResponsibilityInfoGetter"
+        component=".utils.ResponsibilityInfos"
+        name="ftw.meeting.responsibility.infos"
+        />
+
 </configure>

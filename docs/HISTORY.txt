@@ -4,7 +4,12 @@ Changelog
 
 1.0b
 -----
+
+* Changed way of registering catalog indexes according to devwiki
+  [03.09.2010, jbaumann]
+  
 * renamed to ftw.meeting and removed dependecies
+
   [16.07.2010, mathias.leimgruber]
 * init version, copy of izug.meeting
   [16.07.2010, mathias.leimgruber]
