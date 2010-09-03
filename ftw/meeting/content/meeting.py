@@ -16,189 +16,188 @@ from ftw.calendarwidget.browser.widgets import FtwCalendarWidget
 
 MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
 
-    atapi.StringField('meeting_type',
-        searchable = False,
-        schemata = 'default',
-        required = True,
-        default="dates_additional",
-        vocabulary = 'getMeetingTypes',
-        storage = atapi.AnnotationStorage(),
-        widget = atapi.SelectionWidget(
-            label = _(u"meeting_label_type", default=u"Event type"),
-            description = _(
-                u"meeting_help_type",
-                default=u"Choose your event type."),
-            helper_js = ['meeting_toggle_date.js', ],
-            format='radio',
-        ),
-    ),
-    DataGridField('responsibility',
-        searchable = False,
-        schemata = 'default',
-        columns = ('contact', ),
-        allow_empty_rows = False,
-        storage = atapi.AnnotationStorage(),
-        widget = DataGridWidgetExtended(
-            label = _(
-                u"meeting_label_responsibility",
-                default=u"responsibility"),
-            description = _(
-                u"meeting_help_responsibility",
-                default=u"Enter the responsible of the meeting."),
-            auto_insert = True,
-            select_all_column = 'contact',
-            columns = {
-                'contact':
-                SelectColumn(
-                    title = _(
-                        u"meeting_label_responsibility",
-                        default="Enter the responsible of the meeting."),
-                    vocabulary = 'getAttendeesVocabulary'
-                ),
-            }
-        )
-    ),
+        atapi.StringField(
+            name='meeting_type',
+            searchable = False,
+            schemata = 'default',
+            required = True,
+            default="dates_additional",
+            vocabulary = 'getMeetingTypes',
+            storage = atapi.AnnotationStorage(),
+            widget = atapi.SelectionWidget(
+                label = _(u"meeting_label_type", default=u"Event type"),
+                description = _(
+                    u"meeting_help_type",
+                    default=u"Choose your event type."),
+                helper_js = ['meeting_toggle_date.js', ],
+                format='radio',
+                )),
 
+        DataGridField(
+            name='responsibility',
+            searchable = False,
+            schemata = 'default',
+            columns = ('contact', ),
+            allow_empty_rows = False,
+            storage = atapi.AnnotationStorage(),
+            widget = DataGridWidgetExtended(
+                label = _(
+                    u"meeting_label_responsibility",
+                    default=u"responsibility"),
+                description = _(
+                    u"meeting_help_responsibility",
+                    default=u"Enter the responsible of the meeting."),
+                auto_insert = True,
+                select_all_column = 'contact',
+                columns = {
+                    'contact':
+                        SelectColumn(
+                        title = _(
+                            u"meeting_label_responsibility",
+                            default="Enter the responsible of the meeting."),
+                        vocabulary = 'getAttendeesVocabulary'
+                        ),
+                    }
+                )),
 
-    atapi.DateTimeField('start_date',
-        searchable = True,
-        accessor='start',
-        schemata = 'dates',
-        storage = atapi.AnnotationStorage(),
-        widget = FtwCalendarWidget(
-            label = _(
-                u"meeting_label_start_date",
-                default=u"Start of Meeting"),
-            description = _(
-                u"meeting_help_start_date",
-                default=u"Enter the starting date and time, "
-                         "or click the calendar icon and select it."),
-        ),
-    ),
+        atapi.DateTimeField(
+            name='start_date',
+            searchable = True,
+            accessor='start',
+            schemata = 'dates',
+            storage = atapi.AnnotationStorage(),
+            widget = FtwCalendarWidget(
+                label = _(
+                    u"meeting_label_start_date",
+                    default=u"Start of Meeting"),
+                description = _(
+                    u"meeting_help_start_date",
+                    default=u"Enter the starting date and time, "
+                    "or click the calendar icon and select it."),
+                )),
 
+        atapi.DateTimeField(
+            name='end_date',
+            searchable = True,
+            accessor='end',
+            schemata = 'dates',
+            storage = atapi.AnnotationStorage(),
+            widget = FtwCalendarWidget(
+                label = _(
+                    u"meeting_label_end_date",
+                    default=u"End of Meeting"),
+                description = _(
+                    u"meeting_help_end_date",
+                    default=u"Enter the ending date and time, "
+                    "or click the calendar icon and select it."),
+                )),
 
-    atapi.DateTimeField('end_date',
-        searchable = True,
-        accessor='end',
-        schemata = 'dates',
-        storage = atapi.AnnotationStorage(),
-        widget = FtwCalendarWidget(
-            label = _(
-                u"meeting_label_end_date",
-                default=u"End of Meeting"),
-            description = _(
-                u"meeting_help_end_date",
-                default=u"Enter the ending date and time, "
-                         "or click the calendar icon and select it."),
-        ),
-    ),
+        atapi.StringField(
+            name='meeting_form',
+            required = False,
+            searchable = True,
+            schemata = 'meeting',
+            vocabulary = 'getMeetingForms',
+            storage = atapi.AnnotationStorage(),
+            widget = atapi.SelectionWidget(
+                label = _(
+                    u"meeting_label_meeting_form",
+                    default=u"Meeting Form"),
+                description = _(
+                    u"meeting_help_meeting_form",
+                    default=u"Choose your Meeting form."),
+                format='radio',
+                )),
 
-    atapi.StringField('meeting_form',
-         required = False,
-         searchable = True,
-         schemata = 'meeting',
-         vocabulary = 'getMeetingForms',
-         storage = atapi.AnnotationStorage(),
-         widget = atapi.SelectionWidget(
-            label = _(
-                u"meeting_label_meeting_form",
-                default=u"Meeting Form"),
-            description = _(
-                u"meeting_help_meeting_form",
-                default=u"Choose your Meeting form."),
-            format='radio',
-        ),
-    ),
+        atapi.LinesField(
+            name='head_of_meeting',
+            required = False,
+            searchable = True,
+            schemata = 'meeting',
+            index = 'KeywordIndex:schema',
+            vocabulary_factory = 'ftw.meeting.users',
+            storage = atapi.AnnotationStorage(),
+            widget = atapi.SelectionWidget(
+                label = _(
+                    u"meeting_label_head_of_meeting",
+                    default=u"Head of Meeting"),
+                description = _(
+                    u"meeting_help_head_of_meeting",
+                    default=u"Select the head of the meeting."),
+                )),
 
-    atapi.LinesField('head_of_meeting',
-        required = False,
-        searchable = True,
-        schemata = 'meeting',
-        index = 'KeywordIndex:schema',
-        vocabulary_factory = 'ftw.meeting.users',
-        storage = atapi.AnnotationStorage(),
-        widget = atapi.SelectionWidget(
-            label = _(
-                u"meeting_label_head_of_meeting",
-                default=u"Head of Meeting"),
-            description = _(
-                u"meeting_help_head_of_meeting",
-                default=u"Select the head of the meeting."),
-        ),
-    ),
+        atapi.LinesField(
+            name='recording_secretary',
+            required = False,
+            searchable = True,
+            schemata = 'meeting',
+            index = 'KeywordIndex:schema',
+            vocabulary_factory = 'ftw.meeting.users',
+            storage = atapi.AnnotationStorage(),
+            widget = atapi.SelectionWidget(
+                label = _(
+                    u"meeting_label_recording_secretary",
+                    default=u"Recording Secretary"),
+                description = _(
+                    u"meeting_help_recording_secretary",
+                    default=u"Select the recording secretary."),
+                )),
 
-    atapi.LinesField('recording_secretary',
-        required = False,
-        searchable = True,
-        schemata = 'meeting',
-        index = 'KeywordIndex:schema',
-        vocabulary_factory = 'ftw.meeting.users',
-        storage = atapi.AnnotationStorage(),
-        widget = atapi.SelectionWidget(
-            label = _(
-                u"meeting_label_recording_secretary",
-                default=u"Recording Secretary"),
-        description = _(
-            u"meeting_help_recording_secretary",
-            default=u"Select the recording secretary."),
-        ),
-    ),
+        DataGridField(
+            name='attendees',
+            searchable = True,
+            schemata = 'meeting',
+            columns = ('contact', 'present'),
+            allow_empty_rows = False,
+            storage = atapi.AnnotationStorage(),
+            widget = DataGridWidgetExtended(
+                label = _(
+                    u"meeting_label_attendees",
+                    default=u"Attendees"),
+                description = _(
+                    u"meeting_help_attendees",
+                    default=u"Enter the attendees of the meeting."),
+                auto_insert = True,
+                select_all_column = 'contact',
+                columns = {
+                    'contact': SelectColumn(
+                        title = _(
+                            u"meeting_label_attendees_attendee",
+                            default=u"Attendee"),
+                        vocabulary = 'getAttendeesVocabulary'
+                        ),
+                    'present': SelectColumn(
+                        title = _(
+                            u"meeting_label_attendees_present",
+                            default=u"Present"),
+                        vocabulary = 'getPresentOptions',
+                        ),
+                    }
+                )),
 
-    DataGridField('attendees',
-        searchable = True,
-        schemata = 'meeting',
-        columns = ('contact', 'present'),
-        allow_empty_rows = False,
-        storage = atapi.AnnotationStorage(),
-        widget = DataGridWidgetExtended(
-            label = _(
-                u"meeting_label_attendees",
-                default=u"Attendees"),
-            description = _(
-                u"meeting_help_attendees",
-                default=u"Enter the attendees of the meeting."),
-            auto_insert = True,
-            select_all_column = 'contact',
-            columns = {
-                'contact': SelectColumn(
-                    title = _(
-                        u"meeting_label_attendees_attendee",
-                        default=u"Attendee"),
-                    vocabulary = 'getAttendeesVocabulary'
-                ),
-                'present': SelectColumn(
-                    title = _(
-                        u"meeting_label_attendees_present",
-                        default=u"Present"),
-                    vocabulary = 'getPresentOptions',
-                ),
-            }
-        )
-    ),
+        atapi.ReferenceField(
+            name='related_items',
+            relationship = 'relatesTo',
+            multiValued = True,
+            isMetadata = True,
+            schemata = 'additional',
+            languageIndependent = False,
+            storage = atapi.AnnotationStorage(),
+            widget = ReferenceBrowserWidget(
+                allow_search = True,
+                allow_browse = True,
+                show_indexes = False,
+                force_close_on_insert = False,
+                label = _(
+                    u"meeting_label_related_items",
+                    default=u"Related Items"),
+                description = _(
+                    u"meeting_help_related_items",
+                    default=u""),
+                visible = {'edit': 'visible', 'view': 'invisible'}
+                )),
 
-    atapi.ReferenceField('related_items',
-        relationship = 'relatesTo',
-        multiValued = True,
-        isMetadata = True,
-        schemata = 'additional',
-        languageIndependent = False,
-        storage = atapi.AnnotationStorage(),
-        widget = ReferenceBrowserWidget(
-            allow_search = True,
-            allow_browse = True,
-            show_indexes = False,
-            force_close_on_insert = False,
-            label = _(
-                u"meeting_label_related_items",
-                default=u"Related Items"),
-            description = _(
-                u"meeting_help_related_items",
-                default=u""),
-            visible = {'edit': 'visible', 'view': 'invisible'}
-        ),
-    ),
-
-))
+        ))
 
 # Set storage on fields copied from ATFolderSchema, making sure
 # they work well with the python bridge properties.
@@ -219,7 +218,7 @@ MeetingSchema['location'].widget = atapi.StringWidget(
     description = _(
         u"meeting_help_location",
         default=u"Enter the location where the meeting will take place."),
-)
+    )
 MeetingSchema['location'].write_permission = permissions.ModifyPortalContent
 
 MeetingSchema.changeSchemataForField('effectiveDate', 'settings')
@@ -282,9 +281,9 @@ class Meeting(folder.ATFolder, CalendarSupportMixin):
         """
         return atapi.DisplayList(
             (
-            ('present', _(u'present')),
-            ('absent', _(u'absent')),
-            ('excused', _(u'excused'))))
+                ('present', _(u'present')),
+                ('absent', _(u'absent')),
+                ('excused', _(u'excused'))))
 
     def getAttendeesOrUsers(self):
         resp = [a.get('contact', '') for a in self.getResponsibility()]
@@ -296,13 +295,13 @@ class Meeting(folder.ATFolder, CalendarSupportMixin):
 
     def getMeetingTypes(self):
         """Returns a DisplayList of meeting types
-           The ids are schemata names concatenated by _
+        The ids are schemata names concatenated by _
 
 
         """
         return atapi.DisplayList((
-            ('dates_additional', _(u'meeting_type_event')),
-            ('meeting_dates_additional', _(u'meeting_type_meeting'))))
+                ('dates_additional', _(u'meeting_type_event')),
+                ('meeting_dates_additional', _(u'meeting_type_meeting'))))
 
     def getMeetingForms(self):
         """Returns a DisplayList of meeting forms from property
