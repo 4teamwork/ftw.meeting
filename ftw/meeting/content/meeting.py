@@ -23,7 +23,6 @@ MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
             required = True,
             default="dates_additional",
             vocabulary = 'getMeetingTypes',
-            storage = atapi.AnnotationStorage(),
             widget = atapi.SelectionWidget(
                 label = _(u"meeting_label_type", default=u"Event type"),
                 description = _(
@@ -39,7 +38,6 @@ MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
             schemata = 'default',
             columns = ('contact', ),
             allow_empty_rows = False,
-            storage = atapi.AnnotationStorage(),
             widget = DataGridWidgetExtended(
                 label = _(
                     u"meeting_label_responsibility",
@@ -65,7 +63,6 @@ MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
             searchable = True,
             accessor='start',
             schemata = 'dates',
-            storage = atapi.AnnotationStorage(),
             widget = FtwCalendarWidget(
                 label = _(
                     u"meeting_label_start_date",
@@ -81,7 +78,6 @@ MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
             searchable = True,
             accessor='end',
             schemata = 'dates',
-            storage = atapi.AnnotationStorage(),
             widget = FtwCalendarWidget(
                 label = _(
                     u"meeting_label_end_date",
@@ -98,7 +94,6 @@ MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
             searchable = True,
             schemata = 'meeting',
             vocabulary = 'getMeetingForms',
-            storage = atapi.AnnotationStorage(),
             widget = atapi.SelectionWidget(
                 label = _(
                     u"meeting_label_meeting_form",
@@ -116,7 +111,6 @@ MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
             schemata = 'meeting',
             index = 'KeywordIndex:schema',
             vocabulary_factory = 'ftw.meeting.users',
-            storage = atapi.AnnotationStorage(),
             widget = atapi.SelectionWidget(
                 label = _(
                     u"meeting_label_head_of_meeting",
@@ -133,7 +127,6 @@ MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
             schemata = 'meeting',
             index = 'KeywordIndex:schema',
             vocabulary_factory = 'ftw.meeting.users',
-            storage = atapi.AnnotationStorage(),
             widget = atapi.SelectionWidget(
                 label = _(
                     u"meeting_label_recording_secretary",
@@ -149,7 +142,6 @@ MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
             schemata = 'meeting',
             columns = ('contact', 'present'),
             allow_empty_rows = False,
-            storage = atapi.AnnotationStorage(),
             widget = DataGridWidgetExtended(
                 label = _(
                     u"meeting_label_attendees",
@@ -182,7 +174,6 @@ MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
             isMetadata = True,
             schemata = 'additional',
             languageIndependent = False,
-            storage = atapi.AnnotationStorage(),
             widget = ReferenceBrowserWidget(
                 allow_search = True,
                 allow_browse = True,
@@ -199,11 +190,7 @@ MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
 
         ))
 
-# Set storage on fields copied from ATFolderSchema, making sure
-# they work well with the python bridge properties.
 
-MeetingSchema['title'].storage = atapi.AnnotationStorage()
-MeetingSchema['description'].storage = atapi.AnnotationStorage()
 MeetingSchema.changeSchemataForField('effectiveDate', 'settings')
 MeetingSchema.changeSchemataForField('expirationDate', 'settings')
 
@@ -211,7 +198,6 @@ MeetingSchema.changeSchemataForField('expirationDate', 'settings')
 # use plone default location field
 MeetingSchema.moveField('location', after='description')
 MeetingSchema['location'].searchable = True
-MeetingSchema['location'].storage = atapi.AnnotationStorage()
 MeetingSchema['location'].schemata = 'default'
 MeetingSchema['location'].widget = atapi.StringWidget(
     label = _(u"meeting_label_location", default=u"Location"),
@@ -235,18 +221,6 @@ class Meeting(folder.ATFolder, CalendarSupportMixin):
 
     portal_type = "Meeting"
     schema = MeetingSchema
-
-    title = atapi.ATFieldProperty('title')
-    description = atapi.ATFieldProperty('description')
-    location = atapi.ATFieldProperty('location')
-    no_date = atapi.ATFieldProperty('no_date')
-    start_date = atapi.ATFieldProperty('start_date')
-    end_date = atapi.ATFieldProperty('end_date')
-    head_of_meeting = atapi.ATFieldProperty('head_of_meeting')
-    recording_secretary = atapi.ATFieldProperty('recording_secretary')
-    responsibility = atapi.ATFieldProperty('responsibility')
-    attendees = atapi.ATFieldProperty('attendees')
-    related_items = atapi.ATFieldProperty('related_items')
 
     def getAttendeesVocabulary(self):
         """Workaround for DatagridField SelectColumn
