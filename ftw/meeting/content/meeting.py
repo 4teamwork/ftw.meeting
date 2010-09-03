@@ -41,7 +41,7 @@ MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
             widget = DataGridWidgetExtended(
                 label = _(
                     u"meeting_label_responsibility",
-                    default=u"responsibility"),
+                    default=u"Responsibility"),
                 description = _(
                     u"meeting_help_responsibility",
                     default=u"Enter the responsible of the meeting."),
@@ -52,7 +52,7 @@ MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
                         SelectColumn(
                         title = _(
                             u"meeting_label_responsibility",
-                            default="Enter the responsible of the meeting."),
+                            default="Responsibility"),
                         vocabulary = 'getAttendeesVocabulary'
                         ),
                     }
@@ -66,7 +66,7 @@ MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
             widget = FtwCalendarWidget(
                 label = _(
                     u"meeting_label_start_date",
-                    default=u"Start of Meeting"),
+                    default=u"Start Date"),
                 description = _(
                     u"meeting_help_start_date",
                     default=u"Enter the starting date and time, "
@@ -81,7 +81,7 @@ MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
             widget = FtwCalendarWidget(
                 label = _(
                     u"meeting_label_end_date",
-                    default=u"End of Meeting"),
+                    default=u"End Date"),
                 description = _(
                     u"meeting_help_end_date",
                     default=u"Enter the ending date and time, "

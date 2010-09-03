@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2010-08-11 12:49+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"POT-Creation-Date: 2010-09-03 08:32+0000\n"
+"PO-Revision-Date: 2010-09-03 10:33+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -36,7 +36,7 @@ msgstr "Sitzung"
 msgid "Meeting Item"
 msgstr "Traktandum"
 
-#: ./ftw/meeting/content/meeting.py:286
+#: ./ftw/meeting/content/meeting.py:259
 msgid "absent"
 msgstr "abwesend"
 
@@ -48,7 +48,12 @@ msgstr "Das Hinzufügen dieses Objekttyps ist nicht erlaubt"
 msgid "duplication_error_text"
 msgstr "Sitzung wurde bereits erstellt."
 
-#: ./ftw/meeting/content/meeting.py:287
+#. Default: "Event"
+#: ./ftw/meeting/vocabularies.py:52
+msgid "event"
+msgstr "Termin"
+
+#: ./ftw/meeting/content/meeting.py:260
 msgid "excused"
 msgstr "entschuldigt"
 
@@ -79,6 +84,11 @@ msgstr "Sitzung erstellt aus: "
 msgid "label_meeting_generate"
 msgstr "Neuen Termin erstellen"
 
+#. Default: "Meeting"
+#: ./ftw/meeting/vocabularies.py:53
+msgid "meeting"
+msgstr "Sitzung"
+
 #. Default: "Meeting created --> <a href='${url}'>${title}</a>"
 msgid "meeting_created_text"
 msgstr "Sitzung wurde erstellt --> <a href='${url}'>${title}</a>"
@@ -88,36 +98,36 @@ msgid "meeting_created_text_with_errors"
 msgstr "Sitzung wurde erstellt, aber beim Setzen des Datums oder der Zeit kam es zu Problemen, bitte manuell nachtragen --> <a href='${url}'>${title}</a>"
 
 #. Default: "Enter the attendees of the meeting."
-#: ./ftw/meeting/content/meeting.py:157
+#: ./ftw/meeting/content/meeting.py:149
 msgid "meeting_help_attendees"
 msgstr "Wählen Sie die Sitzungsteilnehmer aus."
 
 #. Default: "Enter the ending date and time, or click the calendar icon and select it."
-#: ./ftw/meeting/content/meeting.py:89
+#: ./ftw/meeting/content/meeting.py:85
 msgid "meeting_help_end_date"
 msgstr "Wählen Sie ein End-Datum und Zeit aus, oder klicken Sie auf das Kalender-Symbol."
 
 #. Default: "Select the head of the meeting."
-#: ./ftw/meeting/content/meeting.py:124
+#: ./ftw/meeting/content/meeting.py:118
 msgid "meeting_help_head_of_meeting"
 msgstr "Bitte wählen Sie den Sitzungsleiter aus"
 
 #. Default: "Enter the location where the meeting will take place."
-#: ./ftw/meeting/content/meeting.py:219
+#: ./ftw/meeting/content/meeting.py:204
 msgid "meeting_help_location"
 msgstr "Wählen sie Einen Ort wo die Sitzung statt finden soll"
 
 #. Default: "Choose your Meeting form."
-#: ./ftw/meeting/content/meeting.py:106
+#: ./ftw/meeting/content/meeting.py:101
 msgid "meeting_help_meeting_form"
 msgstr "Wählen Sie die Art der Sitzung aus."
 
 #. Default: "Select the recording secretary."
-#: ./ftw/meeting/content/meeting.py:141
+#: ./ftw/meeting/content/meeting.py:134
 msgid "meeting_help_recording_secretary"
 msgstr "Wählen Sie den/die Schriftführer/in aus."
 
-#: ./ftw/meeting/content/meeting.py:194
+#: ./ftw/meeting/content/meeting.py:185
 #: ./ftw/meeting/content/meetingitem.py:80
 msgid "meeting_help_related_items"
 msgstr "Verwandte Inhalte dienen dazu um Sitzungen um ein ähnliches oder das selbe Thema zu kennzeichnen"
@@ -128,7 +138,7 @@ msgid "meeting_help_responsibility"
 msgstr "Wählen Sie die Verantwortlichen Personen aus"
 
 #. Default: "Enter the starting date and time, or click the calendar icon and select it."
-#: ./ftw/meeting/content/meeting.py:72
+#: ./ftw/meeting/content/meeting.py:70
 msgid "meeting_help_start_date"
 msgstr "Wählen Sie ein Start-Datum und Zeit aus, oder klicken Sie auf das Kalender-Symbol."
 
@@ -139,17 +149,17 @@ msgstr "Wählen einen Termin-Typ aus"
 
 #. Default: "Attendees"
 #: ./ftw/meeting/browser/templates/meeting.pt:137
-#: ./ftw/meeting/content/meeting.py:154
+#: ./ftw/meeting/content/meeting.py:146
 msgid "meeting_label_attendees"
 msgstr "Teilnehmer"
 
 #. Default: "Attendee"
-#: ./ftw/meeting/content/meeting.py:164
+#: ./ftw/meeting/content/meeting.py:156
 msgid "meeting_label_attendees_attendee"
 msgstr "Teilnehmer"
 
 #. Default: "Present"
-#: ./ftw/meeting/content/meeting.py:170
+#: ./ftw/meeting/content/meeting.py:162
 msgid "meeting_label_attendees_present"
 msgstr "anwesend"
 
@@ -170,7 +180,7 @@ msgstr "Dauer"
 
 #. Default: "End Date"
 #: ./ftw/meeting/browser/templates/meeting.pt:56
-#: ./ftw/meeting/content/meeting.py:86
+#: ./ftw/meeting/content/meeting.py:82
 msgid "meeting_label_end_date"
 msgstr "End-Datum"
 
@@ -186,29 +196,29 @@ msgstr "Exportieren"
 
 #. Default: "Head of Meeting"
 #: ./ftw/meeting/browser/templates/meeting.pt:117
-#: ./ftw/meeting/content/meeting.py:121
+#: ./ftw/meeting/content/meeting.py:115
 msgid "meeting_label_head_of_meeting"
 msgstr "Sitzungsleitung"
 
 #. Default: "Location"
 #: ./ftw/meeting/browser/templates/meeting.pt:15
-#: ./ftw/meeting/content/meeting.py:218
+#: ./ftw/meeting/content/meeting.py:203
 msgid "meeting_label_location"
 msgstr "Ort"
 
 #. Default: "Meeting Form"
-#: ./ftw/meeting/content/meeting.py:103
+#: ./ftw/meeting/content/meeting.py:98
 msgid "meeting_label_meeting_form"
 msgstr "Art der Sitzung"
 
 #. Default: "Recording Secretary"
 #: ./ftw/meeting/browser/templates/meeting.pt:126
-#: ./ftw/meeting/content/meeting.py:138
+#: ./ftw/meeting/content/meeting.py:131
 msgid "meeting_label_recording_secretary"
 msgstr "Schriftführer"
 
 #. Default: "Related Items"
-#: ./ftw/meeting/content/meeting.py:191
+#: ./ftw/meeting/content/meeting.py:182
 #: ./ftw/meeting/content/meetingitem.py:77
 msgid "meeting_label_related_items"
 msgstr "Verwandte Inhalte"
@@ -226,7 +236,7 @@ msgstr "Verantwortlicher"
 
 #. Default: "Start Date"
 #: ./ftw/meeting/browser/templates/meeting.pt:44
-#: ./ftw/meeting/content/meeting.py:69
+#: ./ftw/meeting/content/meeting.py:67
 msgid "meeting_label_start_date"
 msgstr "Start-Datum"
 
@@ -250,11 +260,11 @@ msgstr "Text"
 msgid "meeting_label_type"
 msgstr "Typ"
 
-#: ./ftw/meeting/content/meeting.py:304
+#: ./ftw/meeting/content/meeting.py:277
 msgid "meeting_type_event"
 msgstr "Termin"
 
-#: ./ftw/meeting/content/meeting.py:305
+#: ./ftw/meeting/content/meeting.py:278
 msgid "meeting_type_meeting"
 msgstr "Sitzung"
 
@@ -289,7 +299,7 @@ msgstr "Verantwortlicher    "
 msgid "meetingitem_label_text"
 msgstr "Text"
 
-#: ./ftw/meeting/content/meeting.py:285
+#: ./ftw/meeting/content/meeting.py:258
 msgid "present"
 msgstr "anwesend"
 

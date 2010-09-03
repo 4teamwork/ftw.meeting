@@ -44,14 +44,13 @@ class MeetingTypesVocabulary(object):
         return SimpleVocabulary(tuple(self._get_terms()))
 
     def _get_terms(self):
-        for name, default in self._get_types():
-            label = _(name, default=default)
+        for name, label in self._get_types():
             yield SimpleVocabulary.createTerm(
                 name, label, label)
 
     def _get_types(self):
-        return ((u'event', u'Event'),
-                (u'meeting', u'Meeting'))
+        return ((u'event', _(u'event', default=u'Event')),
+                (u'meeting', _(u'meeting', default=u'Meeting')))
 
 
 MeetingTypesVocabularyFactory = MeetingTypesVocabulary()
