@@ -5,6 +5,9 @@ Changelog
 1.0b
 -----
 
+* Made meeting type a vocabulary, made js more generic
+  [03.09.2010, jbaumann]
+
 * Do not use ATFieldProperties but use AttributeStorage
   [03.09.2010, jbaumann]
 

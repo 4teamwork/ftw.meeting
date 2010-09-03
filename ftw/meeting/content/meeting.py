@@ -21,8 +21,8 @@ MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
             searchable = False,
             schemata = 'default',
             required = True,
-            default="dates_additional",
-            vocabulary = 'getMeetingTypes',
+            default='event',
+            vocabulary_factory='ftw.meeting.types',
             widget = atapi.SelectionWidget(
                 label = _(u"meeting_label_type", default=u"Event type"),
                 description = _(
@@ -62,7 +62,7 @@ MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
             name='start_date',
             searchable = True,
             accessor='start',
-            schemata = 'dates',
+            schemata = 'default',
             widget = FtwCalendarWidget(
                 label = _(
                     u"meeting_label_start_date",
@@ -77,7 +77,7 @@ MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
             name='end_date',
             searchable = True,
             accessor='end',
-            schemata = 'dates',
+            schemata = 'default',
             widget = FtwCalendarWidget(
                 label = _(
                     u"meeting_label_end_date",
@@ -172,7 +172,7 @@ MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
             relationship = 'relatesTo',
             multiValued = True,
             isMetadata = True,
-            schemata = 'additional',
+            schemata = 'default',
             languageIndependent = False,
             widget = ReferenceBrowserWidget(
                 allow_search = True,
