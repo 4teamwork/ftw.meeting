@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2010-09-03 08:32+0000\n"
-"PO-Revision-Date: 2010-09-03 10:33+0200\n"
+"PO-Revision-Date: 2010-09-03 16:44+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -30,7 +30,7 @@ msgstr "Anhang"
 
 #: ./ftw/meeting/profiles/default/types/Meeting.xml
 msgid "Meeting"
-msgstr "Sitzung"
+msgstr "Termin"
 
 #: ./ftw/meeting/profiles/default/types/Meeting_Item.xml
 msgid "Meeting Item"
