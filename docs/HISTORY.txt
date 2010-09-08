@@ -5,6 +5,9 @@ Changelog
 1.0b
 -----
 
+* Removed AnnotationStorage from some fields
+  [08.09.2010, jbaumann]
+
 * Made meeting type a vocabulary, made js more generic
   [03.09.2010, jbaumann]
 

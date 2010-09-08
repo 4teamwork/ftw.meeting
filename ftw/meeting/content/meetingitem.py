@@ -16,7 +16,6 @@ MeetingItemSchema = folder.ATFolderSchema.copy() + atapi.Schema((
         searchable = True,
         index = 'KeywordIndex:schema',
         vocabulary_factory = 'ftw.meeting.users',
-        storage = atapi.AnnotationStorage(),
         widget = atapi.MultiSelectionWidget(
             size = 4,
             label = _(
@@ -68,7 +67,6 @@ MeetingItemSchema = folder.ATFolderSchema.copy() + atapi.Schema((
         isMetadata = True,
         schemata = 'additional',
         languageIndependent = False,
-        storage = atapi.AnnotationStorage(),
         widget = ReferenceBrowserWidget(
             allow_search = True,
             allow_browse = True,
@@ -89,8 +87,6 @@ MeetingItemSchema = folder.ATFolderSchema.copy() + atapi.Schema((
 # Set storage on fields copied from ATContentTypeSchema, making sure
 # they work well with the python bridge properties.
 
-MeetingItemSchema['title'].storage = atapi.AnnotationStorage()
-MeetingItemSchema['description'].storage = atapi.AnnotationStorage()
 MeetingItemSchema['description'].widget.visible = {'view': 'invisible',
                                                    'edit': 'invisible'}
 MeetingItemSchema.changeSchemataForField('effectiveDate', 'settings')
@@ -109,14 +105,7 @@ class MeetingItem(folder.ATFolder):
 
     schema = MeetingItemSchema
 
-    title = atapi.ATFieldProperty('title')
-    description = atapi.ATFieldProperty('description')
-    duration = atapi.ATFieldProperty('duration')
-    responsibility = atapi.ATFieldProperty('responsibility')
-    responsibilityString = atapi.ATFieldProperty('responsibilityString')
     text = atapi.ATFieldProperty('text')
-    meetingitem_type = atapi.ATFieldProperty('meetingitem_type')
     conclusion = atapi.ATFieldProperty('conclusion')
-    related_items = atapi.ATFieldProperty('related_items')
 
 atapi.registerType(MeetingItem, PROJECTNAME)
