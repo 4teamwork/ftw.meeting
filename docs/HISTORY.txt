@@ -3,7 +3,7 @@ Changelog
 
 
 1.0
----
+--
 
 * Removed AnnotationStorage from some fields
   [08.09.2010, jbaumann]
