@@ -1,6 +1,7 @@
 from ftw.meeting import meetingMessageFactory as _
 from ftw.meeting.config import PROJECTNAME
-from ftw.meeting.interfaces import IMeeting, IResponsibilityInfoGetter
+from ftw.meeting.interfaces import IMeeting
+from Products.CMFCore.utils import getToolByName
 from Products.Archetypes import atapi
 from Products.ATContentTypes.content import folder
 from Products.ATContentTypes.lib.calendarsupport import CalendarSupportMixin
@@ -244,10 +245,37 @@ class Meeting(folder.ATFolder, CalendarSupportMixin):
         format: {'fullname':'Demo User', 'url':'portal/author/userid'}
 
         """
-        factory = component.getUtility(
-            IResponsibilityInfoGetter,
-            name="ftw.meeting.responsibility.infos")
-        return factory(self).get_infos(userids=userids)
+        result = []
+        if not userids:
+            return
+        elif isinstance(userids, list) or isinstance(userids, tuple):
+            for userid in userids:
+                result.append(self.getUserInfos(userid))
+        else:
+            result.append(self.getUserInfos(userids))
+        return result
+
+    def getUserInfos(self, userid):
+        """ return a dict with userinformations, about the user """
+        mt = getToolByName(self, 'portal_membership')
+        user = mt.getMemberById(userid)
+
+        if user:
+            fullname = user.getProperty('fullname', '')
+            if not fullname:
+                fullname = userid
+            return {'name': fullname,
+                    'url': '%s/author/%s' % (
+                        self.portal_url(),
+                        user.id,
+                    ),}
+        else:
+            catalog = getToolByName(self, 'portal_catalog')
+            brains = catalog(dict(UID=userid))
+            if len(brains):
+                brain = brains[0]
+                return {'name': brain.Title, 'url': brain.getPath()}
+            return {'name': userid, 'url': ''}
 
     def getPresentOptions(self):
         """returns present options

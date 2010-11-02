@@ -104,9 +104,8 @@
                                 <li tal:repeat="userid python:context.getResponsibilityInfos(userids)">
                                     <tal:exists condition="python:userid and len(userid.get('url',''))>0">
                                         <a tal:attributes="href python:userid['url']" tal:content="python:userid['name']" />
-                                       <span tal:condition="python:userid and len(userid.get('url',''))==0" tal:content="python:userid['name']" />
- 
-                                   </tal:exists>
+                                   </tal:exists>     
+                                   <span tal:condition="python:userid and len(userid.get('url',''))==0" tal:content="python:userid['name']" />
                                 </li>
                             
                             </ul>
