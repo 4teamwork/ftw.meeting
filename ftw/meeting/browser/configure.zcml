@@ -25,6 +25,13 @@
         permission="zope2.View"
     />
 
+    <browser:page
+        for="..interfaces.IMeeting"
+        name="export_pdf"
+        permission="zope2.View"
+        class=".exportpdf.ExportPDFView"
+        />
+
     <configure zcml:condition="installed ftw.poodle">
         <browser:page
             layer="ftw.meeting.interfaces.IMeetingLayer"
