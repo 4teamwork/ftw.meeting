@@ -4,12 +4,27 @@ from plonegov.pdflatex.browser.converter import LatexCTConverter
 
 class MeetingLatexConverter(LatexCTConverter):
     
+
     def __call__(self, context, view):
-        super(MeetingLatexConverter, self).__call__(context, view)
-        
+        self.controller = view
+        return self.getLaTeXBody()
+
+    def getLaTeXBody(self):
+        # shortcut for converting html to latex
+        conv = self.controller.convert
+        context = self.context
+        # define a method for easy writing
         latex = []
-        latex.append(r'\section*{%s}' % view.convert(context.Title()))
-        latex.append(r'\begin{tabular}{|p{0.3\textwidth}|p{0.7\textwidth}|}')
+
+      #  latex.append(r'' % conv(context.Title()))
+        latex.append(r'\begin{tabular}{p{0.3\textwidth}p{0.7\textwidth}}')
+        latex.append(r'\multicolumn{2}{l}{\textbf{%s}}\\' % conv(
+            context.Title()))
+        latex.append(r'\multicolumn{2}{l}{\ }\\')
+        latex.append(self.get_row(
+            'Termin-Typ',
+             self.context.translate(context.getMeeting_type(),
+                domain='ftw.meeting')))
         latex.append(self.get_row(
             'Start-Datum',
             context.toLocalizedTime(context.start())))
@@ -25,11 +40,17 @@ class MeetingLatexConverter(LatexCTConverter):
         latex.append(self.get_row('Verantwortliche',
                                   self.get_latex_responsibility()))
         latex.append(self.get_row('Beschreibung', context.Description()))
-        latex.append(r'\hline \end{tabular}')
+        # traktanden
+        traktanden = []
+        for brain in context.getChildNodes():
+            traktanden.append('-- %s' % conv(brain.Title()))
+        latex.append(self.get_row(
+            'Traktanden', r'\newline'.join(traktanden)))
+        latex.append(r'\end{tabular}')
         return '\n'.join(latex)
 
     def get_row(self, title, value):
-        return r'\hline \textbf{%s} & %s\\' % (title, value)
+        return r'\textbf{%s} & %s\\' % (title, value)
 
     def get_latex_responsibility(self):
         result = []
@@ -48,5 +69,5 @@ class MeetingLatexConverter(LatexCTConverter):
                 if len(brains):
                     brain = brains[0]
                     fullname = brain.Title
-            result.append(self.view.convert(fullname))
+            result.append('-- %s' % self.controller.convert(fullname))
         return '\\newline '.join(result)

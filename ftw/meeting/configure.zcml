@@ -4,18 +4,21 @@
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     xmlns:i18n="http://namespaces.zope.org/i18n"
     xmlns:cmf="http://namespaces.zope.org/cmf"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
     i18n_domain="ftw.meeting">
 
     <five:registerPackage package="." initialize=".initialize" />
 
     <include package="plone.principalsource" />
+    <include zcml:condition="installed plonegov.pdflatex"
+             package="plonegov.pdflatex" />
 
     <i18n:registerTranslations directory="locales" />
 
     <!-- Include the sub-packages -->
     <include package=".browser" />
     <include package=".content" />
-    <include package=".latex" />
+    <include zcml:condition="installed plonegov.pdflatex" package=".latex" />
     <include package=".portlets" />
     <include package=".viewlets" />
 
