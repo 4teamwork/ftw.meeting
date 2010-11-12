@@ -7,6 +7,10 @@ Changelog
 
 * Issue #440 Buch PDF-Export implementieren
   https://extranet.4teamwork.ch/intranet/10-interne-projekte/4teamwork-egov/tracker-4teamwork-egov/440
+  [12.11.2010, jinfanger]
+
+* Issue #440 Buch PDF-Export implementieren
+  https://extranet.4teamwork.ch/intranet/10-interne-projekte/4teamwork-egov/tracker-4teamwork-egov/440
   [05.11.2010, jinfanger]
 
 1.0
