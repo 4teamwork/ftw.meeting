@@ -1,9 +1,8 @@
 Changelog
 =========
 
-
 1.1
----
+--
 
 * Issue #440 Buch PDF-Export implementieren
   https://extranet.4teamwork.ch/intranet/10-interne-projekte/4teamwork-egov/tracker-4teamwork-egov/440
@@ -33,3 +32,4 @@ Changelog
   
 * init version, copy of izug.meeting
   [16.07.2010, mathias.leimgruber]
+
