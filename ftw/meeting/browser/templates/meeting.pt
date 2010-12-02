@@ -24,7 +24,7 @@
                                        start_time python:start_field and start_field.strftime('%H:%M') or '';
                                        end_date python:end_field and end_field.strftime('%d.%m.%Y') or '';
                                        end_time python:end_field and end_field.strftime('%H:%M') or ''">
-                        <tal:day tal:condition="python: (start_date == end_date) and 'dates' in meeting_type">
+                        <tal:day tal:condition="python: (start_date == end_date)">
                         <tr>
                             <td class="table-label"><span i18n:translate="meeting_label_date">Date</span></td>
                             <td>
@@ -40,25 +40,25 @@
                         </tr>
                         </tal:day>
                         <tal:mutli condition="python:start_date != end_date">
-                            <tr tal:condition="python: context.start() and context.getMeeting_type() != 'poodle_additional' or None">
+                            <tr tal:condition="context/start">
                                 <td class="table-label"><span i18n:translate="meeting_label_start_date">Start Date</span></td>
                                 <td>
                                     <tal:block tal:content="python: context.start_date.strftime('%d.%m.%Y')" />
                                 </td>
                             </tr>
-                            <tr tal:condition="python: context.start() and context.getMeeting_type() != 'poodle_additional' or None">
+                            <tr tal:condition="context/start">
                                 <td class="table-label"><span i18n:translate="meeting_label_start_time">Start Time</span></td>
                                 <td>
                                     <tal:block tal:content="python: context.start_date.strftime('%H:%M')" />
                                 </td>
                             </tr>
-                            <tr tal:condition="python: context.end() and context.getMeeting_type() != 'poodle_additional' or None">
+                            <tr tal:condition="context/end">
                                 <td class="table-label"><span i18n:translate="meeting_label_end_date">End Date</span></td>
                                 <td>
                                     <tal:block tal:content="python: context.end_date.strftime('%d.%m.%Y')" />
                                 </td>
                             </tr>
-                            <tr tal:condition="python: context.end() and context.getMeeting_type() != 'poodle_additional' or None">
+                            <tr tal:condition="context/end">
                                 <td class="table-label"><span i18n:translate="meeting_label_end_time">End Time</span></td>
                                 <td>
                                     <tal:block tal:content="python: context.end_date.strftime('%H:%M')" />
