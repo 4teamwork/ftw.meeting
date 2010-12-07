@@ -21,7 +21,7 @@
         for="..interfaces.IMeeting"
         name="meeting_view"
         class=".meeting.MeetingView"
-        template="templates/meeting.pt"
+        template="meeting.pt"
         permission="zope2.View"
     />
 
