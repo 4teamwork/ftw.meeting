@@ -3,7 +3,12 @@ Changelog
 
 
 1.2.1
---
+=====
+
+* I'm no able to fix this F*** doctsring!! use --- instead of ====
+  and it fails^2. Title level is also inconsistent, but if I so it the right
+  way it will fail too!!!
+
 * Only show head_of_meeting if meeting typ ist "meeting"
   [07.12.2010, mathias.leimgruber]
 
