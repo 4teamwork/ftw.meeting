@@ -25,6 +25,7 @@ class MeetingLayout(object):
         self.view.registerPackage('textcomp')
         self.view.registerPackage('helvet')
         self.view.registerPackage('hyperref')
+        self.view.registerPackage('longtable')
 
     def appendHeadCommands(self):
         self.view.appendHeaderCommand(

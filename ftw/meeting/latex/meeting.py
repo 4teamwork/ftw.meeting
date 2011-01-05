@@ -18,7 +18,6 @@ class MeetingLatexConverter(LatexCTConverter):
         # traktanden
         traktanden = []
         if len(context.getChildNodes()):
-            latex.append(r'\begin{enumerate}')
             for brain in context.getChildNodes():
                 responsibility = [{'contact': t} for t in brain.responsibility]
                 traktanden.append(dict(
@@ -32,7 +31,7 @@ class MeetingLatexConverter(LatexCTConverter):
         latex_traktanden = ['-- %s' % t['title'] for t in traktanden]
         latex_traktanden = '\\newline'.join(latex_traktanden)
 
-        latex.append(r'\begin{tabular}{p{0.3\textwidth}p{0.7\textwidth}}')
+        latex.append(r'\begin{longtable}{p{0.3\textwidth}p{0.7\textwidth}}')
         latex.append(r'\multicolumn{2}{l}{\textbf{%s}}\\' % conv(
             context.Title()))
         latex.append(r'\multicolumn{2}{l}{\ }\\')
@@ -57,13 +56,13 @@ class MeetingLatexConverter(LatexCTConverter):
             self.get_latex_responsibility(self.context.getResponsibility())))
         latex.append(self.get_row('Beschreibung', context.Description()))
         latex.append(self.get_row('Traktanden', latex_traktanden))
-        latex.append(r'\end{tabular}')
+        latex.append(r'\end{longtable}')
         latex.append(r'\newline')
         count = 0
         for traktandum in traktanden:
             count += 1
             latex.append(
-                r'\begin{tabular}{p{0.3\textwidth}p{0.7\textwidth}}')
+                r'\begin{longtable}{p{0.3\textwidth}p{0.7\textwidth}}')
             latex.append(r'\multicolumn{2}{l}{\ }\\')
             latex.append(
                 r'\multicolumn{2}{l}{\textbf{%s. %s}}\\' % (
@@ -73,10 +72,11 @@ class MeetingLatexConverter(LatexCTConverter):
                 latex.append(self.get_row(
                     t_key,
                     traktandum[t_key]))
-            latex.append(r'\end{tabular}')
+            latex.append(r'\end{longtable}')
         return '\n'.join(latex)
 
     def get_row(self, title, value):
+        value = value.replace('\\\\', '\\newline\n')
         return r'\textbf{%s} & %s\\' % (title, value)
 
     def get_latex_responsibility(self, responsibility):
