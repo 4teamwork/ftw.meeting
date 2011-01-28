@@ -4,7 +4,8 @@ Changelog
 
 1.2.3
 -----
-
+* Added missing normalizeString definition. 
+  [28.01.2011, mathias.leimgruber]
 
 1.2.2
 =====

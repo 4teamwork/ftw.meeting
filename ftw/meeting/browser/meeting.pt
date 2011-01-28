@@ -7,6 +7,7 @@
 		<metal:main fill-slot="content-core">
 			<tal:main-macro metal:define-macro="content-core"
 				tal:define="templateId template/getId;
+                            normalizeString nocall: context/@@plone/normalizeString;
                             meeting_type python:context.getMeeting_type()">
 
                 
