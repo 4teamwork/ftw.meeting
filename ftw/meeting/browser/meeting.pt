@@ -1,23 +1,28 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
-	xmlns:tal="http://xml.zope.org/namespaces/tal" xmlns:metal="http://xml.zope.org/namespaces/metal"
-	xmlns:i18n="http://xml.zope.org/namespaces/i18n" lang="en"
-	metal:use-macro="here/main_template/macros/master" i18n:domain="ftw.meeting">
-	<body>
+    xmlns:tal="http://xml.zope.org/namespaces/tal" xmlns:metal="http://xml.zope.org/namespaces/metal"
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n" lang="en"
+    metal:use-macro="here/main_template/macros/master" i18n:domain="ftw.meeting">
+    <body>
 
-		<metal:main fill-slot="content-core">
-			<tal:main-macro metal:define-macro="content-core"
-				tal:define="templateId template/getId;
+        <metal:content-description fill-slot="content-description">
+            <metal:description define-macro="content-description">
+                <!-- no description -->
+            </metal:description>
+        </metal:content-description>
+        <metal:main fill-slot="content-core">
+            <tal:main-macro metal:define-macro="content-core"
+                tal:define="templateId template/getId;
                             normalizeString nocall: context/@@plone/normalizeString;
                             meeting_type python:context.getMeeting_type()">
 
                 
-				<table class="MeetingListing">
-					<tr tal:condition="context/location | nothing">
-						<td class="table-label"><span i18n:translate="meeting_label_location">Location</span></td>
-						<td>
-							<tal:block tal:content="context/location" />
-						</td>
-					</tr>
+                <table class="MeetingListing">
+                    <tr tal:condition="context/location | nothing">
+                        <td class="table-label"><span i18n:translate="meeting_label_location">Location</span></td>
+                        <td>
+                            <tal:block tal:content="context/location" />
+                        </td>
+                    </tr>
                     
                     <tal:dates define="start_field context/start;
                                        end_field context/end;
@@ -67,8 +72,9 @@
                             </tr>
                         </tal:mutli>
                     </tal:dates>
+
                     
-                    <tr tal:define="related python:here.computeRelatedItems()" tal:condition="related">
+<!--                     <tr tal:define="related python:here.computeRelatedItems()" tal:condition="related">
                         <td class="table-label"><span i18n:translate="meeting_label_relations">Relations</span></td>
                         <td>
                             <tal:block tal:condition="python:related">
@@ -96,7 +102,7 @@
                                 </ul>
                             </tal:block>
                         </td>
-                    </tr>
+                    </tr> -->
                     
                     <tr tal:condition="context/getResponsibility | nothing">
                         <td class="table-label"><span i18n:translate="meeting_label_responsibility">Responsibility</span>:</td>
@@ -113,26 +119,26 @@
                         
                         </td>
                     </tr>                    
-					<tr tal:condition="python: context.getHead_of_meeting() and context.getMeeting_type() == 'meeting'">
-						<td class="table-label"><span i18n:translate="meeting_label_head_of_meeting">Head of Meeting</span>:</td>
-						<td tal:define="userids python:here.getHead_of_meeting()" tal:repeat="userid python:context.getResponsibilityInfos(userids)">
+                    <tr tal:condition="python: context.getHead_of_meeting() and context.getMeeting_type() == 'meeting'">
+                        <td class="table-label"><span i18n:translate="meeting_label_head_of_meeting">Head of Meeting</span>:</td>
+                        <td tal:define="userids python:here.getHead_of_meeting()" tal:repeat="userid python:context.getResponsibilityInfos(userids)">
                             <tal:exists condition="python:userid and len(userid.get('url',''))>0">
                                 <a tal:attributes="href python:userid['url']" tal:content="python:userid['name']" />
                             </tal:exists>
                             <span tal:condition="python:userid and len(userid.get('url',''))==0" tal:content="python:userid['name']" />
-						</td>
-					</tr>
-					<tr tal:condition="python:context.getRecording_secretary and context.getMeeting_type() == 'meeting'">
-						<td class="table-label"><span i18n:translate="meeting_label_recording_secretary">Recording Secretary</span>:</td>
-						<td tal:define="userids python:here.getRecording_secretary()" tal:repeat="userid python:context.getResponsibilityInfos(userids)">
+                        </td>
+                    </tr>
+                    <tr tal:condition="python:context.getRecording_secretary and context.getMeeting_type() == 'meeting'">
+                        <td class="table-label"><span i18n:translate="meeting_label_recording_secretary">Recording Secretary</span>:</td>
+                        <td tal:define="userids python:here.getRecording_secretary()" tal:repeat="userid python:context.getResponsibilityInfos(userids)">
                             <tal:exists condition="python:userid and len(userid.get('url',''))>0">
                                 <a tal:attributes="href python:userid['url']" tal:content="python:userid['name']" />
                         <span tal:condition="python:userid and len(userid.get('url',''))==0" tal:content="python:userid['name']" />
  
 
                            </tal:exists>
-						</td>
-					</tr>
+                        </td>
+                    </tr>
                     <tr tal:condition="context/getAttendees | nothing">
                         <td class="table-label"><span i18n:translate="meeting_label_attendees">Attendees</span>:</td>
                         <td>
@@ -174,8 +180,8 @@
 
                 </table>
 
-				<tal:items tal:define="meeting_items python:context.getFolderContents({'portal_type':['Meeting Item']}, full_objects=True);"
-				       tal:condition="meeting_items">
+                <tal:items tal:define="meeting_items python:context.getFolderContents({'portal_type':['Meeting Item']}, full_objects=True);"
+                       tal:condition="meeting_items">
 
                     <tal:block tal:repeat="obj meeting_items">
                         <div tal:attributes="id string:${obj/UID}" class="MeetingItemWrapper">
@@ -274,19 +280,19 @@
                             </div>
                         </div>
                         
-					    <tr class="even" tal:repeat="meeting_item_file python:obj.getFolderContents({'portal_type':['File'], 'sort_on' : 'effective', 'sort_order' : 'descending'}, full_objects=True)">
-					        <td>&nbsp;</td>
-					        <td>
-					            <a href="#" tal:attributes="href string:${meeting_item_file/absolute_url}/download" tal:content="meeting_item_file/title_or_id"></a>
-					            <div tal:content="meeting_item_file/Description">Description</div>
+                        <tr class="even" tal:repeat="meeting_item_file python:obj.getFolderContents({'portal_type':['File'], 'sort_on' : 'effective', 'sort_order' : 'descending'}, full_objects=True)">
+                            <td>&nbsp;</td>
+                            <td>
+                                <a href="#" tal:attributes="href string:${meeting_item_file/absolute_url}/download" tal:content="meeting_item_file/title_or_id"></a>
+                                <div tal:content="meeting_item_file/Description">Description</div>
                             <div tal:content="structure meeting_item_file/text">Text</div>
-					            <div tal:content="meeting_item_file/Creator">Creator</div>
-					        </td>
+                                <div tal:content="meeting_item_file/Creator">Creator</div>
+                            </td>
                             <td>&nbsp;</td>
                             <td>&nbsp;</td>
                             <td>&nbsp;</td>
-					    </tr>
-	                </tal:block>
+                        </tr>
+                    </tal:block>
                 </tal:items>
 
                 <table tal:define="files view/getFiles" tal:condition="files" class="listing" width="100%">
@@ -304,7 +310,7 @@
                     </tr>
                 </table>
 
-			</tal:main-macro>
-		</metal:main>
-	</body>
+            </tal:main-macro>
+        </metal:main>
+    </body>
 </html>

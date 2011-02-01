@@ -4,6 +4,11 @@ Changelog
 
 1.2.3
 -----
+
+* Improve file view (don't show related items twice / remove default
+  description)
+  [01.02.2011, mathias.leimgruber]
+
 * Added missing normalizeString definition. 
   [28.01.2011, mathias.leimgruber]
 
