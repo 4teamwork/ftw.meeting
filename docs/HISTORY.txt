@@ -3,7 +3,7 @@ Changelog
 
 
 1.2.3
------
+=====
 
 * Improve file view (don't show related items twice / remove default
   description)
