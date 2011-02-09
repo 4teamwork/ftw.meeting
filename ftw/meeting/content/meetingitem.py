@@ -65,7 +65,6 @@ MeetingItemSchema = folder.ATFolderSchema.copy() + atapi.Schema((
         relationship = 'relatesTo',
         multiValued = True,
         isMetadata = True,
-        schemata = 'additional',
         languageIndependent = False,
         widget = ReferenceBrowserWidget(
             allow_search = True,
