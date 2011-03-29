@@ -7,7 +7,7 @@ Changelog
 
 
 1.2.3
-=====
+-----
 
 * Improve file view (don't show related items twice / remove default
   description)
@@ -17,11 +17,11 @@ Changelog
   [28.01.2011, mathias.leimgruber]
 
 1.2.2
-=====
+-----
 
 
 1.2.1
-=====
+-----
 
 * I'm no able to fix this F*** doctsring!! use --- instead of ====
   and it fails^2. Title level is also inconsistent, but if I do it the right
@@ -33,11 +33,13 @@ Changelog
 * Removed old poodle stuff, the date will be shown correctly now.
   [02.12.2010, mathias.leimgruber]
 
-1.2
---
 
+1.2
+---
+
+    
 1.1
---
+---
 
 * Issue #440 Buch PDF-Export implementieren
   https://extranet.4teamwork.ch/intranet/10-interne-projekte/4teamwork-egov/tracker-4teamwork-egov/440
@@ -48,7 +50,7 @@ Changelog
   [05.11.2010, jinfanger]
 
 1.0
---
+---
 
 * Removed AnnotationStorage from some fields
   [08.09.2010, jbaumann]
