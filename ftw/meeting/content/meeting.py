@@ -50,7 +50,7 @@ MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
                 select_all_column = 'contact',
                 columns = {
                     'contact':
-                        SelectColumn(
+                            SelectColumn(
                         title = _(
                             u"meeting_label_responsibility",
                             default="Responsibility"),
@@ -65,6 +65,8 @@ MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
             accessor='start',
             schemata = 'default',
             widget = FtwCalendarWidget(
+                helper_js = 
+                    ('start_end_date_helper.js',),
                 label = _(
                     u"meeting_label_start_date",
                     default=u"Start Date"),
