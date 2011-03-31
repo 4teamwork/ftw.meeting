@@ -62,6 +62,7 @@ MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
         atapi.DateTimeField(
             name='start_date',
             searchable = True,
+            required = True,
             accessor='start',
             schemata = 'default',
             widget = FtwCalendarWidget(
@@ -79,6 +80,7 @@ MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
         atapi.DateTimeField(
             name='end_date',
             searchable = True,
+            required = True,
             accessor='end',
             schemata = 'default',
             widget = FtwCalendarWidget(
