@@ -5,6 +5,12 @@ Changelog
 1.2.5
 -----
 
+* Make start and end date required. 
+  [31.03.2011, mathias.leimgruber]
+
+* Auto-fill end date with start date infos. 
+  [31.03.2011, mathias.leimgruber]
+
 
 1.2.4
 -----
