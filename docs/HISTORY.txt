@@ -19,6 +19,10 @@ Changelog
 1.2.4
 -----
 
+* Issue #46 PDF Fuer Sitzungstraktanden funktioniert nicht
+  https://extranet.4teamwork.ch/support/0280-Support-RIZ/tracker/46/
+  Fixed list with string and unicode => unicode-error
+  [11.04.2011, jinfanger]
 
 1.2.3
 -----

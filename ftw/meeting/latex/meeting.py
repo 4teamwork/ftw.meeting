@@ -38,22 +38,22 @@ class MeetingLatexConverter(LatexCTConverter):
         latex.append(self.get_row(
             'Termin-Typ',
              self.context.translate(context.getMeeting_type(),
-                domain='ftw.meeting')))
+                domain='ftw.meeting')).encode('utf8'))
         latex.append(self.get_row(
             'Start-Datum',
-            context.toLocalizedTime(context.start())))
+            context.toLocalizedTime(context.start())).encode('utf8'))
         latex.append(self.get_row(
             'Start-Zeit',
-            context.toLocalizedTime(context.start(), time_only=1)))
+            context.toLocalizedTime(context.start(), time_only=1)).encode('utf8'))
         latex.append(self.get_row(
             'End-Datum',
-            context.toLocalizedTime(context.end())))
+            context.toLocalizedTime(context.end())).encode('utf8'))
         latex.append(self.get_row(
             'End-Zeit',
-            context.toLocalizedTime(context.end(), time_only=1)))
+            context.toLocalizedTime(context.end(), time_only=1)).encode('utf8'))
         latex.append(self.get_row(
             'Verantwortliche',
-            self.get_latex_responsibility(self.context.getResponsibility())))
+            self.get_latex_responsibility(self.context.getResponsibility())).encode('utf8'))
         latex.append(self.get_row('Beschreibung', context.Description()))
         latex.append(self.get_row('Traktanden', latex_traktanden))
         latex.append(r'\end{longtable}')
@@ -73,6 +73,7 @@ class MeetingLatexConverter(LatexCTConverter):
                     t_key,
                     traktandum[t_key]))
             latex.append(r'\end{longtable}')
+        import pdb; pdb.set_trace( )
         return '\n'.join(latex)
 
     def get_row(self, title, value):
