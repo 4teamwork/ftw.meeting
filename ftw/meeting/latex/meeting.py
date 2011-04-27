@@ -73,7 +73,6 @@ class MeetingLatexConverter(LatexCTConverter):
                     t_key,
                     traktandum[t_key]))
             latex.append(r'\end{longtable}')
-        import pdb; pdb.set_trace( )
         return '\n'.join(latex)
 
     def get_row(self, title, value):

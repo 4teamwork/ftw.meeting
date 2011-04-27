@@ -4,7 +4,8 @@ Changelog
 
 1.2.7
 -----
-
+* Removed PDB - ARGHHH
+  [27.04.2011, mathias.leimgruber]
 
 1.2.6
 -----
