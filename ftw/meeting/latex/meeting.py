@@ -12,6 +12,7 @@ class MeetingLatexConverter(LatexCTConverter):
         # shortcut for converting html to latex
         conv = self.controller.convert
         context = self.context
+        catalog = getToolByName(self.context, 'portal_catalog')
         # define a method for easy writing
         latex = []
 
@@ -73,6 +74,36 @@ class MeetingLatexConverter(LatexCTConverter):
                     t_key,
                     traktandum[t_key]))
             latex.append(r'\end{longtable}')
+        # Pendenzenliste
+        related_tasks = [r for r in self.context.getRelated_items()
+                         if r.portal_type=='Task']
+        for obj in self.context.getFolderContents(full_objects=True):
+            if obj.portal_type=='Meeting Item':
+                for rel in obj.getRelated_items():
+                    if rel.portal_type=='Task':
+                        related_tasks.append(rel)
+        
+        if related_tasks:
+            mt = getToolByName(context, 'portal_membership')
+            latex.append(r'\textbf{Pendenzenliste}')
+            latex.append(r'\begin{longtable}{|p{0.4\textwidth}|p{0.3\textwidth}|p{0.15\textwidth}|p{0.15\textwidth}|}\hline')
+            latex.append(r'Beschluss / Auftrag & Wer & Termin & Status \\ \hline')
+            for task in related_tasks:
+                res = []
+                for userid in task.getResponsibility():
+                    member = mt.getMemberById(userid)
+                    if member:
+                        res.append(member.getProperty('fullname', userid))
+                    else:
+                        res.append(userid)
+                state = catalog({'UID': task.UID()})[0].review_state
+                latex.append(r'{\bf %s} \newline %s & %s & %s & %s \\ \hline' %
+                             (conv(task.Title()), conv(task.text),
+                              '\\newline '.join(res),
+                              conv(self.context.toLocalizedTime(task.end())),
+                              conv(str(self.context.translate(state)))))
+            latex.append(r'\end{longtable}')
+
         return '\n'.join(latex)
 
     def get_row(self, title, value):

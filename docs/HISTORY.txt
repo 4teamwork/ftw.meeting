@@ -5,6 +5,10 @@ Changelog
 1.2.8
 -----
 
+* Issue #498 PDF Export anpassen
+  https://extranet.4teamwork.ch/intranet/10-interne-projekte/4teamwork-egov/tracker-4teamwork-egov/498/
+  added task-list
+  [14.06.2011, jinfanger]
 
 1.2.7
 -----
