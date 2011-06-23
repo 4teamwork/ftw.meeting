@@ -54,7 +54,7 @@ class MeetingLatexConverter(LatexCTConverter):
             context.toLocalizedTime(context.end(), time_only=1)).encode('utf8'))
         latex.append(self.get_row(
             'Verantwortliche',
-            self.get_latex_responsibility(self.context.getResponsibility())).encode('utf8'))
+            self.get_latex_responsibility(self.context.getResponsibility())))
         latex.append(self.get_row('Beschreibung', context.Description()))
         latex.append(self.get_row('Traktanden', latex_traktanden))
         latex.append(r'\end{longtable}')
