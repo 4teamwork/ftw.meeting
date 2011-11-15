@@ -5,6 +5,8 @@ Changelog
 1.2.9
 -----
 
+* Related Items in Traktanden are now listed and linked.
+  [Julian Infanger]
 
 1.2.8
 -----

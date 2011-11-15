@@ -12,7 +12,7 @@ class MeetingLayout(object):
     def setDocumentClass(self):
         self.view.setLatexProperty('document_class', 'scrartcl')
         self.view.setLatexProperty('document_config',
-            'a4paper,12pt,german, oneside')
+            'a4paper,10pt,german, oneside')
 
     def registerPackages(self):
         self.view.registerPackage('inputenc', 'utf8')
@@ -24,7 +24,8 @@ class MeetingLayout(object):
         self.view.registerPackage('graphicx')
         self.view.registerPackage('textcomp')
         self.view.registerPackage('helvet')
-        self.view.registerPackage('hyperref')
+        self.view.registerPackage('hyperref',
+            'colorlinks=false,breaklinks=true,linkcolor=black,pdfborder={0 0 0}')
         self.view.registerPackage('longtable')
 
     def appendHeadCommands(self):

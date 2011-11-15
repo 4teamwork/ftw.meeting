@@ -15,6 +15,7 @@ class MeetingLatexConverter(LatexCTConverter):
         catalog = getToolByName(self.context, 'portal_catalog')
         # define a method for easy writing
         latex = []
+        latex.append(r'\renewcommand{\arraystretch}{1.5}')
 
         # traktanden
         traktanden = []
@@ -28,7 +29,9 @@ class MeetingLatexConverter(LatexCTConverter):
                         ),
                     Text = conv(brain.text),
                     Ergebnis = conv(brain.conclusion),
+                    relatedItems = brain.getRelatedItems(),
                 ))
+
         latex_traktanden = ['-- %s' % t['title'] for t in traktanden]
         latex_traktanden = '\\newline'.join(latex_traktanden)
 
@@ -68,11 +71,27 @@ class MeetingLatexConverter(LatexCTConverter):
             latex.append(
                 r'\multicolumn{2}{l}{\textbf{%s. %s}}\\' % (
                     count, traktandum['title']))
-            del traktandum['title']
-            for t_key in traktandum.keys():
+
+            latex.append(self.get_row(
+                    'Verantwortlicher',
+                    traktandum['Verantwortlicher']))
+            latex.append(self.get_row(
+                    'Text',
+                    traktandum['Text']))
+            latex.append(self.get_row(
+                    'Ergebnis',
+                    traktandum['Ergebnis']))
+            related_items = []
+            for rel_item in traktandum['relatedItems']:
+                related_items.append(
+                    '-- \\href{%s}{%s}' % (
+                        rel_item.absolute_url(),
+                        conv(rel_item.Title())))
+            if len(related_items):
                 latex.append(self.get_row(
-                    t_key,
-                    traktandum[t_key]))
+                        'Verwandte Inhalte',
+                        r'\\'.join(related_items)))
+
             latex.append(r'\end{longtable}')
         # Pendenzenliste
         related_tasks = [r for r in self.context.getRelated_items()
@@ -82,7 +101,7 @@ class MeetingLatexConverter(LatexCTConverter):
                 for rel in obj.getRelated_items():
                     if rel.portal_type=='Task':
                         related_tasks.append(rel)
-        
+
         if related_tasks:
             mt = getToolByName(context, 'portal_membership')
             latex.append(r'\textbf{Pendenzenliste}')
