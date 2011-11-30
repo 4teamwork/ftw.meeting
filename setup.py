@@ -49,6 +49,8 @@ setup(name='ftw.meeting',
       include_package_data=True,
       zip_safe=False,
       install_requires=[
+        'plonegov.pdflatex',
+        'Products.DataGridField',
         'setuptools',
         'ftw.calendarwidget',
         'plone.principalsource'
