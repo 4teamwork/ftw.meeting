@@ -29,6 +29,12 @@ long_description = (
 
 tests_require=['zope.testing']
 
+extras_require={
+    'tests': tests_require,
+    'pdf': [
+        'plonegov.pdflatex',
+        ]}
+
 setup(name='ftw.meeting',
       version=version,
       description="Meeting type for ftw",
@@ -49,14 +55,13 @@ setup(name='ftw.meeting',
       include_package_data=True,
       zip_safe=False,
       install_requires=[
-        'plonegov.pdflatex',
         'Products.DataGridField',
         'setuptools',
         'ftw.calendarwidget',
         'plone.principalsource'
         ],
       tests_require=tests_require,
-      extras_require=dict(tests=tests_require),
+      extras_require=extras_require,
       test_suite = 'ftw.meeting.tests.test_docs.test_suite',
       entry_points="""
       [z3c.autoinclude.plugin]
