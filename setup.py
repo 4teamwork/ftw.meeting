@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = open('ftw/meeting/version.txt').read().strip()
+version = '1.2.9dev'
 maintainer = 'Mathias Leimgruber'
 
 tests_require=['zope.testing']
