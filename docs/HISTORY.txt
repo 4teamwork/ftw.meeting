@@ -2,108 +2,67 @@ Changelog
 =========
 
 
-1.2.9
------
+1.2.9 (unreleased)
+------------------
 
-* Related Items in Traktanden are now listed and linked.
-  [Julian Infanger]
-
-1.2.8
------
-
-* Issue #498 PDF Export anpassen
-  https://extranet.4teamwork.ch/intranet/10-interne-projekte/4teamwork-egov/tracker-4teamwork-egov/498/
-  added task-list
-  [14.06.2011, jinfanger]
-
-1.2.7
------
-* Removed PDB - ARGHHH
-  [27.04.2011, mathias.leimgruber]
-
-1.2.6
------
+- Related Items in Traktanden are now listed and linked.
+  [jinfanger]
 
 
-1.2.5
------
+1.2.8 (2011-09-06)
+------------------
 
-* Make start and end date required. 
-  [31.03.2011, mathias.leimgruber]
-
-* Auto-fill end date with start date infos. 
-  [31.03.2011, mathias.leimgruber]
+- added task-list
+  [jinfanger]
 
 
-1.2.4
------
+1.2.5 (2011-04-01)
+------------------
 
-* Issue #46 PDF Fuer Sitzungstraktanden funktioniert nicht
-  https://extranet.4teamwork.ch/support/0280-Support-RIZ/tracker/46/
-  Fixed list with string and unicode => unicode-error
-  [11.04.2011, jinfanger]
+- Make start and end date required.
+  [mathias.leimgruber]
 
-1.2.3
------
+- Auto-fill end date with start date infos.
+  [mathias.leimgruber]
 
-* Improve file view (don't show related items twice / remove default
+
+1.2.4 (2011-03-29)
+------------------
+
+- Fixed list with string and unicode => unicode-error
+  [jinfanger]
+
+
+1.2.3 (2011-02-02)
+------------------
+
+- Improve file view (don't show related items twice / remove default
   description)
-  [01.02.2011, mathias.leimgruber]
+  [mathias.leimgruber]
 
-* Added missing normalizeString definition. 
-  [28.01.2011, mathias.leimgruber]
-
-1.2.2
------
+- Added missing normalizeString definition.
+  [mathias.leimgruber]
 
 
-1.2.1
------
+1.2.1 (2010-12-22)
+------------------
 
-* I'm no able to fix this F*** doctsring!! use --- instead of ====
-  and it fails^2. Title level is also inconsistent, but if I do it the right
-  way it will fail too!!!
+- Only show head_of_meeting if meeting typ ist "meeting"
+  [mathias.leimgruber]
 
-* Only show head_of_meeting if meeting typ ist "meeting"
-  [07.12.2010, mathias.leimgruber]
-
-* Removed old poodle stuff, the date will be shown correctly now.
-  [02.12.2010, mathias.leimgruber]
+- Removed old poodle stuff, the date will be shown correctly now.
+  [mathias.leimgruber]
 
 
-1.2
----
 
-    
-1.1
----
+1.1 (2010-11-18)
+----------------
 
-* Issue #440 Buch PDF-Export implementieren
-  https://extranet.4teamwork.ch/intranet/10-interne-projekte/4teamwork-egov/tracker-4teamwork-egov/440
-  [12.11.2010, jinfanger]
+- Implemented PDF export.
+  [jinfanger]
 
-* Issue #440 Buch PDF-Export implementieren
-  https://extranet.4teamwork.ch/intranet/10-interne-projekte/4teamwork-egov/tracker-4teamwork-egov/440
-  [05.11.2010, jinfanger]
 
-1.0
----
+1.0 (2010-10-26)
+----------------
 
-* Removed AnnotationStorage from some fields
-  [08.09.2010, jbaumann]
-
-* Made meeting type a vocabulary, made js more generic
-  [03.09.2010, jbaumann]
-
-* Do not use ATFieldProperties but use AttributeStorage
-  [03.09.2010, jbaumann]
-
-* Changed way of registering catalog indexes according to devwiki
-  [03.09.2010, jbaumann]
-  
-* renamed to ftw.meeting and removed dependecies
-  [16.07.2010, mathias.leimgruber]
-  
-* init version, copy of izug.meeting
-  [16.07.2010, mathias.leimgruber]
-
+- Initial release.
