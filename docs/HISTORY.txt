@@ -5,6 +5,12 @@ Changelog
 1.2.9 (unreleased)
 ------------------
 
+- Updates in meeting pdf.
+  Show logo in pdf. Show location in pdf. Show start date and start time as date.
+  Add head of meeting, attendees and recording secretary.
+  Use enumerate to show traktanden. Added url to related items in traktanden.
+  [Julian Infanger]
+
 - Related Items in Traktanden are now listed and linked.
   [jinfanger]
 

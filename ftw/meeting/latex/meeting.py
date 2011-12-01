@@ -17,6 +17,13 @@ class MeetingLatexConverter(LatexCTConverter):
         latex = []
         latex.append(r'\renewcommand{\arraystretch}{1.5}')
 
+        # pdf_logo
+        portal = getToolByName(context, 'portal_url').getPortalObject()
+        img = portal.unrestrictedTraverse('pdf_logo', None)
+        if img:
+            self.controller.addImage(uid='pdf_logo', image=img)
+            latex.append(r'\includegraphics{pdf_logo}')
+
         # traktanden
         traktanden = []
         if len(context.getChildNodes()):
@@ -32,8 +39,9 @@ class MeetingLatexConverter(LatexCTConverter):
                     relatedItems = brain.getRelatedItems(),
                 ))
 
-        latex_traktanden = ['-- %s' % t['title'] for t in traktanden]
-        latex_traktanden = '\\newline'.join(latex_traktanden)
+
+        latex_traktanden = ['\\item{%s}' % t['title'] for t in traktanden]
+        latex_traktanden = '\n'.join(latex_traktanden)
 
         latex.append(r'\begin{longtable}{p{0.3\textwidth}p{0.7\textwidth}}')
         latex.append(r'\multicolumn{2}{l}{\textbf{%s}}\\' % conv(
@@ -44,22 +52,35 @@ class MeetingLatexConverter(LatexCTConverter):
              self.context.translate(context.getMeeting_type(),
                 domain='ftw.meeting')).encode('utf8'))
         latex.append(self.get_row(
-            'Start-Datum',
-            context.toLocalizedTime(context.start())).encode('utf8'))
-        latex.append(self.get_row(
-            'Start-Zeit',
-            context.toLocalizedTime(context.start(), time_only=1)).encode('utf8'))
-        latex.append(self.get_row(
-            'End-Datum',
-            context.toLocalizedTime(context.end())).encode('utf8'))
-        latex.append(self.get_row(
-            'End-Zeit',
-            context.toLocalizedTime(context.end(), time_only=1)).encode('utf8'))
+            'Datum',
+            context.toLocalizedTime(context.start(), long_format=1)).encode('utf8'))
+        if self.context.getLocation():
+            latex.append(self.get_row(
+                    'Ort',
+                    conv(self.context.getLocation())))
         latex.append(self.get_row(
             'Verantwortliche',
             self.get_latex_responsibility(self.context.getResponsibility())))
+
+        if self.context.getAttendees():
+            latex.append(self.get_row(
+                    'Teilnehmer',
+                    self.get_latex_responsibility(self.context.getAttendees())))
+        if self.context.getRecording_secretary():
+            brains = [{'contact': uuid} for uuid in self.context.getRecording_secretary()]
+
+            latex.append(self.get_row(
+                    'Schriftführer',
+                    self.get_latex_responsibility(brains)))
+        if self.context.getHead_of_meeting():
+            brains = [{'contact':uuid} for uuid in self.context.getHead_of_meeting()]
+            latex.append(self.get_row(
+                    'Sitzungsleitung',
+                    self.get_latex_responsibility(brains)))
+
         latex.append(self.get_row('Beschreibung', context.Description()))
-        latex.append(self.get_row('Traktanden', latex_traktanden))
+        if latex_traktanden:
+            latex.append(self.get_row('Traktanden', '\\vspace{-2em}\n\\begin{enumerate}[leftmargin=*]%s\\end{enumerate}' % latex_traktanden))
         latex.append(r'\end{longtable}')
         latex.append(r'\newline')
         count = 0
@@ -72,25 +93,31 @@ class MeetingLatexConverter(LatexCTConverter):
                 r'\multicolumn{2}{l}{\textbf{%s. %s}}\\' % (
                     count, traktandum['title']))
 
-            latex.append(self.get_row(
-                    'Verantwortlicher',
-                    traktandum['Verantwortlicher']))
-            latex.append(self.get_row(
-                    'Text',
-                    traktandum['Text']))
-            latex.append(self.get_row(
-                    'Ergebnis',
-                    traktandum['Ergebnis']))
+            if traktandum['Verantwortlicher']:
+                latex.append(self.get_row(
+                        'Verantwortlicher',
+                        traktandum['Verantwortlicher']))
+            if traktandum['Text']:
+                latex.append(self.get_row(
+                        'Text',
+                        traktandum['Text']))
+            if traktandum['Ergebnis']:
+                latex.append(self.get_row(
+                        'Ergebnis',
+                        traktandum['Ergebnis']))
             related_items = []
             for rel_item in traktandum['relatedItems']:
                 related_items.append(
-                    '-- \\href{%s}{%s}' % (
+                    '\\item[--]{%s (%s, %sKB) \\\\ \\href{%s}{%s}}' % (
+                        conv(rel_item.Title()),
+                        conv(self.context.lookupMime(rel_item.getContentType()).encode('utf8')),
+                        rel_item.get_size() / 1024,
                         rel_item.absolute_url(),
-                        conv(rel_item.Title())))
+                        rel_item.absolute_url()))
             if len(related_items):
                 latex.append(self.get_row(
                         'Verwandte Inhalte',
-                        r'\\'.join(related_items)))
+                        '\\vspace{-2em}\n\\begin{itemize}[leftmargin=*]\n%s\n\\end{itemize}' % '\n'.join(related_items)))
 
             latex.append(r'\end{longtable}')
         # Pendenzenliste
@@ -146,5 +173,5 @@ class MeetingLatexConverter(LatexCTConverter):
                 if len(brains):
                     brain = brains[0]
                     fullname = brain.Title
-            result.append('-- %s' % self.controller.convert(fullname))
+            result.append(self.controller.convert(fullname))
         return '\\newline '.join(result)

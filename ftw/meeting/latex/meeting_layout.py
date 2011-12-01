@@ -27,6 +27,7 @@ class MeetingLayout(object):
         self.view.registerPackage('hyperref',
             'colorlinks=false,breaklinks=true,linkcolor=black,pdfborder={0 0 0}')
         self.view.registerPackage('longtable')
+        self.view.registerPackage('enumitem')
 
     def appendHeadCommands(self):
         self.view.appendHeaderCommand(
