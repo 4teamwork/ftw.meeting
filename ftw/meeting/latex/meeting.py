@@ -70,7 +70,7 @@ class MeetingLatexConverter(LatexCTConverter):
             brains = [{'contact': uuid} for uuid in self.context.getRecording_secretary()]
 
             latex.append(self.get_row(
-                    'Schriftführer',
+                    'Schriftf"uhrer',
                     self.get_latex_responsibility(brains)))
         if self.context.getHead_of_meeting():
             brains = [{'contact':uuid} for uuid in self.context.getHead_of_meeting()]
