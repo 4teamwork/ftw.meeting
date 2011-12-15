@@ -1,5 +1,7 @@
 from Products.CMFCore.utils import getToolByName
+from Acquisition import aq_parent, aq_inner
 from plonegov.pdflatex.browser.converter import LatexCTConverter
+from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
 
 
 class MeetingLatexConverter(LatexCTConverter):
@@ -18,8 +20,7 @@ class MeetingLatexConverter(LatexCTConverter):
         latex.append(r'\renewcommand{\arraystretch}{1.5}')
 
         # pdf_logo
-        portal = getToolByName(context, 'portal_url').getPortalObject()
-        img = portal.unrestrictedTraverse('pdf_logo', None)
+        img = self.pdf_logo()
         if img:
             self.controller.addImage(uid='pdf_logo', image=img)
             latex.append(r'\includegraphics{pdf_logo}')
@@ -151,6 +152,24 @@ class MeetingLatexConverter(LatexCTConverter):
             latex.append(r'\end{longtable}')
 
         return '\n'.join(latex)
+
+    def pdf_logo(self):
+        """ First checks if there is an image whith the id 'pdf_logo'
+        in the current workspace. If not, checks if there is a 'pdf_logo'
+        in portal.
+        """
+        img = None
+        workspace = self.context
+        while workspace.portal_type != 'Workspace':
+            if IPloneSiteRoot.providedBy(workspace):
+                break # no workspace found
+            workspace = aq_parent(aq_inner(workspace))
+        if workspace.portal_type == 'Workspace':
+            img = workspace.unrestrictedTraverse('pdf_logo', None)
+        if not img:
+            portal = getToolByName(self.context, 'portal_url').getPortalObject()
+            img = portal.unrestrictedTraverse('pdf_logo', None)
+        return img
 
     def get_row(self, title, value):
         value = value.replace('\\\\', '\\newline\n')
