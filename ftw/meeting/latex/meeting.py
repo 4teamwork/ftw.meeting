@@ -112,8 +112,8 @@ class MeetingLatexConverter(LatexCTConverter):
                         conv(rel_item.Title()),
                         conv(self.context.lookupMime(rel_item.getContentType()).encode('utf8')),
                         rel_item.get_size() / 1024,
-                        rel_item.absolute_url(),
-                        rel_item.absolute_url()))
+                        conv(rel_item.absolute_url()),
+                        conv(rel_item.absolute_url())))
             if len(related_items):
                 latex.append(self.get_row(
                         'Verwandte Inhalte',
