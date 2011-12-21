@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-1.2.9 (unreleased)
+1.2.9 (2011-12-21)
 ------------------
 
 - Updates in meeting pdf.
