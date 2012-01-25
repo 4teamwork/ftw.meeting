@@ -15,7 +15,7 @@
                             normalizeString nocall: context/@@plone/normalizeString;
                             meeting_type python:context.getMeeting_type()">
 
-                
+
                 <table class="MeetingListing">
                     <tr tal:condition="context/location | nothing">
                         <td class="table-label"><span i18n:translate="meeting_label_location">Location</span></td>
@@ -23,7 +23,7 @@
                             <tal:block tal:content="context/location" />
                         </td>
                     </tr>
-                    
+
                     <tal:dates define="start_field context/start;
                                        end_field context/end;
                                        start_date python:start_field and start_field.strftime('%d.%m.%Y') or '';
@@ -34,9 +34,9 @@
                         <tr>
                             <td class="table-label"><span i18n:translate="meeting_label_date">Date</span></td>
                             <td>
-                                <tal:block replace="start_date" />    
+                                <tal:block replace="start_date" />
                             </td>
-                        
+
                         </tr>
                         <tr>
                             <td class="table-label"><span i18n:translate="meeting_label_duration">Duration</span></td>
@@ -73,7 +73,7 @@
                         </tal:mutli>
                     </tal:dates>
 
-                    
+
 <!--                     <tr tal:define="related python:here.computeRelatedItems()" tal:condition="related">
                         <td class="table-label"><span i18n:translate="meeting_label_relations">Relations</span></td>
                         <td>
@@ -103,7 +103,7 @@
                             </tal:block>
                         </td>
                     </tr> -->
-                    
+
                     <tr tal:condition="context/getResponsibility | nothing">
                         <td class="table-label"><span i18n:translate="meeting_label_responsibility">Responsibility</span>:</td>
                         <td>
@@ -111,14 +111,14 @@
                                 <li tal:repeat="userid python:context.getResponsibilityInfos(userids)">
                                     <tal:exists condition="python:userid and len(userid.get('url',''))>0">
                                         <a tal:attributes="href python:userid['url']" tal:content="python:userid['name']" />
-                                   </tal:exists>     
+                                   </tal:exists>
                                    <span tal:condition="python:userid and len(userid.get('url',''))==0" tal:content="python:userid['name']" />
                                 </li>
-                            
+
                             </ul>
-                        
+
                         </td>
-                    </tr>                    
+                    </tr>
                     <tr tal:condition="python: context.getHead_of_meeting() and context.getMeeting_type() == 'meeting'">
                         <td class="table-label"><span i18n:translate="meeting_label_head_of_meeting">Head of Meeting</span>:</td>
                         <td tal:define="userids python:here.getHead_of_meeting()" tal:repeat="userid python:context.getResponsibilityInfos(userids)">
@@ -134,7 +134,7 @@
                             <tal:exists condition="python:userid and len(userid.get('url',''))>0">
                                 <a tal:attributes="href python:userid['url']" tal:content="python:userid['name']" />
                         <span tal:condition="python:userid and len(userid.get('url',''))==0" tal:content="python:userid['name']" />
- 
+
 
                            </tal:exists>
                         </td>
@@ -152,9 +152,9 @@
 
                                     <span tal:define="status python: [u.get('present') for u in context.getAttendees() if u['contact'] == userids[repeat['userid'].index]]" tal:condition="python: sum(map(lambda x: int(bool(x)), status)) ">(<tal:b  repeat="st status"><tal:s tal:content="st" i18n:translate=""/><tal:sep condition="not: repeat/st/end">, </tal:sep></tal:b>)</span>
                                 </li>
-                            
+
                             </ul>
-                        
+
                         </td>
                     </tr>
                     <tr tal:condition="context/Description | nothing">
@@ -281,7 +281,7 @@
                                 </table>
                             </div>
                         </div>
-                        
+
                         <tr class="even" tal:repeat="meeting_item_file python:obj.getFolderContents({'portal_type':['File'], 'sort_on' : 'effective', 'sort_order' : 'descending'}, full_objects=True)">
                             <td>&nbsp;</td>
                             <td>
