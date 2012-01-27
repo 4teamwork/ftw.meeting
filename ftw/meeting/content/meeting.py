@@ -259,6 +259,20 @@ class Meeting(folder.ATFolder, CalendarSupportMixin):
             result.append(self.getUserInfos(userids))
         return result
 
+    @property
+    def endDate(self):
+        return self.end_date
+
+    @property
+    def startDate(self):
+        return self.start_date
+
+    def setStartDate(self, date):
+        self.getField('start_date').set(self, date)
+
+    def setEndDate(self, date):
+        self.getField('end_date').set(self, date)
+
     def getUserInfos(self, userid):
         """ return a dict with userinformations, about the user """
         mt = getToolByName(self, 'portal_membership')

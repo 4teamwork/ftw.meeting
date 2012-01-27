@@ -5,6 +5,9 @@ Changelog
 1.2.10 (unreleased)
 -------------------
 
+- Added functions to get and edit start and end date like default event.
+  These functions are needed in the calendar.
+  [Julian Infanger]
 - Added new arrow_down/arrow_right icon
   [mathias.leimgruber]
 
