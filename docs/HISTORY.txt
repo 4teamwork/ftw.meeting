@@ -5,6 +5,9 @@ Changelog
 1.2.10 (unreleased)
 -------------------
 
+- Added class vertical and listing to the tables.
+  [Julian Infanger]
+
 - Added functions to get and edit start and end date like default event.
   These functions are needed in the calendar.
   [Julian Infanger]

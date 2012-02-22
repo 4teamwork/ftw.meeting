@@ -16,7 +16,7 @@
                             meeting_type python:context.getMeeting_type()">
 
 
-                <table class="MeetingListing">
+                <table class="vertical listing MeetingListing">
                     <tr tal:condition="context/location | nothing">
                         <td class="table-label"><span i18n:translate="meeting_label_location">Location</span></td>
                         <td>
@@ -196,7 +196,7 @@
                                 </a>
                             </div>
                             <div class="MeetingItemBody" style="display:none">
-                                <table>
+                                <table class="vertical listing">
                                     <colgroup>
                                         <col width="20%"/>
                                         <col width="*">
