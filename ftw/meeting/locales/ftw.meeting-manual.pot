@@ -36,3 +36,7 @@ msgstr ""
 #. Default: "Meeting created, but with date errors --> <a href='${url}'>${title}</a>"
 msgid "meeting_created_text_with_errors"
 msgstr ""
+
+#. Default: "poll"
+msgid "poll"
+msgstr ""
