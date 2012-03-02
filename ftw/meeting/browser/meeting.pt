@@ -2,6 +2,29 @@
     xmlns:tal="http://xml.zope.org/namespaces/tal" xmlns:metal="http://xml.zope.org/namespaces/metal"
     xmlns:i18n="http://xml.zope.org/namespaces/i18n" lang="en"
     metal:use-macro="here/main_template/macros/master" i18n:domain="ftw.meeting">
+
+
+    <metal:js fill-slot="javascript_head_slot">
+        <script type="text/javascript">
+            /* DnD reoder meeting items */
+            jq(function() {
+                 jq('.MeetingItems').sortable({
+                     'items':'.MeetingItemWrapper',
+                      'stop': function(event, ui) {
+                          var ids = [];
+                          jq('.MeetingItemWrapper').each(function(index, el) {
+                              ids.push(el.id);
+                          });
+                          ids = ids.join(',');
+                          var bhref, base_href;
+                          bhref= base_href = jq('base')[0].href;
+                          jq.post('./meetingitem_dnd_saveorder', { uids : ids });
+                      }
+                });
+            });
+        </script>
+    </metal:js>
+
     <body>
 
         <metal:content-description fill-slot="content-description">
@@ -73,36 +96,6 @@
                         </tal:mutli>
                     </tal:dates>
 
-
-<!--                     <tr tal:define="related python:here.computeRelatedItems()" tal:condition="related">
-                        <td class="table-label"><span i18n:translate="meeting_label_relations">Relations</span></td>
-                        <td>
-                            <tal:block tal:condition="python:related">
-                                <ul>
-                                <tal:related tal:repeat="item related"
-                                             tal:define="use_view_action site_properties/typesUseViewActionInListings|python:();">
-                                    <li tal:define="
-                                            desc                item/Description;
-                                            item_type           item/portal_type;
-                                            item_icon           python:plone_view.getIcon(item);
-                                            item_type           item/portal_type;
-                                            item_url            item/absolute_url;
-                                            item_url            python:(item_type in use_view_action) and item_url+'/view' or item_url">
-                                        <span>
-                                            <img tal:replace="structure item_icon/html_tag" />
-                                            <a href="" class=""
-                                               tal:attributes="href  item_url;
-                                                               title item/Description;"
-                                               tal:content="item/pretty_title_or_id">
-                                                Related Item
-                                            </a>
-                                        </span>
-                                    </li>
-                                </tal:related>
-                                </ul>
-                            </tal:block>
-                        </td>
-                    </tr> -->
 
                     <tr tal:condition="context/getResponsibility | nothing">
                         <td class="table-label"><span i18n:translate="meeting_label_responsibility">Responsibility</span>:</td>
@@ -182,11 +175,12 @@
 
                 </table>
 
-                <tal:items tal:define="meeting_items python:context.getFolderContents({'portal_type':['Meeting Item']}, full_objects=True);"
+                <div class="MeetingItems"
+                     tal:define="meeting_items python:context.getFolderContents({'portal_type':['Meeting Item']}, full_objects=True);"
                        tal:condition="meeting_items">
 
                     <tal:block tal:repeat="obj meeting_items">
-                        <div tal:attributes="id string:${obj/UID}" class="MeetingItemWrapper">
+                        <div tal:attributes="id string:uid_${obj/UID}" class="MeetingItemWrapper">
                             <div class="MeetingItemHead">
                                 <img tal:attributes="src string:${here/portal_url}/++resource++meeting-styles/arrow_right.png"
                                      class="toggleImage"
@@ -295,7 +289,7 @@
                             <td>&nbsp;</td>
                         </tr>
                     </tal:block>
-                </tal:items>
+                </div>
 
                 <table tal:define="files view/getFiles" tal:condition="files" class="listing" width="100%">
                     <tr>

@@ -41,3 +41,7 @@ ul.AttendeesListing li {
     font-weight:bold;
 }
 
+.MeetingItemWrapper .MeetingItemHead:hover{
+    cursor:move;
+    background-color:#cccccc;
+}
