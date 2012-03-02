@@ -19,7 +19,6 @@
     <include package=".browser" />
     <include package=".content" />
     <include zcml:condition="installed plonegov.pdflatex" package=".latex" />
-    <include package=".portlets" />
     <include package=".viewlets" />
 
     <!-- Register the installation GenericSetup extension profile -->
