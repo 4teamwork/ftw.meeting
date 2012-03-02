@@ -1,6 +1,6 @@
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from plone.app.layout.viewlets import ViewletBase
 from zope.component import getMultiAdapter
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 
 class GenerateMeetingViewlet(ViewletBase):
@@ -20,13 +20,14 @@ class GenerateMeetingViewlet(ViewletBase):
         # raw result from poodletable
         # includes a new part results (counted votes per date entry)
         self.poodle_result = poodle_table.poodleResults(print_html=False)
-        
+
         # options for select input
         options_list = []
         # first iterate throught dates - for the right order
         if self.poodle_result:
             for i, date in enumerate(self.poodle_result['dates']):
-                # dates_record is the correct entry from getDates(datagridfield)
+                # dates_record is the correct entry
+                # from getDates(datagridfield)
                 dates_record = self.context.getDates()[i]
                 options_list.append(
                     dict(
@@ -37,29 +38,26 @@ class GenerateMeetingViewlet(ViewletBase):
 
         self.options = options_list
 
-        portal_state = getMultiAdapter(
-            (self.context, self.request),
-            name=u'plone_portal_state')
+        portal_state = getMultiAdapter((self.context, self.request),
+                                       name=u'plone_portal_state')
         self.member = portal_state.member()
-        
 
     def show_generate(self):
         """Decides if the viewlet will be shown or not"""
-        
+
         # no member
         if not self.member:
             return False
-        
+
         # no dates in poodle
         if not self.context.getDates():
             return False
-        
+
         return self.member.id in self.context.Creators() and not \
             self.get_related_meeting()
 
-        
     def get_related_meeting(self):
-        """Returns the first meeting found in related_items, if there's is 
+        """Returns the first meeting found in related_items, if there's is
         none, return none.
 
         """

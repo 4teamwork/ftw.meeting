@@ -5,8 +5,8 @@
     i18n_domain="ftw.meeting">
 
     <configure zcml:condition="installed ftw.poodle">
-        <browser:viewlet 
-            name="ftw.meeting.generatemeeting" 
+        <browser:viewlet
+            name="ftw.meeting.generatemeeting"
             manager="ftw.poodle.interfaces.IPoodletableBottom"
             class=".generate_meeting.GenerateMeetingViewlet"
             for="ftw.poodle.interfaces.IPoodle"

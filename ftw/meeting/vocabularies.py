@@ -31,6 +31,7 @@ class AvailableUsersVocabulary(object):
         items = factory(context)
         return items
 
+
 AvailableUsersVocabularyFactory = AvailableUsersVocabulary()
 
 

@@ -1,15 +1,16 @@
-from zope.interface import implements
+from Products.CMFCore.utils import getToolByName
 from interfaces import IResponsibilityInfoGetter
 from zope.app.component.hooks import getSite
-from Products.CMFCore.utils import getToolByName
+from zope.interface import implements
+
 
 class ResponsibilityInfos(object):
     """Utiliy which returns a list of dicts
     format: [{'name':'Full Name', 'url':'authors-url'}]
-    
+
     """
     implements(IResponsibilityInfoGetter)
-    
+
     def __init__(self, context=None):
         """
 
@@ -17,8 +18,7 @@ class ResponsibilityInfos(object):
         if context is None:
             context = getSite()
         self.context = context
-        
-    
+
     def get_infos(self, userids=None):
         """
         """
@@ -27,13 +27,12 @@ class ResponsibilityInfos(object):
             return []
 
         mt = getToolByName(self.context, 'portal_membership')
-        
+
         users = []
         for userid in userids:
             if userid:
                 user = mt.getMemberById(userid)
                 users.append({'name': user.getProperty('fullname', ''),
-                              'url': '%s/author/%s' % (self.context.portal_url(), 
-                                                       user.id), })
+                              'url': '%s/author/%s' % (
+                            self.context.portal_url(), user.id), })
         return users
-        

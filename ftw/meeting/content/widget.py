@@ -18,16 +18,15 @@ class DataGridWidgetExtended(DataGridWidget):
 
     _properties = TypesWidget._properties.copy()
     _properties.update({
-        'macro' : "datagridwidgetextended",
-        'helper_css': ('datagridwidget.css',),
-        'helper_js': ('datagridwidgetextended.js',),
-        'show_header' : True,
-        'auto_insert': False,
-        'select_all_column': '', # column for the select all button
-        'columns' : {}, # Sequence of Column instances                           
-        })
-        
-        
+            'macro': "datagridwidgetextended",
+            'helper_css': ('datagridwidget.css',),
+            'helper_js': ('datagridwidgetextended.js',),
+            'show_header': True,
+            'auto_insert': False,
+            'select_all_column': '',  # column for the select all button
+            'columns': {},  # Sequence of Column instances
+            })
+
 
 __all__ = ('DataGridWidgetExtended')
 

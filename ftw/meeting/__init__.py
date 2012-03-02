@@ -1,20 +1,14 @@
 """Main product initializer
 """
 
-from zope.i18nmessageid import MessageFactory
-from ftw.meeting import config
-
 from Products.Archetypes import atapi
 from Products.CMFCore import utils as cutils
+from ftw.meeting import config
+from zope.i18nmessageid import MessageFactory
 
-# Define a message factory for when this product is internationalised.
-# This will be imported with the special name "_" in most modules. Strings
-# like _(u"message") will then be extracted by i18n tools for translation.
 
 meetingMessageFactory = MessageFactory('ftw.meeting')
 
-# local import - register the DatagridwidgetExtended
-# from content.widget import DataGridWidgetExtended
 
 def initialize(context):
     """Initializer called when used as a Zope 2 product.
@@ -45,8 +39,9 @@ def initialize(context):
     # in the GenericSetup profile.
 
     for atype, constructor in zip(content_types, constructors):
-        cutils.ContentInit('%s: %s' % (config.PROJECTNAME, atype.portal_type),
-            content_types= (atype, ),
-            permission= config.ADD_PERMISSIONS[atype.portal_type],
-            extra_constructors= (constructor, ),
+        cutils.ContentInit(
+            '%s: %s' % (config.PROJECTNAME, atype.portal_type),
+            content_types=(atype,),
+            permission=config.ADD_PERMISSIONS[atype.portal_type],
+            extra_constructors=(constructor, ),
             ).initialize(context)

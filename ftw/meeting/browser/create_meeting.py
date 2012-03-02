@@ -53,8 +53,10 @@ class CreateMeeting(BrowserView):
                 context=self.request),
             self.context.Title().decode('utf-8'))
         m_id = idnormalizer.normalize(m_title)
+
         try:
             parent.invokeFactory('Meeting', m_id)
+
         except BadRequest:
             # catches duplication error
             return status_message_template(translate(
@@ -62,6 +64,7 @@ class CreateMeeting(BrowserView):
                 'ftw.meeting',
                 context=self.request),
                 'error')
+
         except ValueError:
             # catches "disallowed subobject type"
             return status_message_template(translate(
