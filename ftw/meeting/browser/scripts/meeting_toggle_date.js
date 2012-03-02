@@ -62,11 +62,11 @@ function MeetingItemToggler(){
                 var meetingBody = jq('#'+parentItem.attr('id') + ' .MeetingItemBody');
 
                 if (meetingBody.css('display') != 'none'){
-                        jq('#'+parentItem.attr('id') + ' .MeetingItemBody').hide('blind');
+                        jq('#'+parentItem.attr('id') + ' .MeetingItemBody').hide('blind', 100);
                         jq('#'+parentItem.attr('id') + ' .MeetingItemHead .toggleImage').attr('src',portal_url+'/++resource++meeting-styles/arrow_right.png');
                     }
                 else {
-                        jq('#'+parentItem.attr('id') + ' .MeetingItemBody').show('slow');
+                        jq('#'+parentItem.attr('id') + ' .MeetingItemBody').show('blind', 100);
                         jq('#'+parentItem.attr('id') + ' .MeetingItemHead .toggleImage').attr('src',portal_url+'/++resource++meeting-styles/arrow_down.png');
                     }
 

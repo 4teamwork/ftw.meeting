@@ -5,6 +5,9 @@ Changelog
 1.2.10 (unreleased)
 -------------------
 
+- Improve visual effects on meeting view.
+  [jone]
+
 - Added class vertical and listing to the tables.
   [Julian Infanger]
 
