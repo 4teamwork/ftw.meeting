@@ -5,6 +5,9 @@ Changelog
 1.2.10 (unreleased)
 -------------------
 
+- Added drag'n'drop support for meetingitems on meeting view.
+  [mathias.leimgruber]
+
 - Improve visual effects on meeting view.
   [jone]
 
