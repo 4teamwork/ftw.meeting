@@ -5,6 +5,9 @@ Changelog
 1.2.10 (unreleased)
 -------------------
 
+- Added Ical Attachment adapter.
+  [mathias.leimgruber]
+
 - Added drag'n'drop support for meetingitems on meeting view.
   [mathias.leimgruber]
 

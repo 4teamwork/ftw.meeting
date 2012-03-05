@@ -57,4 +57,10 @@
         name="ftw.meeting.responsibility.infos"
         />
 
+    <adapter
+		factory=".adapters.ICSAttachmentCreator"
+		for="izug.meeting.interfaces.IMeeting"
+		provides="ftw.notification.email.interfaces.IAttachmentCreator"
+		/>
+
 </configure>
