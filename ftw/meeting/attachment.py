@@ -13,18 +13,14 @@ class ICSAttachmentCreator(object):
     def __call__(self, object_):
         mime_type = "text/calendar"
         attachments = []
-        self.meeting_types = ['dates_additional',
-                              'meeting_dates_additional', ]
-
-        if object_.getMeeting_type() in self.meeting_types:
-            ical_view = getattr(object_.aq_explicit, 'ics_view', None)
-            if ical_view:
-                ical_view = ical_view(
-                    object_.REQUEST, object_.REQUEST.RESPONSE)
-                ical_view = self.set_reminder(ical_view, 30)
-                ical_file = StringIO(ical_view)
-                ical_attachment = (ical_file, 'ICal.ics', mime_type.split('/'))
-                attachments = [ical_attachment, ]
+        ical_view = getattr(object_.aq_explicit, 'ics_view', None)
+        if ical_view:
+            ical_view = ical_view(
+                object_.REQUEST, object_.REQUEST.RESPONSE)
+            ical_view = self.set_reminder(ical_view, 30)
+            ical_file = StringIO(ical_view)
+            ical_attachment = (ical_file, 'ICal.ics', mime_type.split('/'))
+            attachments = [ical_attachment, ]
 
         return attachments
 

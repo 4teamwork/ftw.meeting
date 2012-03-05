@@ -58,8 +58,8 @@
         />
 
     <adapter
-		factory=".adapters.ICSAttachmentCreator"
-		for="izug.meeting.interfaces.IMeeting"
+		factory=".attachment.ICSAttachmentCreator"
+		for="ftw.meeting.interfaces.IMeeting"
 		provides="ftw.notification.email.interfaces.IAttachmentCreator"
 		/>
 
