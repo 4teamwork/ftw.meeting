@@ -1,7 +1,8 @@
 from Products.CMFCore.utils import getToolByName
 from ftw.meeting import meetingMessageFactory as _
-from ftw.meeting.interfaces import IMeeting
+from ftw.meeting.interfaces import IMeeting, IMeetingItem
 from ftw.pdfgenerator.interfaces import ILaTeXLayout
+from ftw.pdfgenerator.view import MakoLaTeXView
 from ftw.pdfgenerator.view import RecursiveLaTeXView
 from zope.component import adapts
 from zope.i18n import translate
@@ -133,3 +134,48 @@ class MeetingView(RecursiveLaTeXView):
             new_metadata.append((label, value))
 
         return new_metadata
+
+
+class MeetingItemView(MakoLaTeXView):
+    adapts(IMeetingItem, Interface, ILaTeXLayout)
+
+    template_directories = ['templates']
+    template_name = 'meetingitem.tex'
+
+    def get_render_arguments(self):
+        args = super(MeetingItemView, self).get_render_arguments()
+
+        args.update({
+                '_': lambda *a, **kw: translate(_(*a, **kw),
+                                                context=self.request),
+                'title': self.convert(self.context.Title()),
+                'responsibles': self.get_responsibles(),
+                'text': self.convert(self.context.getText()),
+                'conclusion': self.convert(self.context.getConclusion()),
+                'relatedItems': self.get_related_items(),
+                })
+
+        return args
+
+    def get_responsibles(self):
+        responsibles = []
+
+        field = self.context.getField('responsibility')
+        vocabulary = field.Vocabulary(self.context)
+
+        for user in self.context.getResponsibility():
+            responsibles.append(self.convert(
+                    self.context.displayValue(
+                        vocabulary, user)))
+
+        return responsibles
+
+    def get_related_items(self):
+        items = []
+
+        for obj in self.context.getRelated_items():
+            items.append({
+                    'title': self.convert(obj.Title()),
+                    'url': obj.absolute_url()})
+
+        return items

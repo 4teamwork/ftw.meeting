@@ -9,4 +9,7 @@
     <adapter factory=".views.MeetingView"
              provides="ftw.pdfgenerator.interfaces.ILaTeXView" />
 
+    <adapter factory=".views.MeetingItemView"
+             provides="ftw.pdfgenerator.interfaces.ILaTeXView" />
+
 </configure>

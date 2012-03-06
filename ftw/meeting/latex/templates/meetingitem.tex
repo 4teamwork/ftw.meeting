@@ -1,0 +1,29 @@
+\subsection{${title}}
+
+% if responsibles:
+  \subsubsection*{${_(u"latex_responsibles", default=u"Responsibles")}:}
+  \begin{itemize}
+  % for user in responsibles:
+  \item{${user}}
+  % endfor
+  \end{itemize}
+% endif
+
+% if text:
+  \subsubsection*{${_(u"latex_agenda_item", default=u"Agenda item")}:}
+  ${text}
+% endif
+
+% if conclusion:
+  \subsubsection*{${_(u"meetingitem_label_conclusion", default=u"Conclusion")}:}
+  ${conclusion}
+% endif
+
+% if relatedItems:
+  \subsubsection*{${_(u"latex_related_items", default=u"Related Items")}:}
+  \begin{itemize}
+  % for item in relatedItems:
+    \item{${item['title']}\footnote{\url{${item['url']}}}}
+  % endfor
+  \end{itemize}
+% endif
