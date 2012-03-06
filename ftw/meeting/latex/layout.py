@@ -1,7 +1,9 @@
+from ftw.meeting import meetingMessageFactory as _
 from ftw.meeting.interfaces import IMeeting
 from ftw.pdfgenerator.interfaces import IBuilder
 from ftw.pdfgenerator.layout.makolayout import MakoLayoutBase
 from zope.component import adapts
+from zope.i18n import translate
 from zope.interface import Interface
 
 
@@ -10,6 +12,15 @@ class MeetingLayout(MakoLayoutBase):
 
     template_directories = ['templates']
     template_name = 'layout.tex'
+
+    def get_render_arguments(self):
+        args = super(MeetingLayout, self).get_render_arguments()
+
+        args['_'] = lambda *a, **kw: translate(_(*a, **kw),
+                                               context=self.request)
+
+        return args
+
 
     def before_render_hook(self):
         self.use_babel()
