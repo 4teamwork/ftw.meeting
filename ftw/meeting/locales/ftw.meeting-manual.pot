@@ -40,3 +40,27 @@ msgstr ""
 #. Default: "poll"
 msgid "poll"
 msgstr ""
+
+#. Default: "Responsibles"
+msgid "latex_responsibles"
+msgstr ""
+
+#. Default: "Agenda item"
+msgid "latex_agenda_item"
+msgstr ""
+
+#. Default: "Related Items"
+msgid "latex_related_items"
+msgstr ""
+
+#. Default: "Agenda Items"
+msgid "latex_label_agenda_items"
+msgstr ""
+
+#. Default: "Page"
+msgid "latex_page"
+msgstr ""
+
+#. Default: "Printed"
+msgid "latex_printed"
+msgstr ""

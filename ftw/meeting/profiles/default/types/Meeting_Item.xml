@@ -3,8 +3,7 @@
    meta_type="Factory-based Type Information with dynamic views"
    i18n:domain="ftw.meeting" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
   <property name="title" i18n:translate="">Meeting Item</property>
-  <property name="description"
-    i18n:translate="">A type for meeting items.</property>
+  <property name="description" i18n:translate=""></property>
   <property name="content_meta_type">MeetingItem</property>
   <property name="content_icon">document_icon.gif</property>
   <property name="product">ftw.meeting</property>
@@ -13,7 +12,7 @@
   <property name="global_allow">False</property>
   <property name="filter_content_types">True</property>
   <property name="allowed_content_types">
-  </property>  
+  </property>
   <property name="allow_discussion">False</property>
   <property name="default_view">base_view</property>
   <property name="view_methods">
