@@ -6,4 +6,7 @@
     <adapter factory=".layout.MeetingLayout"
              provides="ftw.pdfgenerator.interfaces.ILaTeXLayout" />
 
+    <adapter factory=".views.MeetingView"
+             provides="ftw.pdfgenerator.interfaces.ILaTeXView" />
+
 </configure>
