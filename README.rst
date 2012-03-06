@@ -25,6 +25,7 @@ Links
 - Main github project repository: https://github.com/4teamwork/ftw.meeting
 - Issue tracker: https://github.com/4teamwork/ftw.meeting/issues
 - Package on pypi: http://pypi.python.org/pypi/ftw.meeting
+- Continuous integration: https://jenkins.4teamwork.ch/job/ftw.meeting/
 
 
 Maintainer
