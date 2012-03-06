@@ -4,11 +4,16 @@ import os
 version = '1.2.11.dev0'
 maintainer = 'Mathias Leimgruber'
 
-tests_require=['zope.testing']
+tests_require = [
+    'plone.app.testing',
+    'ftw.pdfgenerator',
+    'ftw.testing',
+    ]
 
-extras_require={
+extras_require = {
     'tests': tests_require,
     'pdf': [
+        'ftw.pdfgenerator',
         ]}
 
 setup(name='ftw.meeting',
@@ -44,7 +49,7 @@ setup(name='ftw.meeting',
         'Products.DataGridField',
         'setuptools',
         'ftw.calendarwidget',
-        'plone.principalsource'
+        'plone.principalsource',
         ],
 
       tests_require=tests_require,

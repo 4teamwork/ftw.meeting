@@ -3,5 +3,7 @@
     xmlns:browser="http://namespaces.zope.org/browser"
     i18n_domain="ftw.meeting">
 
+    <adapter factory=".layout.MeetingLayout"
+             provides="ftw.pdfgenerator.interfaces.ILaTeXLayout" />
 
 </configure>
