@@ -3,11 +3,5 @@
     xmlns:browser="http://namespaces.zope.org/browser"
     i18n_domain="ftw.meeting">
 
-    <browser:view
-        for="..interfaces.IMeeting"
-        name="pdflatex_convert_object"
-        class=".meeting.MeetingLatexConverter"
-        permission="zope2.View"
-        />
 
 </configure>

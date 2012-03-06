@@ -27,13 +27,6 @@
 
     <browser:page
         for="..interfaces.IMeeting"
-        name="export_pdf"
-        permission="zope2.View"
-        class=".exportpdf.ExportPDFView"
-        />
-
-    <browser:page
-        for="..interfaces.IMeeting"
         name="meetingitem_dnd_saveorder"
         class=".dndreorder.SaveDragndropOrderView"
         permission="cmf.ModifyPortalContent"

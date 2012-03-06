@@ -9,7 +9,6 @@ tests_require=['zope.testing']
 extras_require={
     'tests': tests_require,
     'pdf': [
-        'plonegov.pdflatex',
         ]}
 
 setup(name='ftw.meeting',
