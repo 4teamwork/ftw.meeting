@@ -5,7 +5,11 @@ Changelog
 1.2.11 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Update German and English translations.
+  [jone]
+
+- Implement meeting PDF with `ftw.pdfgenerator`.
+  [jone]
 
 
 1.2.10 (2012-03-05)
