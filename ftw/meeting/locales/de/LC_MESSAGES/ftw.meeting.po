@@ -321,7 +321,7 @@ msgstr "Wählen sie die verantwortlichen Personen aus"
 #. Default: "Enter the text."
 #: ./ftw/meeting/content/meetingitem.py:38
 msgid "meetingitem_help_text"
-msgstr "Geben sie einen Text ein"
+msgstr "Geben Sie die Beschreibung des Traktandums an."
 
 #. Default: "Conclusion"
 #: ./ftw/meeting/browser/meeting.pt:215
