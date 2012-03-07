@@ -136,27 +136,27 @@ msgstr "Sitzung wurde erstellt, aber beim Setzen des Datums oder der Zeit kam es
 #. Default: "Enter the attendees of the meeting."
 #: ./ftw/meeting/content/meeting.py:143
 msgid "meeting_help_attendees"
-msgstr "Wählen Sie die Sitzungsteilnehmer aus."
+msgstr "Wählen Sie aus, welche Personen an der Sitzung teilnehmen."
 
 #. Default: "Enter the ending date and time, or click the calendar icon and select it."
 #: ./ftw/meeting/content/meeting.py:86
 msgid "meeting_help_end_date"
-msgstr "Wählen Sie ein End-Datum und Zeit aus, oder klicken Sie auf das Kalender-Symbol."
+msgstr "Tragen Sie das Enddatum und die Endzeit ein oder klicken Sie auf das Kalendersymbol, um die Daten bequem auszuwählen."
 
 #. Default: "Select the head of the meeting."
 #: ./ftw/meeting/content/meeting.py:116
 msgid "meeting_help_head_of_meeting"
-msgstr "Bitte wählen Sie den Sitzungsleiter aus"
+msgstr "Wählen Sie die Person aus, welche die Sitzung leitet."
 
 #. Default: "Enter the location where the meeting will take place."
 #: ./ftw/meeting/content/meeting.py:196
 msgid "meeting_help_location"
-msgstr "Wählen sie Einen Ort wo die Sitzung statt finden soll"
+msgstr "Tragen Sie hier den Ort ein, an dem der Termin stattfindet."
 
 #. Default: "Choose your Meeting form."
 #: ./ftw/meeting/content/meeting.py:101
 msgid "meeting_help_meeting_form"
-msgstr "Wählen Sie die Art der Sitzung aus."
+msgstr "Wählen Sie aus, um was für eine Art Sitzung es sich handelt."
 
 #. Default: "Select the recording secretary."
 #: ./ftw/meeting/content/meeting.py:130
@@ -171,29 +171,29 @@ msgstr "Verwandte Inhalte dienen dazu um Sitzungen um ein ähnliches oder das se
 #. Default: "Enter the responsible of the meeting."
 #: ./ftw/meeting/content/meeting.py:45
 msgid "meeting_help_responsibility"
-msgstr "Wählen Sie die Verantwortlichen Personen aus"
+msgstr "Wählen Sie die verantwortlichen Personen aus."
 
 #. Default: "Enter the starting date and time, or click the calendar icon and select it."
 #: ./ftw/meeting/content/meeting.py:70
 msgid "meeting_help_start_date"
-msgstr "Wählen Sie ein Start-Datum und Zeit aus, oder klicken Sie auf das Kalender-Symbol."
+msgstr "Tragen Sie das Anfangsdatum und die Anfangszeit ein oder klicken Sie auf das Kalendersymbol, um die Daten bequem auszuwählen."
 
 #. Default: "Choose your event type."
 #: ./ftw/meeting/content/meeting.py:30
 msgid "meeting_help_type"
-msgstr "Wählen einen Termin-Typ aus"
+msgstr "Wählen Sie aus, um was für eine Art Termin es sich handelt."
 
 #. Default: "Attendees"
 #: ./ftw/meeting/browser/meeting.pt:136
 #: ./ftw/meeting/content/meeting.py:141
 #: ./ftw/meeting/latex/views.py:61
 msgid "meeting_label_attendees"
-msgstr "Teilnehmer"
+msgstr "Teilnehmende Personen"
 
 #. Default: "Attendee"
 #: ./ftw/meeting/content/meeting.py:150
 msgid "meeting_label_attendees_attendee"
-msgstr "Teilnehmer"
+msgstr "Person"
 
 #. Default: "Present"
 #: ./ftw/meeting/content/meeting.py:156
@@ -272,7 +272,7 @@ msgstr "Verwandte Inhalte"
 #: ./ftw/meeting/browser/meeting.pt:101
 #: ./ftw/meeting/content/meeting.py:43
 msgid "meeting_label_responsibility"
-msgstr "Verantwortlicher"
+msgstr "Verantwortliche Personen"
 
 #. Default: "Start Date"
 #: ./ftw/meeting/browser/meeting.pt:73
@@ -298,7 +298,7 @@ msgstr "Text"
 #. Default: "Event type"
 #: ./ftw/meeting/content/meeting.py:29
 msgid "meeting_label_type"
-msgstr "Typ"
+msgstr "Art des Termin"
 
 #: ./ftw/meeting/content/meeting.py:310
 msgid "meeting_type_event"
@@ -332,7 +332,7 @@ msgstr "Ergebnis"
 #. Default: "Responsibility"
 #: ./ftw/meeting/content/meetingitem.py:20
 msgid "meetingitem_label_responsibility"
-msgstr "Verantwortlicher    "
+msgstr "Verantwortliche Personen"
 
 #. Default: "Text"
 #: ./ftw/meeting/content/meetingitem.py:37
