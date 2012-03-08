@@ -5,6 +5,9 @@ Changelog
 1.2.11 (unreleased)
 -------------------
 
+- Replaced td with table-label class with th.
+  [julian]
+
 - Update German and English translations.
   [jone]
 

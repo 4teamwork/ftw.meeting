@@ -41,7 +41,7 @@
 
                 <table class="vertical listing MeetingListing">
                     <tr tal:condition="context/location | nothing">
-                        <td class="table-label"><span i18n:translate="meeting_label_location">Location</span></td>
+                        <td><span i18n:translate="meeting_label_location">Location</span></td>
                         <td>
                             <tal:block tal:content="context/location" />
                         </td>
@@ -55,14 +55,14 @@
                                        end_time python:end_field and end_field.strftime('%H:%M') or ''">
                         <tal:day tal:condition="python: (start_date == end_date)">
                         <tr>
-                            <td class="table-label"><span i18n:translate="meeting_label_date">Date</span></td>
+                            <th><span i18n:translate="meeting_label_date">Date</span></th>
                             <td>
                                 <tal:block replace="start_date" />
                             </td>
 
                         </tr>
                         <tr>
-                            <td class="table-label"><span i18n:translate="meeting_label_duration">Duration</span></td>
+                            <th><span i18n:translate="meeting_label_duration">Duration</span></th>
                             <td>
                                 <tal:block tal:content="string:${start_time} - ${end_time}" />
                             </td>
@@ -70,25 +70,25 @@
                         </tal:day>
                         <tal:mutli condition="python:start_date != end_date">
                             <tr tal:condition="context/start">
-                                <td class="table-label"><span i18n:translate="meeting_label_start_date">Start Date</span></td>
+                                <th><span i18n:translate="meeting_label_start_date">Start Date</span></th>
                                 <td>
                                     <tal:block tal:content="python: context.start_date.strftime('%d.%m.%Y')" />
                                 </td>
                             </tr>
                             <tr tal:condition="context/start">
-                                <td class="table-label"><span i18n:translate="meeting_label_start_time">Start Time</span></td>
+                                <th><span i18n:translate="meeting_label_start_time">Start Time</span></th>
                                 <td>
                                     <tal:block tal:content="python: context.start_date.strftime('%H:%M')" />
                                 </td>
                             </tr>
                             <tr tal:condition="context/end">
-                                <td class="table-label"><span i18n:translate="meeting_label_end_date">End Date</span></td>
+                                <th><span i18n:translate="meeting_label_end_date">End Date</span></th>
                                 <td>
                                     <tal:block tal:content="python: context.end_date.strftime('%d.%m.%Y')" />
                                 </td>
                             </tr>
                             <tr tal:condition="context/end">
-                                <td class="table-label"><span i18n:translate="meeting_label_end_time">End Time</span></td>
+                                <th><span i18n:translate="meeting_label_end_time">End Time</span></th>
                                 <td>
                                     <tal:block tal:content="python: context.end_date.strftime('%H:%M')" />
                                 </td>
@@ -98,7 +98,7 @@
 
 
                     <tr tal:condition="context/getResponsibility | nothing">
-                        <td class="table-label"><span i18n:translate="meeting_label_responsibility">Responsibility</span>:</td>
+                        <th><span i18n:translate="meeting_label_responsibility">Responsibility</span>:</th>
                         <td>
                             <ul class="AttendeesListing" tal:define="userids python:[u['contact'] for u in here.getResponsibility()]">
                                 <li tal:repeat="userid python:context.getResponsibilityInfos(userids)">
@@ -113,7 +113,7 @@
                         </td>
                     </tr>
                     <tr tal:condition="python: context.getHead_of_meeting() and context.getMeeting_type() == 'meeting'">
-                        <td class="table-label"><span i18n:translate="meeting_label_head_of_meeting">Head of Meeting</span>:</td>
+                        <th><span i18n:translate="meeting_label_head_of_meeting">Head of Meeting</span>:</th>
                         <td tal:define="userids python:here.getHead_of_meeting()" tal:repeat="userid python:context.getResponsibilityInfos(userids)">
                             <tal:exists condition="python:userid and len(userid.get('url',''))>0">
                                 <a tal:attributes="href python:userid['url']" tal:content="python:userid['name']" />
@@ -122,7 +122,7 @@
                         </td>
                     </tr>
                     <tr tal:condition="python:context.getRecording_secretary and context.getMeeting_type() == 'meeting'">
-                        <td class="table-label"><span i18n:translate="meeting_label_recording_secretary">Recording Secretary</span>:</td>
+                        <th><span i18n:translate="meeting_label_recording_secretary">Recording Secretary</span>:</th>
                         <td tal:define="userids python:here.getRecording_secretary()" tal:repeat="userid python:context.getResponsibilityInfos(userids)">
                             <tal:exists condition="python:userid and len(userid.get('url',''))>0">
                                 <a tal:attributes="href python:userid['url']" tal:content="python:userid['name']" />
@@ -133,7 +133,7 @@
                         </td>
                     </tr>
                     <tr tal:condition="context/getAttendees | nothing">
-                        <td class="table-label"><span i18n:translate="meeting_label_attendees">Attendees</span>:</td>
+                        <th><span i18n:translate="meeting_label_attendees">Attendees</span>:</th>
                         <td>
                             <ul class="AttendeesListing" tal:define="userids python:[u['contact'] for u in here.getAttendees()]">
                                 <li tal:repeat="userid python:context.getResponsibilityInfos(userids)">
@@ -151,13 +151,13 @@
                         </td>
                     </tr>
                     <tr tal:condition="context/Description | nothing">
-                        <td class="table-label"><span i18n:translate="meeting_label_description">Description</span></td>
+                        <th><span i18n:translate="meeting_label_description">Description</span></th>
                         <td>
                             <tal:block tal:content="here/Description" />
                         </td>
                     </tr>
                     <tr tal:condition="python:context.start() and context.end()">
-                        <td class="table-label"><span i18n:translate="meeting_label_export">Export</span></td>
+                        <th><span i18n:translate="meeting_label_export">Export</span></th>
                         <td>
                         <!-- XXX: removed (vcs detached by ics)
                             <img height="16" width="16" title="vCal export" alt="" tal:attributes="src string:${here/portal_url}/icon_export_vcal.png"/>
@@ -243,7 +243,7 @@
                                         </td>
                                     </tr>
                                     <tr tal:define="related python:obj.computeRelatedItems()" tal:condition="related">
-                                        <th class="table-label"><span i18n:translate="meeting_label_relations">Relations</span></th>
+                                        <th><span i18n:translate="meeting_label_relations">Relations</span></th>
                                         <td>
                                             <tal:block tal:condition="python:related">
                                                 <ul>
