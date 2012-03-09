@@ -21,7 +21,6 @@ class MeetingLayout(MakoLayoutBase):
 
         return args
 
-
     def before_render_hook(self):
         self.use_babel()
         self.use_package('inputenc', options='utf8', append_options=False)
