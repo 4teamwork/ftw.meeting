@@ -1,13 +1,13 @@
 from ftw.meeting import meetingMessageFactory as _
 from ftw.meeting.interfaces import IMeeting
 from ftw.pdfgenerator.interfaces import IBuilder
-from ftw.pdfgenerator.layout.makolayout import MakoLayoutBase
+from ftw.pdfgenerator.layout.customizable import CustomizableLayout
 from zope.component import adapts
 from zope.i18n import translate
 from zope.interface import Interface
 
 
-class MeetingLayout(MakoLayoutBase):
+class MeetingLayout(CustomizableLayout):
     adapts(IMeeting, Interface, IBuilder)
 
     template_directories = ['templates']

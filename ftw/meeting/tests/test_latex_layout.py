@@ -3,14 +3,20 @@ from ftw.meeting.latex.layout import MeetingLayout
 from ftw.meeting.testing import LATEX_ZCML_LAYER
 from ftw.pdfgenerator.interfaces import IBuilder
 from ftw.pdfgenerator.interfaces import ILaTeXLayout
+from ftw.pdfgenerator.tests import test_customizable_layout
 from ftw.testing import MockTestCase
 from zope.component import getMultiAdapter
-from zope.interface.verify import verifyClass
 
 
-class TestMeetingLayout(MockTestCase):
+class TestMeetingLayout(test_customizable_layout.TestCustomizableLayout,
+                        MockTestCase):
+    layout_class = MeetingLayout
 
     layer = LATEX_ZCML_LAYER
+
+    def setUp(self):
+        super(TestMeetingLayout, self).setUp(
+            context=self.create_dummy(getLanguage=lambda: 'de-ch'))
 
     def test_component_registered(self):
         context = self.providing_stub([IMeeting])
@@ -21,11 +27,7 @@ class TestMeetingLayout(MockTestCase):
 
         layout = getMultiAdapter((context, request, builder), ILaTeXLayout)
 
-        self.assertEqual(type(layout), MeetingLayout)
-
-    def test_implements_interface(self):
-        self.assertTrue(ILaTeXLayout.implementedBy(MeetingLayout))
-        verifyClass(ILaTeXLayout, MeetingLayout)
+        self.assertEqual(type(layout), self.layout_class)
 
     def test_layout_renders(self):
         context = self.providing_stub([IMeeting])
