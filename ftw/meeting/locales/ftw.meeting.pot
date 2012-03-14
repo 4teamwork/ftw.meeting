@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-03-06 11:17+0000\n"
+"POT-Creation-Date: 2012-03-14 17:36+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,7 +21,7 @@ msgstr ""
 msgid "Add new row"
 msgstr ""
 
-#: ./ftw/meeting/browser/meeting.pt:296
+#: ./ftw/meeting/browser/meeting.pt:301
 msgid "Attachments"
 msgstr ""
 
@@ -100,8 +100,28 @@ msgstr ""
 msgid "latex_end"
 msgstr ""
 
+#. Default: "Attendees"
+#: ./ftw/meeting/latex/templates/events_listing.pt:23
+msgid "latex_events_attendees"
+msgstr ""
+
+#. Default: "Date"
+#: ./ftw/meeting/latex/templates/events_listing.pt:17
+msgid "latex_events_date"
+msgstr ""
+
+#. Default: "Title"
+#: ./ftw/meeting/latex/templates/events_listing.pt:20
+msgid "latex_events_title"
+msgstr ""
+
 #. Default: "Agenda Items"
 msgid "latex_label_agenda_items"
+msgstr ""
+
+#. Default: "Events"
+#: ./ftw/meeting/latex/workspace.py:30
+msgid "latex_label_events"
 msgstr ""
 
 #. Default: "Page"
@@ -269,7 +289,7 @@ msgid "meeting_label_related_items"
 msgstr ""
 
 #. Default: "Relations"
-#: ./ftw/meeting/browser/meeting.pt:246
+#: ./ftw/meeting/browser/meeting.pt:251
 msgid "meeting_label_relations"
 msgstr ""
 
@@ -291,12 +311,12 @@ msgid "meeting_label_start_time"
 msgstr ""
 
 #. Default: "Tasks"
-#: ./ftw/meeting/browser/meeting.pt:222
+#: ./ftw/meeting/browser/meeting.pt:227
 msgid "meeting_label_tasks"
 msgstr ""
 
 #. Default: "Text"
-#: ./ftw/meeting/browser/meeting.pt:209
+#: ./ftw/meeting/browser/meeting.pt:214
 msgid "meeting_label_text"
 msgstr ""
 
@@ -329,7 +349,7 @@ msgid "meetingitem_help_text"
 msgstr ""
 
 #. Default: "Conclusion"
-#: ./ftw/meeting/browser/meeting.pt:215
+#: ./ftw/meeting/browser/meeting.pt:220
 #: ./ftw/meeting/content/meetingitem.py:52
 msgid "meetingitem_label_conclusion"
 msgstr ""

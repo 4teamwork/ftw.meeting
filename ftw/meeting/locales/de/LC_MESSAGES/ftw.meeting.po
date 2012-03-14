@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-03-06 11:17+0000\n"
+"POT-Creation-Date: 2012-03-14 17:36+0000\n"
 "PO-Revision-Date: 2012-03-06 12:16+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,7 +16,7 @@ msgstr ""
 msgid "Add new row"
 msgstr "Neue Zeile hinzufügen"
 
-#: ./ftw/meeting/browser/meeting.pt:296
+#: ./ftw/meeting/browser/meeting.pt:301
 msgid "Attachments"
 msgstr "Anhang"
 
@@ -95,9 +95,29 @@ msgstr "Dauer"
 msgid "latex_end"
 msgstr "Ende"
 
+#. Default: "Attendees"
+#: ./ftw/meeting/latex/templates/events_listing.pt:23
+msgid "latex_events_attendees"
+msgstr "Teilnehmende"
+
+#. Default: "Date"
+#: ./ftw/meeting/latex/templates/events_listing.pt:17
+msgid "latex_events_date"
+msgstr "Datum"
+
+#. Default: "Title"
+#: ./ftw/meeting/latex/templates/events_listing.pt:20
+msgid "latex_events_title"
+msgstr "Titel"
+
 #. Default: "Agenda Items"
 msgid "latex_label_agenda_items"
 msgstr "Traktanden"
+
+#. Default: "Events"
+#: ./ftw/meeting/latex/workspace.py:30
+msgid "latex_label_events"
+msgstr "Termine"
 
 #. Default: "Page"
 msgid "latex_page"
@@ -264,7 +284,7 @@ msgid "meeting_label_related_items"
 msgstr "Verwandte Inhalte"
 
 #. Default: "Relations"
-#: ./ftw/meeting/browser/meeting.pt:246
+#: ./ftw/meeting/browser/meeting.pt:251
 msgid "meeting_label_relations"
 msgstr "Verwandte Inhalte"
 
@@ -286,12 +306,12 @@ msgid "meeting_label_start_time"
 msgstr "Start-Zeit"
 
 #. Default: "Tasks"
-#: ./ftw/meeting/browser/meeting.pt:222
+#: ./ftw/meeting/browser/meeting.pt:227
 msgid "meeting_label_tasks"
 msgstr "Aufgaben"
 
 #. Default: "Text"
-#: ./ftw/meeting/browser/meeting.pt:209
+#: ./ftw/meeting/browser/meeting.pt:214
 msgid "meeting_label_text"
 msgstr "Text"
 
@@ -324,7 +344,7 @@ msgid "meetingitem_help_text"
 msgstr "Geben Sie die Beschreibung des Traktandums an."
 
 #. Default: "Conclusion"
-#: ./ftw/meeting/browser/meeting.pt:215
+#: ./ftw/meeting/browser/meeting.pt:220
 #: ./ftw/meeting/content/meetingitem.py:52
 msgid "meetingitem_label_conclusion"
 msgstr "Ergebnis"
@@ -350,5 +370,3 @@ msgstr "anwesend"
 #: ./ftw/meeting/skins/ftw_meeting_templates/datagridwidgetextended.pt:81
 msgid "select all"
 msgstr "Alle auswählen"
-
-
