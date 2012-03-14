@@ -8,6 +8,7 @@ tests_require = [
     'plone.app.testing',
     'ftw.pdfgenerator',
     'ftw.testing',
+    'ftw.workspace',
     ]
 
 extras_require = {

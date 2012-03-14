@@ -1,0 +1,40 @@
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    tal:omit-tag="python: True"
+    i18n:domain="ftw.meeting">
+
+    <table>
+        <colgroup>
+            <col width="15%" />
+            <col width="50%" />
+            <col width="35%" />
+        </colgroup>
+        <thead>
+            <tr>
+                <th class="border-bottom">
+                    <b i18n:translate="latex_events_date">Date</b>
+                </th>
+                <th class="border-bottom">
+                    <b i18n:translate="latex_events_title">Title</b>
+                </th>
+                <th class="border-bottom">
+                    <b i18n:translate="latex_events_attendees">Attendees</b>
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr tal:repeat="item view/get_items">
+                <td tal:content="item/start"
+                    class="border-bottom" />
+                <td tal:content="item/title"
+                    class="border-bottom" />
+                <td tal:content="item/attendees"
+                    class="border-bottom" />
+            </tr>
+        </tbody>
+    </table>
+
+</html>

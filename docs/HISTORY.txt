@@ -5,6 +5,9 @@ Changelog
 1.2.12 (unreleased)
 -------------------
 
+- Add events listing for ftw.workspace details PDF.
+  [jone]
+
 - Responsibles name of a meetingitem is now displayed, even if its a contact.
   [Julian Infanger]
 

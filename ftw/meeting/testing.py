@@ -14,6 +14,10 @@ class LatexZCMLLayer(Layer):
         self['configurationContext'] = zca.stackConfigurationContext(
             self.get('configurationContext'))
 
+        import zope.traversing
+        xmlconfig.file('configure.zcml', zope.traversing,
+                       context=self['configurationContext'])
+
         import ftw.pdfgenerator.tests
         xmlconfig.file('test.zcml', ftw.pdfgenerator.tests,
                        context=self['configurationContext'])

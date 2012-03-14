@@ -8,6 +8,7 @@ from zope.i18nmessageid import MessageFactory
 
 
 meetingMessageFactory = MessageFactory('ftw.meeting')
+_ = meetingMessageFactory
 
 
 def initialize(context):

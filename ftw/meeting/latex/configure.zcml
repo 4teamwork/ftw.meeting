@@ -1,6 +1,7 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
     xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
     i18n_domain="ftw.meeting">
 
     <adapter factory=".layout.MeetingLayout"
@@ -11,5 +12,11 @@
 
     <adapter factory=".views.MeetingItemView"
              provides="ftw.pdfgenerator.interfaces.ILaTeXView" />
+
+    <configure zcml:condition="installed ftw.workspace">
+        <adapter factory=".workspace.EventsListing"
+                 provides="ftw.workspace.interfaces.IWorkspaceDetailsListingProvider"
+                 name="events-listing" />
+    </configure>
 
 </configure>
