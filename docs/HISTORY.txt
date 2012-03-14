@@ -5,7 +5,8 @@ Changelog
 1.2.12 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Responsibles name of a meetingitem is now displayed, even if its a contact.
+  [Julian Infanger]
 
 
 1.2.11 (2012-03-12)
