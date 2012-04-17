@@ -60,9 +60,10 @@
         />
 
     <adapter
-		factory=".attachment.ICSAttachmentCreator"
-		for="ftw.meeting.interfaces.IMeeting"
-		provides="ftw.notification.email.interfaces.IAttachmentCreator"
-		/>
+        zcml:condition="installed ftw.notification.email"
+        factory=".attachment.ICSAttachmentCreator"
+        for="ftw.meeting.interfaces.IMeeting"
+        provides="ftw.notification.email.interfaces.IAttachmentCreator"
+        />
 
 </configure>
