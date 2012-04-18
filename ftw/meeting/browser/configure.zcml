@@ -42,4 +42,12 @@
             permission="zope2.View"
         />
     </configure>
+
+    <browser:page
+        for="..interfaces.IMeeting"
+        name="export_ics"
+        class=".export_ics.ExportICS"
+        permission="zope2.View"
+        />
+
 </configure>
