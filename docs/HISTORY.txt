@@ -5,6 +5,9 @@ Changelog
 1.3.2 (unreleased)
 ------------------
 
+- Show location in meeting view.
+  [Julian Infanger]
+
 - Added zcml-condition for ICSAttachmentCreator adapter.
   [Julian Infanger]
 

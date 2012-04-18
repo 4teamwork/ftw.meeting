@@ -40,12 +40,6 @@
 
 
                 <table class="vertical listing MeetingListing">
-                    <tr tal:condition="context/location | nothing">
-                        <td><span i18n:translate="meeting_label_location">Location</span></td>
-                        <td>
-                            <tal:block tal:content="context/location" />
-                        </td>
-                    </tr>
 
                     <tal:dates define="start_field context/start;
                                        end_field context/end;
@@ -96,6 +90,11 @@
                         </tal:mutli>
                     </tal:dates>
 
+                    <tr tal:condition="context/getLocation">
+                        <th i18n:translate="meeting_label_location">Location</th>
+                        <td tal:content="context/getLocation">
+                        </td>
+                    </tr>
 
                     <tr tal:condition="context/getResponsibility | nothing">
                         <th><span i18n:translate="meeting_label_responsibility">Responsibility</span>:</th>
