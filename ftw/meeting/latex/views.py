@@ -99,8 +99,11 @@ class MeetingView(RecursiveLaTeXView):
         present_voc = self.context.getPresentOptions()
 
         for attendee in self.context.getAttendees():
+            name = attendees_voc.getValue(attendee['contact'])
+            if isinstance(name, str):
+                name = name.decode('utf-8')
             items.append(r'%s, %s' % (
-                    attendees_voc.getValue(attendee['contact']),
+                    name,
                     translate(present_voc.getValue(attendee['present']),
                               context=self.request)))
 
