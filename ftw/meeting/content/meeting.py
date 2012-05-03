@@ -293,12 +293,30 @@ class Meeting(folder.ATFolder, CalendarSupportMixin):
                 ('excused', _(u'excused'))))
 
     def getAttendeesOrUsers(self):
-        resp = [a.get('contact', '') for a in self.getResponsibility()]
-        if self.getMeeting_type() == 'meeting_dates_additional':
-            attendees = [a.get('contact', '') for a in self.getAttendees()]
-            return attendees + resp
-        else:
-            return resp
+
+        def _get_usernames(data):
+            names = []
+            for item in data:
+                if item and isinstance(item, (str, unicode)):
+                    names.append(item)
+
+                elif isinstance(item, dict):
+                    name = item.get('contact', None)
+                    if name:
+                        names.append(name)
+
+            return names
+
+        usernames = _get_usernames(self.getResponsibility())
+
+        if self.getMeeting_type() == 'meeting':
+            usernames += _get_usernames(self.getHead_of_meeting())
+            usernames += _get_usernames(self.getRecording_secretary())
+            usernames += _get_usernames(self.getAttendees())
+
+        usernames = list(set(usernames))
+
+        return usernames
 
     def getMeetingTypes(self):
         """Returns a DisplayList of meeting types
