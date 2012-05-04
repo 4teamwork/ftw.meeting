@@ -10,6 +10,7 @@
             jq(function() {
                  jq('.MeetingItems').sortable({
                      'items':'.MeetingItemWrapper',
+                     'handle': '.MeetingItemHead',
                       'stop': function(event, ui) {
                           var ids = [];
                           jq('.MeetingItemWrapper').each(function(index, el) {
