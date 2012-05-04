@@ -51,9 +51,13 @@ class TaskListingLaTeXView(MakoLaTeXView):
                 }}
 
     def get_related_tasks(self):
-        for obj in self.context.computeRelatedItems():
-            if obj.portal_type == 'Task':
-                yield obj
+        tasks = list(self._get_meeting_tasks()) + list(
+            self._get_meeting_item_tasks())
+
+        tasks = list(set(tasks))
+        tasks.sort(key=lambda task: task.end())
+
+        return tasks
 
     def load_tasks(self):
         self.tasks = []
@@ -93,3 +97,16 @@ class TaskListingLaTeXView(MakoLaTeXView):
         state = state_view.workflow_state()
         return self.convert(translate(state, domain='plone',
                                       context=self.request))
+
+    def _get_meeting_tasks(self):
+        for obj in self.context.computeRelatedItems():
+            if obj.portal_type == 'Task':
+                yield obj
+
+    def _get_meeting_item_tasks(self):
+        for item in self.context.getFolderContents(
+            {'portal_type': 'Meeting Item'}, full_objects=True):
+
+            for obj in item.computeRelatedItems():
+                if obj.portal_type == 'Task':
+                    yield obj
