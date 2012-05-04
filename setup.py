@@ -15,7 +15,9 @@ extras_require = {
     'tests': tests_require,
     'pdf': [
         'ftw.pdfgenerator',
-        ]}
+        ],
+    'task': [
+        'ftw.task']}
 
 setup(name='ftw.meeting',
       version=version,

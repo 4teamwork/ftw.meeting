@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-03-14 17:36+0000\n"
+"POT-Creation-Date: 2012-05-04 08:27+0000\n"
 "PO-Revision-Date: 2012-03-06 12:16+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,7 +16,7 @@ msgstr ""
 msgid "Add new row"
 msgstr "Neue Zeile hinzufügen"
 
-#: ./ftw/meeting/browser/meeting.pt:301
+#: ./ftw/meeting/browser/meeting.pt:299
 msgid "Attachments"
 msgstr "Anhang"
 
@@ -64,7 +64,7 @@ msgstr "Neuer Termin aus Terminumfrage erstellen"
 msgid "generated_meeting_text"
 msgstr "Es wurde bereits eine Sitzung aus dieser Umfrage erstellt. Durch klicken auf den folgenden Link gelangen Sie zu dieser Sitzung"
 
-#: ./ftw/meeting/browser/meeting.pt:170
+#: ./ftw/meeting/browser/meeting.pt:168
 msgid "iCal"
 msgstr "iCal"
 
@@ -84,6 +84,11 @@ msgstr "Traktandum"
 #: ./ftw/meeting/latex/views.py:82
 msgid "latex_date"
 msgstr "Datum"
+
+#. Default: "Due date"
+#: ./ftw/meeting/latex/tasklisting.py:49
+msgid "latex_due_date"
+msgstr "Termin"
 
 #. Default: "Duration"
 #: ./ftw/meeting/latex/views.py:84
@@ -119,9 +124,19 @@ msgstr "Traktanden"
 msgid "latex_label_events"
 msgstr "Termine"
 
+#. Default: "Order"
+#: ./ftw/meeting/latex/tasklisting.py:46
+msgid "latex_order"
+msgstr "Beschluss / Auftrag"
+
 #. Default: "Page"
 msgid "latex_page"
 msgstr "Seite"
+
+#. Default: "Pending Tasks"
+#: ./ftw/meeting/latex/tasklisting.py:44
+msgid "latex_pending_tasks"
+msgstr "Pendenzenliste"
 
 #. Default: "Printed"
 msgid "latex_printed"
@@ -131,6 +146,11 @@ msgstr "Druckdatum"
 msgid "latex_related_items"
 msgstr "Verweise"
 
+#. Default: "Responsible"
+#: ./ftw/meeting/latex/tasklisting.py:47
+msgid "latex_responsible"
+msgstr "Wer"
+
 #. Default: "Responsibles"
 msgid "latex_responsibles"
 msgstr "Verantwortliche Personen"
@@ -139,6 +159,11 @@ msgstr "Verantwortliche Personen"
 #: ./ftw/meeting/latex/views.py:89
 msgid "latex_start"
 msgstr "Start"
+
+#. Default: "Status"
+#: ./ftw/meeting/latex/tasklisting.py:50
+msgid "latex_status"
+msgstr "Status"
 
 #. Default: "Meeting"
 #: ./ftw/meeting/vocabularies.py:54
@@ -204,7 +229,7 @@ msgid "meeting_help_type"
 msgstr "Wählen Sie aus, um was für eine Art Termin es sich handelt."
 
 #. Default: "Attendees"
-#: ./ftw/meeting/browser/meeting.pt:136
+#: ./ftw/meeting/browser/meeting.pt:135
 #: ./ftw/meeting/content/meeting.py:141
 #: ./ftw/meeting/latex/views.py:61
 msgid "meeting_label_attendees"
@@ -221,45 +246,45 @@ msgid "meeting_label_attendees_present"
 msgstr "anwesend"
 
 #. Default: "Date"
-#: ./ftw/meeting/browser/meeting.pt:58
+#: ./ftw/meeting/browser/meeting.pt:52
 msgid "meeting_label_date"
 msgstr "Datum"
 
 #. Default: "Description"
-#: ./ftw/meeting/browser/meeting.pt:154
+#: ./ftw/meeting/browser/meeting.pt:152
 msgid "meeting_label_description"
 msgstr "Beschreibung"
 
 #. Default: "Duration"
-#: ./ftw/meeting/browser/meeting.pt:65
+#: ./ftw/meeting/browser/meeting.pt:59
 msgid "meeting_label_duration"
 msgstr "Dauer"
 
 #. Default: "End Date"
-#: ./ftw/meeting/browser/meeting.pt:85
+#: ./ftw/meeting/browser/meeting.pt:79
 #: ./ftw/meeting/content/meeting.py:83
 msgid "meeting_label_end_date"
 msgstr "End-Datum"
 
 #. Default: "End Time"
-#: ./ftw/meeting/browser/meeting.pt:91
+#: ./ftw/meeting/browser/meeting.pt:85
 msgid "meeting_label_end_time"
 msgstr "End-Zeit"
 
 #. Default: "Export"
-#: ./ftw/meeting/browser/meeting.pt:160
+#: ./ftw/meeting/browser/meeting.pt:158
 msgid "meeting_label_export"
 msgstr "Exportieren"
 
 #. Default: "Head of Meeting"
-#: ./ftw/meeting/browser/meeting.pt:116
+#: ./ftw/meeting/browser/meeting.pt:115
 #: ./ftw/meeting/content/meeting.py:114
 #: ./ftw/meeting/latex/views.py:53
 msgid "meeting_label_head_of_meeting"
 msgstr "Sitzungsleitung"
 
 #. Default: "Location"
-#: ./ftw/meeting/browser/meeting.pt:44
+#: ./ftw/meeting/browser/meeting.pt:94
 #: ./ftw/meeting/content/meeting.py:195
 #: ./ftw/meeting/latex/views.py:42
 msgid "meeting_label_location"
@@ -271,7 +296,7 @@ msgid "meeting_label_meeting_form"
 msgstr "Art der Sitzung"
 
 #. Default: "Recording Secretary"
-#: ./ftw/meeting/browser/meeting.pt:125
+#: ./ftw/meeting/browser/meeting.pt:124
 #: ./ftw/meeting/content/meeting.py:128
 #: ./ftw/meeting/latex/views.py:57
 msgid "meeting_label_recording_secretary"
@@ -284,34 +309,34 @@ msgid "meeting_label_related_items"
 msgstr "Verwandte Inhalte"
 
 #. Default: "Relations"
-#: ./ftw/meeting/browser/meeting.pt:251
+#: ./ftw/meeting/browser/meeting.pt:249
 msgid "meeting_label_relations"
 msgstr "Verwandte Inhalte"
 
 #. Default: "Responsibility"
-#: ./ftw/meeting/browser/meeting.pt:101
+#: ./ftw/meeting/browser/meeting.pt:100
 #: ./ftw/meeting/content/meeting.py:43
 msgid "meeting_label_responsibility"
 msgstr "Verantwortliche Personen"
 
 #. Default: "Start Date"
-#: ./ftw/meeting/browser/meeting.pt:73
+#: ./ftw/meeting/browser/meeting.pt:67
 #: ./ftw/meeting/content/meeting.py:68
 msgid "meeting_label_start_date"
 msgstr "Start-Datum"
 
 #. Default: "Start Time"
-#: ./ftw/meeting/browser/meeting.pt:79
+#: ./ftw/meeting/browser/meeting.pt:73
 msgid "meeting_label_start_time"
 msgstr "Start-Zeit"
 
 #. Default: "Tasks"
-#: ./ftw/meeting/browser/meeting.pt:227
+#: ./ftw/meeting/browser/meeting.pt:225
 msgid "meeting_label_tasks"
 msgstr "Aufgaben"
 
 #. Default: "Text"
-#: ./ftw/meeting/browser/meeting.pt:214
+#: ./ftw/meeting/browser/meeting.pt:212
 msgid "meeting_label_text"
 msgstr "Text"
 
@@ -320,11 +345,11 @@ msgstr "Text"
 msgid "meeting_label_type"
 msgstr "Art des Termin"
 
-#: ./ftw/meeting/content/meeting.py:310
+#: ./ftw/meeting/content/meeting.py:328
 msgid "meeting_type_event"
 msgstr "Termin"
 
-#: ./ftw/meeting/content/meeting.py:311
+#: ./ftw/meeting/content/meeting.py:329
 msgid "meeting_type_meeting"
 msgstr "Sitzung"
 
@@ -344,7 +369,7 @@ msgid "meetingitem_help_text"
 msgstr "Geben Sie die Beschreibung des Traktandums an."
 
 #. Default: "Conclusion"
-#: ./ftw/meeting/browser/meeting.pt:220
+#: ./ftw/meeting/browser/meeting.pt:218
 #: ./ftw/meeting/content/meetingitem.py:52
 msgid "meetingitem_label_conclusion"
 msgstr "Ergebnis"

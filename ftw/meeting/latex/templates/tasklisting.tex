@@ -1,0 +1,29 @@
+\clearpage
+\subsection{${_['pending_tasks']}}
+
+\setlength\extrarowheight{1pt}
+
+\tablehead{%%
+  \bfseries ${_['order']} & %%
+  \bfseries ${_['responsible']} & %%
+  \bfseries ${_['due_date']} & %%
+  \bfseries ${_['status']} \\ %%
+  \hline
+}
+
+\makeatletter\@ifundefined{tablewidth}{\newlength\tablewidth}\makeatother
+\setlength\tablewidth\linewidth
+\addtolength\tablewidth{-8\tabcolsep}
+
+\begin{supertabular*}{\textwidth}{p{.50\tablewidth}p{.28\tablewidth}p{.12\tablewidth}p{.1\tablewidth}}
+
+% for taskdata in tasks:
+  \textbf{${taskdata['title']}} \newline ${taskdata['text']} & %
+  ${taskdata['responsibility']} & %
+  ${taskdata['due_date']} & %
+  ${taskdata['review_state']} \\ %%
+  \hline
+
+% endfor
+
+\end{supertabular*}

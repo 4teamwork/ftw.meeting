@@ -19,4 +19,10 @@
                  name="events-listing" />
     </configure>
 
+    <configure zcml:condition="installed ftw.task">
+        <adapter factory=".tasklisting.TaskListingLaTeXView"
+             provides="ftw.pdfgenerator.interfaces.ILaTeXView"
+             name="post-hook" />
+    </configure>
+
 </configure>

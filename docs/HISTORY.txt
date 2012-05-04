@@ -5,6 +5,9 @@ Changelog
 1.3.3 (unreleased)
 ------------------
 
+- Add task listing when tasks from ftw.task are referenced.
+  [jone]
+
 - Fix generating ical data if user doesn't exists
   [mathias.leimgruber]
 
