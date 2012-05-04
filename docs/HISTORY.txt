@@ -5,6 +5,9 @@ Changelog
 1.3.3 (unreleased)
 ------------------
 
+- Fix handler for meeting item reorder.
+  [mathias.leimgruber]
+
 - Add task listing when tasks from ftw.task are referenced.
   [jone]
 
