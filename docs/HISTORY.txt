@@ -5,6 +5,9 @@ Changelog
 1.3.3 (unreleased)
 ------------------
 
+- Improve LaTeX PDF layout and German translation.
+  [jone]
+
 - Fix handler for meeting item reorder.
   [mathias.leimgruber]
 

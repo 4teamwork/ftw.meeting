@@ -58,8 +58,12 @@ class MeetingView(RecursiveLaTeXView):
                            default=u'Recording Secretary'),
                          self._get_meeting_value('recording_secretary')))
 
+        metadata.append(('', ''))
+
         metadata.append((_(u'meeting_label_attendees', default=u'Attendees'),
                          self.get_meeting_attendees()))
+
+        metadata.append(('', ''))
 
         return metadata
 
