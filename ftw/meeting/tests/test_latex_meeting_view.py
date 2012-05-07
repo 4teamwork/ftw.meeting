@@ -188,8 +188,10 @@ class TestMeetingView(MockTestCase):
                     (u'Location', 'Bern'),
                     (u'Head of Meeting', 'John Doe'),
                     (u'Recording Secretary', 'Hugo Boss'),
+                    ('', ''),
                     (u'Attendees', 'Hugo Boss, present \\newline ' + \
-                         'John Doe, present')],
+                         'John Doe, present'),
+                    ('', '')],
              'meetingItems': ['foo', 'bar']})
 
         view.render()
