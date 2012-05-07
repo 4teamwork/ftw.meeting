@@ -1,10 +1,15 @@
 \section*{${title}}
+
+<%block name="top">
+</%block>
+
 % if meetingForm:
   {\bf ${meetingForm}} \\ %%
 % endif
 
 \vspace{\baselineskip}
 
+<%block name="table">
 {
 \setlength\tabcolsep{0pt}
 \begin{tabular}{p{.3\textwidth}p{.7\textwidth}}
@@ -21,5 +26,8 @@
   % endif
 \end{tabular}
 }
+</%block>
 
+<%block name="content">
 ${latex_content}
+</%block>

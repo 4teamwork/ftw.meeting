@@ -23,19 +23,19 @@
   %% LISTINGS
   \renewcommand\labelitemi{\textendash}
 
-  %% make itemize more compact (set itemsep and topsep globally to 0)
+ %% make itemize more compact (set itemsep and topsep globally to 0)
   \makeatletter
   \def\@listI{\leftmargin\leftmargini%%
-    \parsep 0\p@ \@plus0\p@ \@minus\p@
-    \topsep 0\p@  \@minus\p@
-    \itemsep 0\p@ \@plus0\p@ \@minus\p@}
+    \parsep0\p@ \@plus0\p@ \@minus\p@%%
+    \topsep0\p@  \@minus\p@%%
+    \itemsep0\p@ \@plus0\p@ \@minus\p@}%%
   \let\@listi\@listI%%
-  \def\@listii {\leftmargin\leftmarginii
-    \labelwidth\leftmarginii
-    \advance\labelwidth-\labelsep
-    \topsep    0\p@ \@plus0\p@ \@minus\p@
-    \parsep    0\p@   \@plus\p@  \@minus\p@
-    \itemsep   \parsep}
+  \def\@listii{\leftmargin\leftmarginii%%
+    \labelwidth\leftmarginii%%
+    \advance\labelwidth-\labelsep%%
+    \topsep0\p@ \@plus0\p@ \@minus\p@%%
+    \parsep0\p@   \@plus\p@  \@minus\p@%%
+    \itemsep\parsep}%%
   \makeatother
 </%block>
 
@@ -55,9 +55,11 @@
 
 \begin{document}
 
+<%block name="custom_logo">
 % if logo:
   ${logo}
 % endif
+</%block>
 
 <%block name="documentTop">
 </%block>
