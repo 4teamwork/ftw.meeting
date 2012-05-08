@@ -12,12 +12,11 @@ status_message_template = lambda msg, mtype: \
     "<dl class='portalMessage %(mtype)s'><dt>%(mtype)s</dt><dd>%(msg)s</dd>" \
     "</dl>" \
     % (dict(mtype=mtype,
-          msg=msg))
+            msg=msg))
 
 
 class CreateMeeting(BrowserView):
     """creates a meeting from poodle informations(data)
-
     """
 
     def __call__(self, date_hash=None):
@@ -26,6 +25,7 @@ class CreateMeeting(BrowserView):
         this will be displayed as statusmessage
 
         """
+        # TODO: Refactor me. Split up into sub methods.
 
         if date_hash is None:
             # we cannot do anything
@@ -60,18 +60,18 @@ class CreateMeeting(BrowserView):
         except BadRequest:
             # catches duplication error
             return status_message_template(translate(
-                'duplication_error_text',
-                'ftw.meeting',
-                context=self.request),
-                'error')
+                    'duplication_error_text',
+                    'ftw.meeting',
+                    context=self.request),
+                                           'error')
 
         except ValueError:
             # catches "disallowed subobject type"
             return status_message_template(translate(
-                'disallowed_error_text',
-                'ftw_meeting',
-                context=self.request),
-                'error')
+                    'disallowed_error_text',
+                    'ftw_meeting',
+                    context=self.request),
+                                           'error')
         m_created = getattr(parent, m_id, None)
 
         #set title and attendees
@@ -90,13 +90,13 @@ class CreateMeeting(BrowserView):
 
         try:
             start = DateTime("%s %s" % (
-                date_duration['date'], start_time))
+                    date_duration['date'], start_time))
             m_created.setStart_date(start)
         except DateTimeSyntaxError:
             errors.append('cannot_set_startdate')
         try:
             end = DateTime("%s %s" % (
-                date_duration['date'], end_time))
+                    date_duration['date'], end_time))
             m_created.setEnd_date(end)
         except DateTimeSyntaxError:
             errors.append('cannot_set_enddate')
@@ -126,20 +126,21 @@ class CreateMeeting(BrowserView):
 
         if not errors:
             return status_message_template(translate(
-                'meeting_created_text',
-                'ftw.meeting',
-                mapping={'url': m_created.absolute_url(), 'title': m_title},
-                context=self.request),
-                'info')
+                    'meeting_created_text',
+                    'ftw.meeting',
+                    mapping={'url': m_created.absolute_url(),
+                             'title': m_title},
+                    context=self.request),
+                                           'info')
 
         else:
             # there were porblems during creation precess
             # TODO: Implement a better error message from error list
             return status_message_template(translate(
-                'meeting_created_text_with_errors',
-                'ftw.meeting',
-                mapping={
-                    'url': m_created.absolute_url(),
-                    'title': m_title},
-                context=self.request),
-                'error')
+                    'meeting_created_text_with_errors',
+                    'ftw.meeting',
+                    mapping={
+                        'url': m_created.absolute_url(),
+                        'title': m_title},
+                    context=self.request),
+                                           'error')

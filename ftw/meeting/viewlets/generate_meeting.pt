@@ -44,7 +44,7 @@
             <p i18n:translate="generated_meeting_text">Meeting</p>
             <p><a tal:attributes="href meeting/absolute_url;
                                   title meeting/Title"
-                  tal:content="meeting/Title">Title</a></p>
+                  tal:content="meeting/Title" /></p>
         </tal:if>
     </div>
 

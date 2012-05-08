@@ -7,7 +7,14 @@ class GenerateMeetingViewlet(ViewletBase):
     """Shows a "generate meeting from poodle" button
 
     """
+
     render = ViewPageTemplateFile('generate_meeting.pt')
+
+    def __init__(self, *args, **kwargs):
+        super(GenerateMeetingViewlet, self).__init__(*args, **kwargs)
+        self.poodle_result = None
+        self.member = None
+        self.options = None
 
     def update(self):
         """define some values to grap from template"""
@@ -25,7 +32,7 @@ class GenerateMeetingViewlet(ViewletBase):
         options_list = []
         # first iterate throught dates - for the right order
         if self.poodle_result:
-            for i, date in enumerate(self.poodle_result['dates']):
+            for i, _date in enumerate(self.poodle_result['dates']):
                 # dates_record is the correct entry
                 # from getDates(datagridfield)
                 dates_record = self.context.getDates()[i]

@@ -1,5 +1,5 @@
 from Products.CMFCore.utils import getToolByName
-from interfaces import IResponsibilityInfoGetter
+from ftw.meeting.interfaces import IResponsibilityInfoGetter
 from zope.app.component.hooks import getSite
 from zope.interface import implements
 
@@ -7,21 +7,16 @@ from zope.interface import implements
 class ResponsibilityInfos(object):
     """Utiliy which returns a list of dicts
     format: [{'name':'Full Name', 'url':'authors-url'}]
-
     """
+
     implements(IResponsibilityInfoGetter)
 
     def __init__(self, context=None):
-        """
-
-        """
         if context is None:
             context = getSite()
         self.context = context
 
     def get_infos(self, userids=None):
-        """
-        """
         # we need userids
         if not userids:
             return []

@@ -165,8 +165,12 @@
                             </a>
                             <br />
                         -->
-                            <img height="16" width="16" title="vCal export" alt="" tal:attributes="src string:${here/portal_url}/icon_export_ical.png"/>
-                            <a href="./export_ics" title="vCal" i18n:translate="">
+                            <img height="16" width="16" title="vCal" alt=""
+                                 tal:attributes="src string:${here/portal_url}/icon_export_ical.png"
+                                 i18n:attributes="title" />
+                            <a href="./export_ics" title="vCal"
+                               i18n:translate=""
+                               i18n:attributes="title">
                                 iCal
                             </a>
                         </td>
@@ -183,16 +187,14 @@
                             <div class="MeetingItemHead">
                                 <img tal:attributes="src string:${here/portal_url}/++resource++meeting-styles/arrow_right.png"
                                      class="toggleImage"
-                                     alt="Arrwo Down" width="16px" />
-                                <a tal:content="obj/title" tal:attributes="href obj/absolute_url">
-                                    Title
-                                </a>
+                                     alt="" width="16px" />
+                                <a tal:content="obj/title" tal:attributes="href obj/absolute_url" />
                             </div>
                             <div class="MeetingItemBody" style="display:none">
                                 <table class="vertical listing">
                                     <colgroup>
                                         <col width="20%"/>
-                                        <col width="*">
+                                        <col width="*" />
                                     </colgroup>
                                     <tr>
                                         <th><span i18n:translate="meeting_label_responsibility">Responsibility</span></th>
@@ -230,12 +232,12 @@
                                                     <td>&nbsp;</td>
                                                     <td>
                                                         <a href="#" tal:attributes="href task/absolute_url" tal:content="task/title_or_id"></a>
-                                                        <div tal:content="structure task/text">Text</div>
+                                                        <div tal:content="structure task/text" />
                                                     </td>
                                                     <td tal:condition="task/responsibility"
                                                         tal:define="userid python:task.responsibility[0];
                                                                     user python:context.acl_users.getUserById(userid)">
-                                                        <div tal:content="python:user and user.getProperty('fullname',userid) or userid">Responsibility</div>
+                                                        <div tal:content="python:user and user.getProperty('fullname',userid) or userid" />
                                                     </td>
                                                     <td>&nbsp;</td>
                                                     <td tal:define="task_state task/review_state|python: wtool.getInfoFor(task, 'review_state', '');
@@ -266,9 +268,7 @@
                                                             <a href="" class=""
                                                                tal:attributes="href  item_url;
                                                                                title item/Description;"
-                                                               tal:content="item/pretty_title_or_id">
-                                                                Related Item
-                                                            </a>
+                                                               tal:content="item/pretty_title_or_id" />
                                                         </span>
                                                     </li>
                                                 </tal:related>
@@ -283,10 +283,11 @@
                         <tr class="even" tal:repeat="meeting_item_file python:obj.getFolderContents({'portal_type':['File'], 'sort_on' : 'effective', 'sort_order' : 'descending'}, full_objects=True)">
                             <td>&nbsp;</td>
                             <td>
-                                <a href="#" tal:attributes="href string:${meeting_item_file/absolute_url}/download" tal:content="meeting_item_file/title_or_id"></a>
-                                <div tal:content="meeting_item_file/Description">Description</div>
-                            <div tal:content="structure meeting_item_file/text">Text</div>
-                                <div tal:content="meeting_item_file/Creator">Creator</div>
+                                <a href="#" tal:attributes="href string:${meeting_item_file/absolute_url}/download"
+                                   tal:content="meeting_item_file/title_or_id" />
+                                <div tal:content="meeting_item_file/Description" />
+                                <div tal:content="structure meeting_item_file/text" />
+                                <div tal:content="meeting_item_file/Creator" />
                             </td>
                             <td>&nbsp;</td>
                             <td>&nbsp;</td>
@@ -304,8 +305,8 @@
                             <a href="#" tal:attributes="href string:${file/url}/download">
                                 <img tal:attributes="src file/icon" />
                                 <span tal:replace="file/title" /></a>
-                            <div tal:content="file/Description">Description</div>
-                            <div tal:content="file/Creator">Creator</div>
+                            <div tal:content="file/Description" />
+                            <div tal:content="file/Creator" />
                         </td>
                     </tr>
                 </table>
