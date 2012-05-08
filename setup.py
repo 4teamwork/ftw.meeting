@@ -21,7 +21,7 @@ extras_require = {
 
 setup(name='ftw.meeting',
       version=version,
-      description='A meeting content type for plone',
+      description='A meeting content type for Plone.',
       long_description=open('README.rst').read() + '\n' + \
           open(os.path.join('docs', 'HISTORY.txt')).read(),
 
