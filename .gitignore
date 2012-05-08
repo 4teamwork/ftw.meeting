@@ -8,5 +8,6 @@ bin/
 buildout.cfg
 coverage/
 develop-eggs/
+eggs/
 parts/
 src/
