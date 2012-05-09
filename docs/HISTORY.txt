@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-1.3.3 (unreleased)
+1.3.3 (2012-05-09)
 ------------------
 
 - Improve LaTeX PDF layout and German translation.
