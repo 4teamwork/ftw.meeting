@@ -191,7 +191,7 @@
                                 <a tal:content="obj/title" tal:attributes="href obj/absolute_url" />
                             </div>
                             <div class="MeetingItemBody" style="display:none">
-                                <table class="vertical listing">
+                                <table>
                                     <colgroup>
                                         <col width="20%"/>
                                         <col width="*" />
