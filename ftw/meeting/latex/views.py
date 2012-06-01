@@ -183,6 +183,6 @@ class MeetingItemView(MakoLaTeXView):
         for obj in self.context.getRelated_items():
             items.append({
                     'title': self.convert(obj.Title()),
-                    'url': obj.absolute_url()})
+                    'url': self.convert(obj.absolute_url())})
 
         return items
