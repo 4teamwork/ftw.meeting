@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-1.3.4 (unreleased)
+1.3.5 (2012-06-11)
 ------------------
 
 - Meeting item PDF: escape urls of related items, so that spaces (%) do not break LaTeX.
