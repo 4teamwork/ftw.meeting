@@ -1,10 +1,18 @@
 from Products.CMFCore.utils import getToolByName
 from ftw.meeting import meetingMessageFactory
 from ftw.meeting.interfaces import IMeeting
+from ftw.pdfgenerator import interfaces
+from ftw.pdfgenerator.html2latex import wrapper
 from ftw.pdfgenerator.view import MakoLaTeXView
 from zope.component import adapts
 from zope.i18n import translate
 from zope.interface import Interface
+
+
+MODE_REPLACE = interfaces.HTML2LATEX_MODE_REPLACE
+MODE_REGEXP = interfaces.HTML2LATEX_MODE_REGEXP
+PLACEHOLDER_BOTTOM = interfaces.HTML2LATEX_CUSTOM_PATTERN_PLACEHOLDER_BOTTOM
+PREVENT_CHARACTER = interfaces.HTML2LATEX_PREVENT_CHARACTER
 
 
 class TaskListingLaTeXView(MakoLaTeXView):
@@ -20,6 +28,27 @@ class TaskListingLaTeXView(MakoLaTeXView):
     def __init__(self, *args, **kwargs):
         MakoLaTeXView.__init__(self, *args, **kwargs)
         self.tasks = None
+
+    def convert_cell(self, text, plain=False):
+        """Convert html to LaTeX for placing in a table cell.
+        """
+
+        # Carriage returns are not allowed in table cells with multicolumn.
+        # We use \newline instead, which only creates a newline if the cell
+        # width is defined, but does not fail otherwise.
+        custom_patterns = [
+            (MODE_REGEXP, r'<br[ \W]{0,}>\n*',
+             r'\%snewline ' % PREVENT_CHARACTER),
+
+            (wrapper.CustomPatternAtPlaceholderWrapper(
+                    MODE_REPLACE, PLACEHOLDER_BOTTOM), '\n', r'\newline '),
+
+            ]
+
+        if plain:
+            return self.convert_plain(text, custom_patterns=custom_patterns)
+        else:
+            return self.convert(text, custom_patterns=custom_patterns)
 
     def render(self):
         self.load_tasks()
@@ -64,8 +93,8 @@ class TaskListingLaTeXView(MakoLaTeXView):
 
         for task in self.get_related_tasks():
             self.tasks.append({
-                    'title': self.convert_plain(task.Title()),
-                    'text': self.convert(task.getText()),
+                    'title': self.convert_cell(task.Title(), plain=True),
+                    'text': self.convert_cell(task.getText()),
                     'responsibility': r'\newline '.join(
                         self._get_names_of_users(task.getResponsibility())),
                     'due_date': self._convert_date(task.end()),
@@ -76,7 +105,7 @@ class TaskListingLaTeXView(MakoLaTeXView):
 
         for username in usernames:
             name = self._get_name_of_user(username)
-            names.append(self.convert_plain(name))
+            names.append(self.convert_cell(name, plain=1))
 
         return names
 
@@ -106,8 +135,8 @@ class TaskListingLaTeXView(MakoLaTeXView):
     def _get_review_state(self, task):
         state_view = task.restrictedTraverse('@@plone_context_state')
         state = state_view.workflow_state()
-        return self.convert(translate(state, domain='plone',
-                                      context=self.request))
+        return self.convert_cell(translate(state, domain='plone',
+                                           context=self.request))
 
     def _get_meeting_tasks(self):
         for obj in self.context.computeRelatedItems():

@@ -5,6 +5,9 @@ Changelog
 1.3.6 (unreleased)
 ------------------
 
+- PDF: Fix newlines in task listing table.
+  [jone]
+
 - PDF: Support contacts or other objects as responsibility of tasks.
   [jone]
 
