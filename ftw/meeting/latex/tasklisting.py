@@ -72,20 +72,31 @@ class TaskListingLaTeXView(MakoLaTeXView):
                     'review_state': self._get_review_state(task)})
 
     def _get_names_of_users(self, usernames):
-        acl_users = getToolByName(self.context, 'acl_users')
         names = []
 
         for username in usernames:
-            user = acl_users.getUserById(username)
-
-            if user and user.getProperty('fullname', ''):
-                names.append(self.convert_plain(
-                        user.getProperty('fullname')))
-
-            else:
-                names.append(self.convert_plain(username))
+            name = self._get_name_of_user(username)
+            names.append(self.convert_plain(name))
 
         return names
+
+    def _get_name_of_user(self, userid_or_uid):
+        acl_users = getToolByName(self.context, 'acl_users')
+        user = acl_users.getUserById(userid_or_uid)
+
+        if user and user.getProperty('fullname', ''):
+            return user.getProperty('fullname', '')
+
+        elif user:
+            return userid_or_uid
+
+        rcatalog = getToolByName(self.context, 'reference_catalog')
+        brain = rcatalog.lookupObject(userid_or_uid)
+        if brain:
+            return brain.Title()
+
+        else:
+            return userid_or_uid
 
     def _convert_date(self, date):
         translation = getToolByName(self.context, 'translation_service')
