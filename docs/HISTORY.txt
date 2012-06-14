@@ -11,6 +11,9 @@ Changelog
 1.3.6 (2012-06-13)
 ------------------
 
+- Task PDF: increase width of status column.
+  [jone]
+
 - PDF: Fix newlines in task listing table.
   [jone]
 
