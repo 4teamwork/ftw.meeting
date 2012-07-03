@@ -70,7 +70,7 @@ msgstr "iCal"
 
 #. Default: "Meeting created from: "
 msgid "label_create_from_poodle"
-msgstr "Meetin created of: "
+msgstr "Meeting created of: "
 
 #: ./ftw/meeting/viewlets/generate_meeting.pt:23
 msgid "label_meeting_generate"
