@@ -6,12 +6,12 @@ from ftw.meeting.interfaces import IMeetingLayer
 from zope.interface import directlyProvidedBy, directlyProvides
 from DateTime import DateTime
 
-class TestDragnDropStorageView(unittest.TestCase):
+class TestGetFilesView(unittest.TestCase):
     
     layer = FTW_MEETING_INTEGRATION_TESTING
 
 
-    def test_meeting_creation(self):
+    def test_get_files(self):
         portal = self.layer['portal']
         setRoles(portal, TEST_USER_ID, ['Manager'])
         login(portal, TEST_USER_NAME)

@@ -6,7 +6,7 @@ from plone.app.testing import setRoles, login
 import DateTime
 
 
-class TestMeetingItemView(unittest.TestCase):
+class TestIcsAttachmentView(unittest.TestCase):
     
     layer = FTW_MEETING_INTEGRATION_TESTING
     
