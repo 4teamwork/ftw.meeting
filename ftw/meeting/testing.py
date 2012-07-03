@@ -1,6 +1,11 @@
 from plone.testing import Layer
 from plone.testing import zca
 from zope.configuration import xmlconfig
+from plone.app.testing import PloneSandboxLayer
+from plone.app.testing import applyProfile
+from plone.app.testing import PLONE_FIXTURE
+from plone.app.testing import IntegrationTesting
+from plone.testing import z2
 
 
 class LatexZCMLLayer(Layer):
@@ -33,5 +38,34 @@ class LatexZCMLLayer(Layer):
     def testTearDown(self):
         del self['configurationContext']
 
+
+class FtwMeetingLayer(PloneSandboxLayer):
+
+    defaultBases = (PLONE_FIXTURE,)
+
+    def setUpZope(self, app, configurationContext):
+        # Load ZCML
+
+        import ftw.meeting
+        xmlconfig.file('configure.zcml', ftw.meeting, context=configurationContext)
+
+        import Products.DataGridField
+        xmlconfig.file('configure.zcml', Products.DataGridField, context=configurationContext)
+
+        # installProduct() is *only* necessary for packages outside
+        # the Products.* namespace which are also declared as Zope 2 products,
+        # using <five:registerPackage /> in ZCML.
+        z2.installProduct(app, 'ftw.meeting')
+        z2.installProduct(app, 'Products.DataGridField')
+
+    def setUpPloneSite(self, portal):
+        # Install into Plone site using portal_setup
+        applyProfile(portal, 'Products.DataGridField:default')
+        applyProfile(portal, 'ftw.meeting:file')
+
+
+FTW_MEETING_FIXTURE = FtwMeetingLayer()
+FTW_MEETING_INTEGRATION_TESTING = IntegrationTesting(
+    bases=(FTW_MEETING_FIXTURE,), name="FtwMeeting:Integration")
 
 LATEX_ZCML_LAYER = LatexZCMLLayer()

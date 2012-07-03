@@ -32,6 +32,15 @@
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
 
+    <!-- Register the installation GenericSetup extension profile -->
+    <genericsetup:registerProfile
+        name="file"
+        title="ftw.meeting"
+        directory="profiles/file"
+        description="Meeting type for ftw"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+
     <!-- Register the import step -->
     <genericsetup:importStep
         name="ftw.meeting"

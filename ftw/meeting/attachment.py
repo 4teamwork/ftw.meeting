@@ -13,10 +13,10 @@ class ICSAttachmentCreator(object):
     def __call__(self, object_):
         mime_type = "text/calendar"
         attachments = []
-        ical_view = getattr(object_.aq_explicit, 'ics_view', None)
+        ical_view = object_.restrictedTraverse('export_ics')
         if ical_view:
-            ical_view = ical_view(
-                object_.REQUEST, object_.REQUEST.RESPONSE)
+            ical_view.update()
+            ical_view = ical_view.feeddata()
             ical_view = self.set_reminder(ical_view, 30)
             ical_file = StringIO(ical_view)
             ical_attachment = (ical_file, 'ICal.ics', mime_type.split('/'))
