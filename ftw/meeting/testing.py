@@ -45,6 +45,9 @@ class FtwMeetingLayer(PloneSandboxLayer):
 
     def setUpZope(self, app, configurationContext):
         # Load ZCML
+        import ftw.poodle
+        xmlconfig.file('configure.zcml', ftw.poodle, context=configurationContext)
+        z2.installProduct(app, 'ftw.poodle')
 
         import ftw.meeting
         xmlconfig.file('configure.zcml', ftw.meeting, context=configurationContext)
@@ -60,6 +63,7 @@ class FtwMeetingLayer(PloneSandboxLayer):
 
     def setUpPloneSite(self, portal):
         # Install into Plone site using portal_setup
+        applyProfile(portal, 'ftw.poodle:default')
         applyProfile(portal, 'Products.DataGridField:default')
         applyProfile(portal, 'ftw.meeting:file')
 

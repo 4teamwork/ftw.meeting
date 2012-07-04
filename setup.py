@@ -9,6 +9,7 @@ tests_require = [
     'ftw.pdfgenerator',
     'ftw.testing',
     'ftw.workspace',
+    'ftw.poodle',
     ]
 
 extras_require = {
