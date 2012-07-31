@@ -1,18 +1,26 @@
-from Products.ATContentTypes.content import folder
-from Products.ATContentTypes.lib.calendarsupport import CalendarSupportMixin
-from Products.ATReferenceBrowserWidget import ATReferenceBrowserWidget
-from Products.Archetypes import atapi
-from Products.CMFCore import permissions
-from Products.CMFCore.utils import getToolByName
-from Products.DataGridField import DataGridField
-from Products.DataGridField.SelectColumn import SelectColumn
+from ftw.meeting.utils import get_memberdata
+from AccessControl import ClassSecurityInfo
+from cStringIO import StringIO
+from DateTime import DateTime
 from ftw.calendarwidget.browser.widgets import FtwCalendarWidget
 from ftw.meeting import meetingMessageFactory as _
 from ftw.meeting.config import PROJECTNAME
 from ftw.meeting.content.widget import DataGridWidgetExtended
 from ftw.meeting.interfaces import IMeeting
+from Products.Archetypes import atapi
+from Products.ATContentTypes.content import folder
+from Products.ATContentTypes.lib.calendarsupport import CalendarSupportMixin
+from Products.ATContentTypes.lib.calendarsupport import rfc2445dt, vformat, \
+    foldLine, ICS_EVENT_START, ICS_EVENT_END
+from Products.ATReferenceBrowserWidget import ATReferenceBrowserWidget
+from Products.CMFCore import permissions
+from Products.CMFCore.permissions import View
+from Products.CMFCore.utils import getToolByName
+from Products.DataGridField import DataGridField
+from Products.DataGridField.SelectColumn import SelectColumn
 from zope import component, schema
 from zope.interface import implements
+
 
 
 MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
@@ -211,6 +219,8 @@ class Meeting(folder.ATFolder, CalendarSupportMixin):
     """A type for meetings."""
     implements(IMeeting)
 
+    security = ClassSecurityInfo()
+
     portal_type = "Meeting"
     schema = MeetingSchema
 
@@ -343,9 +353,6 @@ class Meeting(folder.ATFolder, CalendarSupportMixin):
     def getEventType(self):
         return False
 
-    def contact_name(self):
-        return ','.join(self.getHead_of_meeting())
-
     def contact_phone(self):
         return ""
 
@@ -366,5 +373,64 @@ class Meeting(folder.ATFolder, CalendarSupportMixin):
     def sortable_responsibility(self):
         if self.getResponsibility():
             return [r['contact'] for r in self.getResponsibility()]
+
+    security.declareProtected(View, 'getICal')
+    def getICal(self):
+        """get iCal data
+        """
+        out = StringIO()
+        map = {
+            'dtstamp'   : rfc2445dt(DateTime()),
+            'created'   : rfc2445dt(DateTime(self.CreationDate())),
+            'uid'       : self.UID(),
+            'modified'  : rfc2445dt(DateTime(self.ModificationDate())),
+            'summary'   : vformat(self.Title()),
+            'startdate' : rfc2445dt(self.start()),
+            'enddate'   : rfc2445dt(self.end()),
+            }
+        out.write(ICS_EVENT_START % map)
+
+        description = self.Description()
+        if description:
+            out.write(foldLine('DESCRIPTION:%s\n' % vformat(description)))
+
+        location = self.getLocation()
+        if location:
+            out.write('LOCATION:%s\n' % vformat(location))
+
+        subject = self.Subject()
+        if subject:
+            out.write('CATEGORIES:%s\n' % ','.join(subject))
+
+        # TODO  -- NO! see the RFC; ORGANIZER field is not to be used for non-group-scheduled entities
+        #ORGANIZER;CN=%(name):MAILTO=%(email)
+        voc = self.getAttendeesVocabulary()
+        tmp = ''
+        for attendee in self.getAttendees():
+            attendee_infos = ''
+            tmp += 'ATTENDEE;CN="%s";CUTYPE=INDIVIDUAL:%s\n' % (
+                get_memberdata(attendee['contact']))
+        out.write(tmp)
+
+        cn = []
+        contacts = ','.join([get_memberdata(cc)[0] for cc in self.getHead_of_meeting()])
+        if contacts:
+            cn.append(contacts)
+        phone = self.contact_phone()
+        if phone:
+            cn.append(phone)
+        email = self.contact_email()
+        if email:
+            cn.append(email)
+        if cn:
+            out.write('CONTACT:%s\n' % vformat(', '.join(cn)))
+
+        url = self.event_url()
+        if url:
+            out.write('URL:%s\n' % url)
+
+        out.write(ICS_EVENT_END)
+        return out.getvalue()
+
 
 atapi.registerType(Meeting, PROJECTNAME)
