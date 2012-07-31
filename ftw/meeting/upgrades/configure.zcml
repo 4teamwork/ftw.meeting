@@ -1,0 +1,25 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="ftw.meeting">
+
+    <!-- 1.0 -> 1301 -->
+    <genericsetup:upgradeStep
+        title="Remove base_view from allowed Meeting views."
+        description=""
+        source="1.0"
+        destination="1301"
+        handler="ftw.meeting.upgrades.to1301.UpdateMeetingFTI"
+        profile="ftw.meeting:default"
+        />
+
+    <genericsetup:registerProfile
+        name="1301"
+        title="ftw.meeting.upgrades.13013: Remove base_view from allowed Meeting views."
+        description=""
+        directory="profiles/1301"
+        for="Products.CMFPlone.interfaces.IMigratingPloneSiteRoot"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+
+</configure>

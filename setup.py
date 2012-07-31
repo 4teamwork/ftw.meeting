@@ -54,6 +54,7 @@ setup(name='ftw.meeting',
         'setuptools',
         'ftw.calendarwidget',
         'plone.principalsource',
+        'ftw.upgrade',
         ],
 
       tests_require=tests_require,
