@@ -178,6 +178,10 @@
 
                 </table>
 
+                <metal:field use-macro="python:context.widget('text', mode='view')">
+                Body text
+                </metal:field>
+
                 <div class="MeetingItems"
                      tal:define="meeting_items python:context.getFolderContents({'portal_type':['Meeting Item']}, full_objects=True);"
                        tal:condition="meeting_items">

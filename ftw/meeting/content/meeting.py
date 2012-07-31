@@ -88,6 +88,19 @@ MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
                     default=u"Enter the ending date and time, "
                     "or click the calendar icon and select it."))),
 
+        atapi.TextField('text',
+            required=False,
+            searchable=True,
+            primary=True,
+            storage=atapi.AnnotationStorage(migrate=True),
+            validators=('isTidyHtmlWithCleanup',),
+            default_output_type='text/x-html-safe',
+            widget=atapi.RichWidget(
+                label=_(u'label_event_announcement', default=u'Event body text'),
+                description='',
+                rows=25,
+                allow_file_upload=False)),
+
         atapi.StringField(
             name='meeting_form',
             required=False,
