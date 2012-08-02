@@ -4,6 +4,23 @@ from zope.app.component.hooks import getSite
 from zope.interface import implements
 
 
+def get_memberdata(userid):
+    """ Returns the name and the email address of a member.
+    The userid can be a email address (for members) or a UID (for contacts)
+    """
+    context = getSite()
+    mt = getToolByName(context, 'portal_membership')
+    member = mt.getMemberById(userid)
+    if member:
+        return (member.getProperty('fullname', member.id), userid)
+    else:
+        catalog = getToolByName(context, 'portal_catalog')
+        brains = catalog(UID=userid)
+        if len(brains) == 1:
+            return (brains[0].Title, brains[0].getObject().getEmail())
+    return (userid, userid)
+
+
 class ResponsibilityInfos(object):
     """Utiliy which returns a list of dicts
     format: [{'name':'Full Name', 'url':'authors-url'}]

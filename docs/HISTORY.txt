@@ -8,8 +8,12 @@ Changelog
 - Remove base_view from allowed Meeting views.
   [jone]
 
+
 - Added a text field for the body text of an event.
   [buchi]
+
+- Show attendees in ical export. Added script to export the whole calendar.
+  [Julian Infanger]
 
 
 1.3.7 (2012-06-21)
