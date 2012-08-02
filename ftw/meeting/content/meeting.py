@@ -429,9 +429,14 @@ class Meeting(folder.ATFolder, CalendarSupportMixin):
         # TODO  -- NO! see the RFC; ORGANIZER field is not to be used for non-group-scheduled entities
         #ORGANIZER;CN=%(name):MAILTO=%(email)
         tmp = ''
+        attendees = set()
         for attendee in self.getAttendees():
+            attendees.add(attendee['contact'])
+        for responsible in self.getResponsibility():
+            attendees.add(responsible['contact'])
+        for attendee in attendees:
             tmp += 'ATTENDEE;CN="%s";CUTYPE=INDIVIDUAL:%s\n' % (
-                get_memberdata(attendee['contact']))
+                get_memberdata(attendee))
         out.write(tmp)
 
         cn = []
