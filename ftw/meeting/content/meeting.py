@@ -392,14 +392,25 @@ class Meeting(folder.ATFolder, CalendarSupportMixin):
         """get iCal data
         """
         out = StringIO()
+
+        start = self.start()
+        end = self.end()
+        full_day = int(end-start)
+        if full_day:
+            start = start.strftime("%Y%m%d")
+            end = end.strftime("%Y%m%d")
+        else:
+            start = rfc2445dt(start)
+            end = rfc2445dt(end)
+
         map = {
             'dtstamp'   : rfc2445dt(DateTime()),
             'created'   : rfc2445dt(DateTime(self.CreationDate())),
             'uid'       : self.UID(),
             'modified'  : rfc2445dt(DateTime(self.ModificationDate())),
             'summary'   : vformat(self.Title()),
-            'startdate' : rfc2445dt(self.start()),
-            'enddate'   : rfc2445dt(self.end()),
+            'startdate' : start,
+            'enddate'   : end,
             }
         out.write(ICS_EVENT_START % map)
 
@@ -417,10 +428,8 @@ class Meeting(folder.ATFolder, CalendarSupportMixin):
 
         # TODO  -- NO! see the RFC; ORGANIZER field is not to be used for non-group-scheduled entities
         #ORGANIZER;CN=%(name):MAILTO=%(email)
-        voc = self.getAttendeesVocabulary()
         tmp = ''
         for attendee in self.getAttendees():
-            attendee_infos = ''
             tmp += 'ATTENDEE;CN="%s";CUTYPE=INDIVIDUAL:%s\n' % (
                 get_memberdata(attendee['contact']))
         out.write(tmp)
