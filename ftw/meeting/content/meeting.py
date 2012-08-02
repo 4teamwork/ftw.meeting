@@ -1,3 +1,4 @@
+from AccessControl import ClassSecurityInfo
 from Products.ATContentTypes.content import folder
 from Products.ATContentTypes.lib.calendarsupport import CalendarSupportMixin
 from Products.ATReferenceBrowserWidget import ATReferenceBrowserWidget
@@ -210,6 +211,7 @@ MeetingSchema['expirationDate'].widget.visible = {'view': 'invisible',
 class Meeting(folder.ATFolder, CalendarSupportMixin):
     """A type for meetings."""
     implements(IMeeting)
+    security = ClassSecurityInfo()
 
     portal_type = "Meeting"
     schema = MeetingSchema
@@ -366,5 +368,10 @@ class Meeting(folder.ATFolder, CalendarSupportMixin):
     def sortable_responsibility(self):
         if self.getResponsibility():
             return [r['contact'] for r in self.getResponsibility()]
+
+    security.declarePublic('canSetDefaultPage')
+    def canSetDefaultPage(self):
+        return False
+
 
 atapi.registerType(Meeting, PROJECTNAME)

@@ -1,3 +1,4 @@
+from AccessControl import ClassSecurityInfo
 from Products.ATContentTypes.content import folder
 from Products.ATReferenceBrowserWidget import ATReferenceBrowserWidget
 from Products.Archetypes import atapi
@@ -93,6 +94,7 @@ MeetingItemSchema['expirationDate'].widget.visible = {'view': 'invisible',
 class MeetingItem(folder.ATFolder):
     """A type for meeting items."""
     implements(IMeetingItem)
+    security = ClassSecurityInfo()
 
     portal_type = "Meeting Item"
 
@@ -100,6 +102,10 @@ class MeetingItem(folder.ATFolder):
 
     text = atapi.ATFieldProperty('text')
     conclusion = atapi.ATFieldProperty('conclusion')
+
+    security.declarePublic('canSetDefaultPage')
+    def canSetDefaultPage(self):
+        return False
 
 
 atapi.registerType(MeetingItem, PROJECTNAME)
