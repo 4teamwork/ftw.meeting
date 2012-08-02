@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <metadata>
-  <version>1.0</version>
+  <version>1301</version>
   <dependencies>
      <dependency>profile-Products.DataGridField:default</dependency>
      <dependency>profile-ftw.calendarwidget:default</dependency>
