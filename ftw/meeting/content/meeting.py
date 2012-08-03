@@ -7,11 +7,12 @@ from ftw.meeting import meetingMessageFactory as _
 from ftw.meeting.config import PROJECTNAME
 from ftw.meeting.content.widget import DataGridWidgetExtended
 from ftw.meeting.interfaces import IMeeting
+from ftw.meeting.utils import vformat
 from Products.Archetypes import atapi
 from Products.ATContentTypes.content import folder
 from Products.ATContentTypes.lib.calendarsupport import CalendarSupportMixin
-from Products.ATContentTypes.lib.calendarsupport import rfc2445dt, vformat, \
-    foldLine, ICS_EVENT_START, ICS_EVENT_END
+from Products.ATContentTypes.lib.calendarsupport import rfc2445dt, foldLine, \
+    ICS_EVENT_START, ICS_EVENT_END
 from Products.ATReferenceBrowserWidget import ATReferenceBrowserWidget
 from Products.CMFCore import permissions
 from Products.CMFCore.permissions import View

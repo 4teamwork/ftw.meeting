@@ -4,6 +4,11 @@ from zope.app.component.hooks import getSite
 from zope.interface import implements
 
 
+def vformat(s):
+    # return string with escaped commas, semicolons and backslashes
+    return s.strip().replace(',','\,').replace(';','\;').replace('\\',r'\\\\')
+
+
 def get_memberdata(userid):
     """ Returns the name and the email address of a member.
     The userid can be a email address (for members) or a UID (for contacts)

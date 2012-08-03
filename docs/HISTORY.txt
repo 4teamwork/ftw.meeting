@@ -24,6 +24,9 @@ Changelog
 - Fixed off by one error in iCal export of multi all day events.
   [buchi]
 
+- Do not escape colon character in TEXT properties of iCal export.
+  [buchi]
+
 
 1.3.7 (2012-06-21)
 ------------------
