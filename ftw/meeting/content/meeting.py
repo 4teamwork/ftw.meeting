@@ -395,8 +395,10 @@ class Meeting(folder.ATFolder, CalendarSupportMixin):
 
         start = self.start()
         end = self.end()
-        full_day = int(end-start)
-        if full_day:
+        if end == end.earliestTime() and start == start.earliestTime():
+            # All day event (no start and end time)
+            # Do not include time information so that it's treated as all day 
+            # event in iCal
             start = start.strftime("%Y%m%d")
             end = end.strftime("%Y%m%d")
         else:
