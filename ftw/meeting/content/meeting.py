@@ -438,7 +438,7 @@ class Meeting(folder.ATFolder, CalendarSupportMixin):
         for responsible in self.getResponsibility():
             attendees.add(responsible['contact'])
         for attendee in attendees:
-            tmp += 'ATTENDEE;CN="%s";CUTYPE=INDIVIDUAL:%s\n' % (
+            tmp += 'ATTENDEE;CN="%s";CUTYPE=INDIVIDUAL:MAILTO:%s\n' % (
                 get_memberdata(attendee))
         out.write(tmp)
 
