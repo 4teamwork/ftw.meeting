@@ -399,6 +399,7 @@ class Meeting(folder.ATFolder, CalendarSupportMixin):
             # All day event (no start and end time)
             # Do not include time information so that it's treated as all day 
             # event in iCal
+            end += 1
             start = start.strftime("%Y%m%d")
             end = end.strftime("%Y%m%d")
         else:
