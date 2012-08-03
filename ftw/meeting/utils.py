@@ -5,8 +5,8 @@ from zope.interface import implements
 
 
 def vformat(s):
-    # return string with escaped commas, semicolons and backslashes
-    return s.strip().replace(',','\,').replace(';','\;').replace('\\',r'\\\\')
+    # return string with escaped commas and semicolons
+    return s.strip().replace(',','\,').replace(';','\;')
 
 
 def get_memberdata(userid):
