@@ -12,7 +12,8 @@ def get_memberdata(userid):
     mt = getToolByName(context, 'portal_membership')
     member = mt.getMemberById(userid)
     if member:
-        return (member.getProperty('fullname', member.id), userid)
+        return (member.getProperty('fullname', member.id),
+                member.getProperty('email', userid))
     else:
         catalog = getToolByName(context, 'portal_catalog')
         brains = catalog(UID=userid)
