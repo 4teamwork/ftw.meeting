@@ -158,17 +158,10 @@
                     <tr tal:condition="python:context.start() and context.end()">
                         <th><span i18n:translate="meeting_label_export">Export</span></th>
                         <td>
-                        <!-- XXX: removed (vcs detached by ics)
-                            <img height="16" width="16" title="vCal export" alt="" tal:attributes="src string:${here/portal_url}/icon_export_vcal.png"/>
-                            <a href="./vcs_view" title="vCal" i18n:translate="">
-                                vCal
-                            </a>
-                            <br />
-                        -->
-                            <img height="16" width="16" title="vCal" alt=""
+                            <img height="16" width="16" title="iCal" alt=""
                                  tal:attributes="src string:${here/portal_url}/icon_export_ical.png"
                                  i18n:attributes="title" />
-                            <a href="./export_ics" title="vCal"
+                            <a href="./export_ics" title="iCal"
                                i18n:translate=""
                                i18n:attributes="title">
                                 iCal

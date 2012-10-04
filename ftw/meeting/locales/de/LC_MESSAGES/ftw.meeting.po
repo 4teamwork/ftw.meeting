@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-05-08 12:11+0000\n"
+"POT-Creation-Date: 2012-10-04 16:01+0000\n"
 "PO-Revision-Date: 2012-05-07 08:47+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,7 +16,7 @@ msgstr ""
 msgid "Add new row"
 msgstr "Neue Zeile hinzufügen"
 
-#: ./ftw/meeting/browser/meeting.pt:301
+#: ./ftw/meeting/browser/meeting.pt:294
 msgid "Attachments"
 msgstr "Anhang"
 
@@ -28,7 +28,7 @@ msgstr "Termin"
 msgid "Meeting Item"
 msgstr "Traktandum"
 
-#: ./ftw/meeting/content/meeting.py:292
+#: ./ftw/meeting/content/meeting.py:294
 msgid "absent"
 msgstr "abwesend"
 
@@ -45,7 +45,7 @@ msgstr "Sitzung wurde bereits erstellt."
 msgid "event"
 msgstr "Termin"
 
-#: ./ftw/meeting/content/meeting.py:293
+#: ./ftw/meeting/content/meeting.py:295
 msgid "excused"
 msgstr "entschuldigt"
 
@@ -64,9 +64,9 @@ msgstr "Neuer Termin aus Terminumfrage erstellen"
 msgid "generated_meeting_text"
 msgstr "Es wurde bereits eine Sitzung aus dieser Umfrage erstellt. Durch klicken auf den folgenden Link gelangen Sie zu dieser Sitzung"
 
-#: ./ftw/meeting/browser/meeting.pt:171
+#: ./ftw/meeting/browser/meeting.pt:161
 msgid "iCal"
-msgstr "iCal"
+msgstr "iCal Export"
 
 #. Default: "Meeting created from: "
 msgid "label_create_from_poodle"
@@ -86,7 +86,7 @@ msgid "latex_date"
 msgstr "Datum"
 
 #. Default: "Due date"
-#: ./ftw/meeting/latex/tasklisting.py:49
+#: ./ftw/meeting/latex/tasklisting.py:78
 msgid "latex_due_date"
 msgstr "Termin"
 
@@ -125,7 +125,7 @@ msgid "latex_label_events"
 msgstr "Termine"
 
 #. Default: "Order"
-#: ./ftw/meeting/latex/tasklisting.py:46
+#: ./ftw/meeting/latex/tasklisting.py:75
 msgid "latex_order"
 msgstr "Beschluss / Auftrag"
 
@@ -134,7 +134,7 @@ msgid "latex_page"
 msgstr "Seite"
 
 #. Default: "Pending Tasks"
-#: ./ftw/meeting/latex/tasklisting.py:44
+#: ./ftw/meeting/latex/tasklisting.py:73
 msgid "latex_pending_tasks"
 msgstr "Pendenzenliste"
 
@@ -147,7 +147,7 @@ msgid "latex_related_items"
 msgstr "Verweise"
 
 #. Default: "Responsible"
-#: ./ftw/meeting/latex/tasklisting.py:47
+#: ./ftw/meeting/latex/tasklisting.py:76
 msgid "latex_responsible"
 msgstr "Wer"
 
@@ -161,7 +161,7 @@ msgid "latex_start"
 msgstr "Start"
 
 #. Default: "Status"
-#: ./ftw/meeting/latex/tasklisting.py:50
+#: ./ftw/meeting/latex/tasklisting.py:79
 msgid "latex_status"
 msgstr "Status"
 
@@ -184,7 +184,7 @@ msgid "meeting_help_attendees"
 msgstr "Wählen Sie aus, welche Personen an der Sitzung teilnehmen."
 
 #. Default: "Enter the ending date and time, or click the calendar icon and select it."
-#: ./ftw/meeting/content/meeting.py:86
+#: ./ftw/meeting/content/meeting.py:46
 msgid "meeting_help_end_date"
 msgstr "Tragen Sie das Enddatum und die Endzeit ein oder klicken Sie auf das Kalendersymbol, um die Daten bequem auszuwählen."
 
@@ -194,7 +194,7 @@ msgid "meeting_help_head_of_meeting"
 msgstr "Wählen Sie die Person aus, welche die Sitzung leitet."
 
 #. Default: "Enter the location where the meeting will take place."
-#: ./ftw/meeting/content/meeting.py:196
+#: ./ftw/meeting/content/meeting.py:197
 msgid "meeting_help_location"
 msgstr "Tragen Sie hier den Ort ein, an dem der Termin stattfindet."
 
@@ -209,22 +209,22 @@ msgid "meeting_help_recording_secretary"
 msgstr "Wählen Sie den/die Protokollführer/in aus."
 
 #: ./ftw/meeting/content/meeting.py:178
-#: ./ftw/meeting/content/meetingitem.py:69
+#: ./ftw/meeting/content/meetingitem.py:70
 msgid "meeting_help_related_items"
 msgstr "Verwandte Inhalte dienen dazu um Sitzungen um ein ähnliches oder das selbe Thema zu kennzeichnen"
 
 #. Default: "Enter the responsible of the meeting."
-#: ./ftw/meeting/content/meeting.py:45
+#: ./ftw/meeting/content/meeting.py:76
 msgid "meeting_help_responsibility"
 msgstr "Wählen Sie die verantwortlichen Personen aus."
 
 #. Default: "Enter the starting date and time, or click the calendar icon and select it."
-#: ./ftw/meeting/content/meeting.py:70
+#: ./ftw/meeting/content/meeting.py:30
 msgid "meeting_help_start_date"
 msgstr "Tragen Sie das Anfangsdatum und die Anfangszeit ein oder klicken Sie auf das Kalendersymbol, um die Daten bequem auszuwählen."
 
 #. Default: "Choose your event type."
-#: ./ftw/meeting/content/meeting.py:30
+#: ./ftw/meeting/content/meeting.py:61
 msgid "meeting_help_type"
 msgstr "Wählen Sie aus, um was für eine Art Termin es sich handelt."
 
@@ -262,7 +262,7 @@ msgstr "Dauer"
 
 #. Default: "End Date"
 #: ./ftw/meeting/browser/meeting.pt:80
-#: ./ftw/meeting/content/meeting.py:83
+#: ./ftw/meeting/content/meeting.py:43
 msgid "meeting_label_end_date"
 msgstr "End-Datum"
 
@@ -285,7 +285,7 @@ msgstr "Sitzungsleitung"
 
 #. Default: "Location"
 #: ./ftw/meeting/browser/meeting.pt:95
-#: ./ftw/meeting/content/meeting.py:195
+#: ./ftw/meeting/content/meeting.py:196
 #: ./ftw/meeting/latex/views.py:42
 msgid "meeting_label_location"
 msgstr "Ort"
@@ -304,24 +304,24 @@ msgstr "Protokollführung"
 
 #. Default: "Related Items"
 #: ./ftw/meeting/content/meeting.py:176
-#: ./ftw/meeting/content/meetingitem.py:67
+#: ./ftw/meeting/content/meetingitem.py:68
 msgid "meeting_label_related_items"
 msgstr "Verwandte Inhalte"
 
 #. Default: "Relations"
-#: ./ftw/meeting/browser/meeting.pt:252
+#: ./ftw/meeting/browser/meeting.pt:245
 msgid "meeting_label_relations"
 msgstr "Verwandte Inhalte"
 
 #. Default: "Responsibility"
 #: ./ftw/meeting/browser/meeting.pt:101
-#: ./ftw/meeting/content/meeting.py:43
+#: ./ftw/meeting/content/meeting.py:74
 msgid "meeting_label_responsibility"
 msgstr "Verantwortliche Personen"
 
 #. Default: "Start Date"
 #: ./ftw/meeting/browser/meeting.pt:68
-#: ./ftw/meeting/content/meeting.py:68
+#: ./ftw/meeting/content/meeting.py:28
 msgid "meeting_label_start_date"
 msgstr "Start-Datum"
 
@@ -331,56 +331,56 @@ msgid "meeting_label_start_time"
 msgstr "Start-Zeit"
 
 #. Default: "Tasks"
-#: ./ftw/meeting/browser/meeting.pt:228
+#: ./ftw/meeting/browser/meeting.pt:221
 msgid "meeting_label_tasks"
 msgstr "Aufgaben"
 
 #. Default: "Text"
-#: ./ftw/meeting/browser/meeting.pt:215
+#: ./ftw/meeting/browser/meeting.pt:208
 msgid "meeting_label_text"
 msgstr "Text"
 
 #. Default: "Event type"
-#: ./ftw/meeting/content/meeting.py:29
+#: ./ftw/meeting/content/meeting.py:60
 msgid "meeting_label_type"
 msgstr "Art des Termin"
 
-#: ./ftw/meeting/content/meeting.py:328
+#: ./ftw/meeting/content/meeting.py:330
 msgid "meeting_type_event"
 msgstr "Termin"
 
-#: ./ftw/meeting/content/meeting.py:329
+#: ./ftw/meeting/content/meeting.py:331
 msgid "meeting_type_meeting"
 msgstr "Sitzung"
 
 #. Default: "Enter the conclusion drawn for this resolution"
-#: ./ftw/meeting/content/meetingitem.py:54
+#: ./ftw/meeting/content/meetingitem.py:55
 msgid "meetingitem_help_conclusion"
 msgstr "Geben sie die Ergebnisse dieses Traktandum ein"
 
 #. Default: "Select the responsible person(s)."
-#: ./ftw/meeting/content/meetingitem.py:22
+#: ./ftw/meeting/content/meetingitem.py:23
 msgid "meetingitem_help_responsibility"
 msgstr "Wählen sie die verantwortlichen Personen aus"
 
 #. Default: "Enter the text."
-#: ./ftw/meeting/content/meetingitem.py:38
+#: ./ftw/meeting/content/meetingitem.py:39
 msgid "meetingitem_help_text"
 msgstr "Geben Sie die Beschreibung des Traktandums an."
 
 #. Default: "Conclusion"
-#: ./ftw/meeting/browser/meeting.pt:221
-#: ./ftw/meeting/content/meetingitem.py:52
+#: ./ftw/meeting/browser/meeting.pt:214
+#: ./ftw/meeting/content/meetingitem.py:53
 msgid "meetingitem_label_conclusion"
 msgstr "Ergebnis"
 
 #. Default: "Responsibility"
-#: ./ftw/meeting/content/meetingitem.py:20
+#: ./ftw/meeting/content/meetingitem.py:21
 msgid "meetingitem_label_responsibility"
 msgstr "Verantwortliche Personen"
 
 #. Default: "Text"
-#: ./ftw/meeting/content/meetingitem.py:37
+#: ./ftw/meeting/content/meetingitem.py:38
 msgid "meetingitem_label_text"
 msgstr "Text"
 
@@ -388,7 +388,7 @@ msgstr "Text"
 msgid "poll"
 msgstr "Umfrage"
 
-#: ./ftw/meeting/content/meeting.py:291
+#: ./ftw/meeting/content/meeting.py:293
 msgid "present"
 msgstr "anwesend"
 
@@ -396,6 +396,4 @@ msgstr "anwesend"
 msgid "select all"
 msgstr "Alle auswählen"
 
-#: ./ftw/meeting/browser/meeting.pt:168
-msgid "vCal"
-msgstr "vCal Export"
+
