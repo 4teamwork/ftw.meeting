@@ -17,6 +17,36 @@ from zope.interface import implements
 
 
 MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
+        atapi.DateTimeField(
+            name='start_date',
+            searchable=True,
+            required=True,
+            accessor='start',
+            schemata='default',
+            widget=FtwCalendarWidget(
+                helper_js=('start_end_date_helper.js',),
+                label=_(u"meeting_label_start_date",
+                        default=u"Start Date"),
+                description=_(u"meeting_help_start_date",
+                              default=u"Enter the starting date and time, " + \
+                                  "or click the calendar icon and select it.")
+                )),
+
+        atapi.DateTimeField(
+            name='end_date',
+            searchable=True,
+            required=True,
+            accessor='end',
+            schemata='default',
+
+            widget=FtwCalendarWidget(
+                label=_(
+                    u"meeting_label_end_date",
+                    default=u"End Date"),
+                description=_(
+                    u"meeting_help_end_date",
+                    default=u"Enter the ending date and time, "
+                    "or click the calendar icon and select it."))),
 
         atapi.StringField(
             name='meeting_type',
@@ -57,37 +87,6 @@ MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
                         vocabulary='getAttendeesVocabulary'
                         ),
                     })),
-
-        atapi.DateTimeField(
-            name='start_date',
-            searchable=True,
-            required=True,
-            accessor='start',
-            schemata='default',
-            widget=FtwCalendarWidget(
-                helper_js=('start_end_date_helper.js',),
-                label=_(u"meeting_label_start_date",
-                        default=u"Start Date"),
-                description=_(u"meeting_help_start_date",
-                              default=u"Enter the starting date and time, " + \
-                                  "or click the calendar icon and select it.")
-                )),
-
-        atapi.DateTimeField(
-            name='end_date',
-            searchable=True,
-            required=True,
-            accessor='end',
-            schemata='default',
-
-            widget=FtwCalendarWidget(
-                label=_(
-                    u"meeting_label_end_date",
-                    default=u"End Date"),
-                description=_(
-                    u"meeting_help_end_date",
-                    default=u"Enter the ending date and time, "
-                    "or click the calendar icon and select it."))),
 
         atapi.StringField(
             name='meeting_form',
@@ -189,7 +188,8 @@ MeetingSchema.changeSchemataForField('expirationDate', 'settings')
 
 
 # use plone default location field
-MeetingSchema.moveField('location', after='description')
+MeetingSchema.moveField('location', after='end_date')
+MeetingSchema.moveField('description', after='end_date')
 MeetingSchema['location'].searchable = True
 MeetingSchema['location'].schemata = 'default'
 MeetingSchema['location'].widget = atapi.StringWidget(
