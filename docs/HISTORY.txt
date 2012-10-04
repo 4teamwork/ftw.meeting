@@ -5,6 +5,9 @@ Changelog
 1.3.9 (unreleased)
 ------------------
 
+- Move start/end date after title.
+  [mathias.leimgruber]
+
 - Only auto-fill end_date if end_date is no set. 
   [mathias.leimgruber]
 
@@ -18,8 +21,6 @@ Changelog
 
 - Remove base_view from allowed Meeting views.
   [jone]
-
-- Nothing changed yet.
 
 
 1.3.7 (2012-06-21)
