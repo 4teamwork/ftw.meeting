@@ -5,13 +5,16 @@ Changelog
 1.3.9 (unreleased)
 ------------------
 
+- Improved meeting item css and markup.
+  [Julian Infanger]
+
 - Fix translation (vcal -> ical).
   [mathias.leimgruber]
 
 - Move start/end date after title.
   [mathias.leimgruber]
 
-- Only auto-fill end_date if end_date is no set. 
+- Only auto-fill end_date if end_date is no set.
   [mathias.leimgruber]
 
 
