@@ -37,7 +37,8 @@
             <tal:main-macro metal:define-macro="content-core"
                 tal:define="templateId template/getId;
                             normalizeString nocall: context/@@plone/normalizeString;
-                            meeting_type python:context.getMeeting_type()">
+                            meeting_type python:context.getMeeting_type();
+                            mtool context/@@plone_tools/membership">
 
 
                 <table class="vertical listing MeetingListing">
@@ -185,9 +186,14 @@
                                   <tal:title tal:content="obj/title">Title</tal:title>
                                 </span>
                                 <div class="meetingItemActions">
-                                  <span class="buttonMove">&nbsp;</span>
-                                  <a class="buttonEdit" tal:attributes="href string:${obj/absolute_url}/edit">&nbsp;</a>
-                                  <a class="buttonRemove link-overlay" tal:attributes="href string:${obj/absolute_url}/delete_confirmation">&nbsp;</a>
+                                  <span class="buttonMove"
+                                        tal:condition="python:mtool.checkPermission('Modify portal content',context)">&nbsp;</span>
+                                  <a class="buttonEdit"
+                                     tal:condition="python:mtool.checkPermission('Modify portal content',context)"
+                                     tal:attributes="href string:${obj/absolute_url}/edit">&nbsp;</a>
+                                  <a class="buttonRemove link-overlay"
+                                     tal:condition="python:mtool.checkPermission('Delete objects',context)"
+                                     tal:attributes="href string:${obj/absolute_url}/delete_confirmation">&nbsp;</a>
                                 </div>
 
                             </div>
