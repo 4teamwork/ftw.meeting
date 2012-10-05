@@ -22,7 +22,7 @@
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
 
-    <!-- 1.0 -> 1301 -->
+    <!-- 1301 -> 1400 -->
     <genericsetup:upgradeStep
         title="Set meeting item view."
         description=""
