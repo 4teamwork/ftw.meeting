@@ -22,4 +22,23 @@
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
 
+    <!-- 1.0 -> 1301 -->
+    <genericsetup:upgradeStep
+        title="Set meeting item view."
+        description=""
+        source="1301"
+        destination="1400"
+        handler="ftw.meeting.upgrades.to1400.UpdateMeetingItemView"
+        profile="ftw.meeting:default"
+        />
+
+    <genericsetup:registerProfile
+        name="1400"
+        title="ftw.meeting.upgrades.1400: Set meeting item view."
+        description=""
+        directory="profiles/1400"
+        for="Products.CMFPlone.interfaces.IMigratingPloneSiteRoot"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+
 </configure>
