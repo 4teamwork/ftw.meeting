@@ -2,8 +2,8 @@ Changelog
 =========
 
 
-1.3.9 (unreleased)
-------------------
+1.4 (unreleased)
+----------------
 
 - Improved meeting item css and markup.
   [Julian Infanger]
