@@ -13,7 +13,8 @@ ul.AttendeesListing li {
 
 
 .MeetingItemWrapper .MeetingItemBody {
-    margin-left:0em;
+    margin-left: 0em;
+    margin-bottom: 3em;
 }
 .MeetingItemWrapper .MeetingItemBody table td p,
 .MeetingItemWrapper .MeetingItemBody table th p {
@@ -24,8 +25,12 @@ ul.AttendeesListing li {
   font-size: 1.1em;
   font-weight: bold;
 }
+.MeetingItemBody > table {
+  margin-top: 0;
+}
 .MeetingItemHead {
   padding: 5px;
+  cursor: pointer;
 }
 .MeetingItemWrapper {
   margin-top: 0.5em;
@@ -58,6 +63,7 @@ ul.AttendeesListing li {
 }
 .meetingItemActions span.buttonMove {
   background-position: 0 0;
+  cursor: move;
 }
 .meetingItemActions span.buttonMove:hover {
   background-position:0 -50px;
