@@ -10,7 +10,7 @@
             jq(function() {
                  jq('.MeetingItems').sortable({
                      'items':'.MeetingItemWrapper',
-                     'handle': '.MeetingItemHead',
+                     'handle': '.MeetingItemHead .buttonMove',
                       'stop': function(event, ui) {
                           var ids = [];
                           jq('.MeetingItemWrapper').each(function(index, el) {
@@ -98,7 +98,7 @@
                     </tr>
 
                     <tr tal:condition="context/getResponsibility | nothing">
-                        <th><span i18n:translate="meeting_label_responsibility">Responsibility</span>:</th>
+                        <th><span i18n:translate="meeting_label_responsibility">Responsibility</span></th>
                         <td>
                             <ul class="AttendeesListing" tal:define="userids python:[u['contact'] for u in here.getResponsibility()]">
                                 <li tal:repeat="userid python:context.getResponsibilityInfos(userids)">
@@ -113,7 +113,7 @@
                         </td>
                     </tr>
                     <tr tal:condition="python: context.getHead_of_meeting() and context.getMeeting_type() == 'meeting'">
-                        <th><span i18n:translate="meeting_label_head_of_meeting">Head of Meeting</span>:</th>
+                        <th><span i18n:translate="meeting_label_head_of_meeting">Head of Meeting</span></th>
                         <td tal:define="userids python:here.getHead_of_meeting()" tal:repeat="userid python:context.getResponsibilityInfos(userids)">
                             <tal:exists condition="python:userid and len(userid.get('url',''))>0">
                                 <a tal:attributes="href python:userid['url']" tal:content="python:userid['name']" />
@@ -121,8 +121,8 @@
                             <span tal:condition="python:userid and len(userid.get('url',''))==0" tal:content="python:userid['name']" />
                         </td>
                     </tr>
-                    <tr tal:condition="python:context.getRecording_secretary and context.getMeeting_type() == 'meeting'">
-                        <th><span i18n:translate="meeting_label_recording_secretary">Recording Secretary</span>:</th>
+                    <tr tal:condition="python:context.getRecording_secretary() and context.getMeeting_type() == 'meeting'">
+                        <th><span i18n:translate="meeting_label_recording_secretary">Recording Secretary</span></th>
                         <td tal:define="userids python:here.getRecording_secretary()" tal:repeat="userid python:context.getResponsibilityInfos(userids)">
                             <tal:exists condition="python:userid and len(userid.get('url',''))>0">
                                 <a tal:attributes="href python:userid['url']" tal:content="python:userid['name']" />
@@ -133,7 +133,7 @@
                         </td>
                     </tr>
                     <tr tal:condition="context/getAttendees | nothing">
-                        <th><span i18n:translate="meeting_label_attendees">Attendees</span>:</th>
+                        <th><span i18n:translate="meeting_label_attendees">Attendees</span></th>
                         <td>
                             <ul class="AttendeesListing" tal:define="userids python:[u['contact'] for u in here.getAttendees()]">
                                 <li tal:repeat="userid python:context.getResponsibilityInfos(userids)">
@@ -178,13 +178,21 @@
                     <tal:block tal:repeat="obj meeting_items">
                         <div tal:attributes="id string:uid_${obj/UID}" class="MeetingItemWrapper">
                             <div class="MeetingItemHead">
-                                <img tal:attributes="src string:${here/portal_url}/++resource++meeting-styles/arrow_right.png"
-                                     class="toggleImage"
-                                     alt="" width="16px" />
-                                <a tal:content="obj/title" tal:attributes="href obj/absolute_url" />
+                                <span class="itemTitle">
+                                  <img tal:attributes="src string:${here/portal_url}/++resource++meeting-styles/arrow_right.png"
+                                       class="toggleImage"
+                                       alt="" width="16px" />
+                                  <tal:title tal:content="obj/title">Title</tal:title>
+                                </span>
+                                <div class="meetingItemActions">
+                                  <span class="buttonMove">&nbsp;</span>
+                                  <a class="buttonEdit" tal:attributes="href string:${obj/absolute_url}/edit">&nbsp;</a>
+                                  <a class="buttonRemove link-overlay" tal:attributes="href string:${obj/absolute_url}/delete_confirmation">&nbsp;</a>
+                                </div>
+
                             </div>
                             <div class="MeetingItemBody" style="display:none">
-                                <table>
+                                <table class="vertical listing">
                                     <colgroup>
                                         <col width="20%"/>
                                         <col width="*" />

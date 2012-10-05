@@ -15,33 +15,62 @@ ul.AttendeesListing li {
 .MeetingItemWrapper .MeetingItemBody {
     margin-left:0em;
 }
-.MeetingItemWrapper .MeetingItemBody table {
-    border:none;
-}
 .MeetingItemWrapper .MeetingItemBody table td p,
 .MeetingItemWrapper .MeetingItemBody table th p {
     font-size: 1em;
 }
-
-
-.MeetingItemWrapper .MeetingItemHead {
-    background-color:#F4F4FF;
-    padding:0.5em;
-    border-top:1px solid silver;
-    margin-top:0.5em;
+.MeetingItemHead .itemTitle {
+  text-decoration: none;
+  font-size: 1.1em;
+  font-weight: bold;
 }
-.MeetingItemWrapper .MeetingItemHead img {
-    display: block;
-    float: left;
-    padding-right:0.5em;
+.MeetingItemHead {
+  padding: 5px;
+}
+.MeetingItemWrapper {
+  margin-top: 0.5em;
+}
+.MeetingItemWrapper:hover .MeetingItemHead {
+    background: #EFEFEF;
+}
+.MeetingItemWrapper .meetingItemActions {
+  display: none;
+  float: right;
+}
+.MeetingItemWrapper:hover .meetingItemActions {
+  display: block;
 }
 
-.MeetingItemWrapper .MeetingItemHead a {
-    font-size:1.2em;
-    font-weight:bold;
-}
 
-.MeetingItemWrapper .MeetingItemHead:hover{
-    cursor:move;
-    background-color:#cccccc;
+
+/* meetingitem actions */
+.meetingItemActions a,
+.meetingItemActions span {
+  background: url(../../meetingitem_actions.png) no-repeat;
+  width: 16px;
+  height: 16px;
+  margin-left: 3px;
+  display: inline-block;
+  text-decoration: none;
+}
+.meetingItemActions a:first-child {
+  margin-left: 0;
+}
+.meetingItemActions span.buttonMove {
+  background-position: 0 0;
+}
+.meetingItemActions span.buttonMove:hover {
+  background-position:0 -50px;
+}
+.meetingItemActions a.buttonEdit {
+  background-position:0 -100px;
+}
+.meetingItemActions a.buttonEdit:hover {
+  background-position:0 -150px;
+}
+.meetingItemActions a.buttonRemove {
+  background-position:0 -200px;
+}
+.meetingItemActions a.buttonRemove:hover {
+  background-position:0 -250px;
 }

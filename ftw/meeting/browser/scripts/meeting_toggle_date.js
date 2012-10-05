@@ -55,9 +55,8 @@ jq(MeetingTypeSelector);
 
 
 function MeetingItemToggler(){
-        var toggleItem = jq('.MeetingItemHead .toggleImage');
-        toggleItem.css('cursor','pointer');
-        toggleItem.bind('click',function(e){
+        jq('.MeetingItemHead').click(function(e){
+                e.preventDefault();
                 var parentItem = jq(this).closest('.MeetingItemWrapper');
                 var meetingBody = jq('#'+parentItem.attr('id') + ' .MeetingItemBody');
 
@@ -71,6 +70,6 @@ function MeetingItemToggler(){
                     }
 
 
-            });
+            }).children('.meetingItemActions').click(function(event) {event.stopPropagation();});;
     }
 jq(MeetingItemToggler);
