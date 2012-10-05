@@ -50,4 +50,11 @@
         permission="zope2.View"
         />
 
+    <browser:page
+        for="..interfaces.IMeetingItem"
+        name="meetingitem_view"
+        class=".meetingitem.MeetingItemView"
+        permission="zope2.View"
+        />
+
 </configure>
