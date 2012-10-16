@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-1.4 (unreleased)
+1.4 (2012-10-16)
 ----------------
 
 - Improved meeting item css and markup.
