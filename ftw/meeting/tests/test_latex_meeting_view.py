@@ -27,6 +27,7 @@ class TestMeetingView(MockTestCase):
     layer = LATEX_ZCML_LAYER
 
     def setUp(self):
+        super(TestMeetingView, self).setUp()
         self.context = self.providing_stub([IMeeting])
         self.request = self.stub()
         self.builder = self.providing_stub([IBuilder])

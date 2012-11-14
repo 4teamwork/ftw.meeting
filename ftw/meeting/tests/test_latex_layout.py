@@ -15,8 +15,14 @@ class TestMeetingLayout(test_customizable_layout.TestCustomizableLayout,
     layer = LATEX_ZCML_LAYER
 
     def setUp(self):
-        super(TestMeetingLayout, self).setUp(
+        test_customizable_layout.TestCustomizableLayout.setUp(
+            self,
             context=self.create_dummy(getLanguage=lambda: 'de-ch'))
+        MockTestCase.setUp(self)
+
+    def tearDown(self):
+        MockTestCase.setUp(self)
+        test_customizable_layout.TestCustomizableLayout.setUp(self)
 
     def test_component_registered(self):
         context = self.providing_stub([IMeeting])
