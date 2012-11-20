@@ -5,7 +5,8 @@ Changelog
 1.4.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Start date can not be set after end date anymore.
+  [Julian Infanger]
 
 
 1.4 (2012-10-16)
