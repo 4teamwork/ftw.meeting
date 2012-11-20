@@ -1,5 +1,7 @@
 from AccessControl import ClassSecurityInfo
 from DateTime import DateTime
+from DateTime.interfaces import DateError, TimeError, DateTimeError
+from DateTime.interfaces import SyntaxError as DTSyntaxError
 from Products.ATContentTypes import ATCTMessageFactory as atct_mf
 from Products.ATContentTypes.content import folder
 from Products.ATContentTypes.lib.calendarsupport import CalendarSupportMixin
@@ -218,7 +220,7 @@ class Meeting(folder.ATFolder, CalendarSupportMixin):
     portal_type = "Meeting"
     schema = MeetingSchema
 
-    # copyed from Products.ATContentTypes.content.event.ATEvent
+    # based on Products.ATContentTypes.content.event.ATEvent
     security.declareProtected(permissions.View, 'post_validate')
     def post_validate(self, REQUEST=None, errors=None):
         """Validates start and end date
@@ -235,7 +237,8 @@ class Meeting(folder.ATFolder, CalendarSupportMixin):
         if rendDate:
             try:
                 end = DateTime(rendDate)
-            except:
+            except (DateError, TimeError, DateTimeError,
+                    DTSyntaxError, OverflowError):
                 errors['end_date'] = atct_mf(u'error_invalid_end_date',
                                       default=u'End date is not valid.')
         else:
@@ -243,7 +246,8 @@ class Meeting(folder.ATFolder, CalendarSupportMixin):
         if rstartDate:
             try:
                 start = DateTime(rstartDate)
-            except:
+            except (DateError, TimeError, DateTimeError,
+                    DTSyntaxError, OverflowError):
                 errors['start_date'] = _(u'error_invalid_start_date',
                                         default=u'Start date is not valid.')
         else:
