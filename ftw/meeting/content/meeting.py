@@ -1,7 +1,6 @@
 from AccessControl import ClassSecurityInfo
 from DateTime import DateTime
-from DateTime.interfaces import DateError, TimeError, DateTimeError
-from DateTime.interfaces import SyntaxError as DTSyntaxError
+from DateTime.interfaces import DateTimeError
 from Products.ATContentTypes import ATCTMessageFactory as atct_mf
 from Products.ATContentTypes.content import folder
 from Products.ATContentTypes.lib.calendarsupport import CalendarSupportMixin
@@ -237,8 +236,7 @@ class Meeting(folder.ATFolder, CalendarSupportMixin):
         if rendDate:
             try:
                 end = DateTime(rendDate)
-            except (DateError, TimeError, DateTimeError,
-                    DTSyntaxError, OverflowError):
+            except DateTimeError:
                 errors['end_date'] = atct_mf(u'error_invalid_end_date',
                                       default=u'End date is not valid.')
         else:
@@ -246,8 +244,7 @@ class Meeting(folder.ATFolder, CalendarSupportMixin):
         if rstartDate:
             try:
                 start = DateTime(rstartDate)
-            except (DateError, TimeError, DateTimeError,
-                    DTSyntaxError, OverflowError):
+            except DateTimeError:
                 errors['start_date'] = _(u'error_invalid_start_date',
                                         default=u'Start date is not valid.')
         else:
