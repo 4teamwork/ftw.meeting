@@ -30,7 +30,7 @@ MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
                 label=_(u"meeting_label_start_date",
                         default=u"Start Date"),
                 description=_(u"meeting_help_start_date",
-                              default=u"Enter the starting date and time, " + \
+                              default=u"Enter the starting date and time, "
                                   "or click the calendar icon and select it.")
                 )),
 
@@ -254,8 +254,9 @@ class Meeting(folder.ATFolder, CalendarSupportMixin):
             return
 
         if start > end:
-            errors['end_date'] = atct_mf(u'error_end_must_be_after_start_date',
-                                  default=u'End date must be after start date.')
+            errors['end_date'] = atct_mf(
+                u'error_end_must_be_after_start_date',
+                default=u'End date must be after start date.')
 
     def getAttendeesVocabulary(self):
         """Workaround for DatagridField SelectColumn
