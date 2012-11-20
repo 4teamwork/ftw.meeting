@@ -1,4 +1,7 @@
 from AccessControl import ClassSecurityInfo
+from DateTime import DateTime
+from DateTime.interfaces import DateTimeError
+from Products.ATContentTypes import ATCTMessageFactory as atct_mf
 from Products.ATContentTypes.content import folder
 from Products.ATContentTypes.lib.calendarsupport import CalendarSupportMixin
 from Products.ATReferenceBrowserWidget import ATReferenceBrowserWidget
@@ -28,7 +31,7 @@ MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
                 label=_(u"meeting_label_start_date",
                         default=u"Start Date"),
                 description=_(u"meeting_help_start_date",
-                              default=u"Enter the starting date and time, " + \
+                              default=u"Enter the starting date and time, "
                                   "or click the calendar icon and select it.")
                 )),
 
@@ -215,6 +218,46 @@ class Meeting(folder.ATFolder, CalendarSupportMixin):
 
     portal_type = "Meeting"
     schema = MeetingSchema
+
+    # based on Products.ATContentTypes.content.event.ATEvent
+    security.declareProtected(permissions.View, 'post_validate')
+    def post_validate(self, REQUEST=None, errors=None):
+        """Validates start and end date
+
+        End date must be after start date
+        """
+        if 'start_date' in errors or 'end_date' in errors:
+            # No point in validating bad input
+            return
+
+        rstartDate = REQUEST.get('start_date', None)
+        rendDate = REQUEST.get('end_date', None)
+
+        if rendDate:
+            try:
+                end = DateTime(rendDate)
+            except DateTimeError:
+                errors['end_date'] = atct_mf(u'error_invalid_end_date',
+                                      default=u'End date is not valid.')
+        else:
+            end = self.end()
+        if rstartDate:
+            try:
+                start = DateTime(rstartDate)
+            except DateTimeError:
+                errors['start_date'] = _(u'error_invalid_start_date',
+                                        default=u'Start date is not valid.')
+        else:
+            start = self.start()
+
+        if 'start_date' in errors or 'end_date' in errors:
+            # No point in validating bad input
+            return
+
+        if start > end:
+            errors['end_date'] = atct_mf(
+                u'error_end_must_be_after_start_date',
+                default=u'End date must be after start date.')
 
     def getAttendeesVocabulary(self):
         """Workaround for DatagridField SelectColumn

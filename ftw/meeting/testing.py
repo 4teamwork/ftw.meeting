@@ -4,7 +4,7 @@ from zope.configuration import xmlconfig
 from plone.app.testing import PloneSandboxLayer
 from plone.app.testing import applyProfile
 from plone.app.testing import PLONE_FIXTURE
-from plone.app.testing import IntegrationTesting
+from plone.app.testing import IntegrationTesting, FunctionalTesting
 from plone.testing import z2
 
 
@@ -46,14 +46,20 @@ class FtwMeetingLayer(PloneSandboxLayer):
     def setUpZope(self, app, configurationContext):
         # Load ZCML
         import ftw.poodle
-        xmlconfig.file('configure.zcml', ftw.poodle, context=configurationContext)
+        xmlconfig.file('configure.zcml',
+                       ftw.poodle,
+                       context=configurationContext)
         z2.installProduct(app, 'ftw.poodle')
 
         import ftw.meeting
-        xmlconfig.file('configure.zcml', ftw.meeting, context=configurationContext)
+        xmlconfig.file('configure.zcml',
+                       ftw.meeting,
+                       context=configurationContext)
 
         import Products.DataGridField
-        xmlconfig.file('configure.zcml', Products.DataGridField, context=configurationContext)
+        xmlconfig.file('configure.zcml',
+                       Products.DataGridField,
+                       context=configurationContext)
 
         # installProduct() is *only* necessary for packages outside
         # the Products.* namespace which are also declared as Zope 2 products,
@@ -71,5 +77,7 @@ class FtwMeetingLayer(PloneSandboxLayer):
 FTW_MEETING_FIXTURE = FtwMeetingLayer()
 FTW_MEETING_INTEGRATION_TESTING = IntegrationTesting(
     bases=(FTW_MEETING_FIXTURE,), name="FtwMeeting:Integration")
+FTW_MEETING_FUNCTIONAL_TESTING = FunctionalTesting(
+    bases=(FTW_MEETING_FIXTURE,), name="FtwMeeting:functional")
 
 LATEX_ZCML_LAYER = LatexZCMLLayer()
