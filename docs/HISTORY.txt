@@ -5,6 +5,9 @@ Changelog
 1.4.1 (unreleased)
 ------------------
 
+- Workspace details PDF: do not show empty listings.
+  [jone]
+
 - Start date can not be set after end date anymore.
   [Julian Infanger]
 
