@@ -45,8 +45,10 @@ class TestEventsListing(MockTestCase):
 
         self.meetings = []
         def get_catalog_result(query):
+            brains = []
             for obj in self.meetings:
-                yield self.create_dummy(getObject=lambda x=obj: obj)
+                brains.append(self.create_dummy(getObject=lambda: self.meetings.pop(0)))
+            return brains
 
         self.expect(portal_catalog(
                 {'path': '/path/to/workspace',
