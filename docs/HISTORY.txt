@@ -5,6 +5,9 @@ Changelog
 1.4.1 (unreleased)
 ------------------
 
+- PDF: handle empty field value conversion.
+  [jone]
+
 - Workspace details PDF: do not show empty listings.
   [jone]
 

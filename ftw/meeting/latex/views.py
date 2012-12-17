@@ -129,6 +129,8 @@ class MeetingView(RecursiveLaTeXView):
         vocabulary = field.Vocabulary(self.context)
         if vocabulary:
             return self.convert(self.context.displayValue(vocabulary, value))
+        elif not value:
+            return ''
         else:
             return self.convert(value)
 
