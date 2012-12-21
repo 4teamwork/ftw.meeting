@@ -2,6 +2,13 @@ Changelog
 =========
 
 
+1.4.0.1 (unreleased)
+--------------------
+
+- Use safe-html-transform for textfields (Secure audit).
+  [mathias.leimgruber]
+
+
 1.4 (2012-10-16)
 ----------------
 

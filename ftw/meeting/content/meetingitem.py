@@ -31,9 +31,11 @@ MeetingItemSchema = folder.ATFolderSchema.copy() + atapi.Schema((
             required=False,
             primary=True,
             default_content_type='text/html',
-            default_output_type='text/html',
+            allowable_content_types=('text/html',),
+            validators=('isTidyHtmlWithCleanup', ),
+            default_output_type='text/x-html-safe',
+            default_input_type='text/html',
             storage=atapi.AnnotationStorage(),
-
             widget=atapi.RichWidget(
                 label=_(u"meetingitem_label_text", default=u"Text"),
                 description=_(u"meetingitem_help_text",
@@ -46,9 +48,11 @@ MeetingItemSchema = folder.ATFolderSchema.copy() + atapi.Schema((
             required=False,
             primary=False,
             default_content_type='text/html',
-            default_output_type='text/html',
+            allowable_content_types=('text/html',),
+            validators=('isTidyHtmlWithCleanup', ),
+            default_output_type='text/x-html-safe',
+            default_input_type='text/html',
             storage=atapi.AnnotationStorage(),
-
             widget=atapi.RichWidget(
                 label=_(u"meetingitem_label_conclusion",
                         default=u"Conclusion"),
