@@ -4,7 +4,7 @@
 </%block>
 
 % if meetingForm:
-  {\bf ${meetingForm}} \\ %%
+  \textbf{${meetingForm}} \\ %%
 % endif
 
 \vspace{\baselineskip}
@@ -14,10 +14,10 @@
 \setlength\tabcolsep{0pt}
 \begin{tabular}{p{.3\textwidth}p{.7\textwidth}}
   % for label, value in metadata:
-    {\bf ${label}} & ${value} \\ %%
+    \textbf{${label}} & ${value} \\ %%
   % endfor
   % if meetingItems:
-    {\bf ${_(u'latex_label_agenda_items', default=u'Agenda Items')}} & {
+    \textbf{${_(u'latex_label_agenda_items', default=u'Agenda Items')}} & {
     \vspace{-0.8\baselineskip} \begin{enumerate}[leftmargin=*]
     % for item in meetingItems:
       \item{${item}}

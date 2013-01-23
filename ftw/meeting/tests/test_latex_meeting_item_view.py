@@ -68,8 +68,8 @@ class TestMeetingItemView(MockTestCase):
             args,
             {'title': 'Introduction',
              'responsibles': ['Hugo Boss'],
-             'text': 'agenda {\\bf item} text',
-             'conclusion': 'the {\\bf conclusion}',
+             'text': 'agenda \\textbf{item} text',
+             'conclusion': 'the \\textbf{conclusion}',
              'relatedItems': [{'title': 'a file',
                                'url': '/item/a\\%20file'}]})
 
