@@ -3,13 +3,13 @@
 $(function(){
     var $start = $('div#archetypes-fieldname-start_date');
     var $end = $('div#archetypes-fieldname-end_date');
-    
+
     $start.bind('calendar_after_change', function(e){
         // Get date infos from start_date field
         var year = $('[id*=year]', $start).attr('value');
         var month = $('[id*=month]', $start).attr('value');
         var day = $('[id*=day]', $start).attr('value');
-        
+
         // Update them on end_date field, only if end date is empty
         var end_year = $('[id*=year]', $end);
         var end_month = $('[id*=month]', $end);
@@ -19,8 +19,8 @@ $(function(){
             $('[id*=month]', $end).attr('value', month);
             $('[id*=day]', $end).attr('value', day);
         }
-        
-        
+
+
     });
-    
+
 });

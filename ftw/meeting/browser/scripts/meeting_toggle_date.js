@@ -70,6 +70,6 @@ function MeetingItemToggler(){
                     }
 
 
-            }).children('.meetingItemActions').click(function(event) {event.stopPropagation();});;
+            }).children('.meetingItemActions').click(function(event) {event.stopPropagation();});
     }
 $(MeetingItemToggler);
