@@ -5,6 +5,9 @@ Changelog
 1.4.2 (unreleased)
 ------------------
 
+- Replace jq by $.
+  [mathias.leimgruber]
+
 - Use local text formatting command \textbf instead of {\bf }.
   [jone]
 
