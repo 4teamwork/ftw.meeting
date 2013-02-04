@@ -1,6 +1,6 @@
 // This script is placed here, because AT cannot use ++resources++
 
-$(function(){
+jQuery(function($){
     var $start = $('div#archetypes-fieldname-start_date');
     var $end = $('div#archetypes-fieldname-end_date');
 
