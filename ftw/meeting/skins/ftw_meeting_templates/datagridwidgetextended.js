@@ -368,23 +368,23 @@ dataGridFieldFunctionsExtended.selectAll = function(id, column) {
     var rows = object.getRows(tbody);    
 
     //remove all rows
-    jq(rows).each(function(i,o){
+    $(rows).each(function(i,o){
       if(o.id != 'datagridwidget-empty-row'){
-        jq(o).remove();
+        $(o).remove();
       }
     });
 
     var lastRow = rows[rows.length-1];
     var oldRows = rows.length;
     var select_row = id+'.'+column;
-    var allPossible = jq('.datagridwidget-empty-row [name*='+select_row+'] option');
+    var allPossible = $('.datagridwidget-empty-row [name*='+select_row+'] option');
     allPossible.each(function(i,o){
-        var $o = jq(o);
+        var $o = $(o);
         var val = $o.attr('value');
         if (val){
             var newtr = object.createNewRow(lastRow);
             var newNode = lastRow.parentNode.insertBefore(newtr, lastRow);
-            jq('option[value='+val+']', newNode).attr('selected', 'selected'); 
+            $('option[value='+val+']', newNode).attr('selected', 'selected'); 
             lastRow = rows[rows.length-1];
             rows = object.getRows(tbody);
         }
