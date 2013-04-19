@@ -35,3 +35,7 @@ Copyright
 This package is copyright by `4teamwork <http://www.4teamwork.ch/>`_.
 
 ``ftw.meeting`` is licensed under GNU General Public License, version 2.
+
+.. image:: https://cruel-carlota.pagodabox.com/2994a795dbcb396c10889340bce7fdfb
+   :alt: githalytics.com
+   :target: http://githalytics.com/4teamwork/ftw.meeting
