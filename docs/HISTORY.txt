@@ -8,6 +8,10 @@ Changelog
 - Fix JS toggling of meeting content.
   [treinhard]
 
+- Avoid exception with PDF generation if 'head_of_meeting'
+  (or another field that uses a vocabulary) is empty.
+  [treinhard]
+
 
 1.4.2 (2013-03-11)
 ------------------
