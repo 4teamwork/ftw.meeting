@@ -1,4 +1,3 @@
-
 function MeetingTypeSelector(){
   var inpute_meeting_types = $('input[name=meeting_type]');
 
@@ -61,11 +60,11 @@ function MeetingItemToggler(){
                 var meetingBody = $('#'+parentItem.attr('id') + ' .MeetingItemBody');
 
                 if (meetingBody.css('display') != 'none'){
-                        $('#'+parentItem.attr('id') + ' .MeetingItemBody').hide('blind', 100);
+                        $('#'+parentItem.attr('id') + ' .MeetingItemBody').hide(100);
                         $('#'+parentItem.attr('id') + ' .MeetingItemHead .toggleImage').attr('src',portal_url+'/++resource++meeting-styles/arrow_right.png');
                     }
                 else {
-                        $('#'+parentItem.attr('id') + ' .MeetingItemBody').show('blind', 100);
+                        $('#'+parentItem.attr('id') + ' .MeetingItemBody').show(100);
                         $('#'+parentItem.attr('id') + ' .MeetingItemHead .toggleImage').attr('src',portal_url+'/++resource++meeting-styles/arrow_down.png');
                     }
 

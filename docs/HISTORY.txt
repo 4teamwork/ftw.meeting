@@ -5,7 +5,8 @@ Changelog
 1.4.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix JS toggling of meeting content.
+  [treinhard]
 
 
 1.4.2 (2013-03-11)
