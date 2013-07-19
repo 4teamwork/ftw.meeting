@@ -5,6 +5,9 @@ Changelog
 1.4.3 (unreleased)
 ------------------
 
+- Add permissionmapping for ftw.lawgiver
+  [elioschmutz]
+
 - Fix JS toggling of meeting content.
   [treinhard]
 
