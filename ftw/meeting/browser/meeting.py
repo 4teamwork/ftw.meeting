@@ -1,4 +1,5 @@
 from Products.Five.browser import BrowserView
+from plone.app.layout.viewlets.content import ContentRelatedItems
 
 
 class MeetingView(BrowserView):
@@ -20,3 +21,8 @@ class MeetingView(BrowserView):
                      Creator=b.Creator,
                      icon='%s/%s' % (context.portal_url(), b.getIcon))
                 for b in raw]
+
+
+    def get_related_items(self, obj):
+        brains = ContentRelatedItems(obj, obj.REQUEST, self).related_items()
+        return brains

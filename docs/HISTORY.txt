@@ -5,6 +5,10 @@ Changelog
 1.4.3 (unreleased)
 ------------------
 
+- ContentRelatedItems was deprecated in Plone 4.0.10 and removed aprox. in 4.2
+  Use the method defined the related content viewlet.
+  [mathias.leimgruber]
+
 - Add permissionmapping for ftw.lawgiver
   [elioschmutz]
 
