@@ -255,7 +255,7 @@
                                             </table>
                                         </td>
                                     </tr>
-                                    <tr tal:define="related python:obj.computeRelatedItems()" tal:condition="related">
+                                    <tr tal:define="related python:view.get_related_items(obj)" tal:condition="related">
                                         <th><span i18n:translate="meeting_label_relations">Relations</span></th>
                                         <td>
                                             <tal:block tal:condition="python:related">
