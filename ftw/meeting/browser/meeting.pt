@@ -156,7 +156,7 @@
                             <tal:block tal:content="here/Description" />
                         </td>
                     </tr>
-                    <tr tal:condition="python:context.start() and context.end()">
+                    <tr class="ical_export" tal:condition="python:context.start() and context.end()">
                         <th><span i18n:translate="meeting_label_export">Export</span></th>
                         <td>
                             <img height="16" width="16" title="iCal" alt=""
