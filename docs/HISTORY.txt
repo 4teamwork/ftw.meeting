@@ -6,6 +6,7 @@ Changelog
 ------------------
 
 - Fix generate meeting from poodle js.
+- Replace jq with $.
   [mathias.leimgruber]
 
 - Add div-element arount ics export for better css selectors
