@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-1.4.3 (unreleased)
+1.4.3 (2013-08-23)
 ------------------
 
 - Fix generate meeting from poodle js.
