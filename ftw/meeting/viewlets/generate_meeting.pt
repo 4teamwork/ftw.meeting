@@ -29,7 +29,7 @@
                 jq('[name=start_generate]').bind('click', function(e){
                 e.stopPropagation();
                 e.preventDefault();
-                var form_data = jq('[name=generate_meeting]').serializeArray();
+                var form_data = jq('[name="generate_meeting"]').serializeArray();
                 var base_href = jq('base')[0].href;
                 jq.post(base_href + '/create_meeting_from_poodle', form_data, function(callback){
                 jq('.portalMessage').slice(-1).after(callback);

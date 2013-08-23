@@ -5,6 +5,9 @@ Changelog
 1.4.3 (unreleased)
 ------------------
 
+- Fix generate meeting from poodle js.
+  [mathias.leimgruber]
+
 - Add div-element arount ics export for better css selectors
   [elioschmutz]
 
