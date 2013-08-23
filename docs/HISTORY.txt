@@ -5,6 +5,9 @@ Changelog
 1.4.3 (unreleased)
 ------------------
 
+- Add div-element arount ics export for better css selectors
+  [elioschmutz]
+
 - ContentRelatedItems was deprecated in Plone 4.0.10 and removed aprox. in 4.2
   Use the method defined the related content viewlet.
   [mathias.leimgruber]
