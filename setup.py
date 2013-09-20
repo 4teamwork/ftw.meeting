@@ -50,7 +50,7 @@ setup(name='ftw.meeting',
       zip_safe=False,
 
       install_requires=[
-        'Products.DataGridField',
+        'Products.DataGridField>=1.9',
         'setuptools',
         'ftw.calendarwidget',
         'plone.principalsource',
