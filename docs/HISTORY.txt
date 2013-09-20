@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-1.4.4 (unreleased)
+1.4.4 (2013-09-20)
 ------------------
 
 - Implement Products.DataGridField 1.9 compatibility.
