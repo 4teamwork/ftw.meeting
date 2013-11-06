@@ -10,6 +10,17 @@ from zope.i18nmessageid import Message
 from zope.interface import Interface
 
 
+def get_value_from_vocab(vocabulary, value):
+    if hasattr(value, '__iter__'):
+        vocab_value = []
+        for val in value:
+            vocab_value.append(vocabulary.getValue(val))
+        return ', '.join(vocab_value)
+
+    else:
+        return vocabulary.getValue(value)
+
+
 class MeetingView(RecursiveLaTeXView):
     adapts(IMeeting, Interface, ILaTeXLayout)
 
@@ -130,7 +141,8 @@ class MeetingView(RecursiveLaTeXView):
         if vocabulary:
             if not value:
                 return ''
-            return self.convert(self.context.displayValue(vocabulary, value))
+            return self.convert(get_value_from_vocab(vocabulary, value))
+
         elif not value:
             return ''
         else:
