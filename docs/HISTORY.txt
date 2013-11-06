@@ -5,6 +5,9 @@ Changelog
 1.4.5 (unreleased)
 ------------------
 
+- BugFix: also apply the prev. fix for the meetingitem.
+  [mathias.leimgruber]
+
 - BugFix: meeting latex shows id instead of fullname.
   [mathias.leimgruber]
 
