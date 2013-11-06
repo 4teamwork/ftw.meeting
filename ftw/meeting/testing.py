@@ -1,11 +1,15 @@
+from ftw.builder.testing import BUILDER_LAYER
+from ftw.builder.testing import functional_session_factory
+from ftw.builder.testing import set_builder_session_factory
+from plone.app.testing import applyProfile
+from plone.app.testing import IntegrationTesting, FunctionalTesting
+from plone.app.testing import PLONE_FIXTURE
+from plone.app.testing import PloneSandboxLayer
 from plone.testing import Layer
+from plone.testing import z2
 from plone.testing import zca
 from zope.configuration import xmlconfig
-from plone.app.testing import PloneSandboxLayer
-from plone.app.testing import applyProfile
-from plone.app.testing import PLONE_FIXTURE
-from plone.app.testing import IntegrationTesting, FunctionalTesting
-from plone.testing import z2
+import ftw.meeting.tests.builders
 
 
 class LatexZCMLLayer(Layer):
@@ -41,7 +45,7 @@ class LatexZCMLLayer(Layer):
 
 class FtwMeetingLayer(PloneSandboxLayer):
 
-    defaultBases = (PLONE_FIXTURE,)
+    defaultBases = (PLONE_FIXTURE, BUILDER_LAYER)
 
     def setUpZope(self, app, configurationContext):
         # Load ZCML
@@ -78,6 +82,8 @@ FTW_MEETING_FIXTURE = FtwMeetingLayer()
 FTW_MEETING_INTEGRATION_TESTING = IntegrationTesting(
     bases=(FTW_MEETING_FIXTURE,), name="FtwMeeting:Integration")
 FTW_MEETING_FUNCTIONAL_TESTING = FunctionalTesting(
-    bases=(FTW_MEETING_FIXTURE,), name="FtwMeeting:functional")
+    bases=(FTW_MEETING_FIXTURE,
+           set_builder_session_factory(functional_session_factory)),
+    name="FtwMeeting:functional")
 
 LATEX_ZCML_LAYER = LatexZCMLLayer()
