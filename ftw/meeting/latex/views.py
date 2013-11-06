@@ -188,8 +188,7 @@ class MeetingItemView(MakoLaTeXView):
 
         for user in self.context.getResponsibility():
             responsibles.append(self.convert(
-                    self.context.displayValue(
-                        vocabulary, user)))
+                get_value_from_vocab(vocabulary, user)))
 
         return responsibles
 

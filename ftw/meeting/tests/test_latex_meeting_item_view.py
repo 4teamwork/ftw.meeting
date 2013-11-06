@@ -5,9 +5,9 @@ from ftw.meeting.testing import LATEX_ZCML_LAYER
 from ftw.pdfgenerator.interfaces import IBuilder
 from ftw.pdfgenerator.interfaces import ILaTeXView
 from ftw.testing import MockTestCase
+from mocker import ANY
 from zope.component import getMultiAdapter
 from zope.interface.verify import verifyClass
-
 
 
 class TestMeetingItemView(MockTestCase):
@@ -44,7 +44,7 @@ class TestMeetingItemView(MockTestCase):
         self.expect(responsibility.get(self.context)).result('hugo.boss')
         self.expect(responsibility.Vocabulary(self.context)).result(
             responsibility)
-        self.expect(self.context.displayValue(responsibility, 'hugo.boss')
+        self.expect(responsibility.getValue(ANY)
                     ).result('Hugo Boss')
         self.expect(self.context.getResponsibility()).result(['hugo.boss'])
 
