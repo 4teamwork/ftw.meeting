@@ -377,14 +377,14 @@ dataGridFieldFunctionsExtended.selectAll = function(id, column) {
     var lastRow = rows[rows.length-1];
     var oldRows = rows.length;
     var select_row = id+'.'+column;
-    var allPossible = $('.datagridwidget-empty-row [name*='+select_row+'] option');
+    var allPossible = $('.datagridwidget-empty-row [name*="' + select_row + '"] option');
     allPossible.each(function(i,o){
         var $o = $(o);
         var val = $o.attr('value');
         if (val){
             var newtr = object.createNewRow(lastRow);
             var newNode = lastRow.parentNode.insertBefore(newtr, lastRow);
-            $('option[value='+val+']', newNode).attr('selected', 'selected');
+            $('option[value="' + val + '"]', newNode).attr('selected', 'selected');
             lastRow = rows[rows.length-1];
             rows = object.getRows(tbody);
         }

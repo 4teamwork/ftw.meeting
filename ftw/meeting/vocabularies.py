@@ -1,6 +1,6 @@
 from ftw.meeting import meetingMessageFactory as _
 from zope import schema, component
-from zope.app.component.hooks import getSite
+from zope.component.hooks import getSite
 from zope.interface import implements
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleVocabulary
