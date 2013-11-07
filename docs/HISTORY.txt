@@ -5,6 +5,9 @@ Changelog
 1.4.5 (unreleased)
 ------------------
 
+- Rewrite meeting latex view tests (No mocking anymore).
+  [mathias.leimgruber]
+
 - Plone 4.3 compatibility (imports and jQuery).
   [mathias.leimgruber]
 
