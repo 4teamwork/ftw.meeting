@@ -5,6 +5,10 @@ Changelog
 1.4.5 (unreleased)
 ------------------
 
+- BugFix: meetingitem listing use getURL instead of absolute_url.
+  ContentRelatedItems returns brains.
+  [mathias.leimgruber]
+
 - BugFix: also apply the prev. fix for the meetingitem.
   [mathias.leimgruber]
 
