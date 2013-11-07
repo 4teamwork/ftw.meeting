@@ -2,18 +2,19 @@ from DateTime import DateTime
 from ftw.builder import Builder
 from ftw.builder import create
 from ftw.meeting.latex.layout import MeetingLayout
+from ftw.meeting.latex.views import get_value_from_vocab
 from ftw.meeting.latex.views import MeetingView
 from ftw.meeting.testing import FTW_MEETING_INTEGRATION_TESTING
-from ftw.pdfgenerator.interfaces import ILaTeXView
-from zope.component import getMultiAdapter
-from zope.interface.verify import verifyClass
 from ftw.pdfgenerator.interfaces import IBuilderFactory
-from zope.component import getUtility
+from ftw.pdfgenerator.interfaces import ILaTeXView
 from plone.app.testing import login
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
 from plone.app.testing import TEST_USER_NAME
 from unittest2 import TestCase
+from zope.component import getMultiAdapter
+from zope.component import getUtility
+from zope.interface.verify import verifyClass
 
 
 class TestMeetingView(TestCase):
@@ -144,3 +145,23 @@ class TestMeetingView(TestCase):
              'meetingItems': ['Foo', 'Bar']})
 
         view.render()
+
+    def test_meetingview_get_value_from_vocab(self):
+        meeting = create(Builder('meeting')
+                         .titled('Meeting')
+                         .having(start_date=DateTime('08/20/2010 08:00'),
+                                 end_date=DateTime('08/20/2010 10:00'),
+                                 head_of_meeting=self.user1.getId()))
+
+        vocab = meeting.getField('head_of_meeting').Vocabulary(meeting)
+        self.assertEquals(self.user1.getProperty('fullname'),
+                          get_value_from_vocab(vocab, self.user1.getId()))
+
+        # Edge case, currently not in use in this package
+        vocab = meeting.getAttendeesVocabulary()
+
+        attendees = ', '.join((self.user1.getProperty('fullname'),
+                               TEST_USER_NAME))
+        self.assertEquals(attendees, get_value_from_vocab(
+            vocab,
+            (self.user1.getId(), TEST_USER_NAME)))
