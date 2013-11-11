@@ -53,7 +53,9 @@ class TestMeetingItemView(MockTestCase):
             'the <b>conclusion</b>')
         self.expect(self.context.getRelated_items()).result([
                 self.create_dummy(Title=lambda: 'a file',
-                                  absolute_url=lambda: '/item/a%20file')])
+                                  absolute_url=lambda: '/item/a%20file'),
+                self.create_dummy(Title=lambda: 'a file',
+                                  absolute_url=lambda: '/item/a-file')])
 
         self.replay()
 
@@ -71,6 +73,8 @@ class TestMeetingItemView(MockTestCase):
              'text': 'agenda \\textbf{item} text',
              'conclusion': 'the \\textbf{conclusion}',
              'relatedItems': [{'title': 'a file',
-                               'url': '/item/a\\%20file'}]})
+                               'url': '/item/a\\%20file'},
+                              {'title': 'a file',
+                               'url': '/item/a-file'}]})
 
         view.render()
