@@ -5,6 +5,10 @@ Changelog
 1.4.5 (unreleased)
 ------------------
 
+- Fix PDF rendering of meeting item's related items.
+  Remove manually footnotes with \url and use standard <a> tag converter.
+  [jone]
+
 - Rewrite meeting latex view tests (No mocking anymore).
   [mathias.leimgruber]
 
