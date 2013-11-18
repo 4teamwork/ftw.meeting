@@ -196,8 +196,8 @@ class MeetingItemView(MakoLaTeXView):
         items = []
 
         for obj in self.context.getRelated_items():
-            items.append({
-                    'title': self.convert(obj.Title()),
-                    'url': self.convert(obj.absolute_url())})
+            items.append(self.convert('<a href="%s">%s</a>' % (
+                        obj.absolute_url(),
+                        obj.Title())))
 
         return items

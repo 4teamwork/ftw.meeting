@@ -51,9 +51,12 @@ class TestMeetingItemView(MockTestCase):
         self.expect(self.context.getText()).result('agenda <b>item</b> text')
         self.expect(self.context.getConclusion()).result(
             'the <b>conclusion</b>')
+        self.expect(self.context.absolute_url()).result('http://nohost/plone/item')
         self.expect(self.context.getRelated_items()).result([
                 self.create_dummy(Title=lambda: 'a file',
-                                  absolute_url=lambda: '/item/a%20file')])
+                                  absolute_url=lambda: '/item/a%20file'),
+                self.create_dummy(Title=lambda: 'a file',
+                                  absolute_url=lambda: '/item/a-file')])
 
         self.replay()
 
@@ -70,7 +73,11 @@ class TestMeetingItemView(MockTestCase):
              'responsibles': ['Hugo Boss'],
              'text': 'agenda \\textbf{item} text',
              'conclusion': 'the \\textbf{conclusion}',
-             'relatedItems': [{'title': 'a file',
-                               'url': '/item/a\\%20file'}]})
+             'relatedItems': [
+                    r'\href{/item/a\%20file}{a file\footnote{' +\
+                        r'\href{/item/a\%20file}{/""item/""a\%20file}}}',
+
+                    r'\href{/item/a-file}{a file\footnote{' +\
+                        r'\href{/item/a-file}{/""item/""a-file}}}']})
 
         view.render()
