@@ -139,7 +139,7 @@ class TaskListingLaTeXView(MakoLaTeXView):
                                            context=self.request))
 
     def _get_meeting_tasks(self):
-        for obj in self.context.computeRelatedItems():
+        for obj in self.context.getRelated_items():
             if obj.portal_type == 'Task':
                 yield obj
 
@@ -147,6 +147,6 @@ class TaskListingLaTeXView(MakoLaTeXView):
         for item in self.context.getFolderContents(
             {'portal_type': 'Meeting Item'}, full_objects=True):
 
-            for obj in item.computeRelatedItems():
+            for obj in item.getRelated_items():
                 if obj.portal_type == 'Task':
                     yield obj
