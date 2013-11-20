@@ -60,6 +60,11 @@ class FtwMeetingLayer(PloneSandboxLayer):
                        ftw.meeting,
                        context=configurationContext)
 
+        import ftw.task
+        xmlconfig.file('configure.zcml',
+                       ftw.task,
+                       context=configurationContext)
+
         import Products.DataGridField
         xmlconfig.file('configure.zcml',
                        Products.DataGridField,
@@ -70,12 +75,14 @@ class FtwMeetingLayer(PloneSandboxLayer):
         # using <five:registerPackage /> in ZCML.
         z2.installProduct(app, 'ftw.meeting')
         z2.installProduct(app, 'Products.DataGridField')
+        z2.installProduct(app, 'ftw.task')
 
     def setUpPloneSite(self, portal):
         # Install into Plone site using portal_setup
         applyProfile(portal, 'ftw.poodle:default')
         applyProfile(portal, 'Products.DataGridField:default')
         applyProfile(portal, 'ftw.meeting:file')
+        applyProfile(portal, 'ftw.task:default')
 
 
 FTW_MEETING_FIXTURE = FtwMeetingLayer()

@@ -11,6 +11,7 @@ tests_require = [
     'ftw.workspace',
     'ftw.poodle',
     'ftw.builder',
+    'ftw.task',
     ]
 
 extras_require = {

@@ -14,3 +14,10 @@ class MeetingItemBuilder(ArchetypesBuilder):
     portal_type = 'Meeting Item'
 
 builder_registry.register('meeting item', MeetingItemBuilder)
+
+
+class TaskBuilder(ArchetypesBuilder):
+
+    portal_type = 'Task'
+
+builder_registry.register('task', TaskBuilder)
