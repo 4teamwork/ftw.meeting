@@ -75,9 +75,9 @@ class TestMeetingItemView(MockTestCase):
              'conclusion': 'the \\textbf{conclusion}',
              'relatedItems': [
                     r'\href{/item/a\%20file}{a file\footnote{' +\
-                        r'\href{/item/a\%20file}{/""item/""a\%20file}}}',
+                        r'\href{/item/a\%20file}{\url{/item/a\%20file}}}}',
 
                     r'\href{/item/a-file}{a file\footnote{' +\
-                        r'\href{/item/a-file}{/""item/""a-file}}}']})
+                        r'\href{/item/a-file}{\url{/item/a-file}}}}']})
 
         view.render()
