@@ -25,15 +25,13 @@ Changelog
 1.4.6 (2013-11-18)
 ------------------
 
-- Nothing changed yet.
+- Fix PDF rendering of meeting item's related items.
+  Remove manually footnotes with \url and use standard <a> tag converter.
+  [jone]
 
 
 1.4.5 (2013-11-15)
 ------------------
-
-- Fix PDF rendering of meeting item's related items.
-  Remove manually footnotes with \url and use standard <a> tag converter.
-  [jone]
 
 - Rewrite meeting latex view tests (No mocking anymore).
   [mathias.leimgruber]
