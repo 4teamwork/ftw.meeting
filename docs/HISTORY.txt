@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-1.4.9 (unreleased)
+1.4.9 (2014-03-20)
 ------------------
 
 - Increase height of meeting item fields.
