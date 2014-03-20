@@ -40,7 +40,7 @@ MeetingItemSchema = folder.ATFolderSchema.copy() + atapi.Schema((
                 label=_(u"meetingitem_label_text", default=u"Text"),
                 description=_(u"meetingitem_help_text",
                               default=u"Enter the text."),
-                rows=10)),
+                rows=20)),
 
         atapi.TextField(
             name='conclusion',
@@ -59,7 +59,7 @@ MeetingItemSchema = folder.ATFolderSchema.copy() + atapi.Schema((
                 description=_(
                     u"meetingitem_help_conclusion",
                     default=u"Enter the conclusion drawn for this resolution"),
-                rows=10)),
+                rows=20)),
 
         atapi.ReferenceField(
             name='related_items',

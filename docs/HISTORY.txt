@@ -5,7 +5,8 @@ Changelog
 1.4.9 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Increase height of meeting item fields.
+  [jone]
 
 
 1.4.8 (2014-02-10)
