@@ -1,7 +1,10 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:upgrade-step="http://namespaces.zope.org/ftw.upgrade"
     i18n_domain="ftw.meeting">
+
+    <include package="ftw.upgrade" file="meta.zcml" />
 
     <!-- 1.0 -> 1301 -->
     <genericsetup:upgradeStep
@@ -41,4 +44,12 @@
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
 
+    <!-- 1400 -> 1401 -->
+    <upgrade-step:importProfile
+        title="Add save as pdf action for Meeting-types"
+        profile="ftw.meeting:default"
+        source="1400"
+        destination="1401"
+        directory="profiles/1401"
+        />
 </configure>

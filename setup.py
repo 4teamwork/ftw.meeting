@@ -7,6 +7,7 @@ maintainer = 'Mathias Leimgruber'
 tests_require = [
     'plone.app.testing',
     'ftw.pdfgenerator',
+    'ftw.testbrowser',
     'ftw.testing',
     'ftw.workspace',
     'ftw.poodle',
