@@ -7,13 +7,14 @@ from Products.statusmessages.interfaces import IStatusMessage
 from zope.component import getMultiAdapter
 
 
+CONTENTTYPE = 'File'
+PREFIX = 'pdf_'
+
+
 class SaveAsPDF(BrowserView):
-    """Meeting View
+    """View to create a pdf version of the meeting
+    and save it as a sister node.
     """
-
-    CONTENTTYPE = 'File'
-    PREFIX = 'pdf_'
-
     def __call__(self):
         self.save_as_pdf()
 
@@ -21,29 +22,32 @@ class SaveAsPDF(BrowserView):
             aq_inner(self.context).absolute_url())
 
     def save_as_pdf(self):
-        pdf_data = self._get_pdf_data()
-        pdf = self._create_pdf_object(pdf_data)
-        self._set_related_items(pdf)
+        pdf = self._create_pdf_object(self.pdf_data, self.filename)
+        self.context.setPdf_representation(pdf)
         self._add_portal_message()
 
         return pdf
 
-    def _create_pdf_object(self, data):
-        title = self.context.Title()
+    @property
+    def filename(self):
+        return '{0}.pdf'.format(self.context.Title())
+
+    @property
+    def pdf_data(self):
+        return getMultiAdapter(
+            (self.context, self.request), IPDFAssembler).build_pdf()
+
+    def _create_pdf_object(self, data, filename):
         pdf_id = self._parent.invokeFactory(
-            self.CONTENTTYPE, self._get_id(),
-            title=title)
+            CONTENTTYPE, self._get_id(),
+            title=self.context.Title())
         pdf = self._parent.get(pdf_id)
         pdf.setFile(data)
-        pdf.getFile().setFilename('{0}.pdf'.format(title))
+        pdf.getFile().setFilename(filename)
 
         pdf.processForm()
 
         return pdf
-
-    def _set_related_items(self, item):
-        self.context.setRelated_items(
-            self.context.getRelated_items() + [item])
 
     def _add_portal_message(self):
         msg = _(u'message_pdf_creation_was_successfully',
@@ -51,17 +55,13 @@ class SaveAsPDF(BrowserView):
         IStatusMessage(self.request).addStatusMessage(msg, type='info')
 
     def _get_id(self):
-        base_id = new_id = self.PREFIX + self.context.getId()
+        base_id = new_id = PREFIX + self.context.getId()
         counter = 0
         while new_id in self._parent.objectIds():
             counter += 1
             new_id = '{0}-{1}'.format(base_id, counter)
 
         return new_id
-
-    def _get_pdf_data(self):
-        return getMultiAdapter(
-            (self.context, self.request), IPDFAssembler).build_pdf()
 
     @property
     def _parent(self):

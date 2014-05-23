@@ -10,8 +10,9 @@ tests_require = [
     'ftw.testbrowser',
     'ftw.testing',
     'ftw.workspace',
-    'ftw.poodle',
     'ftw.builder',
+    'ftw.zipexport',
+    'ftw.poodle',
     'ftw.task',
     ]
 
@@ -21,7 +22,9 @@ extras_require = {
         'ftw.pdfgenerator',
         ],
     'task': [
-        'ftw.task']}
+        'ftw.task'],
+    'zipexport': [
+        'ftw.zipexport']}
 
 setup(name='ftw.meeting',
       version=version,

@@ -65,6 +65,11 @@ class FtwMeetingLayer(PloneSandboxLayer):
                        ftw.task,
                        context=configurationContext)
 
+        import ftw.zipexport
+        xmlconfig.file('configure.zcml',
+                       ftw.zipexport,
+                       context=configurationContext)
+
         import Products.DataGridField
         xmlconfig.file('configure.zcml',
                        Products.DataGridField,

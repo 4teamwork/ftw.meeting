@@ -113,26 +113,26 @@ class TestSaveAsPdfIntegration(unittest.TestCase):
         meeting = create(Builder('meeting').titled('james'))
 
         view = getMultiAdapter((meeting, self.request), name="save_as_pdf")
-        view.PREFIX = "PDF_"
         pdf = view.save_as_pdf()
-        self.assertEqual('PDF_james', pdf.getId())
+        self.assertEqual('pdf_james', pdf.getId())
 
-    def test_referencing_created_pdf(self):
+    def test_add_created_pdf_to_the_pdf_representation_field(self):
         meeting = create(Builder('meeting'))
 
         view = getMultiAdapter((meeting, self.request), name="save_as_pdf")
         pdf = view.save_as_pdf()
-        self.assertEqual([pdf], meeting.getRelated_items())
+        self.assertEqual(pdf, meeting.getPdf_representation())
 
-    def test_add_a_new_reference_for_each_call(self):
+    def test_always_save_the_newest_pdf_in_pdf_repr_field(self):
         meeting = create(Builder('meeting'))
 
         view = getMultiAdapter((meeting, self.request), name="save_as_pdf")
+
         pdf_1 = view.save_as_pdf()
-        pdf_2 = view.save_as_pdf()
+        self.assertEqual(pdf_1, meeting.getPdf_representation())
 
-        self.assertIn(pdf_1, meeting.getRelated_items())
-        self.assertIn(pdf_2, meeting.getRelated_items())
+        pdf_2 = view.save_as_pdf()
+        self.assertEqual(pdf_2, meeting.getPdf_representation())
 
     def tearDown(self):
         site_manager = self.portal.getSiteManager()
