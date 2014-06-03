@@ -182,8 +182,16 @@ MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
                               default=u""),
                 visible={'edit': 'visible', 'view': 'invisible'}
                 )),
-
-        ))
+        atapi.ReferenceField(
+            name='pdf_representation',
+            relationship='pdfRepresentation',
+            multiValued=False,
+            schemata='default',
+            languageIndependent=False,
+            widget=ATReferenceBrowserWidget.ReferenceBrowserWidget(
+                visible={'edit': 'invisible', 'view': 'invisible'}
+            )),
+    ))
 
 
 MeetingSchema.changeSchemataForField('effectiveDate', 'settings')

@@ -38,7 +38,9 @@
                 tal:define="templateId template/getId;
                             normalizeString nocall: context/@@plone/normalizeString;
                             meeting_type python:context.getMeeting_type();
-                            mtool context/@@plone_tools/membership">
+                            mtool context/@@plone_tools/membership;
+                            toLocalizedTime nocall:context/@@plone/toLocalizedTime;">
+
 
 
                 <table class="vertical listing MeetingListing">
@@ -166,6 +168,18 @@
                                i18n:translate=""
                                i18n:attributes="title">
                                 iCal
+                            </a>
+                        </td>
+                    </tr>
+                    <tr class="pdf_representation" tal:condition="context/getPdf_representation | nothing">
+                        <th><span i18n:translate="meeting_label_pdf">PDF representation</span></th>
+                        <td>
+                            <a tal:attributes="href python:context.getPdf_representation().absolute_url() + '/download'" title="Download PDF representation"
+                               i18n:attributes="title">
+
+                               <span i18n:translate="meeting_link_pdf">
+                                Download (created on: <span tal:content="python:toLocalizedTime(context.getPdf_representation().created())" i18n:name="date">xx.xx.xxxx</span>)
+                                </span>
                             </a>
                         </td>
                     </tr>

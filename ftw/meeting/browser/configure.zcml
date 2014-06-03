@@ -32,6 +32,12 @@
         permission="cmf.ModifyPortalContent"
         />
 
+    <browser:page
+        for="..interfaces.IMeeting"
+        name="save_as_pdf"
+        class=".save_as_pdf.SaveAsPDF"
+        permission="cmf.ModifyPortalContent"
+        />
 
     <configure zcml:condition="installed ftw.poodle">
         <browser:page

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-10-04 16:01+0000\n"
+"POT-Creation-Date: 2014-06-02 11:06+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -10,15 +10,18 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0\n"
 "Preferred-Encodings: utf-8 latin1\n"
-"Domain: DOMAIN\n"
 
 #: ./ftw/meeting/skins/ftw_meeting_templates/datagridwidgetextended.pt:76
 msgid "Add new row"
 msgstr "Ajouter de nouvelles lignes"
 
-#: ./ftw/meeting/browser/meeting.pt:294
+#: ./ftw/meeting/browser/meeting.pt:322
 msgid "Attachments"
 msgstr "Documents joints"
+
+#: ./ftw/meeting/browser/meeting.pt:177
+msgid "Download PDF representation"
+msgstr "Télécharger le PDF pondu"
 
 #: ./ftw/meeting/profiles/default/types/Meeting.xml
 msgid "Meeting"
@@ -28,7 +31,7 @@ msgstr "Rendez-vous"
 msgid "Meeting Item"
 msgstr "Agenda / Ordre du jour"
 
-#: ./ftw/meeting/content/meeting.py:294
+#: ./ftw/meeting/content/meeting.py:345
 msgid "absent"
 msgstr "absent"
 
@@ -40,12 +43,17 @@ msgstr "Ajouter des objets n'est pas autorisé"
 msgid "duplication_error_text"
 msgstr "La réunion existe déjà"
 
+#. Default: "Start date is not valid."
+#: ./ftw/meeting/content/meeting.py:256
+msgid "error_invalid_start_date"
+msgstr "Date de début n'est pas valide"
+
 #. Default: "Event"
 #: ./ftw/meeting/vocabularies.py:53
 msgid "event"
 msgstr "Rendez-vous"
 
-#: ./ftw/meeting/content/meeting.py:295
+#: ./ftw/meeting/content/meeting.py:346
 msgid "excused"
 msgstr "excusé"
 
@@ -64,7 +72,7 @@ msgstr "Nouvel entrée / événement généré de l'enquête"
 msgid "generated_meeting_text"
 msgstr "Une rèunion est déjà fixée suite à cette enquête. Clicquer sur le lien suivant pour atteindre cette réunion."
 
-#: ./ftw/meeting/browser/meeting.pt:161
+#: ./ftw/meeting/browser/meeting.pt:164
 msgid "iCal"
 msgstr "Exporter le rendez-vous au format iCal"
 
@@ -81,7 +89,7 @@ msgid "latex_agenda_item"
 msgstr "Agenda"
 
 #. Default: "Date"
-#: ./ftw/meeting/latex/views.py:86
+#: ./ftw/meeting/latex/views.py:97
 msgid "latex_date"
 msgstr "Date"
 
@@ -91,12 +99,12 @@ msgid "latex_due_date"
 msgstr "Rendez-vous"
 
 #. Default: "Duration"
-#: ./ftw/meeting/latex/views.py:88
+#: ./ftw/meeting/latex/views.py:99
 msgid "latex_duration"
 msgstr "Durée"
 
 #. Default: "End"
-#: ./ftw/meeting/latex/views.py:95
+#: ./ftw/meeting/latex/views.py:106
 msgid "latex_end"
 msgstr "Fin"
 
@@ -156,7 +164,7 @@ msgid "latex_responsibles"
 msgstr "Responsable"
 
 #. Default: "Start"
-#: ./ftw/meeting/latex/views.py:93
+#: ./ftw/meeting/latex/views.py:104
 msgid "latex_start"
 msgstr "Démarrer"
 
@@ -179,182 +187,192 @@ msgid "meeting_created_text_with_errors"
 msgstr "Réunion a été créée, mais le réglage de la date ou l'heure a échoué, réglage manuel nécessaire --> <a href='${url}'>${title}</a>"
 
 #. Default: "Enter the attendees of the meeting."
-#: ./ftw/meeting/content/meeting.py:143
+#: ./ftw/meeting/content/meeting.py:146
 msgid "meeting_help_attendees"
 msgstr "Sélectionnez les personnes participantes à cette réunion."
 
 #. Default: "Enter the ending date and time, or click the calendar icon and select it."
-#: ./ftw/meeting/content/meeting.py:46
+#: ./ftw/meeting/content/meeting.py:49
 msgid "meeting_help_end_date"
 msgstr "Entrez la date et l'heure de fin, ou cliquez sur l'icône du calendrier pour sélectionner les données facilement."
 
 #. Default: "Select the head of the meeting."
-#: ./ftw/meeting/content/meeting.py:116
+#: ./ftw/meeting/content/meeting.py:119
 msgid "meeting_help_head_of_meeting"
 msgstr "Sélectionnez la personne qui préside la réunion."
 
 #. Default: "Enter the location where the meeting will take place."
-#: ./ftw/meeting/content/meeting.py:197
+#: ./ftw/meeting/content/meeting.py:208
 msgid "meeting_help_location"
 msgstr "Indiquez le site où le rendez-vous a lieu."
 
 #. Default: "Choose your Meeting form."
-#: ./ftw/meeting/content/meeting.py:101
+#: ./ftw/meeting/content/meeting.py:104
 msgid "meeting_help_meeting_form"
 msgstr "Choisir le type de réunion."
 
 #. Default: "Select the recording secretary."
-#: ./ftw/meeting/content/meeting.py:130
+#: ./ftw/meeting/content/meeting.py:133
 msgid "meeting_help_recording_secretary"
 msgstr "Sélectionnez la personne chargée du procès verbal."
 
-#: ./ftw/meeting/content/meeting.py:178
-#: ./ftw/meeting/content/meetingitem.py:70
+#: ./ftw/meeting/content/meeting.py:181
+#: ./ftw/meeting/content/meetingitem.py:74
 msgid "meeting_help_related_items"
 msgstr "Meeting"
 
 #. Default: "Enter the responsible of the meeting."
-#: ./ftw/meeting/content/meeting.py:76
+#: ./ftw/meeting/content/meeting.py:79
 msgid "meeting_help_responsibility"
 msgstr "Choisissez la personne responsable"
 
 #. Default: "Enter the starting date and time, or click the calendar icon and select it."
-#: ./ftw/meeting/content/meeting.py:30
+#: ./ftw/meeting/content/meeting.py:33
 msgid "meeting_help_start_date"
 msgstr "Entrez la date et l'heure de début, ou cliquez sur l'icône du calendrier pour sélectionner les données facilement."
 
 #. Default: "Choose your event type."
-#: ./ftw/meeting/content/meeting.py:61
+#: ./ftw/meeting/content/meeting.py:64
 msgid "meeting_help_type"
 msgstr "Choisissez le type de rendez-vous"
 
 #. Default: "Attendees"
-#: ./ftw/meeting/browser/meeting.pt:136
-#: ./ftw/meeting/content/meeting.py:141
-#: ./ftw/meeting/latex/views.py:63
+#: ./ftw/meeting/browser/meeting.pt:139
+#: ./ftw/meeting/content/meeting.py:144
+#: ./ftw/meeting/latex/views.py:74
 msgid "meeting_label_attendees"
 msgstr "Personnes participantes"
 
 #. Default: "Attendee"
-#: ./ftw/meeting/content/meeting.py:150
+#: ./ftw/meeting/content/meeting.py:153
 msgid "meeting_label_attendees_attendee"
 msgstr "Personnes"
 
 #. Default: "Present"
-#: ./ftw/meeting/content/meeting.py:156
+#: ./ftw/meeting/content/meeting.py:159
 msgid "meeting_label_attendees_present"
 msgstr "présent"
 
 #. Default: "Date"
-#: ./ftw/meeting/browser/meeting.pt:53
+#: ./ftw/meeting/browser/meeting.pt:56
 msgid "meeting_label_date"
 msgstr "Date"
 
 #. Default: "Description"
-#: ./ftw/meeting/browser/meeting.pt:153
+#: ./ftw/meeting/browser/meeting.pt:156
 msgid "meeting_label_description"
 msgstr "Description"
 
 #. Default: "Duration"
-#: ./ftw/meeting/browser/meeting.pt:60
+#: ./ftw/meeting/browser/meeting.pt:63
 msgid "meeting_label_duration"
 msgstr "Durée"
 
 #. Default: "End Date"
-#: ./ftw/meeting/browser/meeting.pt:80
-#: ./ftw/meeting/content/meeting.py:43
+#: ./ftw/meeting/browser/meeting.pt:83
+#: ./ftw/meeting/content/meeting.py:46
 msgid "meeting_label_end_date"
 msgstr "Date de fin"
 
 #. Default: "End Time"
-#: ./ftw/meeting/browser/meeting.pt:86
+#: ./ftw/meeting/browser/meeting.pt:89
 msgid "meeting_label_end_time"
 msgstr "Heure de fin"
 
 #. Default: "Export"
-#: ./ftw/meeting/browser/meeting.pt:159
+#: ./ftw/meeting/browser/meeting.pt:162
 msgid "meeting_label_export"
 msgstr "Exporter"
 
 #. Default: "Head of Meeting"
-#: ./ftw/meeting/browser/meeting.pt:116
-#: ./ftw/meeting/content/meeting.py:114
-#: ./ftw/meeting/latex/views.py:53
+#: ./ftw/meeting/browser/meeting.pt:119
+#: ./ftw/meeting/content/meeting.py:117
+#: ./ftw/meeting/latex/views.py:64
 msgid "meeting_label_head_of_meeting"
 msgstr "Chef de réunion"
 
 #. Default: "Location"
-#: ./ftw/meeting/browser/meeting.pt:95
-#: ./ftw/meeting/content/meeting.py:196
-#: ./ftw/meeting/latex/views.py:42
+#: ./ftw/meeting/browser/meeting.pt:98
+#: ./ftw/meeting/content/meeting.py:207
+#: ./ftw/meeting/latex/views.py:53
 msgid "meeting_label_location"
 msgstr "Lieu"
 
 #. Default: "Meeting Form"
-#: ./ftw/meeting/content/meeting.py:99
+#: ./ftw/meeting/content/meeting.py:102
 msgid "meeting_label_meeting_form"
 msgstr "Type de réunion"
 
+#. Default: "PDF representation"
+#: ./ftw/meeting/browser/meeting.pt:175
+msgid "meeting_label_pdf"
+msgstr "pondu PDF"
+
 #. Default: "Recording Secretary"
-#: ./ftw/meeting/browser/meeting.pt:125
-#: ./ftw/meeting/content/meeting.py:128
-#: ./ftw/meeting/latex/views.py:57
+#: ./ftw/meeting/browser/meeting.pt:128
+#: ./ftw/meeting/content/meeting.py:131
+#: ./ftw/meeting/latex/views.py:68
 msgid "meeting_label_recording_secretary"
 msgstr "Procès-verbal"
 
 #. Default: "Related Items"
-#: ./ftw/meeting/content/meeting.py:176
-#: ./ftw/meeting/content/meetingitem.py:68
+#: ./ftw/meeting/content/meeting.py:179
+#: ./ftw/meeting/content/meetingitem.py:72
 msgid "meeting_label_related_items"
 msgstr "Articles liés"
 
 #. Default: "Relations"
-#: ./ftw/meeting/browser/meeting.pt:245
+#: ./ftw/meeting/browser/meeting.pt:273
 msgid "meeting_label_relations"
 msgstr "Articles liés"
 
 #. Default: "Responsibility"
-#: ./ftw/meeting/browser/meeting.pt:101
-#: ./ftw/meeting/content/meeting.py:74
+#: ./ftw/meeting/browser/meeting.pt:104
+#: ./ftw/meeting/content/meeting.py:77
 msgid "meeting_label_responsibility"
 msgstr "Personnes responsables"
 
 #. Default: "Start Date"
-#: ./ftw/meeting/browser/meeting.pt:68
-#: ./ftw/meeting/content/meeting.py:28
+#: ./ftw/meeting/browser/meeting.pt:71
+#: ./ftw/meeting/content/meeting.py:31
 msgid "meeting_label_start_date"
 msgstr "Date de début"
 
 #. Default: "Start Time"
-#: ./ftw/meeting/browser/meeting.pt:74
+#: ./ftw/meeting/browser/meeting.pt:77
 msgid "meeting_label_start_time"
 msgstr "Date de fin"
 
 #. Default: "Tasks"
-#: ./ftw/meeting/browser/meeting.pt:221
+#: ./ftw/meeting/browser/meeting.pt:249
 msgid "meeting_label_tasks"
 msgstr "Tâches"
 
 #. Default: "Text"
-#: ./ftw/meeting/browser/meeting.pt:208
+#: ./ftw/meeting/browser/meeting.pt:236
 msgid "meeting_label_text"
 msgstr "Texte"
 
 #. Default: "Event type"
-#: ./ftw/meeting/content/meeting.py:60
+#: ./ftw/meeting/content/meeting.py:63
 msgid "meeting_label_type"
 msgstr "Type de rendez-vous"
 
-#: ./ftw/meeting/content/meeting.py:330
+#. Default: "Download (created on: ${date})"
+#: ./ftw/meeting/browser/meeting.pt:181
+msgid "meeting_link_pdf"
+msgstr "Télécharger le fichier (créé le: ${date})"
+
+#: ./ftw/meeting/content/meeting.py:381
 msgid "meeting_type_event"
 msgstr "Rendez-vous"
 
-#: ./ftw/meeting/content/meeting.py:331
+#: ./ftw/meeting/content/meeting.py:382
 msgid "meeting_type_meeting"
 msgstr "Rendez-vous"
 
 #. Default: "Enter the conclusion drawn for this resolution"
-#: ./ftw/meeting/content/meetingitem.py:55
+#: ./ftw/meeting/content/meetingitem.py:59
 msgid "meetingitem_help_conclusion"
 msgstr "Entrer la conclusion définie pour cette résolution"
 
@@ -364,13 +382,13 @@ msgid "meetingitem_help_responsibility"
 msgstr "Choisissez la personne responsable"
 
 #. Default: "Enter the text."
-#: ./ftw/meeting/content/meetingitem.py:39
+#: ./ftw/meeting/content/meetingitem.py:41
 msgid "meetingitem_help_text"
 msgstr "Entrer la description de cette résolution"
 
 #. Default: "Conclusion"
-#: ./ftw/meeting/browser/meeting.pt:214
-#: ./ftw/meeting/content/meetingitem.py:53
+#: ./ftw/meeting/browser/meeting.pt:242
+#: ./ftw/meeting/content/meetingitem.py:57
 msgid "meetingitem_label_conclusion"
 msgstr "Conclusion"
 
@@ -380,15 +398,25 @@ msgid "meetingitem_label_responsibility"
 msgstr "Personnes responsables"
 
 #. Default: "Text"
-#: ./ftw/meeting/content/meetingitem.py:38
+#: ./ftw/meeting/content/meetingitem.py:40
 msgid "meetingitem_label_text"
 msgstr "Texte"
+
+#. Default: "${title} - references"
+#: ./ftw/meeting/zipexport/meeting.py:74
+msgid "meetingreferences_folder"
+msgstr "${title} - références"
+
+#. Default: "PDF creation was successfully."
+#: ./ftw/meeting/browser/save_as_pdf.py:53
+msgid "message_pdf_creation_was_successfully"
+msgstr "Création de PDF a été avec succès"
 
 #. Default: "poll"
 msgid "poll"
 msgstr "Enquête"
 
-#: ./ftw/meeting/content/meeting.py:293
+#: ./ftw/meeting/content/meeting.py:344
 msgid "present"
 msgstr "présant"
 

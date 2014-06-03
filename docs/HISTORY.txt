@@ -5,7 +5,11 @@ Changelog
 1.4.10 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Add zipexport for meetings
+  [elioschmutz]
+
+- Add functionality to save meeting as pdf without downloading it.
+  [elioschmutz]
 
 
 1.4.9 (2014-03-20)
