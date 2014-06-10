@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-1.4.10 (unreleased)
+1.4.10 (2014-06-10)
 -------------------
 
 - Add zipexport for meetings
