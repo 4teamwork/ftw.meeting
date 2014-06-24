@@ -14,11 +14,16 @@ def get_value_from_vocab(vocabulary, value):
     if hasattr(value, '__iter__'):
         vocab_value = []
         for val in value:
-            vocab_value.append(vocabulary.getValue(val))
+            label = vocabulary.getValue(val)
+            if label is not None:
+                vocab_value.append(label)
         return ', '.join(vocab_value)
 
     else:
-        return vocabulary.getValue(value)
+        label = vocabulary.getValue(value)
+        if label is None:
+            label = ''
+        return label
 
 
 class MeetingView(RecursiveLaTeXView):
@@ -137,16 +142,17 @@ class MeetingView(RecursiveLaTeXView):
         field = self.context.getField(fieldname)
         value = field.get(self.context)
 
+        if not value:
+            return ''
+
         vocabulary = field.Vocabulary(self.context)
         if vocabulary:
-            if not value:
-                return ''
             return self.convert(get_value_from_vocab(vocabulary, value))
 
-        elif not value:
-            return ''
-        else:
-            return self.convert(value)
+        if not isinstance(value, (str, unicode)):
+            value = str(value)
+
+        return self.convert(value)
 
     def _translate_metadata_labels(self, metadata):
         new_metadata = []

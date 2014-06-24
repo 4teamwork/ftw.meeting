@@ -5,6 +5,9 @@ Changelog
 1.4.11 (unreleased)
 -------------------
 
+- Ignore removed users in PDF.
+  [jone]
+
 - Fix ftw.zipexport integration: make it optional on ZCML level.
   [jone]
 
