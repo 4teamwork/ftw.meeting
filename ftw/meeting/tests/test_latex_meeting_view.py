@@ -146,6 +146,37 @@ class TestMeetingView(TestCase):
 
         view.render()
 
+    def test_with_deleted_head_of_meeting_user(self):
+        self.meeting.setMeeting_type('meeting')
+        self.meeting.setHead_of_meeting('deleted-user')
+        view = getMultiAdapter(
+            (self.meeting, self.meeting.REQUEST, self.layout), ILaTeXView)
+        view.render()
+
+    def test_with_deleted_recording_secretary_user(self):
+        self.meeting.setMeeting_type('meeting')
+        self.meeting.setRecording_secretary('deleted-user')
+        view = getMultiAdapter(
+            (self.meeting, self.meeting.REQUEST, self.layout), ILaTeXView)
+        view.render()
+
+    def test_with_deleted_attendee_user(self):
+        self.meeting.setMeeting_type('meeting')
+        self.meeting.setAttendees([{'contact': 'deleted-user',
+                                    'present': 'present'}])
+        view = getMultiAdapter(
+            (self.meeting, self.meeting.REQUEST, self.layout), ILaTeXView)
+        view.render()
+
+    def test_with_deleted_responsible_user_on_meeting_item(self):
+        create(Builder('meeting item')
+               .titled('Foo')
+               .having(responsibility=('deleted-user',))
+               .within(self.meeting))
+        view = getMultiAdapter(
+            (self.meeting, self.meeting.REQUEST, self.layout), ILaTeXView)
+        view.render()
+
     def test_meetingview_get_value_from_vocab(self):
         meeting = create(Builder('meeting')
                          .titled('Meeting')
