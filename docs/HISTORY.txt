@@ -5,6 +5,10 @@ Changelog
 1.4.11 (unreleased)
 -------------------
 
+- 1.4.10 was meant to be a feature release, since it has some features included.
+  So this is the new feature release.
+  [mathias.leimgruber]
+
 - Ignore removed users in PDF.
   [jone]
 
