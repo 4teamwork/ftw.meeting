@@ -5,7 +5,8 @@ Changelog
 1.5.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add special preview View for ftw.workspace preview.
+  [tschanzt]
 
 
 1.5.0 (2014-06-24)

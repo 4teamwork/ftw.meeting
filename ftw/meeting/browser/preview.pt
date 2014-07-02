@@ -1,0 +1,104 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+    xmlns:tal="http://xml.zope.org/namespaces/tal" xmlns:metal="http://xml.zope.org/namespaces/metal"
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n" lang="en"
+    metal:use-macro="here/main_template/macros/master" i18n:domain="ftw.meeting">
+
+<metal:main fill-slot="content-core">
+    <tal:main-macro metal:define-macro="content-core"
+        tal:define="templateId template/getId;
+                    normalizeString nocall: context/@@plone/normalizeString;
+                    meeting_type python:context.getMeeting_type();
+                    mtool context/@@plone_tools/membership;
+                    toLocalizedTime nocall:context/@@plone/toLocalizedTime;">
+
+
+
+        <table class="vertical listing MeetingPreview">
+            <tr>
+                <th><span i18n:translate="label_title">Title</span></th>
+                <td><span tal:content="context/Title" /></td>
+            </tr>
+            <tal:dates define="start_field context/start;
+                               end_field context/end;
+                               start_date python:start_field and start_field.strftime('%d.%m.%Y') or '';
+                               start_time python:start_field and start_field.strftime('%H:%M') or '';
+                               end_date python:end_field and end_field.strftime('%d.%m.%Y') or '';
+                               end_time python:end_field and end_field.strftime('%H:%M') or ''">
+                <tal:day tal:condition="python: (start_date == end_date)">
+                <tr>
+                    <th><span i18n:translate="meeting_label_date">Date</span></th>
+                    <td>
+                        <tal:block replace="start_date" />
+                    </td>
+
+                </tr>
+                <tr>
+                    <th><span i18n:translate="meeting_label_duration">Duration</span></th>
+                    <td>
+                        <tal:block tal:content="string:${start_time} - ${end_time}" />
+                    </td>
+                </tr>
+                </tal:day>
+                <tal:mutli condition="python:start_date != end_date">
+                    <tr tal:condition="context/start">
+                        <th><span i18n:translate="meeting_label_start_date">Start Date</span></th>
+                        <td>
+                            <tal:block tal:content="python: context.start_date.strftime('%d.%m.%Y')" />
+                        </td>
+                    </tr>
+                    <tr tal:condition="context/start">
+                        <th><span i18n:translate="meeting_label_start_time">Start Time</span></th>
+                        <td>
+                            <tal:block tal:content="python: context.start_date.strftime('%H:%M')" />
+                        </td>
+                    </tr>
+                    <tr tal:condition="context/end">
+                        <th><span i18n:translate="meeting_label_end_date">End Date</span></th>
+                        <td>
+                            <tal:block tal:content="python: context.end_date.strftime('%d.%m.%Y')" />
+                        </td>
+                    </tr>
+                    <tr tal:condition="context/end">
+                        <th><span i18n:translate="meeting_label_end_time">End Time</span></th>
+                        <td>
+                            <tal:block tal:content="python: context.end_date.strftime('%H:%M')" />
+                        </td>
+                    </tr>
+                </tal:mutli>
+            </tal:dates>
+
+            <tr tal:condition="context/getLocation">
+                <th i18n:translate="meeting_label_location">Location</th>
+                <td tal:content="context/getLocation">
+                </td>
+            </tr>
+            <tr tal:condition="python: context.getHead_of_meeting() and context.getMeeting_type() == 'meeting'">
+                <th><span i18n:translate="meeting_label_head_of_meeting">Head of Meeting</span></th>
+                <td tal:define="userids python:here.getHead_of_meeting()" tal:repeat="userid python:context.getResponsibilityInfos(userids)">
+                    <tal:exists condition="python:userid and len(userid.get('url',''))>0">
+                        <a tal:attributes="href python:userid['url']" tal:content="python:userid['name']" />
+                    </tal:exists>
+                    <span tal:condition="python:userid and len(userid.get('url',''))==0" tal:content="python:userid['name']" />
+                </td>
+            </tr>
+        <tr>
+            <th i18n:translate="meeting_label_meetingitems">Meeting Items</th>
+        <td>
+        <div class="MeetingItems"
+             tal:define="meeting_items python:context.getFolderContents({'portal_type':['Meeting Item']}, full_objects=True);"
+               tal:condition="meeting_items">
+
+            <ul tal:repeat="obj meeting_items">
+                <li tal:attributes="id string:uid_${obj/UID}" class="MeetingItemPreviewWrapper">
+                        <span class="itemTitle">
+                          <tal:title tal:content="obj/title">Title</tal:title>
+                        </span>
+                    </li>
+            </ul>
+        </div>
+        </td>
+        </tr>
+        </table>
+</tal:main-macro>
+</metal:main>
+</html>
