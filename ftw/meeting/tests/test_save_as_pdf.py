@@ -13,6 +13,7 @@ from zope.component import getMultiAdapter
 from zope.interface import implements
 from zope.interface import Interface
 import unittest2 as unittest
+from Products.CMFCore.utils import getToolByName
 
 
 class MockPDFAssembler(object):
@@ -32,7 +33,8 @@ class TestSaveAsPdfFunctional(unittest.TestCase):
 
     def setUp(self):
         self.portal = self.layer['portal']
-        self.request = self.layer['request']
+
+        self.user = create(Builder('user').with_roles('Contributor', 'Editor'))
 
         site_manager = self.portal.getSiteManager()
         site_manager.registerAdapter(
@@ -43,12 +45,18 @@ class TestSaveAsPdfFunctional(unittest.TestCase):
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
         login(self.portal, TEST_USER_NAME)
 
+        wftool = getToolByName(self.portal, 'portal_workflow')
+        wftool.setChainForPortalTypes(('Meeting',),
+                                      ('simple_publication_workflow',))
+        wftool.setChainForPortalTypes(('File',),
+                                      ('simple_publication_workflow',))
+
     @browsing
     def test_add_a_new_object_calling_the_view(self, browser):
         meeting = create(Builder('meeting'))
         self.assertTrue(len(self.portal.listFolderContents()) is 1)
 
-        browser.login().visit(meeting, view="save_as_pdf")
+        browser.login(self.user.getId()).visit(meeting, view="save_as_pdf")
 
         self.assertTrue(len(self.portal.listFolderContents()) is 2)
 
@@ -56,7 +64,7 @@ class TestSaveAsPdfFunctional(unittest.TestCase):
     def test_portalmessage_if_creation_was_successfull(self, browser):
         meeting = create(Builder('meeting'))
 
-        browser.login().visit(meeting, view="save_as_pdf")
+        browser.login(self.user.getId()).visit(meeting, view="save_as_pdf")
         statusmessages.assert_message('PDF creation was successfully.')
 
     def tearDown(self):

@@ -38,10 +38,10 @@ class SaveAsPDF(BrowserView):
             (self.context, self.request), IPDFAssembler).build_pdf()
 
     def _create_pdf_object(self, data, filename):
-        pdf_id = self._parent.invokeFactory(
+        pdf_id = self._get_parent.invokeFactory(
             CONTENTTYPE, self._get_id(),
             title=self.context.Title())
-        pdf = self._parent.get(pdf_id)
+        pdf = self._get_parent.get(pdf_id)
         pdf.setFile(data)
         pdf.getFile().setFilename(filename)
 
@@ -57,12 +57,12 @@ class SaveAsPDF(BrowserView):
     def _get_id(self):
         base_id = new_id = PREFIX + self.context.getId()
         counter = 0
-        while new_id in self._parent.objectIds():
+        while new_id in self._get_parent.objectIds():
             counter += 1
             new_id = '{0}-{1}'.format(base_id, counter)
 
         return new_id
 
     @property
-    def _parent(self):
+    def _get_parent(self):
         return aq_parent(aq_inner(self.context))
