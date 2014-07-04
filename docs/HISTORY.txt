@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-1.5.1 (unreleased)
+1.5.1 (2014-07-04)
 ------------------
 
 - Fix save_as_pdf view. _parent seems to be an existing method with security declaration.
