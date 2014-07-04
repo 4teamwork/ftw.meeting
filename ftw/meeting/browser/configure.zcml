@@ -26,6 +26,14 @@
     />
 
     <browser:page
+        layer="ftw.meeting.interfaces.IMeetingLayer"
+        for="..interfaces.IMeeting"
+        name="meeting_preview"
+        class=".preview.MeetingPreview"
+        permission="zope2.View"
+    />
+
+    <browser:page
         for="..interfaces.IMeeting"
         name="meetingitem_dnd_saveorder"
         class=".dndreorder.SaveDragndropOrderView"
