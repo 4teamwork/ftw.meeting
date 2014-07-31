@@ -105,3 +105,30 @@ class TestMeetingRepresentation(TestCase):
                 u'/J\xe4mes.pdf',
             ],
             [path for path, stream in zip_repr.get_files()])
+
+    def test_export_references_of_meeting_items(self):
+        file1 = create(Builder('file')
+                       .attach_file_containing('My File', 'file_1.doc'))
+        file2 = create(Builder('file')
+                       .attach_file_containing('My File', 'file_2.doc'))
+
+        meeting = create(Builder('meeting').titled('J\xc3\xa4mes'))
+        create(Builder('meeting item')
+               .titled('First meeting item')
+               .within(meeting)
+               .having(related_items=[file1]))
+        create(Builder('meeting item')
+               .titled('Second meeting item')
+               .within(meeting)
+               .having(related_items=[file2]))
+
+        zip_repr = getMultiAdapter(
+            (meeting, self.request), interface=IZipRepresentation)
+
+        self.assertItemsEqual(
+            [
+                u'/J\xe4mes.pdf',
+                u'/First meeting item - references/file_1.doc',
+                u'/Second meeting item - references/file_2.doc'
+            ],
+            [path for path, stream in zip_repr.get_files()])

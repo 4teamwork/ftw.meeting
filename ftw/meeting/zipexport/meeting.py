@@ -17,22 +17,34 @@ class MeetingZipRepresentation(NullZipRepresentation):
     items into a subfolder.
     """
     def get_files(self, path_prefix=u"", recursive=True, toplevel=True):
-        related_items = self.context.getRelated_items()
 
         # The Meeting as pdf
         yield (u'{0}/{1}'.format(
             path_prefix, self._pdf_name),
             StringIO(self._pdf_data))
 
-        # All references
-        path_prefix = u'{0}/{1}'.format(path_prefix, self.subfolder_path)
+        # All references of the meeting
+        for reference in self.export_references(path_prefix, recursive):
+            yield reference
+
+        # All references of meeting items
+        query = {'portal_type': 'Meeting Item'}
+        meetingitems = self.context.getFolderContents(query, full_objects=True)
+        for meetingitem in meetingitems:
+            for reference in self.export_references(path_prefix, recursive, meetingitem):
+                yield reference
+
+    def export_references(self, path_prefix, recursive, content=None):
+        if content is None:
+            content = self.context
+
+        related_items = content.getRelated_items()
+        path_prefix = u'{0}/{1}'.format(path_prefix,
+                                        self.subfolder_path(content))
+
         for obj in related_items:
 
-            # if obj.UID() is self._pdf_representation.UID():
-            #     # Skip the own pdf representation reference
-            #     continue
-
-            if obj.absolute_url() in self.context.absolute_url():
+            if obj.absolute_url() in content.absolute_url():
                 # Prevent unlimited recursion if a related_item is a parent.
                 # We just skip this item
                 continue
@@ -50,13 +62,6 @@ class MeetingZipRepresentation(NullZipRepresentation):
                 yield item
 
     @property
-    def _pdf_representation(self):
-        pdf = self.context.getPdf_representation()
-        if not pdf:
-            pdf = self._save_as_pdf_view.save_as_pdf()
-        return pdf
-
-    @property
     def _pdf_data(self):
         return self._save_as_pdf_view.pdf_data
 
@@ -69,11 +74,10 @@ class MeetingZipRepresentation(NullZipRepresentation):
         return getMultiAdapter(
             (self.context, self.request), name="save_as_pdf")
 
-    @property
-    def subfolder_path(self):
+    def subfolder_path(self, content):
         message = _(
             u'meetingreferences_folder',
             default='${title} - references',
-            mapping={'title': self.context.Title().decode('utf-8')})
+            mapping={'title': content.Title().decode('utf-8')})
 
         return translate(message, context=self.context.REQUEST)
