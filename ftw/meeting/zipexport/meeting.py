@@ -17,18 +17,27 @@ class MeetingZipRepresentation(NullZipRepresentation):
     items into a subfolder.
     """
     def get_files(self, path_prefix=u"", recursive=True, toplevel=True):
-        related_items = self.context.getRelated_items()
 
         # The Meeting as pdf
         yield (u'{0}/{1}'.format(
             path_prefix, self._pdf_name),
             StringIO(self._pdf_data))
 
-        # All references
-        path_prefix = u'{0}/{1}'.format(path_prefix, self.subfolder_path)
+        # All references of the meeting
+        for reference in self.export_references(path_prefix, recursive):
+            yield reference
+
+    def export_references(self, path_prefix, recursive, content=None):
+        if content is None:
+            content = self.context
+
+        related_items = content.getRelated_items()
+        path_prefix = u'{0}/{1}'.format(path_prefix,
+                                        self.subfolder_path(content))
+
         for obj in related_items:
 
-            if obj.absolute_url() in self.context.absolute_url():
+            if obj.absolute_url() in content.absolute_url():
                 # Prevent unlimited recursion if a related_item is a parent.
                 # We just skip this item
                 continue
@@ -58,11 +67,10 @@ class MeetingZipRepresentation(NullZipRepresentation):
         return getMultiAdapter(
             (self.context, self.request), name="save_as_pdf")
 
-    @property
-    def subfolder_path(self):
+    def subfolder_path(self, content):
         message = _(
             u'meetingreferences_folder',
             default='${title} - references',
-            mapping={'title': self.context.Title().decode('utf-8')})
+            mapping={'title': content.Title().decode('utf-8')})
 
         return translate(message, context=self.context.REQUEST)
