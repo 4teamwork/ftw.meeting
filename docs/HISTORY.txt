@@ -5,7 +5,8 @@ Changelog
 1.5.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Also export references of meeting item on zip export on a meeting.
+  [mathias.leimgruber]
 
 
 1.5.1 (2014-07-04)

@@ -27,6 +27,13 @@ class MeetingZipRepresentation(NullZipRepresentation):
         for reference in self.export_references(path_prefix, recursive):
             yield reference
 
+        # All references of meeting items
+        query = {'portal_type': 'Meeting Item'}
+        meetingitems = self.context.getFolderContents(query, full_objects=True)
+        for meetingitem in meetingitems:
+            for reference in self.export_references(path_prefix, recursive, meetingitem):
+                yield reference
+
     def export_references(self, path_prefix, recursive, content=None):
         if content is None:
             content = self.context
