@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-1.5.2 (unreleased)
+1.5.2 (2014-07-31)
 ------------------
 
 - BugFix: Show "related_items" instead of "relatedItems" in meeting item listing.
