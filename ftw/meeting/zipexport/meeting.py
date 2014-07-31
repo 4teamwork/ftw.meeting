@@ -28,10 +28,6 @@ class MeetingZipRepresentation(NullZipRepresentation):
         path_prefix = u'{0}/{1}'.format(path_prefix, self.subfolder_path)
         for obj in related_items:
 
-            # if obj.UID() is self._pdf_representation.UID():
-            #     # Skip the own pdf representation reference
-            #     continue
-
             if obj.absolute_url() in self.context.absolute_url():
                 # Prevent unlimited recursion if a related_item is a parent.
                 # We just skip this item
@@ -48,13 +44,6 @@ class MeetingZipRepresentation(NullZipRepresentation):
             ):
 
                 yield item
-
-    @property
-    def _pdf_representation(self):
-        pdf = self.context.getPdf_representation()
-        if not pdf:
-            pdf = self._save_as_pdf_view.save_as_pdf()
-        return pdf
 
     @property
     def _pdf_data(self):
