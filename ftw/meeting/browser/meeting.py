@@ -1,5 +1,6 @@
+from Acquisition import aq_inner
+from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
-from plone.app.layout.viewlets.content import ContentRelatedItems
 
 
 class MeetingView(BrowserView):
@@ -22,7 +23,22 @@ class MeetingView(BrowserView):
                      icon='%s/%s' % (context.portal_url(), b.getIcon))
                 for b in raw]
 
-
     def get_related_items(self, obj):
-        brains = ContentRelatedItems(obj, obj.REQUEST, self).related_items()
-        return brains
+        context = aq_inner(obj)
+        res = ()
+
+        catalog = getToolByName(context, 'portal_catalog')
+        related = context.getRawRelated_items()
+        if not related:
+            return ()
+        brains = catalog(UID=related)
+        if brains:
+            # build a position dict by iterating over the items once
+            positions = dict([(v, i) for (i, v) in enumerate(related)])
+            # We need to keep the ordering intact
+            res = list(brains)
+
+            def _key(brain):
+                return positions.get(brain.UID, -1)
+            res.sort(key=_key)
+        return res

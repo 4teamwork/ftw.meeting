@@ -5,6 +5,9 @@ Changelog
 1.5.2 (unreleased)
 ------------------
 
+- BugFix: Show "related_items" instead of "relatedItems" in meeting item listing.
+  [mathias.leimgruber]
+
 - Also export references of meeting item on zip export on a meeting.
   [mathias.leimgruber]
 
