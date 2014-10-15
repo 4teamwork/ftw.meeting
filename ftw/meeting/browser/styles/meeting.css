@@ -80,3 +80,13 @@ ul.AttendeesListing li {
 .meetingItemActions a.buttonRemove:hover {
   background-position:0 -250px;
 }
+
+/* ftw.calendar styles */
+#calendar.fc div.attendee a {
+  background-color: rgb(117, 173, 10);
+  border-color: rgb(117, 173, 10);
+}
+#calendar.fc div.attendee {
+  border-color: rgb(117, 173, 10);
+}
+}

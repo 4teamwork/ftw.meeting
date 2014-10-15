@@ -11,6 +11,9 @@ Changelog
 1.5.3 (2015-02-09)
 ------------------
 
+- Highlighting attended meetings in `ftw.calendar`.
+  [lknoepfel]
+
 - Render the related items of meeting objects.
   [mbaechtold]
 

@@ -57,6 +57,15 @@
         />
     </configure>
 
+    <configure zcml:condition="installed ftw.calendar">
+        <adapter
+            for="* ftw.meeting.interfaces.IMeetingLayer"
+            name="ftw_calendar_source"
+            provides="ftw.calendar.browser.interfaces.IFtwCalendarJSONSourceProvider"
+            factory=".calendarsource.MeetingCalendarJSONSource"
+            />
+    </configure>
+
     <browser:page
         for="..interfaces.IMeeting"
         name="export_ics"
