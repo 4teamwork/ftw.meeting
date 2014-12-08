@@ -92,9 +92,9 @@ class TestMeetingView(TestCase):
              'title': 'THE event',
              'meetingForm': '',
              'metadata': [
-                    (u'Start', 'Aug 20, 2010 08:00 AM'),
-                    (u'End', 'Aug 22, 2010 04:00 PM'),
-                    (u'Location', 'Switzerland')],
+                 (u'Start', 'Aug 20, 2010 08:00 AM'),
+                 (u'End', 'Aug 22, 2010 04:00 PM'),
+                 (u'Location', 'Switzerland')],
              'meetingItems': None})
 
         view.render()
@@ -133,15 +133,15 @@ class TestMeetingView(TestCase):
              'title': 'THE meeting',
              'meetingForm': 'Protokoll',
              'metadata': [
-                    (u'Start', 'Aug 20, 2010 08:00 AM'),
-                    (u'End', 'Aug 22, 2010 04:00 PM'),
-                    (u'Location', 'Berne'),
-                    (u'Head of meeting', 'Doe John'),
-                    (u'Recording secretary', 'Boss Hugo'),
-                    ('', ''),
-                    (u'Attendees', 'Boss Hugo, present \\newline '
-                                   'Doe John, present'),
-                    ('', '')],
+                 (u'Start', 'Aug 20, 2010 08:00 AM'),
+                 (u'End', 'Aug 22, 2010 04:00 PM'),
+                 (u'Location', 'Berne'),
+                 (u'Head of meeting', 'Doe John'),
+                 (u'Recording secretary', 'Boss Hugo'),
+                 ('', ''),
+                 (u'Attendees', 'Boss Hugo, present \\newline '
+                                'Doe John, present'),
+                 ('', '')],
              'meetingItems': ['Foo', 'Bar']})
 
         view.render()
