@@ -79,6 +79,9 @@ class TestMeetingView(TestCase):
         self.meeting.setEnd_date(DateTime('08/22/2010 16:00'))
         self.meeting.setLocation('Switzerland')
 
+        task = create(Builder('task').titled('Easy task'))
+        self.meeting.setRelated_items([task])
+
         view = getMultiAdapter(
             (self.meeting, self.meeting.REQUEST, self.layout), ILaTeXView)
 
@@ -95,7 +98,13 @@ class TestMeetingView(TestCase):
                  (u'Start', 'Aug 20, 2010 08:00 AM'),
                  (u'End', 'Aug 22, 2010 04:00 PM'),
                  (u'Location', 'Switzerland')],
-             'meetingItems': None})
+             'meetingItems': None,
+             'relatedItems': [
+                 '\\href{http://nohost/plone/easy-task}''{Easy task'
+                 '\\footnote{'
+                 '\\href{http://nohost/plone/easy-task}{'
+                 '\\url{http://nohost/plone/easy-task}}}}'
+             ]})
 
         view.render()
 
@@ -114,6 +123,9 @@ class TestMeetingView(TestCase):
                                    'present': 'present'},
                                   {'contact': self.user1.getId(),
                                    'present': 'present'}])
+
+        task = create(Builder('task').titled('Easy task'))
+        self.meeting.setRelated_items([task])
 
         create(Builder('meeting item').titled('Foo').within(self.meeting))
         create(Builder('meeting item').titled('Bar').within(self.meeting))
@@ -142,7 +154,13 @@ class TestMeetingView(TestCase):
                  (u'Attendees', 'Boss Hugo, present \\newline '
                                 'Doe John, present'),
                  ('', '')],
-             'meetingItems': ['Foo', 'Bar']})
+             'meetingItems': ['Foo', 'Bar'],
+             'relatedItems': [
+                 '\\href{http://nohost/plone/easy-task}''{Easy task'
+                 '\\footnote{'
+                 '\\href{http://nohost/plone/easy-task}{'
+                 '\\url{http://nohost/plone/easy-task}}}}'
+             ]})
 
         view.render()
 
