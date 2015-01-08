@@ -36,13 +36,17 @@ class MeetingView(RecursiveLaTeXView):
         meeting = self.context
         args = super(MeetingView, self).get_render_arguments()
 
-        args.update({
+        args.update(
+            {
                 '_': lambda *a, **kw: translate(_(*a, **kw),
                                                 context=self.request),
                 'title': meeting.Title(),
                 'meetingForm': '',
                 'metadata': self.get_metadata(),
-                'meetingItems': None})
+                'meetingItems': None,
+                'relatedItems': self.get_related_items(),
+            }
+        )
 
         if meeting.getMeeting_type() == 'meeting':
             args['meetingForm'] = self._get_meeting_value('meeting_form')
@@ -135,6 +139,18 @@ class MeetingView(RecursiveLaTeXView):
         for item in self.context.getFolderContents(
             contentFilter={'portal_type': ['Meeting Item']}):
             items.append(self.convert(item.Title))
+
+        return items
+
+    def get_related_items(self):
+        items = []
+
+        for obj in self.context.getRelated_items():
+            items.append(
+                self.convert(
+                    '<a href="%s">%s</a>' % (obj.absolute_url(), obj.Title())
+                )
+            )
 
         return items
 
