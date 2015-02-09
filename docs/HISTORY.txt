@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-1.5.3 (unreleased)
+1.5.3 (2015-02-09)
 ------------------
 
 - Render the related items of meeting objects.
