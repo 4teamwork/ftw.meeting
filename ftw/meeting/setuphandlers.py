@@ -44,6 +44,12 @@ def add_catalog_indexes(context, logger=None):
         catalog.manage_reindexIndex(ids=indexables)
 
 
+def add_meeting_to_calendar_types(context, logger=None):
+    portal_calendar = getToolByName(context, 'portal_calendar')
+    if 'Meeting' not in portal_calendar.calendar_types:
+        portal_calendar.calendar_types += ('Meeting',)
+
+
 def import_various(context):
     """Import step for configuration that is not handled in xml files.
     """
@@ -53,3 +59,4 @@ def import_various(context):
     logger = context.getLogger('ftw.meeting')
     site = context.getSite()
     add_catalog_indexes(site, logger)
+    add_meeting_to_calendar_types(site, logger)

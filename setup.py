@@ -14,6 +14,7 @@ tests_require = [
     'ftw.zipexport',
     'ftw.poodle',
     'ftw.task',
+    'ftw.calendar',
     ]
 
 extras_require = {
