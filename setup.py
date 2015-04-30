@@ -25,7 +25,9 @@ extras_require = {
     'task': [
         'ftw.task'],
     'zipexport': [
-        'ftw.zipexport']}
+        'ftw.zipexport'],
+    'calendar': [
+        'ftw.calendar >= 2.1.0']}
 
 setup(name='ftw.meeting',
       version=version,
