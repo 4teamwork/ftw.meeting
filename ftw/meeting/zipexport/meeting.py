@@ -2,6 +2,7 @@ from ftw.meeting import _
 from ftw.meeting.interfaces import IMeeting
 from ftw.zipexport.interfaces import IZipRepresentation
 from ftw.zipexport.representations.general import NullZipRepresentation
+from Products.CMFPlone.utils import safe_unicode
 from StringIO import StringIO
 from zope.component import adapts
 from zope.component import getMultiAdapter
@@ -20,7 +21,8 @@ class MeetingZipRepresentation(NullZipRepresentation):
 
         # The Meeting as pdf
         yield (u'{0}/{1}'.format(
-            path_prefix, self._pdf_name),
+                safe_unicode(path_prefix),
+                safe_unicode(self._pdf_name)),
             StringIO(self._pdf_data))
 
         # All references of the meeting
@@ -39,8 +41,8 @@ class MeetingZipRepresentation(NullZipRepresentation):
             content = self.context
 
         related_items = content.getRelated_items()
-        path_prefix = u'{0}/{1}'.format(path_prefix,
-                                        self.subfolder_path(content))
+        path_prefix = u'{0}/{1}'.format(safe_unicode(path_prefix),
+                                        safe_unicode(self.subfolder_path(content)))
 
         for obj in related_items:
 
@@ -67,7 +69,7 @@ class MeetingZipRepresentation(NullZipRepresentation):
 
     @property
     def _pdf_name(self):
-        return self._save_as_pdf_view.filename.decode('utf-8')
+        return self._save_as_pdf_view.filename
 
     @property
     def _save_as_pdf_view(self):
