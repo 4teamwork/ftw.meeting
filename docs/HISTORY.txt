@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-1.5.4 (unreleased)
+1.6.0 (2015-05-11)
 ------------------
 
 - Highlighting attended meetings in `ftw.calendar`.
