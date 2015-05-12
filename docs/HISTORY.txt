@@ -5,7 +5,9 @@ Changelog
 1.6.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix invalid css, removing an unneeded closing curly bracket.
+  The CSS of 1.6.0 is invalid
+  [jone]
 
 
 1.6.0 (2015-05-11)
