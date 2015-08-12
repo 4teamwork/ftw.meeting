@@ -300,23 +300,8 @@
                                 </table>
                             </div>
                         </div>
-
-                        <tr class="even" tal:repeat="meeting_item_file python:obj.getFolderContents({'portal_type':['File'], 'sort_on' : 'effective', 'sort_order' : 'descending'}, full_objects=True)">
-                            <td>&nbsp;</td>
-                            <td>
-                                <a href="#" tal:attributes="href string:${meeting_item_file/absolute_url}/download"
-                                   tal:content="meeting_item_file/title_or_id" />
-                                <div tal:content="meeting_item_file/Description" />
-                                <div tal:content="structure meeting_item_file/text" />
-                                <div tal:content="meeting_item_file/Creator" />
-                            </td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                        </tr>
                     </tal:block>
                 </div>
-
                 <table tal:define="files view/getFiles" tal:condition="files" class="listing" width="100%">
                     <tr>
                         <th width="*" i18n:translate="">Attachments</th>
