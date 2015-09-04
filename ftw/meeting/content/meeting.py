@@ -59,7 +59,7 @@ MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
                 columns={
                     'contact':
                         SelectColumn(
-                        title=_(
+                        label=_(
                             u"meeting_label_responsibility",
                             default="Responsibility"),
                         vocabulary='getAttendeesVocabulary'
@@ -169,13 +169,13 @@ MeetingSchema = folder.ATFolderSchema.copy() + atapi.Schema((
 
                 columns={
                     'contact': SelectColumn(
-                        title=_(
+                        label=_(
                             u"meeting_label_attendees_attendee",
                             default=u"Attendee"),
                         vocabulary='getAttendeesVocabulary'
                         ),
                     'present': SelectColumn(
-                        title=_(
+                        label=_(
                             u"meeting_label_attendees_present",
                             default=u"Present"),
                         vocabulary='getPresentOptions',
