@@ -7,19 +7,19 @@
     <metal:js fill-slot="javascript_head_slot">
         <script type="text/javascript">
             /* DnD reoder meeting items */
-            jq(function() {
-                 jq('.MeetingItems').sortable({
+            $(function() {
+                 $('.MeetingItems').sortable({
                      'items':'.MeetingItemWrapper',
                      'handle': '.MeetingItemHead .buttonMove',
                       'stop': function(event, ui) {
                           var ids = [];
-                          jq('.MeetingItemWrapper').each(function(index, el) {
+                          $('.MeetingItemWrapper').each(function(index, el) {
                               ids.push(el.id);
                           });
                           ids = ids.join(',');
                           var bhref, base_href;
-                          bhref= base_href = jq('base')[0].href;
-                          jq.post('./meetingitem_dnd_saveorder', { uids : ids });
+                          bhref= base_href = $('base')[0].href;
+                          $.post('./meetingitem_dnd_saveorder', { uids : ids });
                       }
                 });
             });
