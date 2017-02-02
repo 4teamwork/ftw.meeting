@@ -14,7 +14,7 @@ tests_require = [
     'ftw.zipexport',
     'ftw.poodle',
     'ftw.task',
-    'ftw.calendar',
+    'ftw.meeting [calendar]',
     ]
 
 extras_require = {
@@ -27,7 +27,7 @@ extras_require = {
     'zipexport': [
         'ftw.zipexport'],
     'calendar': [
-        'ftw.calendar >= 2.1.0']}
+        'ftw.calendar >= 2.1.0, <3']}
 
 setup(name='ftw.meeting',
       version=version,

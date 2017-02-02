@@ -5,6 +5,9 @@ Changelog
 1.6.3 (unreleased)
 ------------------
 
+- An older ftw.calendar is required because of breaking changes in
+  https://github.com/4teamwork/ftw.calendar/pull/19 [jone]
+
 - Replace jq with $.
   [lknoepfel]
 
