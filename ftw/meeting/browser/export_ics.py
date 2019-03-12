@@ -1,6 +1,7 @@
+from plone import api
 from plone.memoize import ram
-from Products.ATContentTypes.lib import calendarsupport as cs
 from Products.ATContentTypes.browser.calendar import CalendarView, cachekey
+from Products.ATContentTypes.lib import calendarsupport as cs
 
 
 class ExportICS(CalendarView):
@@ -18,9 +19,11 @@ class ExportICS(CalendarView):
                 info = voc.getValue(attendee['contact'])
                 if not info:
                     continue
+
+                user = api.user.get(userid=attendee['contact'])
                 value += 'ATTENDEE;CN="%s";CUTYPE=INDIVIDUAL:%s\n' % (
                     info.decode('utf8'),
-                    attendee['contact'])
+                    user.getProperty('email'))
             return value.encode('utf8')
         return ''
 

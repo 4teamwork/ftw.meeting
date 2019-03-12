@@ -5,6 +5,8 @@ Changelog
 1.6.3 (unreleased)
 ------------------
 
+- Use E-Mail address in ics header instead of userid for the INDIVIDUAL property. [mathias.leimgruber]
+
 - Drop Plone 4.1 support. [jone]
 
 - An older ftw.calendar is required because of breaking changes in
