@@ -5,6 +5,8 @@ Changelog
 1.6.3 (unreleased)
 ------------------
 
+- Drop Plone 4.2 support. [mathias.leimgruber]
+
 - Use E-Mail address in ics header instead of userid for the INDIVIDUAL property. [mathias.leimgruber]
 
 - Drop Plone 4.1 support. [jone]
