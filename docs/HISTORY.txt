@@ -5,7 +5,7 @@ Changelog
 1.7.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add organizer to calendar export file. [busykoala]
 
 
 1.7.0 (2019-03-12)
