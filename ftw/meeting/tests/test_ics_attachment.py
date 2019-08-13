@@ -37,12 +37,18 @@ class TestIcsAttachmentView(unittest.TestCase):
         user = create(Builder('user').named('User', 'Test')
                       .with_userid('test.user')
                       .having(email='test@example.com'))
+
+        head_of_meeting = create(Builder('user').named('Head', 'Meeting')
+                                 .with_userid('head.meeting')
+                                 .having(email='head-of-meeting@example.com'))
         meeting = create(Builder('meeting')
                          .having(attendees=[{'contact': user.getId(),
                                              'present': 'present'}],
                                  start_date=DateTime.DateTime(),
-                                 end_date=DateTime.DateTime() + 10))
+                                 end_date=DateTime.DateTime() + 10,
+                                 head_of_meeting=head_of_meeting.getId()))
 
         ics = ICSAttachmentCreator(meeting)(meeting)
         ics_data = ics[0][0].read()
         self.assertIn('INDIVIDUAL:test@example.com', ics_data)
+        self.assertIn('ORGANIZER;CN=Meeting Head:MAILTO:head-of-meeting@example.com', ics_data)
